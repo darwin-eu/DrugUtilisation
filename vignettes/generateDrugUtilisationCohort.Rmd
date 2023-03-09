@@ -1,0 +1,287 @@
+---
+title: "generateDrugUtilisationCohort"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{generateDrugUtilisationCohort}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(DrugUtilisation)
+```
+## Introduction
+The generateDrugUtilisationCohort() function will create a cohort of patients who use a specific drug/ingredient. Within this function, you can specify many options regarding starting/ending dates, gap in between drug exposures, minimum observation period, etc. We will explore the various options below.
+
+## Data simulation
+Let's start with simulating data in the cdm format for the target cohort and indication cohort. We will specify the characteristics of the patients, drug exposures, observation periods. We will also specify the set of ingredients of interest.
+
+```{r eval=TRUE}
+
+person = dplyr::tibble(
+  person_id = c(1, 2, 3, 4),
+  year_of_birth = as.integer(c(1991, 1990, 1989, 1997)),
+  month_of_birth = as.integer(NA),
+  day_of_birth = as.integer(NA),
+  gender_concept_id = c(8507, 8532, 8507, 8532)
+)
+
+drug_exposure = dplyr::tibble(
+  drug_exposure_id = c(1,2,3,4,5,6,7,8,9,10),
+  person_id = c(1,2,3,1,4,2,2,3,1,4),
+  drug_concept_id = c(1,1,1,1,1,2,1,2,1,2),
+  drug_exposure_start_date = as.Date(c(
+    "2009-12-25", "2010-12-01", "2011-01-25", "2010-01-25", "2010-05-08",
+    "2013-01-22", "2017-05-08", "2011-09-30", "2015-03-01", "2011-06-01"
+  )),
+  drug_exposure_end_date = as.Date(c(
+    "2009-12-31", "2011-12-31", "2011-02-25", "2010-02-25", "2010-12-08",
+    "2013-02-22", "2017-05-31", "2011-11-25", "2015-05-22", "2011-09-30"
+  )),
+  quantity = c(10,91,15,2,8,61,10,20,55,4)
+  )
+
+observation_period = dplyr::tibble(
+  observation_period_id = as.integer(c(1,2,3,4)),
+  person_id = as.integer(c(1,2,3,4)),
+  observation_period_start_date = as.Date(c(
+    "2008-01-01", "2010-01-01", "2009-01-01", "2010-01-01"
+  )),
+  observation_period_end_date = as.Date(c(
+    "2022-12-31", "2022-12-31", "2022-12-31", "2022-12-31"
+  ))
+  )          
+condition_occurrence = dplyr::tibble(
+    condition_occurrence_id = 1,
+    person_id = 5,
+    condition_concept_id = 8,
+    condition_start_date = as.Date("2020-05-17"),
+    condition_end_date = as.Date("2020-05-17")
+  )  
+
+concept_ancestor = dplyr::tibble(
+  ancestor_concept_id = c(1,1,2),
+  descendant_concept_id = c(1,2,2)
+)
+
+cdm <- mockDrugUtilisation(
+  person = person,
+  drug_exposure = drug_exposure,
+  condition_occurrence=condition_occurrence, 
+  observation_period = observation_period, 
+  concept_ancestor=concept_ancestor
+  )
+
+concept1 <- system.file(package = "DrugUtilisation", "concept1.json")
+
+
+```
+
+## Specify drug/ingredient
+
+There are two ways to specify the drug concept id:
+
+* Specify ingredientConceptId: This is a compulsory entry. There is no default option. Unless specified otherwise in the conceptSetPath option, all decedents of of the ingredient specified will be included as well.
+
+* Specify conceptSetPath: In this option, we can specify the path to a .json file which contains the necessary information for the concepts (drugs of interest). We will use the .json file called via "concept1" above. In this .json file, we excluded the decedents.
+
+
+```{r eval=TRUE}
+DUcohort_ingredient <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  daysPriorHistory = NULL
+)
+
+DUcohort_conceptset <- generateDrugUtilisationCohort(
+  cdm,
+  conceptSetPath = concept1,  
+  daysPriorHistory = NULL
+)
+
+DUcohort_ingredient
+
+DUcohort_conceptset
+
+```
+
+## A single condition
+
+In this section, we will explore varying one option at a time and see the difference between the different specifications:
+
+* Specifying the study start day and/or study end date: These options specify the earliest start date and latest end date for the drug exposure. If these options are not specified, the default would be to include all available drug exposures available. We will specify two sets of start and end dates.
+
+   * Start on (or after) 2011-01-01 and end on (or before) 2013-12-31
+   
+   * Start on (or after) 2009-01-01 and end on (or before) 2017-12-31
+
+
+```{r eval=TRUE}
+
+DUcohort_2011_13 <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  studyStartDate = as.Date("2011-01-01"),
+  studyEndDate= as.Date("2013-12-31")
+  )
+
+DUcohort_2009_17 <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  studyStartDate = as.Date("2009-01-01"),
+  studyEndDate= as.Date("2017-12-31")
+  )
+
+DUcohort_2011_13
+
+DUcohort_2009_17
+```
+
+* Specifying minimum observation period prior to exposure: In the "daysPriorHistory", we specify the minimum days of prior history before the drug exposure start day. We will specify two entries of prior history.
+
+   * 0: This is the default option, which will include all drug exposures regardless of the patient's observation start date. The only condition is that a patient has to have an entry in the observation_period table.
+   
+   * 365: Only drug exposure entries belonging to patients with a minimum of 365 days will be included.
+
+
+```{r eval=TRUE}
+
+DUcohort_0priordays <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  daysPriorHistory = 0
+)
+
+DUcohort_365priordays <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  daysPriorHistory = 365
+)
+
+DUcohort_0priordays
+
+DUcohort_365priordays
+```
+
+* Specifying the maximum gap between two continuous exposures to be considered in the same drug era: In the "gapEra", we specify the maximum number of days between the first continuous drug exposure and the next continuous drug exposure (of the same ingreident/concept set). We compare two gap values. 
+
+   * Default: By not specifying a value for this option, the function will use the default value, i.e., 180 days.
+   
+   * 365 days: Only drug exposures with a maximum gap of 365 days in between them are joined into the same drug era
+
+
+```{r eval=TRUE}
+
+DUcohort_gap180 <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1
+)
+
+DUcohort_365gap <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  gapEra = 365
+)
+
+DUcohort_gap180
+
+DUcohort_365gap
+```
+
+* Specifying the summarise mode: In the "summariseMode" option, we specify how to summarise the different exposures. There are three possible values for this options:
+
+   * "FixedTime": Each individual is followed the exact same number of days specified in 'fixedTime' argument.
+   
+   *  "AllEras": We summarize the output will be a summary of the exposed eras of each individual. Each individual can contribute multiple times. If not specified, this is the default entry for this option.
+   
+   * "FirstEra": We only consider the first observable era of each individual. In this case each individual can not contribute with multiple rows.
+
+
+```{r eval=TRUE}
+DUcohort_FixedTime <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  summariseMode = "FixedTime",
+      fixedTime = 365
+)
+
+DUcohort_AllEras <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  summariseMode = "AllEras"
+)
+
+DUcohort_FirstEra <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  summariseMode = "FirstEra"
+)
+
+DUcohort_FixedTime
+
+DUcohort_AllEras
+
+DUcohort_FirstEra
+```
+
+* Specifying the prior washout period: In "priorUseWashout" option, we specify the minimum number of days that a patient had without using the drug prior to the drug exposure start date
+
+   * NA: This is the default option. By not specifying a value for this option, all drug exposures will be included with any exclusion
+   
+   * 365: By entering values, we only include drug exposures for patients who did not have the same drug/ingredient for at least 365 days prior to the drug exposure start date.
+
+```{r eval=TRUE}
+
+DUcohort_Nowashout <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1
+)
+
+DUcohort_365washout <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  priorUseWashout=365
+)
+
+DUcohort_Nowashout
+
+DUcohort_365washout
+
+```
+
+
+## Multiple conditions
+
+Now let's specify multiple conditions at the same time. We will create a drug utilisation cohort with the following conditions:
+
+* Specify path to concept set .json
+
+* 90 days of gap between continuous drug exposures
+
+* 365 days washout period
+
+* 365 days of minimum observations
+
+
+
+```{r eval=TRUE}
+
+DUcohort_multiple <- generateDrugUtilisationCohort(
+  cdm,
+  ingredientConceptId = 1,
+  conceptSetPath = concept1,  
+  gapEra = 90,
+  priorUseWashout=365,
+  daysPriorHistory = 365
+)
+
+DUcohort_multiple
+
+```

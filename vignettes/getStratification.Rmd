@@ -1,0 +1,157 @@
+---
+title: "getStratification"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{getStratification}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(DrugUtilisation)
+```
+
+## Introduction
+The getStratification() function will create different groups of the target cohort based on a pre-specified strata set. The function contains multiple options to create the strata. The number of strata created will then depend on all the possible combinations of the specified strata
+
+## Data simulation
+Let's start with simulating data in the cdm format for the target cohort and indication cohort. We will specify the characteristics of the patients in the person table. We will also specify the set of indications of interest and create the indication table to be used in later.
+
+```{r eval=TRUE}
+            person = dplyr::tibble(
+              person_id = c(1, 2, 3, 4, 5, 6, 7, 8),
+              year_of_birth = as.integer(c(1991, 1990, 1989, 1997, 2002, 1879, 1978, 2000)),
+              month_of_birth = as.integer(NA),
+              day_of_birth = as.integer(NA),
+              gender_concept_id = c(8507, 8532, 8507, 8532, 8532, 8532, 8507, NA)
+            )
+            targetCohortName = dplyr::tibble(
+              cohort_definition_id = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1),
+              subject_id = c(1, 2, 3, 1, 1, 2, 3, 4, 5, 6, 7, 8),
+              cohort_start_date = as.Date(c(
+                "2010-01-01", "2010-05-07", "2010-12-15", "2011-05-20", "2012-02-03",
+                "2035-01-01", "2023-05-07", "2018-12-15", "2020-05-20", "2030-02-03",
+                "2000-01-01", "2015-05-07"
+              )),
+              cohort_end_date = as.Date(c(
+                "2010-01-01", "2010-05-07", "2010-12-15", "2011-05-20", "2012-02-03",
+                "2035-01-01", "2023-05-07", "2018-12-15", "2020-05-20", "2030-02-03",
+                "2000-01-01", "2015-05-07"
+              ))
+            )
+            indicationCohortName = dplyr::tibble(
+              cohort_definition_id = c(1, 1, 2, 1, 2, 1, 3),
+              subject_id = c(1, 3, 1, 1, 2, 2, 4),
+              cohort_start_date = as.Date(c(
+                "2009-12-25", "2010-12-01", "2011-04-20", "2012-02-03", "2010-05-08",
+                "2034-12-18", "2017-05-08"
+              )),
+              cohort_end_date = as.Date(c(
+                "2009-12-25", "2010-12-01", "2011-04-20", "2012-02-03", "2010-05-08",
+                "2034-12-18", "2017-05-08"
+              ))
+            )
+            condition_occurrence = dplyr::tibble(
+              condition_occurrence_id = 1,
+              person_id = 5,
+              condition_concept_id = 8,
+              condition_start_date = as.Date("2020-05-17"),
+              condition_end_date = as.Date("2020-05-17")
+            )  
+            indicationDefinitionSet <- dplyr::tibble(
+              cohortId = c(1, 2),
+              cohortName = c("asthma", "covid"))
+            
+          cdm <-
+            mockDrugUtilisation(
+              cohort1 = targetCohortName,
+              cohort2 = indicationCohortName,
+              condition_occurrence = condition_occurrence,
+              person=person
+            )
+          
+             indicationTable <- getIndication(
+   cdm = cdm,
+   targetCohortName = "cohort1",
+   indicationCohortName = "cohort2",
+   targetCohortDefinitionIds = 1,
+   indicationDefinitionSet = indicationDefinitionSet,
+   indicationGap = 1000,
+   unknownIndicationTables = "condition_occurrence"
+    )
+
+head(cdm$cohort1)
+head(cdm$cohort2)
+```
+
+## A single condition
+In this section, we start by specifying different strata for a single characteristics. A patient can belong to more than one strata. Below, we choose the different strata for one option at a time:
+
+* Specify different sex groups: The default is "NA", which means sex will not be considered when running the stratification. You can specify "Female", "Male", or "Both". We will list all three options and look at the emerging strata
+* Specify different age groups: The default is "NA", which means a single stratum is created that includes everyone aged 0-150. Below we choose three distinct age groups, and an additional one which overlaps with these three.
+* Specifying indications: We will use the indication table created previously to specify the set of indications in the getStratification function. This option gives all the listed indication ("asthma", "covid", "unknown", and "no indication") in addition to an overall stratum for patients with any indication
+
+```{r eval=TRUE}
+
+     x_sex <- getStratification(
+     cdm = cdm,
+     targetCohortName = "cohort1",
+     targetCohortId = 1,
+     sex = c("Female", "Male", "Both")
+    )
+    strata_sex <- attr(x_sex, "cohortSet")
+          
+    x_age <- getStratification(
+    cdm = cdm,
+    targetCohortName = "cohort1",
+    targetCohortId = 1,
+    ageGroup = list(c(0,19), c(20, 39), c(40,59), c(0, 100))
+   )
+   strata_age <- attr(x_age, "cohortSet")
+
+   
+   x_indication <- getStratification(
+   cdm = cdm,
+   targetCohortName = "cohort1",
+   targetCohortId = 1,
+   indicationTable = indicationTable
+   )
+   strata_indication <- attr(x_indication, "cohortSet")
+
+   strata_sex
+   strata_age
+   strata_indication
+
+```
+
+## Multiple conditions
+In this section, we will specify multiple conditions for stratification in one statement. The total number of strata will be all the possible combinations of the specified groups. Our specifications will include:
+
+* Specify different sex groups: We will specify "Female" and "Male"
+* Specify different age groups: We will specify two age groups; "0,29" and "30,59"
+* Specifying indications: We will use the indication table created previously which will include two indications; "asthma" and "covid", in addition to "unknown" and "no indication", and the "any" stratum.
+
+The total number of strata created by this statement will be 2*2*5=20 strata
+
+```{r eval=TRUE}
+   x_multiple <- getStratification(
+     cdm = cdm,
+     targetCohortName = "cohort1",
+   targetCohortId = 1,
+     sex = c("Female", "Male"),
+     ageGroup = list(c(0, 29), c(30, 59)),
+     indicationTable = indicationTable,
+   )
+   strata_multiple <- attr(x_multiple, "cohortSet")
+   
+   strata_multiple
+
+```
+
