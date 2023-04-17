@@ -60,6 +60,9 @@
 #' equal or smaller than the second one. It is only required if imputeDuration
 #' = TRUE. If NULL no restrictions are applied. By default: NULL.
 #'
+#' @param tablePrefix The stem for the permanent tables that will
+#' be created. If NULL, temporary tables will be used throughout.
+#'
 #' @return The function returns the 'cdm' object with the created tables as
 #' references of the object.
 #' @export
@@ -76,7 +79,8 @@ generateDrugUtilisationCohort <- function(cdm,
                                           gapEra = 30,
                                           priorUseWashout = NULL,
                                           imputeDuration = "eliminate",
-                                          durationRange = c(1, NA)) {
+                                          durationRange = c(1, NA),
+                                          tablePrefix = NULL) {
   errorMessage <- checkmate::makeAssertCollection()
   # first round of initial checks, assert Type
   checkmate::assertClass(
@@ -197,6 +201,12 @@ generateDrugUtilisationCohort <- function(cdm,
       add = errorMessage
     )
   }
+
+  # checks for tableprefix
+  checkmate::assertCharacter(
+    tablePrefix, len = 1, null.ok = TRUE, add = errorMessage
+  )
+
   checkmate::reportAssertions(collection = errorMessage)
 
   if (!is.null(conceptSetPath)) {
@@ -244,16 +254,11 @@ generateDrugUtilisationCohort <- function(cdm,
         dplyr::inner_join(conceptList, by = "drug_concept_id")
     }
     conceptSets <- conceptSets %>%
-      dplyr::select(
-        "cohortId" = "cohort_definition_id",
-        "cohortName" = "concept_set_name",
-        "concepSetPath" = "concept_set_path"
-      )
+      dplyr::select( "cohort_definition_id", "cohort_name" = "concept_set_name")
   } else {
     conceptSets <- dplyr::tibble(
-      cohortId = 1,
-      cohortName = paste0("ingredient: ", ingredientConceptId),
-      conceptSetPath = as.character(NA)
+      cohort_definition_id = 1,
+      cohort_name = paste0("ingredient_concept_id_", ingredientConceptId)
     )
     conceptList <- cdm[["drug_strength"]] %>%
       dplyr::filter(.data$ingredient_concept_id == .env$ingredientConceptId) %>%
@@ -315,7 +320,7 @@ generateDrugUtilisationCohort <- function(cdm,
     )
   }
 
-  attrition <- addAttitionLine(cohort, "Initial Exposures")
+  attrition <- addattritionLine(cohort, "Initial Exposures")
 
   # compute the number of days exposed according to:
   # days_exposed = end - start + 1
@@ -340,7 +345,7 @@ generateDrugUtilisationCohort <- function(cdm,
     dplyr::mutate(days_to_add = as.integer(.data$days_exposed - 1)) %>%
     dplyr::compute() %>%
     dplyr::mutate(drug_exposure_end_date = as.Date(dbplyr::sql(
-      dateadd(
+      CDMConnector::dateadd(
         date = "drug_exposure_start_date",
         number = "days_to_add"
       )
@@ -348,7 +353,7 @@ generateDrugUtilisationCohort <- function(cdm,
     dplyr::compute()
 
   attrition <- attrition %>%
-    dplyr::union_all(addAttitionLine(cohort, "Imputation"))
+    dplyr::union_all(addattritionLine(cohort, "Imputation"))
 
 
   cohort <- cohort %>%
@@ -403,7 +408,7 @@ generateDrugUtilisationCohort <- function(cdm,
     dplyr::compute()
 
   attrition <- attrition %>%
-    dplyr::union_all(addAttitionLine(cohort, "Eras"))
+    dplyr::union_all(addattritionLine(cohort, "Eras"))
 
 
   if (!is.null(priorUseWashout)) {
@@ -426,7 +431,7 @@ generateDrugUtilisationCohort <- function(cdm,
       dplyr::select(-"prior_era", -"era_id") %>%
       dplyr::compute()
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         paste0("Prior washout of ", priorUseWashout, " days")
       ))
@@ -440,7 +445,7 @@ generateDrugUtilisationCohort <- function(cdm,
       dplyr::filter(.data$cohort_start_date >= .env$studyStartDate)
 
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         paste0("Start after or at ", studyStartDate)
       ))
@@ -452,7 +457,7 @@ generateDrugUtilisationCohort <- function(cdm,
       dplyr::filter(.data$cohort_start_date <= .env$studyEndDate)
 
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         paste0("Start before or at ", studyEndDate)
       ))
@@ -465,7 +470,7 @@ generateDrugUtilisationCohort <- function(cdm,
       dplyr::compute()
 
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         "In observation on cohort_start_date"
       ))
@@ -475,7 +480,7 @@ generateDrugUtilisationCohort <- function(cdm,
       dplyr::select(-"prior_history")
 
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         paste0("At least ", daysPriorHistory, " days of prior history")
       ))
@@ -490,7 +495,7 @@ generateDrugUtilisationCohort <- function(cdm,
       ) %>%
       dplyr::ungroup()
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(cohort, "Only first era"))
+      dplyr::union_all(addattritionLine(cohort, "Only first era"))
 
   } else if (summariseMode == "FixedTime") {
     cohort <- cohort %>%
@@ -504,7 +509,7 @@ generateDrugUtilisationCohort <- function(cdm,
       )) %>%
       dplyr::ungroup()
     attrition <- attrition %>%
-      dplyr::union_all(addAttitionLine(
+      dplyr::union_all(addattritionLine(
         cohort,
         paste0("Only first era; fixedTime = ", fixedTime, " days")
       ))
@@ -514,12 +519,9 @@ generateDrugUtilisationCohort <- function(cdm,
     dplyr::select(
       "cohort_definition_id", "subject_id", "cohort_start_date",
       "cohort_end_date"
-    ) %>%
-    dplyr::compute()
+    )
 
-  attr(cohort, "cohortSet") <- conceptSets
-
-  attr(cohort, "attrition") <- attrition %>%
+  attrition <- attrition %>%
     dplyr::left_join(
       dplyr::tibble(
         order_id = c(1:10),
@@ -540,6 +542,56 @@ generateDrugUtilisationCohort <- function(cdm,
     ) %>%
     dplyr::arrange(.data$cohort_definition_id, .data$order_id) %>%
     dplyr::select(-"order_id")
+
+  cohortCount <- cohort %>%
+    dplyr::group_by(.data$cohort_definition_id) %>%
+    dplyr::summarise(
+      number_records = dplyr::n(),
+      number_subjects = dplyr::n_distinct(.data$subject_id),
+      .groups = "drop"
+    ) %>%
+    dplyr::compute()
+
+  con <- attr(cdm, "dbcon")
+  if(is.null(tablePrefix)){
+    cohortRef <- cohort %>% CDMConnector::computeQuery()
+    cohortSetTableName <- uniqueTableName()
+    DBI::dbWriteTable(con, cohortSetTableName, conceptSets, temporary = TRUE)
+    cohortSetRef <- dplyr::tbl(con, cohortSetTableName)
+    cohortAttritionTableName <- uniqueTableName()
+    DBI::dbWriteTable(con, cohortAttritionTableName, attrition, temporary = TRUE)
+    cohortAttritionRef <- dplyr::tbl(con, cohortAttritionTableName)
+    cohortCountRef <- cohortCount
+  } else {
+    writeSchema <- attr(cdm, "write_schema")
+    cohortRef <- CDMConnector::computeQuery(
+      x = cohort, name = tablePrefix, temporary = FALSE,
+      schema = writeSchema, overwrite = TRUE
+    )
+    DBI::dbWriteTable(
+      conn = con, name = inSchema(writeSchema, paste0(tablePrefix, "_set"), CDMConnector::dbms(con)),
+      value = as.data.frame(conceptSets),
+      overwrite = TRUE
+    )
+    cohortSetRef <- dplyr::tbl(con, inSchema(writeSchema, paste0(tablePrefix, "_set"), CDMConnector::dbms(con)))
+    DBI::dbWriteTable(
+      conn = con, name = inSchema(writeSchema, paste0(tablePrefix, "_attrition"), CDMConnector::dbms(con)),
+      value = as.data.frame(attrition),
+      overwrite = TRUE
+    )
+    cohortAttritionRef <- dplyr::tbl(con, inSchema(writeSchema, paste0(tablePrefix, "_attrition"), CDMConnector::dbms(con)))
+    cohortCountRef <- CDMConnector::computeQuery(
+      x = cohortCount, name = paste0(tablePrefix, "_count"), temporary = FALSE,
+      schema = writeSchema, overwrite = TRUE
+    )
+  }
+
+  cohort <- CDMConnector::newGeneratedCohortSet(
+    cohortRef = cohortRef,
+    cohortSetRef = cohortSetRef,
+    cohortAttritionRef = cohortAttritionRef,
+    cohortCountRef = cohortCountRef
+  )
 
   return(cohort)
 }
@@ -680,7 +732,7 @@ imputeVariable <- function(x,
 #' Add line to the attrition tibble
 #'
 #' @noRd
-addAttitionLine <- function(cohort, reason) {
+addattritionLine <- function(cohort, reason) {
   if ("cohort_definition_id" %in% colnames(cohort)) {
     cohort <- cohort %>% dplyr::group_by(.data$cohort_definition_id)
   }
@@ -726,4 +778,29 @@ readConceptSets <- function(conceptSets) {
       "include_descendants" = "includeDescendants"
     )
   return(conceptList)
+}
+
+#' @noRd
+uniqueTableName <- function() {
+  i <- getOption("dbplyr_table_name", 0) + 1
+  options(dbplyr_table_name = i)
+  sprintf("dbplyr_%03i", i)
+}
+
+#' @noRd
+inSchema <- function(schema, table, dbms = NULL) {
+  checkmate::assertCharacter(schema, min.len = 1, max.len = 2)
+  checkmate::assertCharacter(table, len = 1)
+  checkmate::assertCharacter(dbms, len = 1, null.ok = TRUE)
+
+  if (!is.null(dbms) && (dbms %in% c("oracle"))) {
+    # some dbms need in_schema, others DBI::Id
+    switch(length(schema),
+           dbplyr::in_schema(schema = schema, table = table),
+           dbplyr::in_catalog(catalog = schema[1], schema = schema[2], table = table))
+  } else {
+    switch(length(schema),
+           DBI::Id(schema = schema, table = table),
+           DBI::Id(catalog = schema[1], schema = schema[2], table = table))
+  }
 }

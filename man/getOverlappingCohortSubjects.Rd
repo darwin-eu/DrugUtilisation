@@ -12,7 +12,8 @@ getOverlappingCohortSubjects(
   overlapCohortName,
   overlapCohortId = NULL,
   lookbackWindow = 0,
-  multipleEvents = FALSE
+  multipleEvent = FALSE,
+  tablePrefix = NULL
 )
 }
 \arguments{
@@ -32,9 +33,12 @@ in}
 \item{lookbackWindow}{lookback period window in days, a list consist of two
 numbers}
 
-\item{multipleEvents}{if we want to count the number of evenets (TRUE) then
+\item{multipleEvent}{if we want to count the number of evenets (TRUE) then
 the result is an integer orjust their presence (FALSE) then the result is 1
 or 0.}
+
+\item{tablePrefix}{The stem for the permanent tables that will
+be created. If NULL, temporary tables will be used throughout.}
 }
 \value{
 it add a new column to target cohort for each id in overlap cohort.

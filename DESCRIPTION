@@ -1,7 +1,7 @@
 Package: DrugUtilisation
 Title: Summarise patient-level drug utilisation in data mapped to the OMOP 
     Common Data Model 
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person(
         "Marti", "Catala", email = "marti.catalasabate@ndorms.ox.ac.uk", 
@@ -28,11 +28,12 @@ Description: Summarise patient-level drug utilisation in data mapped to the OMOP
 License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests: 
     covr,
     testthat (>= 3.1.5),
-    odbc
+    odbc,
+    here
 Config/testthat/edition: 3
 Imports: 
     CDMConnector,
@@ -48,5 +49,4 @@ Imports:
     rlang,
     RJSONIO,
     tibble,
-    stringr,
-    here
+    stringr
