@@ -1,37 +1,48 @@
 library(testthat)
 library(DrugUtilisation)
 
-equalTibble <- function(x, y) {
-  colnamesX <- colnames(x)
-  colnamesY <- colnames(y)
-  if (!all(colnamesX %in% colnamesY)) {
-    return(FALSE)
-  }
-  if (!all(colnamesY %in% colnamesX)) {
-    return(FALSE)
-  }
-  y <- y %>%
-    dplyr::select(dplyr::all_of(colnamesX))
-  if (nrow(x) != nrow(y)) {
-    return(FALSE)
-  }
-  x <- x %>%
-    dplyr::arrange(!!!rlang::parse_exprs(colnamesX))
-  y <- y %>%
-    dplyr::arrange(!!!rlang::parse_exprs(colnamesX))
-  for (colname in colnames(x)) {
-    xx <- x[[colname]]
-    yy <- y[[colname]]
-    if (!all(is.na(xx) == is.na(yy))) {
-      return(FALSE)
-    }
-    xx <- xx[!is.na(xx)]
-    yy <- yy[!is.na(yy)]
-    if (!all(xx == yy)) {
-      return(FALSE)
-    }
-  }
-  return(TRUE)
-}
+availableConnections <- list(list(
+  con = DBI::dbConnect(duckdb::duckdb(), ":memory:"),
+  writeSchema = "main",
+  mockPrefix = NULL
+))
 
-test_check("DrugUtilisation")
+# if (Sys.getenv("CDM5_SQL_SERVER_USER") != "") {
+#   availableConnections <- availableConnections %>%
+#     append(value = list(list(
+#       con = DBI::dbConnect(
+#         odbc::odbc(),
+#         Driver   = "ODBC Driver 18 for SQL Server",
+#         Server   = Sys.getenv("CDM5_SQL_SERVER_SERVER"),
+#         Database = Sys.getenv("CDM5_SQL_SERVER_CDM_DATABASE"),
+#         UID      = Sys.getenv("CDM5_SQL_SERVER_USER"),
+#         PWD      = Sys.getenv("CDM5_SQL_SERVER_PASSWORD"),
+#         TrustServerCertificate = "yes",
+#         Port     = 1433
+#       ),
+#       writeSchema = Sys.getenv("CDM5_SQL_SERVER_OHDSI_SCHEMA"),
+#       mockPrefix = "test_dus_"
+#     )))
+# }
+
+# if (Sys.getenv("CDM5_REDSHIFT_DBNAME") != "") {
+#   availableConnections <- availableConnections %>%
+#     append(value = list(list(
+#       con = DBI::dbConnect(
+#         RPostgres::Redshift(), dbname = Sys.getenv("CDM5_REDSHIFT_DBNAME"),
+#         port = Sys.getenv("CDM5_REDSHIFT_PORT"),
+#         host = Sys.getenv("CDM5_REDSHIFT_HOST"),
+#         user = Sys.getenv("CDM5_REDSHIFT_USER"),
+#         password = Sys.getenv("CDM5_REDSHIFT_PASSWORD")
+#       ),
+#       writeSchema = Sys.getenv("CDM5_REDSHIFT_SCRATCH_SCHEMA"),
+#       mockPrefix = "test_dus_"
+#     )))
+# }
+
+for (k in seq_along(availableConnections)) {
+  # connection details
+  connectionDetails <- availableConnections[[k]]
+  # test code in that dbms
+  test_check("DrugUtilisation")
+}
