@@ -108,7 +108,7 @@ checkGap <- function(gap) {
 }
 
 checkPriorUseWashout <- function(priorUseWashout) {
-  if (!(is.numeric(priorUseWashout) & length(priorUseWashout) == 1 & is.infinite(priorUseWashout)) {
+  if (!(is.numeric(priorUseWashout) & length(priorUseWashout) == 1 & is.infinite(priorUseWashout))) {
     checkmate::assertIntegerish(
       priorUseWashout, lower = 0, any.missing = F, len = 1
     ) 
