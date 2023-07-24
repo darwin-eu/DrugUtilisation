@@ -36,6 +36,17 @@ test_that("test case single indication", {
     cohort_definition_id = c(1, 2),
     cohort_name = c("asthma", "covid")
   )
+  observationPeriod <- dplyr::tibble(
+    observation_period_id = c(1, 2, 3),
+    person_id = c(1, 2, 3),
+    observation_period_start_date = as.Date(c(
+      "2015-01-01", "2016-05-15", "2012-12-30"
+    )),
+    observation_period_end_date = as.Date(c(
+      "2025-01-01", "2026-05-15", "2030-12-30"
+    )),
+    period_type_concept_id = 44814724
+  )
   condition_occurrence <- dplyr::tibble(
     person_id = 1,
     condition_start_date = as.Date("2020-05-31"),
@@ -47,7 +58,8 @@ test_that("test case single indication", {
       connectionDetails,
       cohort1 = targetCohortName,
       cohort2 = indicationCohortName,
-      condition_occurrence = condition_occurrence
+      condition_occurrence = condition_occurrence,
+      observation_period = observationPeriod
     )
 
   # check for indication 0
@@ -180,10 +192,21 @@ test_that("test case single indication with unknown indication table", {
     cohort_definition_id = c(1, 2),
     cohort_name = c("asthma", "covid")
   )
-
+  observationPeriod <- dplyr::tibble(
+    observation_period_id = c(1, 2, 3),
+    person_id = c(1, 2, 3),
+    observation_period_start_date = as.Date(c(
+      "2015-01-01", "2016-05-15", "2012-12-30"
+    )),
+    observation_period_end_date = as.Date(c(
+      "2025-01-01", "2026-05-15", "2030-12-30"
+    )),
+    period_type_concept_id = 44814724
+  )
   cdm <-mockDrugUtilisation(
     connectionDetails, cohort1 = targetCohortName,
-    cohort2 = indicationCohortName, condition_occurrence = condition_occurrence
+    cohort2 = indicationCohortName, condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
   )
 
   # check for indication 0
@@ -526,7 +549,7 @@ test_that("summariseIndication", {
   expect_true(all(c(
     "group_name", "group_level", "strata_name", "strata_level", "variable",
     "variable_level", "variable_type", "estimate_type", "estimate", "cdm_name",
-    "generated_by"
+    "result_type"
   ) %in% colnames(result)))
   expect_true(ncol(result) == 11)
   expect_true(any(grepl("indication_gap_0", result$variable)))
@@ -544,7 +567,7 @@ test_that("summariseIndication", {
   expect_true(all(c(
     "group_name", "group_level", "strata_name", "strata_level", "variable",
     "variable_level", "variable_type", "estimate_type", "estimate", "cdm_name",
-    "generated_by"
+    "result_type"
   ) %in% colnames(result)))
   expect_true(ncol(result) == 11)
   expect_true(!any(grepl("indication_gap_0", result$variable)))
@@ -571,7 +594,7 @@ test_that("summariseIndication", {
   expect_true(all(c(
     "group_name", "group_level", "strata_name", "strata_level", "variable",
     "variable_level", "variable_type", "estimate_type", "estimate", "cdm_name",
-    "generated_by"
+    "result_type"
   ) %in% colnames(result)))
   expect_true(ncol(result) == 11)
   x <- tidyr::expand_grid(
@@ -606,6 +629,6 @@ test_that("summariseIndication", {
   expect_true(any(grepl("indication_gap_30", result$variable)))
   expect_true(any(grepl("indication_gap_inf", result$variable)))
 
-  expect_true(grepl("summariseIndication", unique(result$generated_by)))
+  expect_true(grepl("Summary indication", unique(result$result_type)))
 
 })

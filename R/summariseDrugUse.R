@@ -81,10 +81,7 @@ summariseDrugUse<- function(cohort,
   ) %>%
     dplyr::mutate(
       cdm_name = dplyr::coalesce(CDMConnector::cdmName(cdm), as.character(NA)),
-      generated_by = paste0(
-        "DrugUtilisation_", utils::packageVersion("DrugUtilisation"),
-        "_summariseDrugUse"
-      )
+      result_type = "Summary drug use"
     )
 
   return(result)
@@ -117,7 +114,7 @@ drugUseColumns <- function(cohort) {
   checkInputs(cohort = cohort)
   names <- colnames(cohort) [colnames(cohort) %in% c(
     "initial_daily_dose", "number_exposures", "duration", "cumulative_dose",
-    "number_eras"
+    "number_eras", "initial_quantity", "cumulative_quantity"
   )]
   return(names)
 }
