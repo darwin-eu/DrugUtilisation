@@ -30,6 +30,8 @@
 #' @param condition_occurrence A condition_occurrence tibble, if NULL a mock one
 #' is created
 #' @param observation A observation tibble, if NULL a mock one is created
+#' @param concept_relationship A concept_relationship tibble, if NULL a mock one
+#' is created.
 #' @param extraTables Extra tibbles to be instantiated that are not cohorts or
 #' cdm tables
 #' @param ... Cohorts can be added to the cdm reference, cohort1 and cohort2
@@ -51,7 +53,8 @@
 mockDrugUtilisation <- function(connectionDetails = list(
                                   con = DBI::dbConnect(duckdb::duckdb(), ":memory:"),
                                   writeSchema = "main",
-                                  mockPrefix = NULL
+                                  cdmPrefix = NULL,
+                                  writePrefix = NULL
                                 ),
                                 numberIndividuals = 10,
                                 seed = 1,
@@ -63,13 +66,17 @@ mockDrugUtilisation <- function(connectionDetails = list(
                                 drug_exposure = NULL,
                                 condition_occurrence = NULL,
                                 observation = NULL,
+                                concept_relationship = NULL,
                                 extraTables = list(),
                                 ...) {
   # get vocabulary
-  vocab <- vocabularyTables(concept, concept_ancestor, drug_strength)
+  vocab <- vocabularyTables(
+    concept, concept_ancestor, drug_strength, concept_relationship
+  )
   concept <- vocab$concept
   concept_ancestor <- vocab$concept_ancestor
   drug_strength <- vocab$drug_strength
+  concept_relationship <- vocab$concept_relationship
 
   # set seed
   set.seed(seed)
@@ -122,52 +129,60 @@ mockDrugUtilisation <- function(connectionDetails = list(
     drug_strength = drug_strength, person = person,
     observation_period = observation_period, drug_exposure = drug_exposure,
     condition_occurrence = condition_occurrence,
-    visit_occurrence = visit_occurrence, observation = observation
+    visit_occurrence = visit_occurrence, observation = observation,
+    concept_relationship = concept_relationship
   )
 
   con <- connectionDetails$con
   writeSchema <- strsplit(connectionDetails[["writeSchema"]], "\\.")[[1]]
-  writePrefix <- connectionDetails$mockPrefix
+  if (length(writeSchema) == 2) {
+    writeSchema <- c(
+      catlog = writeSchema[1], schema = writeSchema[2],
+      prefix = connectionDetails$writePrefix
+    )
+    cdmSchema <- c(
+      catlog = writeSchema[1], schema = writeSchema[2],
+      prefix = connectionDetails$cdmPrefix
+    )
+  } else {
+    writeSchema <- c(
+      schema = writeSchema[1], prefix = connectionDetails$writePrefix
+    )
+    cdmSchema <- c(
+      schema = writeSchema[1], prefix = connectionDetails$cdmPrefix
+    )
+  }
 
   for (newTable in names(listTables)) {
-    writeTable(con, writeSchema, newTable, writePrefix, listTables[[newTable]])
+    writeTable(con, cdmSchema, newTable, listTables[[newTable]])
   }
   for (nam in names(cohorts)) {
-    writeTable(con, writeSchema, nam, writePrefix, cohorts[[nam]])
+    writeTable(con, writeSchema, nam, cohorts[[nam]])
     writeTable(
-      con, writeSchema, paste0(nam, "_set"), writePrefix,
-      attr(cohorts[[nam]], "cohort_set")
+      con, writeSchema, paste0(nam, "_set"), attr(cohorts[[nam]], "cohort_set")
     )
     writeTable(
-      con, writeSchema, paste0(nam, "_attrition"), writePrefix,
+      con, writeSchema, paste0(nam, "_attrition"),
       attr(cohorts[[nam]], "cohort_attrition")
     )
     writeTable(
-      con, writeSchema, paste0(nam, "_count"), writePrefix,
+      con, writeSchema, paste0(nam, "_count"),
       attr(cohorts[[nam]], "cohort_count")
     )
   }
 
-  if (length(writeSchema) > 1) {
-    dbSchema = DBI::Id(
-      "catalog" = writeSchema[1], "schema" = writeSchema[2],
-      "prefix" = writePrefix
-    )
-  } else {
-    dbSchema = DBI::Id("schema" = writeSchema, "prefix" = writePrefix)
-  }
-
   cdm <- CDMConnector::cdm_from_con(
     con,
-    cdm_schema = dbSchema,
-    write_schema = dbSchema,
-    cohort_tables = names(cohorts)
+    cdm_schema = cdmSchema,
+    write_schema = writeSchema,
+    cohort_tables = names(cohorts),
+    cdm_name = "DUS MOCK"
   )
 
   for (newTable in names(extraTables)) {
-    writeTable(con, writeSchema, newTable, writePrefix, extraTables[[newTable]])
+    writeTable(con, writeSchema, newTable, extraTables[[newTable]])
     cdm[[newTable]] <- dplyr::tbl(
-      con, DBI::Id(schema = writeSchema, name = paste0(writePrefix, newTable))
+      con, CDMConnector::inSchema(writeSchema, newTable)
     )
   }
 
@@ -176,23 +191,14 @@ mockDrugUtilisation <- function(connectionDetails = list(
 
 #' To write a table in the mock database
 #' @noRd
-writeTable <- function(con, writeSchema, name, writePrefix, x) {
-  if (length(writeSchema) > 1) {
-    name = DBI::Id(
-      "catalog" = writeSchema[1], "schema" = writeSchema[2],
-      "table" = paste0(writePrefix, name)
-    )
-  } else {
-    name = DBI::Id(
-      "schema" = writeSchema, "table" = paste0(writePrefix, name)
-    )
-  }
+writeTable <- function(con, writeSchema, name, x) {
+  name <- CDMConnector::inSchema(writeSchema, name)
   DBI::dbWriteTable(conn = con, name = name, as.data.frame(x), overwrite = TRUE)
 }
 
 #' To create the vocabulary tables
 #' @noRd
-vocabularyTables <- function(concept, concept_ancestor, drug_strength) {
+vocabularyTables <- function(concept, concept_ancestor, drug_strength, concept_relationship) {
   if (is.null(concept)) {
     concept <- mockConcept
   }
@@ -202,7 +208,32 @@ vocabularyTables <- function(concept, concept_ancestor, drug_strength) {
   if (is.null(drug_strength)) {
     drug_strength <- mockDrugStrength
   }
-  return(list(concept = concept, concept_ancestor = concept_ancestor, drug_strength = drug_strength))
+  if (is.null(concept_relationship)) {
+    concept_relationship <- dplyr::tibble(
+      concept_id_1 = c(
+        2905077, 1516983, 2905075, 1503327, 1516978, 1503326, 1503328, 1516980,
+        29050773, 1125360, 15033297, 15030327, 15033427, 15036327, 15394662,
+        43135274, 11253605, 431352774, 431359274, 112530, 1539465, 29050772,
+        431352074, 15394062, 43135277, 15033327, 11253603, 15516980, 5034327,
+        1539462, 15033528, 15394636, 15176980, 1539463, 431395274, 15186980,
+        15316978
+      ),
+      concept_id_2 = c(
+        19016586, 46275062, 35894935, 19135843, 19082107, 19011932, 19082108,
+        2008660,  2008661,  2008662, 19082109, 43126087, 19130307, 42629089,
+        19103220, 19082048, 19082049, 19082256, 19082050, 19082071, 19082072,
+        19135438, 19135446, 19135439, 19135440, 46234466, 19082653, 19057400,
+        19082227, 19082286, 19009068, 19082628, 19082224, 19095972, 19095973,
+        35604394, 702776
+      ),
+      relationship_id = c(rep("RxNorm has dose form", 37))
+    )
+  }
+  list(
+    concept = concept, concept_ancestor = concept_ancestor,
+    drug_strength = drug_strength, concept_relationship = concept_relationship
+  ) %>%
+    return()
 }
 
 #' To add the cohort set if NULL
@@ -455,6 +486,19 @@ createConditionOccurrence <- function(observation_period, concept) {
       condition_type_concept_id = numeric()
     )
   }
+  condition_occurrence <- condition_occurrence  %>%
+    dplyr::mutate(
+      condition_start_datetime = as.Date(NA),
+      condition_end_datetime = as.Date(NA),
+      condition_status_concept_id = as.numeric(NA),
+      stop_reason = NA,
+      provider_id = NA,
+      visit_occurrence_id = NA,
+      visit_detail_id = NA,
+      condition_source_value = NA,
+      condition_source_concept_id = NA,
+      condition_status_source_value = NA
+    )
   return(condition_occurrence)
 }
 
