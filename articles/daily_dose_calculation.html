@@ -57,6 +57,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/darwin-eu/DrugUtilisation/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -72,7 +73,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Daily dose calculation</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
       <div class="d-none name"><code>daily_dose_calculation.Rmd</code></div>
     </div>
 
@@ -94,13 +95,13 @@ dose for a given drug record and an ingredient concept id is to examine
 the relationship between drug concept id and ingredient concept id
 through the <em>drug strength</em> table:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu-dev.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span>
 <span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mockDrugUtilisation.html">mockDrugUtilisation</a></span><span class="op">(</span>numberIndividuals <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">123456</span><span class="op">)</span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_strength</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.0.0 [unknown@Linux 6.5.0-1025-azure:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1125315, 1125360, 1503297, 1503327, 150332…</span></span>
 <span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1125315, 1125315, 1503297, 1503297, 150329…</span></span>
 <span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 5.0e+02, NA, 1.0e+03, 5.0e+02, NA, NA,…</span></span>
@@ -151,44 +152,44 @@ into 4 different formulas:</p>
 <p>This formula was applied for the following 3 patterns that cover
 8,044 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-34b5d720{}.cl-34af9752{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-34b232c8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34b232c9{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34b25014{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34b25015{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34b2501e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34b2501f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34b25020{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34b25028{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-34b5d720">
+<style>.cl-00d69e60{}.cl-00cf8cf6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00d32974{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00d3297e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00d346ac{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d346b6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d346c0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d346c1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d346ca{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d346cb{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-00d69e60">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-34b25014"><p class="cl-34b232c8"><span class="cl-34af9752">pattern_id</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">amount</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">amount_unit</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">numerator</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">numerator_unit</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">denominator</span></p></th>
-<th class="cl-34b25015"><p class="cl-34b232c9"><span class="cl-34af9752">denominator_unit</span></p></th>
+<th class="cl-00d346ac"><p class="cl-00d32974"><span class="cl-00cf8cf6">pattern_id</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">amount</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">amount_unit</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">numerator</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">numerator_unit</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">denominator</span></p></th>
+<th class="cl-00d346b6"><p class="cl-00d3297e"><span class="cl-00cf8cf6">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34b2501e"><p class="cl-34b232c8"><span class="cl-34af9752">1</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">microgram</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">hour</span></p></td>
+<td class="cl-00d346c0"><p class="cl-00d32974"><span class="cl-00cf8cf6">1</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">microgram</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34b2501e"><p class="cl-34b232c8"><span class="cl-34af9752">2</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">milligram</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b2501f"><p class="cl-34b232c9"><span class="cl-34af9752">hour</span></p></td>
+<td class="cl-00d346c0"><p class="cl-00d32974"><span class="cl-00cf8cf6">2</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">milligram</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346c1"><p class="cl-00d3297e"><span class="cl-00cf8cf6">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34b25020"><p class="cl-34b232c8"><span class="cl-34af9752">3</span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752"></span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752">unit</span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752">number</span></p></td>
-<td class="cl-34b25028"><p class="cl-34b232c9"><span class="cl-34af9752">hour</span></p></td>
+<td class="cl-00d346ca"><p class="cl-00d32974"><span class="cl-00cf8cf6">3</span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6"></span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6">unit</span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6">number</span></p></td>
+<td class="cl-00d346cb"><p class="cl-00d3297e"><span class="cl-00cf8cf6">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -207,35 +208,35 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 2 patterns that cover
 5,611 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-34cf91ba{}.cl-34ca5a38{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-34cc8f2e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34cc8f38{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34cca716{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34cca720{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34cca72a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34cca72b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34cca734{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34cca735{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-34cf91ba">
+<style>.cl-00f0d3ac{}.cl-00eb4d10{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00ed9494{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00ed949e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00edaec0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00edaec1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00edaeca{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00edaecb{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00edaecc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00edaed4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-00f0d3ac">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-34cca716"><p class="cl-34cc8f2e"><span class="cl-34ca5a38">pattern_id</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">amount</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">amount_unit</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">numerator</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">numerator_unit</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">denominator</span></p></th>
-<th class="cl-34cca720"><p class="cl-34cc8f38"><span class="cl-34ca5a38">denominator_unit</span></p></th>
+<th class="cl-00edaec0"><p class="cl-00ed9494"><span class="cl-00eb4d10">pattern_id</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">amount</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">amount_unit</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">numerator</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">numerator_unit</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">denominator</span></p></th>
+<th class="cl-00edaec1"><p class="cl-00ed949e"><span class="cl-00eb4d10">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34cca72a"><p class="cl-34cc8f2e"><span class="cl-34ca5a38">4</span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38">number</span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38">microgram</span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca72b"><p class="cl-34cc8f38"><span class="cl-34ca5a38">hour</span></p></td>
+<td class="cl-00edaeca"><p class="cl-00ed9494"><span class="cl-00eb4d10">4</span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10">number</span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10">microgram</span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaecb"><p class="cl-00ed949e"><span class="cl-00eb4d10">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34cca734"><p class="cl-34cc8f2e"><span class="cl-34ca5a38">5</span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38">number</span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38">milligram</span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38"></span></p></td>
-<td class="cl-34cca735"><p class="cl-34cc8f38"><span class="cl-34ca5a38">hour</span></p></td>
+<td class="cl-00edaecc"><p class="cl-00ed9494"><span class="cl-00eb4d10">5</span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10">number</span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10">milligram</span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10"></span></p></td>
+<td class="cl-00edaed4"><p class="cl-00ed949e"><span class="cl-00eb4d10">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -252,71 +253,71 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:</p>
 <div class="tabwid">
-<style>.cl-34e9ab5e{}.cl-34e426e8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-34e660fc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34e66106{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-34e67a42{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e67a4c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e67a4d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e67a56{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e67a57{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e67a58{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-34e9ab5e">
+<style>.cl-010f5cb4{}.cl-0109bf84{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-010c09b0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-010c09ba{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-010c22ce{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010c22d8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010c22d9{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010c22e2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010c22e3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010c22ec{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-010f5cb4">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-34e67a42"><p class="cl-34e660fc"><span class="cl-34e426e8">pattern_id</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">amount</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">amount_unit</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">numerator</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">numerator_unit</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">denominator</span></p></th>
-<th class="cl-34e67a4c"><p class="cl-34e66106"><span class="cl-34e426e8">denominator_unit</span></p></th>
+<th class="cl-010c22ce"><p class="cl-010c09b0"><span class="cl-0109bf84">pattern_id</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">amount</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">amount_unit</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">numerator</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">numerator_unit</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">denominator</span></p></th>
+<th class="cl-010c22d8"><p class="cl-010c09ba"><span class="cl-0109bf84">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a4d"><p class="cl-34e660fc"><span class="cl-34e426e8">6</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">international unit</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22d9"><p class="cl-010c09b0"><span class="cl-0109bf84">6</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">international unit</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a4d"><p class="cl-34e660fc"><span class="cl-34e426e8">7</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">microgram</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22d9"><p class="cl-010c09b0"><span class="cl-0109bf84">7</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">microgram</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a4d"><p class="cl-34e660fc"><span class="cl-34e426e8">8</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">milliequivalent</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22d9"><p class="cl-010c09b0"><span class="cl-0109bf84">8</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">milliequivalent</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a4d"><p class="cl-34e660fc"><span class="cl-34e426e8">9</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">milligram</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22d9"><p class="cl-010c09b0"><span class="cl-0109bf84">9</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">milligram</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a4d"><p class="cl-34e660fc"><span class="cl-34e426e8">10</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8">milliliter</span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a56"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22d9"><p class="cl-010c09b0"><span class="cl-0109bf84">10</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84">milliliter</span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22e2"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-34e67a57"><p class="cl-34e660fc"><span class="cl-34e426e8">11</span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8">number</span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8">unit</span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
-<td class="cl-34e67a58"><p class="cl-34e66106"><span class="cl-34e426e8"></span></p></td>
+<td class="cl-010c22e3"><p class="cl-010c09b0"><span class="cl-0109bf84">11</span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84">number</span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84">unit</span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
+<td class="cl-010c22ec"><p class="cl-010c09ba"><span class="cl-0109bf84"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -333,287 +334,287 @@ field.</p>
 <p>This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:</p>
 <div class="tabwid">
-<style>.cl-350c657c{}.cl-350581f8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3508228c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-35082296{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-35083ed4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-35083ede{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-35083edf{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-35083ee8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-35083ee9{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-35083eea{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-350c657c">
+<style>.cl-01328e6e{}.cl-012ae89e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-012e4f02{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-012e4f16{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-012e6adc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-012e6ae6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-012e6ae7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-012e6ae8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-012e6af0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-012e6af1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-01328e6e">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-35083ed4"><p class="cl-3508228c"><span class="cl-350581f8">pattern_id</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">amount</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">amount_unit</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">numerator</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">numerator_unit</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">denominator</span></p></th>
-<th class="cl-35083ede"><p class="cl-35082296"><span class="cl-350581f8">denominator_unit</span></p></th>
+<th class="cl-012e6adc"><p class="cl-012e4f02"><span class="cl-012ae89e">pattern_id</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">amount</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">amount_unit</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">numerator</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">numerator_unit</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">denominator</span></p></th>
+<th class="cl-012e6ae6"><p class="cl-012e4f16"><span class="cl-012ae89e">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">12</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">international unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">12</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">international unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">13</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">international unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">13</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">international unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">14</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliequivalent</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">14</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliequivalent</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">15</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">Actuation</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">15</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">16</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">liter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">16</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">17</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">17</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">18</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">18</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">19</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">square centimeter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">19</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">20</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">20</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">21</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">21</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">22</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">Actuation</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">22</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">23</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">23</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">24</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">24</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">25</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">square centimeter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">25</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">26</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">international unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">26</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">international unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">27</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">international unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">27</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">international unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">28</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">mega-international unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">28</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">mega-international unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">29</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliequivalent</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">29</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliequivalent</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">30</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliequivalent</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">30</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliequivalent</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">31</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">Actuation</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">31</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">32</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">liter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">32</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">33</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">33</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">34</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">34</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">35</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">square centimeter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">35</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">36</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">36</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">37</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">37</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">38</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">Actuation</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">38</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">39</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milligram</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">39</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083edf"><p class="cl-3508228c"><span class="cl-350581f8">40</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083ee8"><p class="cl-35082296"><span class="cl-350581f8">milliliter</span></p></td>
+<td class="cl-012e6ae7"><p class="cl-012e4f02"><span class="cl-012ae89e">40</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6ae8"><p class="cl-012e4f16"><span class="cl-012ae89e">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-35083ee9"><p class="cl-3508228c"><span class="cl-350581f8">41</span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8">number</span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8">unit</span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8"></span></p></td>
-<td class="cl-35083eea"><p class="cl-35082296"><span class="cl-350581f8">square centimeter</span></p></td>
+<td class="cl-012e6af0"><p class="cl-012e4f02"><span class="cl-012ae89e">41</span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e">number</span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e">unit</span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e"></span></p></td>
+<td class="cl-012e6af1"><p class="cl-012e4f16"><span class="cl-012ae89e">square centimeter</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1181,117 +1182,187 @@ so:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Database name">Database name</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Ingredient name">Ingredient name</th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">Variable</div>
+      </th>
+    </tr>
+<tr class="gt_col_headings gt_spanner_row">
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]number records
+[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">number records</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Missing dose
+[header_name]Estimate name
+[header_level]N (%)">
+        <div class="gt_column_spanner">Missing dose</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]daily_dose
+[header_name]Estimate name
+[header_level]Mean (SD)">
+        <div class="gt_column_spanner">daily_dose</div>
+      </th>
+    </tr>
+<tr class="gt_col_headings gt_spanner_row">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Database-name">Database name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Ingredient-name">Ingredient name</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Unit">Unit</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Route">Route</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern id">Pattern id</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Number records">
-        <span class="gt_column_spanner">Number records</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Missing dose">
-        <span class="gt_column_spanner">Missing dose</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="Daily dose">
-        <span class="gt_column_spanner">Daily dose</span>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern-id">Pattern id</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">Estimate name</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="N">N</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="N (%)">N (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Mean (SD)">Mean (SD)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Median (Q25 - Q75)">Median (Q25 - Q75)</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left;">DUS MOCK</td>
-<td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Acetaminophen</td>
-<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">acetaminophen</td>
+<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">78</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">14,949.80 (99,310.18)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">234.38 (19.68 - 1,264.66)</td>
 </tr>
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Milligram</td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">milligram</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">78</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">14,949.80 (99,310.18)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">234.38 (19.68 - 1,264.66)</td>
 </tr>
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Oral</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">oral</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">182.38 (294.08)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">41.03 (15.69 - 237.42)</td>
 </tr>
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Topical</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">topical</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">60</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">19,380.03 (113,070.32)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">308.61 (28.48 - 1,962.38)</td>
 </tr>
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Oral</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">oral</td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">9</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">182.38 (294.08)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">41.03 (15.69 - 237.42)</td>
 </tr>
 <tr>
 <td headers="Database name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Topical</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">topical</td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">34</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">32,837.73 (149,637.62)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">1,066.79 (243.71 - 4,339.96)</td>
 </tr>
 <tr>
@@ -1300,13 +1371,21 @@ so:</p>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">9</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">26</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,781.50 (6,876.01)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">49.95 (4.96 - 268.87)</td>
 </tr>
 </tbody>
@@ -1768,110 +1847,180 @@ example the following will suppress the <code>cdmName</code>:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Ingredient name">Ingredient name</th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">Variable</div>
+      </th>
+    </tr>
+<tr class="gt_col_headings gt_spanner_row">
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]number records
+[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">number records</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Missing dose
+[header_name]Estimate name
+[header_level]N (%)">
+        <div class="gt_column_spanner">Missing dose</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]daily_dose
+[header_name]Estimate name
+[header_level]Mean (SD)">
+        <div class="gt_column_spanner">daily_dose</div>
+      </th>
+    </tr>
+<tr class="gt_col_headings gt_spanner_row">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Ingredient-name">Ingredient name</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Unit">Unit</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Route">Route</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern id">Pattern id</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Number records">
-        <span class="gt_column_spanner">Number records</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Missing dose">
-        <span class="gt_column_spanner">Missing dose</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="Daily dose">
-        <span class="gt_column_spanner">Daily dose</span>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern-id">Pattern id</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Estimate name
+[header_level]N">
+        <div class="gt_column_spanner">Estimate name</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="N">N</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="N (%)">N (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Mean (SD)">Mean (SD)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="Median (Q25 - Q75)">Median (Q25 - Q75)</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="Ingredient name" class="gt_row gt_left" style="text-align: left;">Acetaminophen</td>
-<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Ingredient name" class="gt_row gt_left" style="text-align: left;">acetaminophen</td>
+<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">78</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">14,949.80 (99,310.18)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">234.38 (19.68 - 1,264.66)</td>
 </tr>
 <tr>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
-<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Milligram</td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">milligram</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">78</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">14,949.80 (99,310.18)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">234.38 (19.68 - 1,264.66)</td>
 </tr>
 <tr>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Oral</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">oral</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">182.38 (294.08)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">41.03 (15.69 - 237.42)</td>
 </tr>
 <tr>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Topical</td>
-<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Overall</td>
-<td headers="[header_level]Number records
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">topical</td>
+<td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">overall</td>
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">60</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">19,380.03 (113,070.32)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">308.61 (28.48 - 1,962.38)</td>
 </tr>
 <tr>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Oral</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">oral</td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">9</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">182.38 (294.08)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">41.03 (15.69 - 237.42)</td>
 </tr>
 <tr>
 <td headers="Ingredient name" class="gt_row gt_left" style="text-align: left; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000;"></td>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
-<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">Topical</td>
+<td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">topical</td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">34</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">32,837.73 (149,637.62)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">1,066.79 (243.71 - 4,339.96)</td>
 </tr>
 <tr>
@@ -1879,13 +2028,21 @@ example the following will suppress the <code>cdmName</code>:</p>
 <td headers="Unit" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Route" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;"></td>
 <td headers="Pattern id" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">9</td>
-<td headers="[header_level]Number records
+<td headers="[header_name]Variable
+[header_level]number records
+[header_name]Estimate name
 [header_level]N" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">26</td>
-<td headers="[header_level]Missing dose
+<td headers="[header_name]Variable
+[header_level]Missing dose
+[header_name]Estimate name
 [header_level]N (%)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Mean (SD)" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,781.50 (6,876.01)</td>
-<td headers="[header_level]Daily dose
+<td headers="[header_name]Variable
+[header_level]daily_dose
+[header_name]Estimate name
 [header_level]Median (Q25 - Q75)" class="gt_row gt_right" style="text-align: right;">49.95 (4.96 - 268.87)</td>
 </tr>
 </tbody>
@@ -1904,7 +2061,7 @@ example the following will suppress the <code>cdmName</code>:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

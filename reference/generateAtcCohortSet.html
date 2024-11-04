@@ -9,7 +9,7 @@ exposure records that belong to the specified Anatomical Therapeutic Chemical
 (ATC) classification. Cohort start and end dates will be based on drug record
 start and end dates, respectively. Records that overlap or have fewer days
 between them than the specified gap era will be concatenated into a single
-cohort entry."><meta property="og:image" content="https://darwin-eu-dev.github.io/DrugUtilisation/logo.png"></head><body>
+cohort entry."><meta property="og:image" content="https://darwin-eu.github.io/DrugUtilisation/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -42,6 +42,7 @@ cohort entry."><meta property="og:image" content="https://darwin-eu-dev.github.i
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/darwin-eu/DrugUtilisation/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -50,7 +51,7 @@ cohort entry."><meta property="og:image" content="https://darwin-eu-dev.github.i
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Generate a set of drug cohorts based on ATC classification</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/generateAtcCohortSet.R" class="external-link"><code>R/generateAtcCohortSet.R</code></a></small>
       <div class="d-none name"><code>generateAtcCohortSet.Rd</code></div>
     </div>
 
@@ -147,7 +148,7 @@ the new cohort table.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu-dev.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="mockDrugUtilisation.html">mockDrugUtilisation</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -227,7 +228,7 @@ the new cohort table.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: ??</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.0.0 [unknown@Linux 6.5.0-1025-azure:R 4.4.1/:memory:]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> </span>
@@ -244,7 +245,7 @@ the new cohort table.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
