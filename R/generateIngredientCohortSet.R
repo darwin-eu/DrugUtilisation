@@ -34,23 +34,11 @@
 #' each name leads to a combined set of descendant concept codes for the
 #' specified ingredients, creating distinct cohort_definition_id for each
 #' named group.
-#' @param doseForm Only descendants codes with the specified dose form
-#' will be returned. If NULL, descendant codes will be returned regardless
-#' of dose form.
-#' @param doseUnit Only descendants codes with the specified dose unit
-#' will be returned. If NULL, descendant codes will be returned regardless
-#' of dose unit
-#' @param routeCategory Only descendants codes with the specified route
-#' will be returned. If NULL, descendant codes will be returned regardless
-#' of route category.
-#' @param ingredientRange Used to restrict descendant codes to those
-#' associated with a specific number of ingredients. Must be a vector of length
-#' two with the first element the minimum number of ingredients allowed and
-#' the second the maximum. A value of c(2, 2) would restrict to only concepts
-#' associated with two ingredients.
 #' @param gapEra Number of days between two continuous exposures to be
 #' considered in the same era. Records that have fewer days between them than
 #' this gap will be concatenated into the same cohort record.
+#' @param ... Arguments to be passed to
+#' `CodelistGenerator::getDrugIngredientCodes()`.
 #' @param durationRange Deprecated.
 #' @param imputeDuration Deprecated.
 #' @param priorUseWashout Deprecated
@@ -83,83 +71,111 @@
 generateIngredientCohortSet <- function(cdm,
                                         name,
                                         ingredient = NULL,
-                                        doseForm = NULL,
-                                        doseUnit = NULL,
-                                        routeCategory = NULL,
-                                        ingredientRange = c(1, Inf),
                                         gapEra = 1,
+                                        ...,
                                         durationRange = lifecycle::deprecated(),
                                         imputeDuration = lifecycle::deprecated(),
                                         priorUseWashout = lifecycle::deprecated(),
                                         priorObservation = lifecycle::deprecated(),
                                         cohortDateRange = lifecycle::deprecated(),
                                         limit = lifecycle::deprecated()) {
+  generateSubFunctions(
+    codesFunction = "CodelistGenerator::getDrugIngredientCodes",
+    reportFunction = "DrugUtilisation::generateIngredientCohortSet",
+    cdm = cdm,
+    name = name,
+    nam = ingredient,
+    gapEra = gapEra,
+    ...,
+    durationRange = durationRange,
+    imputeDuration = imputeDuration,
+    priorUseWashout = priorUseWashout,
+    priorObservation = priorObservation,
+    cohortDateRange = cohortDateRange,
+    limit = limit
+  )
+}
+
+recordArgs <- function(fun, ...) {
+  args <- list(...)
+  arguments <- fun |>
+    rlang::parse_expr() |>
+    rlang::eval_tidy() |>
+    formals()
+  arguments <- arguments[!names(arguments) %in% c("name", "cdm", "type")]
+  vals <- names(arguments) |>
+    purrr::map(\(x) {
+      if (x %in% names(args)) {
+        value <- args[[x]]
+      } else {
+        value <- arguments[[x]] |>
+          rlang::eval_tidy()
+      }
+      prepareValue(value)
+    })
+  names(vals) <- omopgenerics::toSnakeCase(names(arguments))
+  return(vals)
+}
+prepareValue <- function(val) {
+  if (length(val) == 0) return("")
+  paste0(as.character(val), collapse = "; ")
+}
+generateSubFunctions <- function(codesFunction,
+                                 reportFunction,
+                                 cdm,
+                                 name,
+                                 nam,
+                                 gapEra,
+                                 ...,
+                                 durationRange,
+                                 imputeDuration,
+                                 priorUseWashout,
+                                 priorObservation,
+                                 cohortDateRange,
+                                 limit) {
   if (lifecycle::is_present(durationRange)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(durationRange = )"
+      what = paste0(reportFunction, "(durationRange = )")
     )
   }
   if (lifecycle::is_present(imputeDuration)) {
     lifecycle::deprecate_warn(
-      when = "0.7.0", what = "generateIngredientCohortSet(imputeDuration = )"
+      when = "0.7.0", what = paste0(reportFunction, "(imputeDuration = )")
     )
   }
   if (lifecycle::is_present(priorUseWashout)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(priorUseWashout = )",
+      what = paste0(reportFunction, "(priorUseWashout = )"),
       with = "requirePriorDrugWashout()"
     )
   }
   if (lifecycle::is_present(priorObservation)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(priorObservation = )",
+      what = paste0(reportFunction, "(priorObservation = )"),
       with = "requireObservationBeforeDrug()"
     )
   }
   if (lifecycle::is_present(cohortDateRange)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(cohortDateRange = )",
+      what = paste0(reportFunction, "(cohortDateRange = )"),
       with = "requireDrugInDateRange()"
     )
   }
   if (lifecycle::is_present(limit)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(limit = )",
+      what = paste0(reportFunction, "(limit = )"),
       with = "requireIsFirstDrugEntry()"
     )
   }
 
-  if (!is.list(ingredient)) {
-    conceptSet <- CodelistGenerator::getDrugIngredientCodes(
-      cdm = cdm,
-      name = ingredient,
-      doseForm = doseForm,
-      ingredientRange = ingredientRange,
-      doseUnit = doseUnit,
-      routeCategory = routeCategory
-    )
-  } else {
-    conceptSet <- lapply(ingredient, function(values) {
-      lapply(values, function(value) {
-        CodelistGenerator::getDrugIngredientCodes(
-          cdm = cdm,
-          name = value,
-          doseForm = doseForm,
-          ingredientRange = ingredientRange,
-          doseUnit = doseUnit,
-          routeCategory = routeCategory
-        )
-      }) |>
-        unname() |>
-        unlist() |>
-        unique()
-    })
-  }
+  conceptSet <- paste0(codesFunction, "(cdm = cdm, name = nam, ...)") |>
+    rlang::parse_expr() |>
+    rlang::eval_tidy()
 
   cdm <- DrugUtilisation::generateDrugUtilisationCohortSet(
     cdm = cdm,
@@ -168,14 +184,12 @@ generateIngredientCohortSet <- function(cdm,
     gapEra = gapEra
   )
 
+  values <- recordArgs("CodelistGenerator::getDrugIngredientCodes", ...)
+
   cdm[[name]] <- cdm[[name]] |>
     omopgenerics::newCohortTable(
       cohortSetRef = settings(cdm[[name]]) |>
-        dplyr::mutate(
-          "dose_form" = paste0(.env$doseForm, collapse = " + "),
-          "ingredient_range_min" = as.character(ingredientRange[1]),
-          "ingredient_range_max" = as.character(ingredientRange[2])
-        )
+        dplyr::mutate(!!!values)
     )
 
   return(cdm)
