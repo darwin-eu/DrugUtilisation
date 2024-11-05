@@ -8,11 +8,8 @@ generateIngredientCohortSet(
   cdm,
   name,
   ingredient = NULL,
-  doseForm = NULL,
-  doseUnit = NULL,
-  routeCategory = NULL,
-  ingredientRange = c(1, Inf),
   gapEra = 1,
+  ...,
   durationRange = lifecycle::deprecated(),
   imputeDuration = lifecycle::deprecated(),
   priorUseWashout = lifecycle::deprecated(),
@@ -36,27 +33,12 @@ each name leads to a combined set of descendant concept codes for the
 specified ingredients, creating distinct cohort_definition_id for each
 named group.}
 
-\item{doseForm}{Only descendants codes with the specified dose form
-will be returned. If NULL, descendant codes will be returned regardless
-of dose form.}
-
-\item{doseUnit}{Only descendants codes with the specified dose unit
-will be returned. If NULL, descendant codes will be returned regardless
-of dose unit}
-
-\item{routeCategory}{Only descendants codes with the specified route
-will be returned. If NULL, descendant codes will be returned regardless
-of route category.}
-
-\item{ingredientRange}{Used to restrict descendant codes to those
-associated with a specific number of ingredients. Must be a vector of length
-two with the first element the minimum number of ingredients allowed and
-the second the maximum. A value of c(2, 2) would restrict to only concepts
-associated with two ingredients.}
-
 \item{gapEra}{Number of days between two continuous exposures to be
 considered in the same era. Records that have fewer days between them than
 this gap will be concatenated into the same cohort record.}
+
+\item{...}{Arguments to be passed to
+\code{CodelistGenerator::getDrugIngredientCodes()}.}
 
 \item{durationRange}{Deprecated.}
 

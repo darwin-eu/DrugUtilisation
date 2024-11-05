@@ -8,9 +8,8 @@ generateAtcCohortSet(
   cdm,
   name,
   atcName = NULL,
-  level = c("ATC 1st"),
-  doseForm = NULL,
   gapEra = 1,
+  ...,
   durationRange = lifecycle::deprecated(),
   imputeDuration = lifecycle::deprecated(),
   priorUseWashout = lifecycle::deprecated(),
@@ -26,16 +25,11 @@ generateAtcCohortSet(
 
 \item{atcName}{Names of ATC classification of interest.}
 
-\item{level}{ATC level. Can be one or more of "ATC 1st", "ATC 2nd",
-"ATC 3rd", "ATC 4th", and "ATC 5th"}
-
-\item{doseForm}{Only descendants codes with the specified dose form
-will be returned. If NULL, descendant codes will be returned regardless
-of dose form.}
-
 \item{gapEra}{Number of days between two continuous exposures to be
 considered in the same era. Records that have fewer days between them than
 this gap will be concatenated into the same cohort record.}
+
+\item{...}{Arguments to be passed to \code{CodelistGenerator::getATCCodes()}.}
 
 \item{durationRange}{Deprecated.}
 

@@ -79,10 +79,21 @@ generateIngredientCohortSet <- function(cdm,
                                         priorObservation = lifecycle::deprecated(),
                                         cohortDateRange = lifecycle::deprecated(),
                                         limit = lifecycle::deprecated()) {
-  codesFunction <- "CodelistGenerator::getDrugIngredientCodes"
-  reportFunction <- "DrugUtilisation::generateIngredientCohortSet"
-
-  return(cdm)
+  generateSubFunctions(
+    codesFunction = "CodelistGenerator::getDrugIngredientCodes",
+    reportFunction = "DrugUtilisation::generateIngredientCohortSet",
+    cdm = cdm,
+    name = name,
+    nam = ingredient,
+    gapEra = gapEra,
+    ...,
+    durationRange = durationRange,
+    imputeDuration = imputeDuration,
+    priorUseWashout = priorUseWashout,
+    priorObservation = priorObservation,
+    cohortDateRange = cohortDateRange,
+    limit = limit
+  )
 }
 
 recordArgs <- function(fun, ...) {
@@ -122,67 +133,49 @@ generateSubFunctions <- function(codesFunction,
                                  priorObservation,
                                  cohortDateRange,
                                  limit) {
-
   if (lifecycle::is_present(durationRange)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(durationRange = )"
+      what = paste0(reportFunction, "(durationRange = )")
     )
   }
   if (lifecycle::is_present(imputeDuration)) {
     lifecycle::deprecate_warn(
-      when = "0.7.0", what = "generateIngredientCohortSet(imputeDuration = )"
+      when = "0.7.0", what = paste0(reportFunction, "(imputeDuration = )")
     )
   }
   if (lifecycle::is_present(priorUseWashout)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(priorUseWashout = )",
+      what = paste0(reportFunction, "(priorUseWashout = )"),
       with = "requirePriorDrugWashout()"
     )
   }
   if (lifecycle::is_present(priorObservation)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(priorObservation = )",
+      what = paste0(reportFunction, "(priorObservation = )"),
       with = "requireObservationBeforeDrug()"
     )
   }
   if (lifecycle::is_present(cohortDateRange)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(cohortDateRange = )",
+      what = paste0(reportFunction, "(cohortDateRange = )"),
       with = "requireDrugInDateRange()"
     )
   }
   if (lifecycle::is_present(limit)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
-      what = "generateIngredientCohortSet(limit = )",
+      what = paste0(reportFunction, "(limit = )"),
       with = "requireIsFirstDrugEntry()"
     )
   }
 
-  if (!is.list(ingredient)) {
-    conceptSet <- CodelistGenerator::getDrugIngredientCodes(
-      cdm = cdm,
-      name = ingredient,
-      ...
-    )
-  } else {
-    conceptSet <- lapply(ingredient, function(values) {
-      lapply(values, function(value) {
-        CodelistGenerator::getDrugIngredientCodes(
-          cdm = cdm,
-          name = value,
-          ...
-        )
-      }) |>
-        unname() |>
-        unlist() |>
-        unique()
-    })
-  }
+  conceptSet <- paste0(codesFunction, "(cdm = cdm, name = nam, ...)") |>
+    rlang::parse_expr() |>
+    rlang::eval_tidy()
 
   cdm <- DrugUtilisation::generateDrugUtilisationCohortSet(
     cdm = cdm,
@@ -199,4 +192,5 @@ generateSubFunctions <- function(codesFunction,
         dplyr::mutate(!!!values)
     )
 
+  return(cdm)
 }
