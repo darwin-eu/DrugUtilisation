@@ -80,8 +80,7 @@ generateIngredientCohortSet <- function(cdm,
                                         cohortDateRange = lifecycle::deprecated(),
                                         limit = lifecycle::deprecated()) {
   generateSubFunctions(
-    codesFunction = "CodelistGenerator::getDrugIngredientCodes",
-    reportFunction = "DrugUtilisation::generateIngredientCohortSet",
+    type = "ingredient",
     cdm = cdm,
     name = name,
     nam = ingredient,
@@ -102,7 +101,7 @@ recordArgs <- function(fun, ...) {
     rlang::parse_expr() |>
     rlang::eval_tidy() |>
     formals()
-  arguments <- arguments[!names(arguments) %in% c("name", "cdm", "type")]
+  arguments <- arguments[!names(arguments) %in% c("name", "cdm", "type", "nameStyle")]
   vals <- names(arguments) |>
     purrr::map(\(x) {
       if (x %in% names(args)) {
@@ -120,8 +119,7 @@ prepareValue <- function(val) {
   if (length(val) == 0) return("")
   paste0(as.character(val), collapse = "; ")
 }
-generateSubFunctions <- function(codesFunction,
-                                 reportFunction,
+generateSubFunctions <- function(type,
                                  cdm,
                                  name,
                                  nam,
@@ -133,6 +131,14 @@ generateSubFunctions <- function(codesFunction,
                                  priorObservation,
                                  cohortDateRange,
                                  limit) {
+  if (type == "ingredient") {
+    codesFunction <- "CodelistGenerator::getDrugIngredientCodes"
+    reportFunction <- "DrugUtilisation::generateIngredientCohortSet"
+  } else if (type == "atc") {
+    codesFunction = "CodelistGenerator::getATCCodes"
+    reportFunction = "DrugUtilisation::generateIngredientCohortSet"
+  }
+
   if (lifecycle::is_present(durationRange)) {
     lifecycle::deprecate_warn(
       when = "0.7.0",
@@ -173,9 +179,19 @@ generateSubFunctions <- function(codesFunction,
     )
   }
 
-  conceptSet <- paste0(codesFunction, "(cdm = cdm, name = nam, ...)") |>
-    rlang::parse_expr() |>
-    rlang::eval_tidy()
+  if (!is.list(nam)) {
+    if (is.null(names(nam))) nam <- rlang::set_names(nam)
+    nam <- as.list(nam)
+  }
+
+  conceptSet <- purrr::map(nam, \(x) {
+    paste0(codesFunction, "(cdm = cdm, name = x, ...)") |>
+      rlang::parse_expr() |>
+      rlang::eval_tidy() |>
+      unlist() |>
+      unique() |>
+      as.integer()
+  })
 
   cdm <- DrugUtilisation::generateDrugUtilisationCohortSet(
     cdm = cdm,
@@ -184,7 +200,9 @@ generateSubFunctions <- function(codesFunction,
     gapEra = gapEra
   )
 
-  values <- recordArgs("CodelistGenerator::getDrugIngredientCodes", ...)
+  values <- recordArgs(codesFunction, ...)
+  values[[paste0(type, "_name")]] <- nam |>
+    purrr::map_chr(\(x) paste0(x, collapse = "; "))
 
   cdm[[name]] <- cdm[[name]] |>
     omopgenerics::newCohortTable(

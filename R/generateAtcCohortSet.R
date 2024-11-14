@@ -71,8 +71,7 @@ generateAtcCohortSet <- function(cdm,
                                  cohortDateRange = lifecycle::deprecated(),
                                  limit = lifecycle::deprecated()) {
   generateSubFunctions(
-    codesFunction = "CodelistGenerator::getATCCodes",
-    reportFunction = "DrugUtilisation::generateIngredientCohortSet",
+    type = "atc",
     cdm = cdm,
     name = name,
     nam = atcName,
