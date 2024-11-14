@@ -19,16 +19,9 @@ test_that("test same results for ingredient cohorts", {
 
   # Collect data from DuckDB tables into R data frames
   cohort_1_df <- cdm$test_cohort_1 |>
-    dplyr::collect() |>
-    dplyr::arrange(subject_id, cohort_start_date)
+    collectCohort()
   cohort_2_df <- cdm$test_cohort_2 |>
-    dplyr::collect() |>
-    dplyr::arrange(subject_id, cohort_start_date)
-
-  attr(cohort_1_df, "cohort_set") <- attr(cohort_1_df, "cohort_set") |>
-    dplyr::select(-c(
-      "dose_form", "ingredient_range_min", "ingredient_range_max"
-    ))
+    collectCohort()
 
   expect_equal(cohort_1_df, cohort_2_df)
 
@@ -120,14 +113,12 @@ test_that("ingredient list and vector both work", {
   )
   expect_true(length(cdm$test_list |> dplyr::pull("cohort_definition_id") |> unique()) == 2)
 
-  expect_true(all(
-    settings(cdm$test_vector) |> dplyr::pull("cohort_name") |> sort() == c(
-      "161_acetaminophen", "36567_simvastatin", "6809_metformin"
-    )
-  ))
+  expect_true(all(sort(settings(cdm$test_vector)$cohort_name) ==
+    c("acetaminophen", "metformin", "simvastatin")))
 
-  expect_true(all(settings(cdm$test_list) |> dplyr::pull("cohort_name") |>
-    sort() == c("test_1", "test_2")))
+  expect_true(all(
+    sort(settings(cdm$test_list)$cohort_name) == c("test_1", "test_2")
+  ))
 
   mockDisconnect(cdm = cdm)
 })
