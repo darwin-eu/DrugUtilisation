@@ -179,19 +179,25 @@ generateSubFunctions <- function(type,
     )
   }
 
-  if (!is.list(nam)) {
-    if (is.null(names(nam))) nam <- rlang::set_names(nam)
-    nam <- as.list(nam)
-  }
-
-  conceptSet <- purrr::map(nam, \(x) {
-    paste0(codesFunction, "(cdm = cdm, name = x, ...)") |>
+  if (!is.null(nam)) {
+    if (!is.list(nam)) {
+      if (is.null(names(nam))) nam <- rlang::set_names(nam)
+      nam <- as.list(nam)
+    }
+    conceptSet <- purrr::map(nam, \(x) {
+      paste0(codesFunction, "(cdm = cdm, name = x, ...)") |>
+        rlang::parse_expr() |>
+        rlang::eval_tidy() |>
+        unlist() |>
+        unique() |>
+        as.integer()
+    })
+  } else {
+    conceptSet <- paste0(codesFunction, "(cdm = cdm, ...)") |>
       rlang::parse_expr() |>
-      rlang::eval_tidy() |>
-      unlist() |>
-      unique() |>
-      as.integer()
-  })
+      rlang::eval_tidy()
+    nam <- as.list(names(conceptSet))
+  }
 
   cdm <- DrugUtilisation::generateDrugUtilisationCohortSet(
     cdm = cdm,
