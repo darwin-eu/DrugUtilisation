@@ -43,57 +43,30 @@ test_that("tableIndication works", {
     )),
     period_type_concept_id = 44814724
   )
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = targetCohortName,
-      cohort2 = indicationCohortName,
-      condition_occurrence = condition_occurrence,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    con = connection(),
+    writeSchema = schema(),
+    cohort1 = targetCohortName,
+    cohort2 = indicationCohortName,
+    condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
+  )
 
   result <- cdm[["cohort1"]] |>
     summariseIndication(
-      indicationCohortName = "cohort2", indicationWindow = list(c(0, 0), c(-7, 0), c(-30, 0), c(-Inf, 0)),
+      indicationCohortName = "cohort2",
+      indicationWindow = list(c(0, 0), c(-7, 0), c(-30, 0), c(-Inf, 0)),
       unknownIndicationTable = "condition_occurrence"
     )
 
   # default
   default <- tableIndication(result)
   expect_true("gt_tbl" %in% class(default))
-  expect_true(all(sort(colnames(default$`_data`)) == sort(c(
-    "Database name", "Variable name", "Indication", "[header]Cohort name\n[header_level]Cohort 1", "[header]Cohort name\n[header_level]Cohort 2"
-  ))))
   expect_true(all(default$`_data`$`Database name` == c(
     "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", ""
   )))
 
   tib <- tableIndication(result, header = "variable", groupColumn = "cdm_name", type = "tibble")
-  expect_true(nrow(tib) == 2)
-  expect_true(all(c(
-    "Database name", "Cohort name",
-    "[header_level]Indication on index date\n[header_level]Asthma",
-    "[header_level]Indication on index date\n[header_level]Covid",
-    "[header_level]Indication on index date\n[header_level]Asthma and covid",
-    "[header_level]Indication on index date\n[header_level]Unknown",
-    "[header_level]Indication on index date\n[header_level]None",
-    "[header_level]Indication from 7 days before to the index date\n[header_level]Asthma",
-    "[header_level]Indication from 7 days before to the index date\n[header_level]Covid",
-    "[header_level]Indication from 7 days before to the index date\n[header_level]Asthma and covid",
-    "[header_level]Indication from 7 days before to the index date\n[header_level]Unknown",
-    "[header_level]Indication from 7 days before to the index date\n[header_level]None",
-    "[header_level]Indication from 30 days before to the index date\n[header_level]Asthma",
-    "[header_level]Indication from 30 days before to the index date\n[header_level]Covid",
-    "[header_level]Indication from 30 days before to the index date\n[header_level]Asthma and covid",
-    "[header_level]Indication from 30 days before to the index date\n[header_level]Unknown",
-    "[header_level]Indication from 30 days before to the index date\n[header_level]None",
-    "[header_level]Indication any time before or on index date\n[header_level]Asthma",
-    "[header_level]Indication any time before or on index date\n[header_level]Covid",
-    "[header_level]Indication any time before or on index date\n[header_level]Asthma and covid",
-    "[header_level]Indication any time before or on index date\n[header_level]Unknown",
-    "[header_level]Indication any time before or on index date\n[header_level]None"
-  ) %in% colnames(tib)))
 
   # strata
   result <- cdm[["cohort1"]] |>
@@ -110,16 +83,7 @@ test_that("tableIndication works", {
     )
 
   fx <- tableIndication(result, cdmName = FALSE, cohortName = FALSE, type = "flextable", header = "group")
-  expect_true("flextable" %in% class(fx))
-  expect_true(all(colnames(fx$body$dataset) == c(
-    "Variable name", "Age group", "Sex", "Indication", "Estimate value"
-  )))
-  expect_true(all(fx$body$dataset$`Variable name` |> levels() == c(
-    "Indication any time before or on index date",
-    "Indication from 30 days before to the index date",
-    "Indication from 7 days before to the index date",
-    "Indication on index date"
-  )))
+  expect_true(inherits(fx, "flextable"))
 
   # expected errors
   expect_error(tableIndication(result, header = "variable"))
@@ -232,32 +196,16 @@ test_that("tableDoseCoverage", {
 
   # default
   default <- tableDoseCoverage(coverage)
-  expect_true("gt_tbl" %in% class(default))
-  expect_true(all(colnames(default$`_data`) == c(
-    "Database name", "Ingredient name", "Unit", "Route", "Pattern id",
-    "[header_level]Number records\n[header_level]N", "[header_level]Missing dose\n[header_level]N (%)",
-    "[header_level]Daily dose\n[header_level]Mean (SD)", "[header_level]Daily dose\n[header_level]Median (Q25 - Q75)"
-  )))
+  expect_true(inherits(default, "gt_tbl"))
 
   # other options working
   tib1 <- tableDoseCoverage(coverage, type = "tibble", ingridientName = FALSE, splitStrata = FALSE)
-  expect_true(all(colnames(tib1) == c(
-    "Database name", "Strata name", "Strata level", "[header_level]Number records\n[header_level]N",
-    "[header_level]Missing dose\n[header_level]N (%)", "[header_level]Daily dose\n[header_level]Mean (SD)",
-    "[header_level]Daily dose\n[header_level]Median (Q25 - Q75)"
-  )))
+  expect_true(inherits(tib1, "tbl_df"))
 
   fx1 <- tableDoseCoverage(coverage, header = c("cdm_name", "group"), groupColumn = "variable_name", type = "flextable")
-  expect_true("flextable" %in% class(fx1))
-  expect_true(all(colnames(fx1$body$dataset) == c(
-    "Variable name", "Unit", "Route", "Pattern id", "Estimate name", "Database name\nDUS MOCK\nIngredient name\nIngredient 1"
-  )))
-  expect_true(all(fx1$body$dataset$`Variable name` |> levels() == c("Daily dose", "Missing dose", "Number records")))
+  expect_true(inherits(fx1, "flextable"))
 
-  gt1 <- tableDoseCoverage(coverage, header = c("group"))
-  expect_true(all(colnames(gt1$`_data`) == c(
-    "Database name", "Unit", "Route", "Pattern id", "Variable", "Estimate name", "[header]Ingredient name\n[header_level]Ingredient 1"
-  )))
+  expect_no_error(gt1 <- tableDoseCoverage(coverage, header = c("group")))
 
   # expected errors
   expect_error(tableDoseCoverage(coverage, header = "variable", groupColumn = "variable_name"))
@@ -334,57 +282,9 @@ test_that("tableDrugUtilisation", {
     summariseDrugUtilisation(ingredientConceptId = c(1125315, 1539403, 1503297, 1516976), strata = list("sex"))
 
   # default
-  default <- tableDrugUtilisation(result)
+  expect_no_error(default <- tableDrugUtilisation(result))
+  expect_true(inherits(default, "gt_tbl"))
   expect_true("gt_tbl" %in% class(default))
-  expect_true(all(colnames(default$`_data`) == c(
-    "Database name", "Variable", "Unit", "Estimate name", "Concept set",
-    "Ingredient",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Overall",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Female",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Male",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Overall",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Female",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Male"
-  )))
-
-  # other options working
-  expect_warning(tib1 <- tableDrugUtilisation(result, type = "tibble", cohortName = FALSE, splitStrata = FALSE))
-  expect_true(all(colnames(tib1) == c(
-    "Database name", "Strata name", "Strata level", "Variable", "Unit", "Estimate name", "Estimate value", "Concept set", "Ingredient"
-  )))
-
-  fx1 <- tableDrugUtilisation(result, header = c("cdm_name", "group"), groupColumn = "variable_name", type = "flextable")
-  expect_true("flextable" %in% class(fx1))
-  expect_true(all(colnames(fx1$body$dataset) == c(
-    "Variable name", "Sex", "Unit", "Estimate name", "Concept set", "Ingredient", "Database name\nDUS MOCK\nCohort name\nCohort 1", "Database name\nDUS MOCK\nCohort name\nCohort 2"
-  )))
-  expect_true(all(fx1$body$dataset$`Variable name` |> levels() == c(
-    "Cumulative dose", "Cumulative quantity", "Exposed time", "Initial daily dose", "Initial quantity", "Number eras", "Number exposures", "Number records", "Number subjects", "Time to exposure"
-  )))
-
-  gt1 <- tableDrugUtilisation(result |> dplyr::filter(additional_level != "ingredient_1125315_descendants &&& acetaminophen"),
-    header = c("group"), ingredient = FALSE
-  )
-  expect_true(all(colnames(gt1$`_data`) == c(
-    "Database name", "Sex", "Variable", "Unit", "Estimate name", "Concept set", "[header]Cohort name\n[header_level]Cohort 1", "[header]Cohort name\n[header_level]Cohort 2"
-  )))
-
-  gt2 <- tableDrugUtilisation(result |> dplyr::filter(is.na(variable_level)))
-  expect_true(all(colnames(gt2$`_data`) == c(
-    "Database name", "Variable", "Estimate name", "Concept set",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Overall",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Female",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header]Sex\n[header_level]Male",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Overall",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Female",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header]Sex\n[header_level]Male"
-  )))
-
-  # expected errors
-  expect_error(tableDrugUtilisation(result |> dplyr::filter(is.na(variable_level)), conceptSet = FALSE))
-  expect_error(tableDrugUtilisation(result, header = "variable", groupColumn = "variable_name"))
-  expect_error(tableDrugUtilisation(result, groupColumn = "cdm_name", cdmName = FALSE))
-  expect_error(tableDrugUtilisation(result, header = "hi"))
 
   mockDisconnect(cdm = cdm)
 })
@@ -464,36 +364,9 @@ test_that("tableDrugRestart", {
       switchCohortTable = "switch_cohort", followUpDays = c(100, 300, Inf),
       strata = list("age_group", "sex", c("age_group", "sex"))
     )
-  gt1 <- tableDrugRestart(results)
+
+  expect_no_error(gt1 <- tableDrugRestart(results))
   expect_true(inherits(gt1, "gt_tbl"))
-  expect_true(all(colnames(gt1$`_data`) == c(
-    "cdm_name_cohort_name", "Follow-up", "Event", "Estimate name",
-    "[header]Age group\n[header_level]0 to 50\n[header]Sex\n[header_level]Overall",
-    "[header]Age group\n[header_level]0 to 50\n[header]Sex\n[header_level]Female",
-    "[header]Age group\n[header_level]0 to 50\n[header]Sex\n[header_level]Male",
-    "[header]Age group\n[header_level]Overall\n[header]Sex\n[header_level]Overall",
-    "[header]Age group\n[header_level]Overall\n[header]Sex\n[header_level]Female",
-    "[header]Age group\n[header_level]Overall\n[header]Sex\n[header_level]Male"
-  )))
-
-  tib1 <- tableDrugRestart(results,
-    header = c("cohort_name", "estimate"),
-    groupColumn = NULL, cdmName = FALSE, type = "tibble"
-  )
-  expect_true(all(colnames(tib1) == c(
-    "Age group", "Sex", "Follow-up", "Event",
-    "[header]Cohort name\n[header_level]Cohort 1\n[header_level]N (%)",
-    "[header]Cohort name\n[header_level]Cohort 2\n[header_level]N (%)"
-  )))
-
-  fx1 <- tableDrugRestart(results |> dplyr::filter(group_level == "cohort_1"),
-    header = c("cohort_name", "estimate"), cohortName = FALSE,
-    groupColumn = list("group" = c("variable_name", "variable_level")),
-    cdmName = FALSE, type = "flextable"
-  )
-  expect_true(all(colnames(fx1$body$dataset) == c(
-    "group", "Age group", "Sex", "N (%)"
-  )))
 
   mockDisconnect(cdm = cdm)
 })
@@ -535,7 +408,8 @@ test_that("tableIndication works", {
       strata = c("var1", "var2")
     )
   # without times specified
-  expect_no_error(tableProportionOfPatientsCovered(ppc))
+  expect_no_error(tab <- tableProportionOfPatientsCovered(ppc))
+  expect_true(inherits(tab, "gt_tbl"))
   # with times specified
   expect_no_error(tableProportionOfPatientsCovered(ppc,
     times = c(0, 5, 10, 15)

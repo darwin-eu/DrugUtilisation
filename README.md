@@ -4,8 +4,8 @@
 # DrugUtilisation <img src="man/figures/logo.png" align="right" height="200"/>
 
 [![CRANstatus](https://www.r-pkg.org/badges/version/DrugUtilisation)](https://CRAN.R-project.org/package=DrugUtilisation)
-[![codecov.io](https://codecov.io/github/darwin-eu-dev/DrugUtilisation/coverage.svg?branch=main)](https://app.codecov.io/github/darwin-eu-dev/DrugUtilisation?branch=main)
-[![R-CMD-check](https://github.com/darwin-eu-dev/DrugUtilisation/workflows/R-CMD-check/badge.svg)](https://github.com/darwin-eu-dev/DrugUtilisation/actions)
+[![codecov.io](https://codecov.io/github/darwin-eu/DrugUtilisation/coverage.svg?branch=main)](https://app.codecov.io/github/darwin-eu/DrugUtilisation?branch=main)
+[![R-CMD-check](https://github.com/darwin-eu/DrugUtilisation/workflows/R-CMD-check/badge.svg)](https://github.com/darwin-eu/DrugUtilisation/actions)
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://lifecycle.r-lib.org/articles/stages.html)
 
 ## Package overview
@@ -59,32 +59,24 @@ cdm <- generateIngredientCohortSet(
   ingredient = "acetaminophen",
   gapEra = 7
 )
-#> Warning: ! 1 casted column in dus_cohort (cohort_attrition) as do not match expected
-#>   column type:
-#> • `reason_id` from numeric to integer
+#> Warning: ! `codelist` contains numeric values, they are casted to integers.
 cdm$dus_cohort |>
   requireIsFirstDrugEntry() |>
   requireObservationBeforeDrug(days = 30)
-#> Warning: ! 1 casted column in dus_cohort (cohort_attrition) as do not match expected
-#>   column type:
-#> • `reason_id` from numeric to integer
-#> ! 1 casted column in dus_cohort (cohort_attrition) as do not match expected
-#>   column type:
-#> • `reason_id` from numeric to integer
 #> # Source:   table<main.dus_cohort> [?? x 4]
-#> # Database: DuckDB v1.0.0 [root@Darwin 23.4.0:R 4.4.1/:memory:]
+#> # Database: DuckDB v1.1.0 [root@Darwin 24.0.0:R 4.4.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         99 1996-03-26        1996-12-20     
-#>  2                    1         31 2000-05-14        2005-08-28     
-#>  3                    1         37 2015-01-22        2015-01-28     
-#>  4                    1         49 2018-07-10        2018-12-19     
-#>  5                    1         54 2015-08-27        2015-09-15     
-#>  6                    1          4 2018-02-11        2022-05-24     
-#>  7                    1         18 2020-08-05        2021-02-12     
-#>  8                    1         25 2001-02-18        2003-06-26     
-#>  9                    1         38 2018-06-04        2019-07-18     
-#> 10                    1         39 2001-04-02        2004-11-23     
+#>  1                    1          1 2021-08-22        2022-01-20     
+#>  2                    1          2 2003-04-08        2006-03-14     
+#>  3                    1          4 1971-04-20        1971-08-01     
+#>  4                    1          5 2010-10-12        2017-10-23     
+#>  5                    1          6 2019-06-04        2019-11-06     
+#>  6                    1          7 2011-11-30        2012-03-22     
+#>  7                    1          8 1993-03-18        1996-08-09     
+#>  8                    1         10 2009-08-21        2010-02-21     
+#>  9                    1         11 2022-03-27        2022-07-13     
+#> 10                    1         14 2010-12-27        2012-10-26     
 #> # ℹ more rows
 ```
 
@@ -101,7 +93,7 @@ cdm <- generateConceptCohortSet(cdm,
   conceptSet = indications,
   name = "indications_cohort"
 )
-#> Warning: ! 3 casted columns in indications_cohort (cohort_attrition) as do not match
+#> Warning: ! 3 casted column in indications_cohort (cohort_attrition) as do not match
 #>   expected column type:
 #> • `reason_id` from numeric to integer
 #> • `excluded_records` from numeric to integer
@@ -138,7 +130,7 @@ indication_summary |> glimpse()
 #> $ variable_level   <chr> NA, NA, "headache", "headache", "influenza", "influen…
 #> $ estimate_name    <chr> "count", "count", "count", "percentage", "count", "pe…
 #> $ estimate_type    <chr> "integer", "integer", "integer", "percentage", "integ…
-#> $ estimate_value   <chr> "43", "43", "2", "4.65116279069767", "0", "0", "0", "…
+#> $ estimate_value   <chr> "61", "61", "1", "1.63934426229508", "0", "0", "0", "…
 #> $ additional_name  <chr> "overall", "overall", "overall", "overall", "overall"…
 #> $ additional_level <chr> "overall", "overall", "overall", "overall", "overall"…
 ```
@@ -155,6 +147,7 @@ drug_utilisation_summary <- cdm$dus_cohort |>
     ingredientConceptId = 1125315,
     gapEra = 7
   )
+#> Warning: ! `codelist` contains numeric values, they are casted to integers.
 drug_utilisation_summary |> glimpse()
 #> Rows: 58
 #> Columns: 13
@@ -168,7 +161,7 @@ drug_utilisation_summary |> glimpse()
 #> $ variable_level   <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ estimate_name    <chr> "count", "count", "q25", "median", "q75", "mean", "sd…
 #> $ estimate_type    <chr> "integer", "integer", "integer", "integer", "integer"…
-#> $ estimate_value   <chr> "43", "43", "1", "1", "1", "1.11627906976744", "0.324…
+#> $ estimate_value   <chr> "61", "61", "1", "1", "1", "1.22950819672131", "0.528…
 #> $ additional_name  <chr> "overall", "overall", "concept_set", "concept_set", "…
 #> $ additional_level <chr> "overall", "overall", "ingredient_1125315_descendants…
 table(drug_utilisation_summary$variable_name)
@@ -205,7 +198,7 @@ results |> glimpse()
 #> $ variable_level   <chr> NA, NA, "headache", "headache", "influenza", "influen…
 #> $ estimate_name    <chr> "count", "count", "count", "percentage", "count", "pe…
 #> $ estimate_type    <chr> "integer", "integer", "integer", "percentage", "integ…
-#> $ estimate_value   <chr> "43", "43", NA, NA, "0", "0", "0", "0", NA, NA, "40",…
+#> $ estimate_value   <chr> "61", "61", NA, NA, "0", "0", "0", "0", NA, NA, "57",…
 #> $ additional_name  <chr> "overall", "overall", "overall", "overall", "overall"…
 #> $ additional_level <chr> "overall", "overall", "overall", "overall", "overall"…
 ```
