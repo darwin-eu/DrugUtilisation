@@ -11,15 +11,13 @@ requireIsFirstDrugEntry(
 )
 }
 \arguments{
-\item{cohort}{A cohort table in a cdm reference.}
+\item{cohort}{A cohort_table object.}
 
-\item{cohortId}{IDs of the cohorts to modify. The default is NULL meaning all
-cohorts will be used; otherwise, only the specified cohorts will be modified,
-and the rest will remain unchanged.}
+\item{cohortId}{A cohort definition id to restrict by. If NULL, all cohorts
+will be included.}
 
-\item{name}{Name of the table with the filtered cohort records. The default
-name is the original cohort name, where the original table will be
-overwritten.}
+\item{name}{Name of the new cohort table, it must be a length 1 character
+vector.}
 }
 \value{
 The cohort table having applied the first entry requirement.

@@ -40,9 +40,7 @@ test_that("test case single indication", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
   condition_occurrence <- dplyr::tibble(
@@ -239,9 +237,7 @@ test_that("test case single indication with unknown indication table", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
   cdm <- mockDrugUtilisation(
@@ -406,9 +402,7 @@ test_that("test indicationDate", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
 
@@ -525,9 +519,7 @@ test_that("test attributes", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
   cdm <-
@@ -598,9 +590,7 @@ test_that("summariseIndication", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
   cdm <-

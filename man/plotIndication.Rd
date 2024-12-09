@@ -7,22 +7,19 @@ summariseIndication}
 \usage{
 plotIndication(
   result,
-  x = "window",
-  facet = c("cdm_name", "cohort_name", "strata"),
-  color = c("indication"),
-  splitStrata = TRUE
+  facet = cdm_name + cohort_name ~ window_name,
+  colour = "variable_level"
 )
 }
 \arguments{
 \item{result}{A summarised_result object.}
 
-\item{x}{Variables to be used in the x axis.}
+\item{facet}{Columns to facet by. See options with
+\code{availablePlotColumns(result)}. Formula is also allowed to specify rows and
+columns.}
 
-\item{facet}{Variables to be used to facet the plot.}
-
-\item{color}{Variables to be used to color the plot.}
-
-\item{splitStrata}{Whether to split strata.}
+\item{colour}{Columns to color by. See options with
+\code{availablePlotColumns(result)}.}
 }
 \value{
 A ggplot2 object

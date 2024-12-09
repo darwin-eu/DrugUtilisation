@@ -14,27 +14,29 @@ addDrugUtilisation(
   restrictIncident = TRUE,
   numberExposures = TRUE,
   numberEras = TRUE,
-  exposedTime = TRUE,
+  daysExposed = TRUE,
+  daysPrescribed = TRUE,
   timeToExposure = TRUE,
+  initialExposureDuration = TRUE,
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
   initialDailyDose = TRUE,
   cumulativeDose = TRUE,
   nameStyle = "{value}_{concept_name}_{ingredient}",
-  name = NULL
+  name = NULL,
+  exposedTime = lifecycle::deprecated()
 )
 }
 \arguments{
-\item{cohort}{Cohort in the cdm}
+\item{cohort}{A cohort_table object.}
 
 \item{gapEra}{Number of days between two continuous exposures to be
 considered in the same era.}
 
-\item{conceptSet}{List of concepts to be included. If NULL all the
-descendants of ingredient concept id will be used.}
+\item{conceptSet}{List of concepts to be included.}
 
 \item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
-the study. It is a compulsory input, no default value is provided.}
+the study.}
 
 \item{indexDate}{Name of a column that indicates the date to start the
 analysis.}
@@ -46,28 +48,44 @@ analysis, if NULL end of individuals observation is used.}
 analysis. If FALSE all prescriptions that overlap with the study period will
 be included.}
 
-\item{numberExposures}{Whether to add a column with the number of exposures.}
+\item{numberExposures}{Whether to include 'number_exposures' (number of drug
+exposure records between indexDate and censorDate).}
 
-\item{numberEras}{Whether to add a column with the number of eras.}
+\item{numberEras}{Whether to include 'number_eras' (number of continuous
+exposure episodes between indexDate and censorDate).}
 
-\item{exposedTime}{Whether to add a column with the number of exposed days.}
+\item{daysExposed}{Whether to include 'days_exposed' (number of days that the
+individual is in a continuous exposure episode, including allowed treatment
+gaps, between indexDate and censorDate; sum of the length of the different
+drug eras).}
 
-\item{timeToExposure}{Whether to add a column with the number of days between
-indexDate and start of the first exposure.}
+\item{daysPrescribed}{Whether to include 'days_prescribed' (sum of the number
+of days for each prescription that contribute in the analysis).}
 
-\item{initialQuantity}{Whether to add a column with the initial quantity.}
+\item{timeToExposure}{Whether to include 'time_to_exposure' (number of days
+between indexDate and the first episode).}
 
-\item{cumulativeQuantity}{Whether to add a column with the cumulative
-quantity of the identified prescription.}
+\item{initialExposureDuration}{Whether to include 'initial_exposure_duration'
+(number of prescribed days of the first drug exposure record).}
 
-\item{initialDailyDose}{Whether to add a column with the initial daily dose.}
+\item{initialQuantity}{Whether to include 'initial_quantity' (quantity of the
+first drug exposure record).}
 
-\item{cumulativeDose}{Whether to add a column with the cumulative dose.}
+\item{cumulativeQuantity}{Whether to include 'cumulative_quantity' (sum of
+the quantity of the different exposures considered in the analysis).}
+
+\item{initialDailyDose}{Whether to include 'initial_daily_dose_{unit}'
+(daily dose of the first considered prescription).}
+
+\item{cumulativeDose}{Whether to include 'cumulative_dose_{unit}' (sum of
+the cumulative dose of the analysed drug exposure records).}
 
 \item{nameStyle}{Character string to specify the nameStyle of the new columns.}
 
-\item{name}{Name of the new computed cohort table, if NULL a temporary tables
-is created.}
+\item{name}{Name of the new computed cohort table, if NULL a temporary table
+will be created.}
+
+\item{exposedTime}{deprecated.}
 }
 \value{
 The same cohort with the added columns.

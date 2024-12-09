@@ -23,18 +23,14 @@
 #' required amount of time has passed since the last cohort entry ended for that
 #' individual.
 #'
-#' @param cohort A cohort table in a cdm reference.
+#' @inheritParams cohortDoc
 #' @param days The number of days required to have passed since the last cohort
 #' record finished. Any records with fewer days than this will be dropped. Note
 #' that setting days to Inf will lead to the same result as that from using the
 #' `requireIsFirstDrugEntry` function (with only an individual´s first cohort
 #' record kept).
-#' @param cohortId IDs of the cohorts to modify. The default is NULL meaning all
-#' cohorts will be used; otherwise, only the specified cohorts will be modified,
-#' and the rest will remain unchanged.
-#' @param name Name of the table with the filtered cohort records. The default
-#' name is the original cohort name, where the original table will be
-#' overwritten.
+#' @inheritParams cohortIdDoc
+#' @inheritParams newNameDoc
 #'
 #' @return The cohort table having applied the washout requirement.
 #'
@@ -58,13 +54,10 @@ requirePriorDrugWashout <- function(cohort,
                                     cohortId = NULL,
                                     name = omopgenerics::tableName(cohort)) {
   # check inputs
-  checkInputs(
-    cohort = cohort, cohortId = cohortId, priorUseWashout = days,
-    name = name
-  )
-  if (is.null(cohortId)) {
-    cohortId <- settings(cohort) |> dplyr::pull("cohort_definition_id")
-  }
+  cohort <- omopgenerics::validateCohortArgument(cohort)
+  omopgenerics::assertNumeric(days, integerish = TRUE, length = 1, min = 0)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
 
   if (is.infinite(days)) {
     c("!" = "days is infinity -> calling requireIsFirstDrugEntry()") |>
@@ -117,13 +110,9 @@ requirePriorDrugWashout <- function(cohort,
 #' @description
 #' Filter the cohort table keeping only the first cohort record per subject.
 #'
-#' @param cohort A cohort table in a cdm reference.
-#' @param cohortId IDs of the cohorts to modify. The default is NULL meaning all
-#' cohorts will be used; otherwise, only the specified cohorts will be modified,
-#' and the rest will remain unchanged.
-#' @param name Name of the table with the filtered cohort records. The default
-#' name is the original cohort name, where the original table will be
-#' overwritten.
+#' @inheritParams cohortDoc
+#' @inheritParams cohortIdDoc
+#' @inheritParams newNameDoc
 #'
 #' @return The cohort table having applied the first entry requirement.
 #'
@@ -146,10 +135,9 @@ requireIsFirstDrugEntry <- function(cohort,
                                     cohortId = NULL,
                                     name = omopgenerics::tableName(cohort)) {
   # check inputs
-  checkInputs(cohort = cohort, cohortId = cohortId, name = name)
-  if (is.null(cohortId)) {
-    cohortId <- settings(cohort) |> dplyr::pull("cohort_definition_id")
-  }
+  cohort <- omopgenerics::validateCohortArgument(cohort)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
 
   reason <- "require is the first entry"
 
@@ -186,15 +174,11 @@ requireIsFirstDrugEntry <- function(cohort,
 #' individual has the required observation time in the database prior to their
 #' cohort start date.
 #'
-#' @param cohort A cohort table in a cdm reference.
+#' @inheritParams cohortDoc
 #' @param days Number of days of prior observation required before cohort start
 #' date. Any records with fewer days will be dropped.
-#' @param cohortId IDs of the cohorts to modify. The default is NULL meaning all
-#' cohorts will be used; otherwise, only the specified cohorts will be modified,
-#' and the rest will remain unchanged.
-#' @param name Name of the table with the filtered cohort records. The default
-#' name is the original cohort name, where the original table will be
-#' overwritten.
+#' @inheritParams cohortIdDoc
+#' @inheritParams newNameDoc
 #'
 #' @return The cohort table having applied the prior observation requirement.
 #'
@@ -218,11 +202,10 @@ requireObservationBeforeDrug <- function(cohort,
                                          cohortId = NULL,
                                          name = omopgenerics::tableName(cohort)) {
   # check inputs
-  checkInputs(cohort = cohort, cohortId = cohortId, name = name)
-  assertNumeric(days, integerish = T, length = 1, min = 0)
-  if (is.null(cohortId)) {
-    cohortId <- settings(cohort) |> dplyr::pull("cohort_definition_id")
-  }
+  cohort <- omopgenerics::validateCohortArgument(cohort)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
+  omopgenerics::assertNumeric(days, integerish = T, length = 1, min = 0)
 
   reason <- "require prior observation of {days} day{?s}"
 
@@ -264,17 +247,13 @@ requireObservationBeforeDrug <- function(cohort,
 #' Filter the cohort table keeping only the cohort records for which the
 #' specified index date is within a specified date range.
 #'
-#' @param cohort A cohort table in a cdm reference.
+#' @inheritParams cohortDoc
 #' @param dateRange Date interval to consider. Any records with the index date
 #' outside of this range will be dropped.
 #' @param indexDate The column containing the date that will be checked against
 #' the date range.
-#' @param cohortId IDs of the cohorts to modify. The default is NULL meaning all
-#' cohorts will be used; otherwise, only the specified cohorts will be modified,
-#' and the rest will remain unchanged.
-#' @param name Name of the table with the filtered cohort records. The default
-#' name is the original cohort name, where the original table will be
-#' overwritten.
+#' @inheritParams cohortIdDoc
+#' @inheritParams newNameDoc
 #'
 #' @return The cohort table having applied the date requirement.
 #'
@@ -301,16 +280,15 @@ requireDrugInDateRange <- function(cohort,
                                    cohortId = NULL,
                                    name = omopgenerics::tableName(cohort)) {
   # check inputs
-  checkInputs(cohort = cohort, cohortId = cohortId, name = name)
-  assertCharacter(indexDate, length = 1)
+  cohort <- omopgenerics::validateCohortArgument(cohort)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
+  omopgenerics::assertCharacter(indexDate, length = 1)
   if (!indexDate %in% colnames(cohort)) {
     cli::cli_abort("{.var {indexDate}} (indexDate) is not a column in cohort.")
   }
   if (!inherits(dateRange, "Date") | length(dateRange) != 2) {
     cli::cli_abort("`dateRange` is not a date of length 2")
-  }
-  if (is.null(cohortId)) {
-    cohortId <- settings(cohort) |> dplyr::pull("cohort_definition_id")
   }
 
   if (all(is.na(dateRange))) {

@@ -7,8 +7,7 @@
 patternTable(cdm)
 }
 \arguments{
-\item{cdm}{'cdm' object created with CDMConnector::cdm_from_con(). It must
-must contain 'drug_strength' and 'concept' tables.}
+\item{cdm}{A \code{cdm_reference} object.}
 }
 \value{
 The function creates a tibble with the different patterns found in

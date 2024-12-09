@@ -230,13 +230,13 @@ test_that("functionality of addDailyDose function", {
   expect_true(inherits(coverage, "summarised_result"))
   # check suppress works
   coverage_sup <- omopgenerics::suppress(coverage, minCellCount = 200)
-  expect_true(all(coverage_sup$estimate_value |> unique() %in% c("0", NA)))
+  expect_true(all(coverage_sup$estimate_value |> unique() %in% c("0", "-")))
   coverage_sup <- omopgenerics::suppress(coverage, minCellCount = 50)
-  expect_true(all(is.na(
+  expect_true(all(
     coverage_sup |>
       dplyr::filter(strata_level == "overall", grepl("missing", estimate_name)) |>
-      dplyr::pull("estimate_value")
-  )))
+      dplyr::pull("estimate_value") == "-"
+  ))
   expect_true(all(!is.na(
     coverage_sup |>
       dplyr::filter(strata_level == "overall", !grepl("missing", estimate_name)) |>
@@ -256,4 +256,26 @@ test_that("functionality of addDailyDose function", {
   expect_no_error(.addDailyDose(cdm[["drug_exposure"]], ingredientConceptId = 1))
 
   mockDisconnect(cdm = cdm)
+
+  # integer64
+  skip_if_not_installed("bit64")
+
+  set.seed(12345)
+  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  res1 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = 4)
+  mockDisconnect(cdm = cdm)
+
+  set.seed(12345)
+  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  res2 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = 4L)
+  mockDisconnect(cdm = cdm)
+
+  set.seed(12345)
+  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  res3 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = bit64::as.integer64(4))
+  mockDisconnect(cdm = cdm)
+
+  expect_identical(res1, res2)
+  expect_identical(res1, res3)
+  expect_identical(res2, res3)
 })

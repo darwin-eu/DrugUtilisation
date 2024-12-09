@@ -12,12 +12,13 @@ summariseProportionOfPatientsCovered(
 )
 }
 \arguments{
-\item{cohort}{A cohort table}
+\item{cohort}{A cohort_table object.}
 
-\item{cohortId}{Cohort definition ID of interest. If NUll, results for all
-cohorts will be returned.}
+\item{cohortId}{A cohort definition id to restrict by. If NULL, all cohorts
+will be included.}
 
-\item{strata}{List of variables to stratify by.}
+\item{strata}{A list of variables to stratify results. These variables
+must have been added as additional columns in the cohort table.}
 
 \item{followUpDays}{Number of days to follow up individuals for. If NULL the
 maximum amount of days from an individuals first cohort start date to their

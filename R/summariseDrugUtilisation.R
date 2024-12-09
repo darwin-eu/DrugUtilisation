@@ -17,32 +17,19 @@
 #' This function is used to summarise the dose utilisation table over multiple
 #' cohorts.
 #'
-#' @param cohort Cohort with drug use variables and strata.
-#' @param strata Stratification list.
+#' @inheritParams cohortDoc
+#' @inheritParams cohortIdDoc
+#' @inheritParams strataDoc
 #' @param estimates Estimates that we want for the columns.
-#' @param ingredientConceptId Ingredient OMOP concept that we are interested for
-#' the study. It is a compulsory input, no default value is provided.
-#' @param conceptSet List of concepts to be included. If NULL all the
-#' descendants of ingredient concept id will be used.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
+#' @inheritParams ingredientConceptIdDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
 #' @param restrictIncident Whether to include only incident prescriptions in the
 #' analysis. If FALSE all prescriptions that overlap with the study period will
 #' be included.
-#' @param gapEra Number of days between two continuous exposures to be
-#' considered in the same era.
-#' @param numberExposures Whether to add a column with the number of exposures.
-#' @param numberEras Whether to add a column with the number of eras.
-#' @param exposedTime Whether to add a column with the number of exposed days.
-#' @param timeToExposure Whether to add a column with the number of days between
-#' indexDate and start of the first exposure.
-#' @param initialQuantity Whether to add a column with the initial quantity.
-#' @param cumulativeQuantity Whether to add a column with the cumulative
-#' quantity of the identified prescription.
-#' @param initialDailyDose Whether to add a column with the initial daily dose.
-#' @param cumulativeDose Whether to add a column with the cumulative dose.
+#' @inheritParams gapEraDoc
+#' @inheritParams drugUtilisationDoc
 #'
 #' @return A summary of drug utilisation stratified by cohort_name and strata_name
 #'
@@ -57,11 +44,12 @@
 #' cdm <- generateDrugUtilisationCohortSet(
 #'   cdm, "dus_cohort", codelist
 #' )
-#' cdm[["dus_cohort"]] %>%
+#' cdm[["dus_cohort"]] |>
 #'   summariseDrugUtilisation(ingredientConceptId = 1125315)
 #' }
 #'
 summariseDrugUtilisation <- function(cohort,
+                                     cohortId = NULL,
                                      strata = list(),
                                      estimates = c(
                                        "q25", "median", "q75", "mean", "sd",
@@ -75,17 +63,51 @@ summariseDrugUtilisation <- function(cohort,
                                      gapEra = 1,
                                      numberExposures = TRUE,
                                      numberEras = TRUE,
-                                     exposedTime = TRUE,
+                                     daysExposed = TRUE,
+                                     daysPrescribed = TRUE,
                                      timeToExposure = TRUE,
+                                     initialExposureDuration = TRUE,
                                      initialQuantity = TRUE,
                                      cumulativeQuantity = TRUE,
                                      initialDailyDose = TRUE,
-                                     cumulativeDose = TRUE) {
+                                     cumulativeDose = TRUE,
+                                     exposedTime = lifecycle::deprecated()) {
+  if (lifecycle::is_present(exposedTime)) {
+    lifecycle::deprecate_warn(
+      when = "0.8.0", what = "addDrugUtilisation(exposedTime= )",
+      with = "addDrugUtilisation(daysExposed= )"
+    )
+    if (missing(daysExposed)) {
+      daysExposed <- exposedTime
+    }
+  }
   # checks
-  checkInputs(cohort = cohort, strata = strata, estimates = estimates)
+  cohort <- validateCohort(cohort)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
+  strata <- validateStrata(strata, cohort)
+  omopgenerics::assertChoice(estimates, PatientProfiles::availableEstimates(variableType = "numeric", fullQuantiles = TRUE)$estimate_name)
   cdm <- omopgenerics::cdmReference(cohort)
-  ingredientConceptId <- validateIngredientConceptId(ingredientConceptId, cdm)
-  conceptSet <- validateConceptSet(conceptSet, ingredientConceptId, cdm)
+  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE, null = TRUE, call = call)
+  if (is.null(conceptSet)) {
+    if (is.null(ingredientConceptId)) {
+      cli::cli_abort("`ingredientConceptId` or `conceptSet` must be provided.", call = call)
+    } else {
+      # https://github.com/darwin-eu-dev/omopgenerics/issues/618
+      # conceptSet <- purrr::map(ingredientConceptId, \(x) {
+      #   dplyr::tibble(concept_id = x, excluded = FALSE, descendants = TRUE, mapped = FALSE)
+      # }) |>
+      #   rlang::set_names(paste0("ingredient_", ingredientConceptId, "_descendants")) |>
+      #   omopgenerics::newConceptSetExpression()
+      conceptSet <- purrr::map(ingredientConceptId, \(x) {
+        cdm[["concept_ancestor"]] |>
+          dplyr::filter(.data$ancestor_concept_id %in% .env$x) |>
+          dplyr::pull("descendant_concept_id")
+      }) |>
+        rlang::set_names(paste0("ingredient_", ingredientConceptId, "_descendants")) |>
+        omopgenerics::newCodelist()
+    }
+  }
+  conceptSet <- validateConceptSet(conceptSet, call = call)
 
   # concept dictionary
   dic <- dplyr::tibble(concept_set = names(conceptSet)) |>
@@ -96,10 +118,13 @@ summariseDrugUtilisation <- function(cohort,
   names(conceptSet) <- dic$concept_set_name_id
 
   # add drug utilisation
+  initialCols <- c(
+    "cohort_definition_id", "subject_id", indexDate, censorDate,
+    unique(unlist(strata))
+  )
   cohort <- cohort |>
-    dplyr::select(dplyr::all_of(c(
-      "cohort_definition_id", "subject_id", indexDate, censorDate, unique(unlist(strata))
-    ))) |>
+    dplyr::filter(.data$cohort_definition_id %in% .env$cohortId) |>
+  dplyr::select(dplyr::all_of(initialCols)) |>
     PatientProfiles::addCohortName() |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -109,8 +134,10 @@ summariseDrugUtilisation <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = numberExposures,
       numberEras = numberEras,
-      exposedTime = exposedTime,
+      daysExposed = daysExposed,
+      daysPrescribed = daysPrescribed,
       timeToExposure = timeToExposure,
+      initialExposureDuration = initialExposureDuration,
       initialQuantity = initialQuantity,
       cumulativeQuantity = cumulativeQuantity,
       initialDailyDose = initialDailyDose,
@@ -121,67 +148,60 @@ summariseDrugUtilisation <- function(cohort,
     ) |>
     dplyr::collect()
 
-  initialCols <- c(
-    "cohort_definition_id", "subject_id", indexDate, censorDate,
-    unique(unlist(strata))
-  )
   drugUseCols <- colnames(cohort)
   drugUseCols <- drugUseCols[!drugUseCols %in% initialCols]
 
   variableNames <- c(
     "number_exposures_", "time_to_exposure_", "cumulative_quantity_",
-    "initial_quantity_", "number_eras_", "exposed_time_", "cumulative_dose_",
-    "initial_daily_dose_"
+    "initial_quantity_", "initial_exposure_duration_", "number_eras_",
+    "days_exposed_", "cumulative_dose_", "initial_daily_dose_",
+    "days_prescribed_"
   )
 
   # summarise drug use columns
-  result <- suppressMessages(
+  suppressMessages(
     PatientProfiles::summariseResult(
-      table = cohort, group = list("cohort_name"),
-      strata = strata, variables = drugUseCols,
+      table = cohort,
+      group = list("cohort_name"),
+      strata = strata,
+      variables = drugUseCols,
       estimates = estimates
     )
   ) |>
     dplyr::mutate(
       cdm_name = dplyr::coalesce(omopgenerics::cdmName(cdm), as.character(NA)),
-      variable_level = gsub("_xx.*|xx.*", "", gsub(paste0(variableNames, collapse = "|"), "", .data$variable_name)),
-      variable_level = dplyr::if_else(
-        nchar(.data$variable_level) == 0 | grepl("records|subjects", .data$variable_level),
-        NA, .data$variable_level
-      ),
       concept_set_name = dplyr::if_else(
         .data$variable_name %in% c("number records", "number subjects"),
-        NA,
+        NA_character_,
         gsub(".*_xx|xx_.*|xx.*", "", .data$variable_name)
       ),
       ingredient_id = gsub(".*xx_|.*xx", "", .data$variable_name),
       ingredient_id = dplyr::if_else(
         nchar(.data$ingredient_id) == 0 | grepl("records|subjects", .data$variable_level),
-        NA, suppressWarnings(as.numeric(.data$ingredient_id))
+        NA,
+        suppressWarnings(as.numeric(.data$ingredient_id))
       ),
-      !!!variableNameExp(variableNames)
+      variable_name = stringr::str_replace(.data$variable_name, "_xxid.*", "") |>
+        stringr::str_replace_all("_", " ")
     ) |>
     dplyr::left_join(dic, by = "concept_set_name") |>
     dplyr::left_join(
       cdm$concept |>
-        dplyr::select("ingredient_id" = "concept_id", "ingredient" = "concept_name"),
-      by = "ingredient_id",
-      copy = TRUE
+        dplyr::filter(.data$concept_class_id == "Ingredient") |>
+        dplyr::select("ingredient_id" = "concept_id", "ingredient" = "concept_name") |>
+        dplyr::collect(),
+      by = "ingredient_id"
     ) |>
     dplyr::select(-c(dplyr::starts_with("additional"))) |>
     visOmopResults::uniteAdditional(cols = c("concept_set", "ingredient")) |>
     dplyr::select(dplyr::all_of(omopgenerics::resultColumns())) |>
-    dplyr::arrange(.data$result_id, .data$group_name, .data$group_level, .data$strata_name, .data$strata_level)
-
-  result <- result |>
+    dplyr::arrange(.data$result_id, .data$group_name, .data$group_level, .data$strata_name, .data$strata_level) |>
     omopgenerics::newSummarisedResult(settings = dplyr::tibble(
-      result_id = unique(result$result_id),
+      result_id = 1L,
       result_type = "summarise_drug_utilisation",
       package_name = "DrugUtilisation",
-      package_version = as.character(utils::packageVersion("DrugUtilisation"))
+      package_version = pkgVersion()
     ))
-
-  return(result)
 }
 
 variableNameExp <- function(variableNames) {

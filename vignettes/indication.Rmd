@@ -176,9 +176,7 @@ tableIndication(indicationSummaryStratified)
 indicationSummaryStratified |>
   dplyr::filter(variable_name == "Indication on index date") |>
   plotIndication(
-    x = c("strata"),
-    facet = c("cdm_name", "cohort_name"),
-    color = "indication",
-    splitStrata = FALSE
+    facet = . ~ age_group + sex,
+    colour = "variable_level"
   )
 ```

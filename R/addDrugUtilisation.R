@@ -16,33 +16,16 @@
 
 #' Add new columns with drug use related information
 #'
-#' @param cohort Cohort in the cdm
-#' @param gapEra Number of days between two continuous exposures to be
-#' considered in the same era.
-#' @param conceptSet List of concepts to be included. If NULL all the
-#' descendants of ingredient concept id will be used.
-#' @param ingredientConceptId Ingredient OMOP concept that we are interested for
-#' the study. It is a compulsory input, no default value is provided.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param numberExposures Whether to add a column with the number of exposures.
-#' @param numberEras Whether to add a column with the number of eras.
-#' @param exposedTime Whether to add a column with the number of exposed days.
-#' @param timeToExposure Whether to add a column with the number of days between
-#' indexDate and start of the first exposure.
-#' @param initialQuantity Whether to add a column with the initial quantity.
-#' @param cumulativeQuantity Whether to add a column with the cumulative
-#' quantity of the identified prescription.
-#' @param initialDailyDose Whether to add a column with the initial daily dose.
-#' @param cumulativeDose Whether to add a column with the cumulative dose.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables
-#' is created.
+#' @inheritParams cohortDoc
+#' @inheritParams gapEraDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams ingredientConceptIdDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams drugUtilisationDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added columns.
 #'
@@ -72,14 +55,26 @@ addDrugUtilisation <- function(cohort,
                                restrictIncident = TRUE,
                                numberExposures = TRUE,
                                numberEras = TRUE,
-                               exposedTime = TRUE,
+                               daysExposed = TRUE,
+                               daysPrescribed = TRUE,
                                timeToExposure = TRUE,
+                               initialExposureDuration = TRUE,
                                initialQuantity = TRUE,
                                cumulativeQuantity = TRUE,
                                initialDailyDose = TRUE,
                                cumulativeDose = TRUE,
                                nameStyle = "{value}_{concept_name}_{ingredient}",
-                               name = NULL) {
+                               name = NULL,
+                               exposedTime = lifecycle::deprecated()) {
+  if (lifecycle::is_present(exposedTime)) {
+    lifecycle::deprecate_warn(
+      when = "0.8.0", what = "addDrugUtilisation(exposedTime= )",
+      with = "addDrugUtilisation(daysExposed= )"
+    )
+    if (missing(daysExposed)) {
+      daysExposed <- exposedTime
+    }
+  }
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -89,8 +84,10 @@ addDrugUtilisation <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = numberExposures,
       numberEras = numberEras,
-      exposedTime = exposedTime,
+      daysExposed = daysExposed,
+      daysPrescribed = daysPrescribed,
       timeToExposure = timeToExposure,
+      initialExposureDuration = initialExposureDuration,
       initialQuantity = initialQuantity,
       cumulativeQuantity = cumulativeQuantity,
       initialDailyDose = initialDailyDose,
@@ -104,18 +101,13 @@ addDrugUtilisation <- function(cohort,
 #' To add a new column with the number of exposures. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm
-#' @param conceptSet List of concepts to be included.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added columns.
 #'
@@ -145,7 +137,7 @@ addNumberExposures <- function(cohort,
                                restrictIncident = TRUE,
                                nameStyle = "number_exposures_{concept_name}",
                                name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -155,8 +147,73 @@ addNumberExposures <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = TRUE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
+      initialQuantity = FALSE,
+      cumulativeQuantity = FALSE,
+      initialDailyDose = FALSE,
+      cumulativeDose = FALSE,
+      gapEra = 0,
+      nameStyle = nameStyle,
+      name = name
+    )
+}
+
+#' To add a new column with the days prescribed. To add multiple columns use
+#' `addDrugUtilisation()` for efficiency.
+#'
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
+#'
+#' @return The same cohort with the added columns.
+#'
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation()
+#' codelist <- CodelistGenerator::getDrugIngredientCodes(
+#'   cdm,
+#'   name = "acetaminophen"
+#' )
+#' cdm <- generateDrugUtilisationCohortSet(
+#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
+#' )
+#'
+#' cdm$dus_cohort |>
+#'   addDaysPrescribed(conceptSet = codelist)
+#' }
+#'
+addDaysPrescribed <- function(cohort,
+                              conceptSet,
+                              indexDate = "cohort_start_date",
+                              censorDate = "cohort_end_date",
+                              restrictIncident = TRUE,
+                              nameStyle = "days_prescribed_{concept_name}",
+                              name = NULL) {
+  conceptSet <- validateConceptSet(conceptSet)
+  cohort |>
+    addDrugUseInternal(
+      indexDate = indexDate,
+      censorDate = censorDate,
+      conceptSet = conceptSet,
+      ingredientConceptId = NULL,
+      restrictIncident = restrictIncident,
+      numberExposures = FALSE,
+      numberEras = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = TRUE,
+      timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -170,21 +227,14 @@ addNumberExposures <- function(cohort,
 #' To add a new column with the cumulative dose. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param ingredientConceptId Ingredient OMOP concept that we are interested for
-#' the study. It is a compulsory input, no default value is provided.
-#' @param conceptSet List of concepts to be included. If NULL all the
-#' descendants of ingredient concept id will be used.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams ingredientConceptIdDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -217,8 +267,10 @@ addCumulativeDose <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -232,21 +284,14 @@ addCumulativeDose <- function(cohort,
 #' To add a new column with the initial daily dose. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param ingredientConceptId Ingredient OMOP concept that we are interested for
-#' the study. It is a compulsory input, no default value is provided.
-#' @param conceptSet List of concepts to be included. If NULL all the
-#' descendants of ingredient concept id will be used.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams ingredientConceptIdDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -279,8 +324,10 @@ addInitialDailyDose <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = TRUE,
@@ -294,18 +341,13 @@ addInitialDailyDose <- function(cohort,
 #' To add a new column with the cumulative quantity. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param conceptSet List of concepts to be included.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -335,7 +377,7 @@ addCumulativeQuantity <- function(cohort,
                                   restrictIncident = TRUE,
                                   nameStyle = "cumulative_quantity_{concept_name}",
                                   name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -345,8 +387,10 @@ addCumulativeQuantity <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = TRUE,
       initialDailyDose = FALSE,
@@ -360,18 +404,13 @@ addCumulativeQuantity <- function(cohort,
 #' To add a new column with the initial quantity. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param conceptSet List of concepts to be included.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -401,7 +440,7 @@ addInitialQuantity <- function(cohort,
                                restrictIncident = TRUE,
                                nameStyle = "initial_quantity_{concept_name}",
                                name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -411,8 +450,10 @@ addInitialQuantity <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = TRUE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -426,18 +467,13 @@ addInitialQuantity <- function(cohort,
 #' To add a new column with the time to exposure. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param conceptSet List of concepts to be included.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -467,7 +503,7 @@ addTimeToExposure <- function(cohort,
                               restrictIncident = TRUE,
                               nameStyle = "time_to_exposure_{concept_name}",
                               name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -477,8 +513,10 @@ addTimeToExposure <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = TRUE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -489,23 +527,17 @@ addTimeToExposure <- function(cohort,
     )
 }
 
-#' To add a new column with the exposed time. To add multiple columns use
+#' To add a new column with the days exposed. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param conceptSet List of concepts to be included.
-#' @param gapEra Number of days between two continuous exposures to be
-#' considered in the same era.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams gapEraDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -525,18 +557,18 @@ addTimeToExposure <- function(cohort,
 #' )
 #'
 #' cdm$dus_cohort |>
-#'   addExposedTime(conceptSet = codelist, gapEra = 1)
+#'   addDaysExposed(conceptSet = codelist, gapEra = 1)
 #' }
 #'
-addExposedTime <- function(cohort,
+addDaysExposed <- function(cohort,
                            conceptSet,
                            gapEra,
                            indexDate = "cohort_start_date",
                            censorDate = "cohort_end_date",
                            restrictIncident = TRUE,
-                           nameStyle = "exposed_time_{concept_name}",
+                           nameStyle = "days_exposed_{concept_name}",
                            name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -546,8 +578,10 @@ addExposedTime <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = FALSE,
-      exposedTime = TRUE,
+      daysExposed = TRUE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -558,23 +592,119 @@ addExposedTime <- function(cohort,
     )
 }
 
+#' To add a new column with the exposed time. To add multiple columns use
+#' `addDrugUtilisation()` for efficiency.
+#'
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams gapEraDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
+#'
+#' @return The same cohort with the added column.
+#'
+#' @export
+#'
+addExposedTime <- function(cohort,
+                           conceptSet,
+                           gapEra,
+                           indexDate = "cohort_start_date",
+                           censorDate = "cohort_end_date",
+                           restrictIncident = TRUE,
+                           nameStyle = "days_exposed_{concept_name}",
+                           name = NULL) {
+  lifecycle::deprecate_warn(
+    when = "0.8.0", what = "addExposedTime()", with = "addDaysExposed()"
+  )
+  cohort |>
+    addDaysExposed(
+      conceptSet = conceptSet,
+      gapEra = gapEra,
+      indexDate = indexDate,
+      censorDate = censorDate,
+      restrictIncident = restrictIncident,
+      nameStyle = nameStyle,
+      name = name
+    )
+}
+
+#' To add a new column with the duratio of the first exposure.
+#' To add multiple columns use `addDrugUtilisation()` for efficiency.
+#'
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
+#'
+#' @return The same cohort with the added column.
+#'
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation()
+#' codelist <- CodelistGenerator::getDrugIngredientCodes(
+#'   cdm,
+#'   name = "acetaminophen"
+#' )
+#' cdm <- generateDrugUtilisationCohortSet(
+#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
+#' )
+#'
+#' cdm$dus_cohort |>
+#'   addInitialExposureDuration(conceptSet = codelist)
+#' }
+#'
+addInitialExposureDuration <- function(cohort,
+                                       conceptSet,
+                                       indexDate = "cohort_start_date",
+                                       censorDate = "cohort_end_date",
+                                       restrictIncident = TRUE,
+                                       nameStyle = "initial_exposure_duration_{concept_name}",
+                                       name = NULL) {
+  conceptSet <- validateConceptSet(conceptSet)
+  cohort |>
+    addDrugUseInternal(
+      indexDate = indexDate,
+      censorDate = censorDate,
+      conceptSet = conceptSet,
+      ingredientConceptId = NULL,
+      restrictIncident = restrictIncident,
+      numberExposures = FALSE,
+      numberEras = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
+      timeToExposure = FALSE,
+      initialExposureDuration = TRUE,
+      initialQuantity = FALSE,
+      cumulativeQuantity = FALSE,
+      initialDailyDose = FALSE,
+      cumulativeDose = FALSE,
+      gapEra = 0,
+      nameStyle = nameStyle,
+      name = name
+    )
+}
+
 #' To add a new column with the number of eras. To add multiple columns use
 #' `addDrugUtilisation()` for efficiency.
 #'
-#' @param cohort Cohort in the cdm.
-#' @param conceptSet List of concepts to be included.
-#' @param gapEra Number of days between two continuous exposures to be
-#' considered in the same era.
-#' @param indexDate Name of a column that indicates the date to start the
-#' analysis.
-#' @param censorDate Name of a column that indicates the date to stop the
-#' analysis, if NULL end of individuals observation is used.
-#' @param restrictIncident Whether to include only incident prescriptions in the
-#' analysis. If FALSE all prescriptions that overlap with the study period will
-#' be included.
-#' @param nameStyle Character string to specify the nameStyle of the new columns.
-#' @param name Name of the new computed cohort table, if NULL a temporary tables is
-#' created.
+#' @inheritParams cohortDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams gapEraDoc
+#' @inheritParams indexDateDoc
+#' @inheritParams censorDateDoc
+#' @inheritParams restrictIncidentDoc
+#' @inheritParams nameStyleDoc
+#' @inheritParams compNameDoc
 #'
 #' @return The same cohort with the added column.
 #'
@@ -605,7 +735,7 @@ addNumberEras <- function(cohort,
                           restrictIncident = TRUE,
                           nameStyle = "number_eras_{concept_name}",
                           name = NULL) {
-  checkConceptSet(conceptSet)
+  conceptSet <- validateConceptSet(conceptSet)
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -615,8 +745,10 @@ addNumberEras <- function(cohort,
       restrictIncident = restrictIncident,
       numberExposures = FALSE,
       numberEras = TRUE,
-      exposedTime = FALSE,
+      daysExposed = FALSE,
+      daysPrescribed = FALSE,
       timeToExposure = FALSE,
+      initialExposureDuration = FALSE,
       initialQuantity = FALSE,
       cumulativeQuantity = FALSE,
       initialDailyDose = FALSE,
@@ -635,8 +767,10 @@ addDrugUseInternal <- function(x,
                                restrictIncident,
                                numberExposures,
                                numberEras,
-                               exposedTime,
+                               daysExposed,
+                               daysPrescribed,
                                timeToExposure,
+                               initialExposureDuration,
                                initialQuantity,
                                cumulativeQuantity,
                                initialDailyDose,
@@ -646,28 +780,51 @@ addDrugUseInternal <- function(x,
                                nameStyle,
                                call = parent.frame()) {
   # initial checks
-  x <- validateX(x, call)
+  omopgenerics::assertCharacter(indexDate, call = call)
+  omopgenerics::assertCharacter(censorDate, call = call)
+  omopgenerics::assertTable(x, class = "cdm_table", columns = c(indexDate, censorDate), call = call)
+  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE, null = TRUE, call = call)
   cdm <- omopgenerics::cdmReference(x)
-  indexDate <- validateIndexDate(indexDate, x, call)
-  ingredientConceptId <- validateIngredientConceptId(ingredientConceptId, cdm, call)
-  conceptSet <- validateConceptSet(conceptSet, ingredientConceptId, cdm, call)
-  restrictIncident <- validateLogical(restrictIncident, "restrictIncident", call)
-  numberExposures <- validateLogical(numberExposures, "numberExposures", call)
-  numberEras <- validateLogical(numberEras, "numberEras", call)
-  exposedTime <- validateLogical(exposedTime, "exposedTime", call)
-  timeToExposure <- validateLogical(timeToExposure, "timeToExposure", call)
-  initialQuantity <- validateLogical(initialQuantity, "initialQuantity", call)
-  cumulativeQuantity <- validateLogical(cumulativeQuantity, "cumulativeQuantity", call)
-  initialDailyDose <- validateLogical(initialDailyDose, "initialDailyDose", call)
-  cumulativeDose <- validateLogical(cumulativeDose, "cumulativeDose", call)
-  gapEra <- validateGapEra(gapEra, call)
-  values <- c(
-    numberExposures, numberEras, exposedTime, timeToExposure, initialQuantity,
-    cumulativeQuantity, initialDailyDose, cumulativeDose
-  )
-  values <- values[values]
-  nameStyle <- validateNameStyle(nameStyle, ingredientConceptId, conceptSet, values, call)
-  name <- validateName(name, cdm, call)
+  if (is.null(conceptSet)) {
+    if (is.null(ingredientConceptId)) {
+      cli::cli_abort("`ingredientConceptId` or `conceptSet` must be provided.", call = call)
+    } else {
+      # https://github.com/darwin-eu-dev/omopgenerics/issues/618
+      # conceptSet <- purrr::map(ingredientConceptId, \(x) {
+      #   dplyr::tibble(concept_id = x, excluded = FALSE, descendants = TRUE, mapped = FALSE)
+      # }) |>
+      #   rlang::set_names(paste0("ingredient_", ingredientConceptId, "_descendants")) |>
+      #   omopgenerics::newConceptSetExpression()
+      conceptSet <- purrr::map(ingredientConceptId, \(x) {
+        cdm[["concept_ancestor"]] |>
+          dplyr::filter(.data$ancestor_concept_id %in% .env$x) |>
+          dplyr::pull("descendant_concept_id") |>
+          as.integer()
+      }) |>
+        rlang::set_names(paste0("ingredient_", ingredientConceptId, "_descendants")) |>
+        omopgenerics::newCodelist()
+    }
+  }
+  conceptSet <- validateConceptSet(conceptSet, call = call)
+  omopgenerics::assertLogical(restrictIncident, length = 1, call = call)
+  omopgenerics::assertLogical(numberExposures, length = 1, call = call)
+  omopgenerics::assertLogical(numberEras, length = 1, call = call)
+  omopgenerics::assertLogical(daysExposed, length = 1, call = call)
+  omopgenerics::assertLogical(daysPrescribed, length = 1, call = call)
+  omopgenerics::assertLogical(timeToExposure, length = 1, call = call)
+  omopgenerics::assertLogical(initialQuantity, length = 1, call = call)
+  omopgenerics::assertLogical(cumulativeQuantity, length = 1, call = call)
+  omopgenerics::assertLogical(initialDailyDose, length = 1, call = call)
+  omopgenerics::assertLogical(cumulativeDose, length = 1, call = call)
+  omopgenerics::assertLogical(initialExposureDuration, length = 1, call = call)
+  omopgenerics::assertNumeric(gapEra, integerish = TRUE, min = 0, length = 1, call = call)
+  nValues <- sum(c(
+    numberExposures, numberEras, daysExposed, timeToExposure, initialQuantity,
+    cumulativeQuantity, initialDailyDose, cumulativeDose,
+    initialExposureDuration
+  ))
+  nameStyle <- validateNameStyle(nameStyle, ingredientConceptId, conceptSet, nValues, call)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
   nameStyle <- gsub("{value}", "{.value}", x = nameStyle, fixed = TRUE)
   nameStyleI <- noIngredientNameStyle(nameStyle)
 
@@ -757,7 +914,7 @@ addDrugUseInternal <- function(x,
       ))
     qs <- qs[c(numberExposures, timeToExposure, cumulativeQuantity)]
     toJoin <- drugData |>
-      dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
+      dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) %>%
       dplyr::summarise(!!!qs, .groups = "drop")
     if (timeToExposure) {
       toJoin <- toJoin %>%
@@ -775,36 +932,47 @@ addDrugUseInternal <- function(x,
             names_glue = nameStyleI,
             values_from = dplyr::all_of(names(qs))
           ),
-        by = cols
+        by = cols,
+        suffix = c(".to_drop", "")
       ) |>
       dplyr::mutate(dplyr::across(
-        dplyr::starts_with(c("number_exposures", "cumulative_quantity")),
+        dplyr::contains(c("number_exposures", "cumulative_quantity")),
         ~ dplyr::coalesce(.x, 0L)
       )) |>
       compute2(name)
   }
 
-  if (initialQuantity) {
+  if (initialQuantity | initialExposureDuration) {
+    qs <- c(
+      "as.numeric(sum(.data$quantity, na.rm = TRUE))",
+      "max(as.integer(local(CDMConnector::datediff(
+        start = 'drug_exposure_start_date', end = 'drug_exposure_end_date'
+      ))), na.rm = TRUE)"
+    ) |>
+      rlang::parse_exprs() |>
+      rlang::set_names(c("initial_quantity", "initial_exposure_duration"))
+    qs <- qs[c(initialQuantity, initialExposureDuration)]
     x <- x |>
       dplyr::left_join(
         drugData |>
           dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
-          dplyr::filter(.data$drug_exposure_start_date == min(.data$drug_exposure_start_date, na.rm = TRUE)) |>
-          dplyr::summarise("initial_quantity" = as.numeric(sum(.data$quantity, na.rm = TRUE)), .groups = "drop") |>
+          dplyr::filter(.data$drug_exposure_start_date == min(.data$drug_exposure_start_date, na.rm = TRUE)) %>%
+          dplyr::summarise(!!!qs, .groups = "drop") |>
           tidyr::pivot_wider(
             names_from = "concept_name",
             names_glue = nameStyleI,
-            values_from = "initial_quantity"
+            values_from = dplyr::all_of(names(qs))
           ),
-        by = cols
+        by = cols,
+        suffix = c(".to_drop", "")
       ) |>
       dplyr::mutate(dplyr::across(
-        dplyr::starts_with("initial_quantity"), ~ dplyr::coalesce(.x, 0L)
+        dplyr::contains("initial_quantity"), ~ dplyr::coalesce(.x, 0L)
       )) |>
       compute2(name)
   }
 
-  if (numberEras | exposedTime) {
+  if (numberEras | daysExposed) {
     toJoin <- drugData |>
       erafy(
         start = "drug_exposure_start_date",
@@ -812,7 +980,7 @@ addDrugUseInternal <- function(x,
         group = c(cols, "concept_name"),
         gap = gapEra
       )
-    if (exposedTime) {
+    if (daysExposed) {
       toJoin <- toJoin |>
         dplyr::mutate(
           "drug_exposure_start_date" = dplyr::if_else(
@@ -835,8 +1003,8 @@ addDrugUseInternal <- function(x,
       "as.integer(sum(.data$exposed_time, na.rm = TRUE))"
     ) |>
       rlang::parse_exprs() |>
-      rlang::set_names(c("number_eras", "exposed_time"))
-    qs <- qs[c(numberEras, exposedTime)]
+      rlang::set_names(c("number_eras", "days_exposed"))
+    qs <- qs[c(numberEras, daysExposed)]
     x <- x |>
       dplyr::left_join(
         toJoin |>
@@ -847,16 +1015,17 @@ addDrugUseInternal <- function(x,
             names_glue = nameStyleI,
             values_from = dplyr::all_of(names(qs))
           ),
-        by = cols
+        by = cols,
+        suffix = c(".to_drop", "")
       ) |>
       dplyr::mutate(dplyr::across(
-        dplyr::starts_with(names(qs)), ~ dplyr::coalesce(.x, 0L)
+        dplyr::contains(names(qs)), ~ dplyr::coalesce(.x, 0L)
       )) |>
       compute2(name)
   }
 
-  if (initialDailyDose | cumulativeDose) {
-    if (!cumulativeDose) {
+  if (initialDailyDose | cumulativeDose | daysPrescribed) {
+    if (!cumulativeDose & !daysPrescribed) {
       drugData <- drugData |>
         dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
         dplyr::filter(
@@ -889,6 +1058,29 @@ addDrugUseInternal <- function(x,
         name = omopgenerics::uniqueTableName(tablePrefix), temporary = FALSE
       )
 
+    if (daysPrescribed) {
+      x <- x |>
+        dplyr::left_join(
+          drugData |>
+            dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
+            dplyr::summarise(
+              "days_prescribed" = as.integer(sum(.data$exposure_duration, na.rm = TRUE)),
+              .groups = "drop"
+            ) |>
+            tidyr::pivot_wider(
+              names_from = "concept_name",
+              names_glue = nameStyleI,
+              values_from = "days_prescribed"
+            ),
+          by = cols,
+          suffix = c(".to_drop", "")
+        ) |>
+        dplyr::mutate(dplyr::across(
+          dplyr::contains("days_prescribed"), ~ dplyr::coalesce(.x, 0L)
+        )) |>
+        compute2(name)
+    }
+
     for (k in seq_along(ingredientConceptId)) {
       nameStyleI <- ingredientNameStyle(nameStyle, ingredientConceptId[k])
       nm <- omopgenerics::uniqueTableName(tablePrefix)
@@ -909,13 +1101,16 @@ addDrugUseInternal <- function(x,
                 names_glue = nameStyleI,
                 values_from = "cumulative_dose"
               ),
-            by = cols
+            by = cols,
+            suffix = c(".to_drop", "")
           ) |>
           dplyr::mutate(dplyr::across(
-            dplyr::starts_with("cumulative"), ~ dplyr::coalesce(.x, 0)
+            dplyr::contains("cumulative_dose"), ~ dplyr::coalesce(.x, 0)
           )) |>
           compute2(name)
-        if (initialDailyDose) {
+      }
+      if (initialDailyDose) {
+        if (cumulativeDose | daysPrescribed) {
           toJoin <- toJoin |>
             dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
             dplyr::filter(
@@ -927,8 +1122,6 @@ addDrugUseInternal <- function(x,
             ) |>
             dplyr::ungroup()
         }
-      }
-      if (initialDailyDose) {
         x <- x |>
           dplyr::left_join(
             toJoin |>
@@ -942,10 +1135,11 @@ addDrugUseInternal <- function(x,
                 names_glue = nameStyleI,
                 values_from = "initial_daily_dose"
               ),
-            by = cols
+            by = cols,
+            suffix = c(".to_drop", "")
           ) |>
           dplyr::mutate(dplyr::across(
-            dplyr::starts_with("initial_daily_dose"), ~ dplyr::coalesce(.x, 0)
+            dplyr::contains("initial_daily_dose"), ~ dplyr::coalesce(.x, 0)
           )) |>
           compute2(name)
       }
@@ -953,12 +1147,22 @@ addDrugUseInternal <- function(x,
     }
   }
 
+  cols <- colnames(x) |>
+    purrr::keep(\(x) endsWith(x, ".to_drop"))
+  if (length(cols) > 0) {
+    originalCol <- substr(cols, 1, nchar(cols)-8)
+    cli::cli_warn("{.var {originalCol}} column{?s} overwritten.")
+    x <- x |>
+      dplyr::select(!dplyr::all_of(cols))
+  }
+
   omopgenerics::dropTable(cdm = cdm, name = dplyr::starts_with(tablePrefix))
 
   return(x)
 }
 compute2 <- function(x, name) {
-  x <- x |> dplyr::rename_all(tolower)
+  x <- x |>
+    dplyr::rename_all(tolower)
   if (is.null(name)) {
     x <- x |> dplyr::compute()
   } else {
@@ -966,121 +1170,7 @@ compute2 <- function(x, name) {
   }
   return(x)
 }
-validateX <- function(x, call) {
-  assertClass(x, "cdm_table", call = call)
-  id <- c("subject_id", "person_id")
-  id <- id[id %in% colnames(x)]
-  if (length(id) == 0) {
-    "person_id or subject_id must be columns in x" |>
-      cli::cli_abort(call = call)
-  }
-  if (length(id) == 2) {
-    "person_id and subject_id must not be columns in x" |>
-      cli::cli_abort(call = call)
-  }
-  return(invisible(x))
-}
-validateConceptSet <- function(conceptSet, ingredientConceptId, cdm, call) {
-  if (is.null(conceptSet)) {
-    if (is.null(ingredientConceptId)) {
-      "Either conceptSet or ingredientConceptId must be provided." |>
-        cli::cli_abort(call = call)
-    }
-    conceptSet <- cdm$concept_ancestor |>
-      dplyr::filter(.data$ancestor_concept_id %in% .env$ingredientConceptId) |>
-      dplyr::select("ancestor_concept_id", "descendant_concept_id") |>
-      dplyr::collect() |>
-      dplyr::arrange(.data$ancestor_concept_id) |>
-      dplyr::group_by(.data$ancestor_concept_id) |>
-      dplyr::group_split() |>
-      lapply(dplyr::pull, "descendant_concept_id") |>
-      rlang::set_names(paste0("ingredient_", sort(ingredientConceptId), "_descendants"))
-  }
-  conceptSet <- omopgenerics::newCodelist(conceptSet)
 
-  return(invisible(conceptSet))
-}
-validateIngredientConceptId <- function(ingredientConceptId, cdm, call) {
-  if (is.null(ingredientConceptId)) {
-    return(invisible(ingredientConceptId))
-  }
-  assertNumeric(
-    ingredientConceptId,
-    integerish = TRUE, min = 0, unique = TRUE, call = call
-  )
-  ingredients <- cdm$concept |>
-    dplyr::filter(.data$concept_class_id == "Ingredient") |>
-    dplyr::filter(.data$concept_id %in% .env$ingredientConceptId) |>
-    dplyr::pull("concept_id") |>
-    as.integer()
-  missingIngredients <- ingredientConceptId[
-    !as.integer(ingredientConceptId) %in% ingredients
-  ]
-  if (length(missingIngredients) > 0) {
-    "Ingredients not present in concept table: {missingIngredients}" |>
-      cli::cli_abort(call = call)
-  }
-  return(ingredients)
-}
-validateIndexDate <- function(indexDate, x, call) {
-  msg <- "{.strong indexDate} must point to date column in x"
-  assertCharacter(indexDate, length = 1, call = call, msg = msg)
-  if (!indexDate %in% colnames(x)) cli::cli_abort(message = msg, call = call)
-  type <- x |>
-    utils::head(1) |>
-    dplyr::pull(indexDate) |>
-    dplyr::type_sum()
-  if (type != "date") cli::cli_abort(message = msg, call = call)
-  return(invisible(indexDate))
-}
-validateCensorDate <- function(censorDate, x, call) {
-  if (is.null(censorDate)) {
-    return(invisible(censorDate))
-  }
-  msg <- "{.strong censorDate} must be NULL or point to date column in x"
-  assertCharacter(censorDate, length = 1, call = call, msg = msg)
-  if (!censorDate %in% colnames(x)) cli::cli_abort(message = msg, call = call)
-  type <- x |>
-    utils::head(1) |>
-    dplyr::pull(censorDate) |>
-    dplyr::type_sum()
-  if (type != "date") cli::cli_abort(message = msg, call = call)
-  return(invisible(censorDate))
-}
-validateLogical <- function(x, nm, call) {
-  msg <- paste0("{.strong ", nm, "} must be TRUE or FALSE")
-  assertLogical(x, length = 1, msg = msg, call = call)
-  return(invisible(x))
-}
-validateGapEra <- function(gapEra, call) {
-  assertNumeric(gapEra, integerish = TRUE, min = 0, length = 1, call = call)
-  return(invisible(gapEra))
-}
-validateNameStyle <- function(nameStyle, ingredientConceptId, conceptSet, values, call) {
-  assertCharacter(nameStyle, length = 1, call = call)
-  msg <- character()
-  if (length(ingredientConceptId) > 1 && !grepl("\\{ingredient\\}", nameStyle)) {
-    msg <- c(msg, "{{ingredient}} must be part of nameStyle")
-  }
-  if (length(conceptSet) > 1 && !grepl("\\{concept_name\\}", nameStyle)) {
-    msg <- c(msg, "{{concept_name}} must be part of nameStyle")
-  }
-  if (length(values) > 1 && !grepl("\\{value\\}", nameStyle)) {
-    msg <- c(msg, "{{value}} must be part of nameStyle")
-  }
-  if (length(msg) > 1) {
-    cli::cli_abort(message = msg, call = call)
-  }
-  return(invisible(nameStyle))
-}
-validateName <- function(name, cdm, call) {
-  assertCharacter(name, length = 1, na = FALSE, null = TRUE, call = call)
-  if (!is.null(name) && name %in% names(cdm)) {
-    c("!" = "table {.strong {name}} already exist in the cdm and will be overwritten") |>
-      cli::cli_inform()
-  }
-  return(invisible(name))
-}
 noIngredientNameStyle <- function(x) {
   x <- gsub("_{ingredient}", "", x, fixed = TRUE)
   x <- gsub("{ingredient}_", "", x, fixed = TRUE)

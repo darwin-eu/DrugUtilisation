@@ -14,40 +14,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' @noRd
 conceptSetFromConceptSetList <- function(conceptSetList, cohortSet) {
-  purrr::map(conceptSetList, dplyr::as_tibble) |>
-    dplyr::bind_rows(.id = "cohort_name") |>
-    dplyr::rename("drug_concept_id" = "value") |>
-    dplyr::inner_join(
-      cohortSet |> dplyr::select("cohort_definition_id", "cohort_name"),
-      by = "cohort_name"
-    ) |>
-    dplyr::select(-"cohort_name")
+  conceptSetList |>
+    purrr::imap(\(x, nm) {
+      cid <- cohortSet$cohort_definition_id[cohortSet$cohort_name == nm]
+      dplyr::tibble(drug_concept_id = x, cohort_definition_id = cid)
+    }) |>
+    dplyr::bind_rows()
 }
 
-#' @noRd
-subsetTables <- function(cdm, conceptSet, name) {
-  # insert concepts
-  nm <- uniqueTmpName()
+subsetTables <- function(cdm, conceptSet, name, subsetCohort, subsetCohortId) {
+  # insert concepts as temporal table
+  nm <- omopgenerics::uniqueTableName()
   cdm <- omopgenerics::insertTable(
     cdm = cdm, name = nm, table = conceptSet, overwrite = TRUE
   )
-  cdm[[nm]] <- cdm[[nm]] |> dplyr::compute()
+  cdm[[nm]] <- cdm[[nm]] |>
+    dplyr::compute()
+  omopgenerics::dropSourceTable(cdm = cdm, name = nm)
 
   # subset table
+  cli::cli_inform(c("i" = "Subsetting {.pkg drug_exposure} table"))
   cohort <- cdm$drug_exposure |>
     dplyr::select(
       "drug_concept_id",
       "subject_id" = "person_id",
       "cohort_start_date" = "drug_exposure_start_date",
       "cohort_end_date" = "drug_exposure_end_date"
-    ) |>
+    )
+  if (!is.null(subsetCohort)) {
+    cohort <- cohort |>
+      dplyr::inner_join(
+        cdm[[subsetCohort]] |>
+          dplyr::filter(.data$cohort_definition_id %in% .env$subsetCohortId) |>
+          dplyr::distinct(.data$subject_id),
+        by = "subject_id"
+      )
+  }
+  cohort <- cohort |>
     dplyr::inner_join(cdm[[nm]], by = "drug_concept_id") |>
+    dplyr::select(
+      "cohort_definition_id", "subject_id", "cohort_start_date",
+      "cohort_end_date"
+    ) |>
+    dplyr::compute(temporary = FALSE, name = name)
+
+  # exclude records
+  cli::cli_inform(c("i" = "Checking whether any record needs to be dropped."))
+  exclude <- cohort |>
+    dplyr::summarise(
+      na_start = sum(as.integer(is.na(.data$cohort_start_date)), na.rm = TRUE),
+      na_end = sum(as.integer(is.na(.data$cohort_end_date) & !is.na(.data$cohort_start_date)), na.rm = TRUE),
+      start_before_end = sum(as.integer(.data$cohort_start_date > .data$cohort_end_date), na.rm = TRUE)
+    ) |>
+    dplyr::collect()
+  n0 <- numberRecords(cohort)
+  cohort <- cohort |>
+    dplyr::filter(!is.na(.data$cohort_start_date) & !is.na(.data$cohort_end_date)) |>
+    dplyr::filter(.data$cohort_start_date <= .data$cohort_end_date) |>
     dplyr::inner_join(
       cdm$observation_period |>
         dplyr::select(
-          "subject_id" = "person_id",
+          subject_id = "person_id",
           "observation_period_start_date",
           "observation_period_end_date"
         ),
@@ -68,54 +96,87 @@ subsetTables <- function(cdm, conceptSet, name) {
         .data$observation_period_end_date,
         .data$cohort_end_date
       )
-    )
-  cohort <- cohort |>
+    ) |>
     dplyr::select(
       "cohort_definition_id", "subject_id", "cohort_start_date",
       "cohort_end_date"
     ) |>
-    dplyr::compute(temporary = FALSE, name = name, overwrite = TRUE)
+
+    dplyr::compute(temporary = FALSE, name = name)
+  nF <- numberRecords(cohort)
+  reportDroppedRecords(n0, nF, exclude)
 
   # erafy
-  if (cohort |> dplyr::tally() |> dplyr::pull() > 0) {
-    cohort <- cohort |> erafy(gap = 0)
-  }
-
-  return(cohort)
-}
-
-sumcounts <- function(cohort) {
-  cohortCount(cohort) |>
-    dplyr::pull("number_records") |>
-    sum()
-}
-
-#' @noRd
-erafyCohort <- function(cohort, gap) {
-  if (sumcounts(cohort) > 0 & gap > 0) {
-    name <- omopgenerics::tableName(cohort)
+  cli::cli_inform(c("i" = "Collapsing overlaping records."))
+  if (numberRecords(cohort) > 0) {
+    cohort <- cohort %>%
+      dplyr::mutate(
+        number_exposures = 1L,
+        days_prescribed = as.integer(!!CDMConnector::datediff(
+          "cohort_start_date", "cohort_end_date"
+        )) + 1L
+      ) |>
+      erafy(gap = 0, toSummarise = c("number_exposures", "days_prescribed")) |>
+      dplyr::compute(name = name, temporary = FALSE)
+  } else {
     cohort <- cohort |>
-      erafy(gap) |>
-      dplyr::compute(name = name, temporary = FALSE) |>
-      omopgenerics::recordCohortAttrition(paste(
-        "join exposures separated by", gap, "or less days"
-      ))
+      dplyr::mutate(number_exposures = 0L, days_prescribed = 0L)
   }
+
   return(cohort)
 }
 
-#' @noRd
+reportDroppedRecords <- function(n0, nF, exclude) {
+  if (nF < n0) {
+    total <- n0 - nF
+    naStart <- exclude$na_start
+    naEnd <- exclude$na_end
+    startBeforeEnd <- exclude$start_before_end
+    notObservation <- total - naStart - naEnd - startBeforeEnd
+    mes <- c("!" = "{total} record{?s} dropped:")
+    if (naStart > 0) {
+      mes <- c(mes, "*" = "{naStart} record{?s} dropped because drug_exposure_start_date is missing.")
+    }
+    if (naEnd > 0) {
+      mes <- c(mes, "*" = "{naEnd} record{?s} dropped because drug_exposure_end_date is missing.")
+    }
+    if (startBeforeEnd > 0) {
+      mes <- c(mes, "*" = "{startBeforeEnd} record{?s} dropped because drug_exposure_end_date < drug_exposure_start_date.")
+    }
+    if (notObservation > 0) {
+      mes <- c(mes, "*" = "{notObservation} record{?s} dropped because {?it/they} {?is/are} not in observation.")
+    }
+    cli::cli_inform(mes)
+  }
+  invisible()
+}
+
+numberRecords <- function(cohort) {
+  cohort |>
+    dplyr::ungroup() |>
+    dplyr::tally() |>
+    dplyr::pull() |>
+    as.integer()
+}
+
 erafy <- function(x,
                   gap = 0,
                   start = "cohort_start_date",
                   end = "cohort_end_date",
-                  group = c("cohort_definition_id", "subject_id")) {
+                  group = c("cohort_definition_id", "subject_id"),
+                  toSummarise = character()) {
+  if (numberRecords(x) == 0) {
+    return(x)
+  }
   xstart <- x |>
-    dplyr::select(dplyr::all_of(c(group, "date_event" = start))) |>
+    dplyr::select(dplyr::all_of(c(group, "date_event" = start, toSummarise))) |>
     dplyr::mutate(date_id = -1)
+  newCols <- rep(0L, length(toSummarise)) |>
+    as.list() |>
+    rlang::set_names(nm = toSummarise)
   xend <- x |>
     dplyr::select(dplyr::all_of(c(group, "date_event" = end))) |>
-    dplyr::mutate(date_id = 1)
+    dplyr::mutate(date_id = 1, !!!newCols)
   if (gap > 0) {
     xend <- xend %>%
       dplyr::mutate("date_event" = as.Date(!!CDMConnector::dateadd(
@@ -126,103 +187,26 @@ erafy <- function(x,
     dplyr::union_all(xend) |>
     dplyr::group_by(dplyr::across(dplyr::all_of(group))) |>
     dplyr::arrange(.data$date_event, .data$date_id) |>
-    dplyr::mutate(cum_id = cumsum(.data$date_id)) |>
-    dplyr::filter(
-      .data$cum_id == 0 || (.data$cum_id == -1 && .data$date_id == -1)
-    ) |>
-    dplyr::mutate(
-      name = dplyr::if_else(.data$date_id == -1, .env$start, .env$end),
-      era_id = dplyr::if_else(.data$date_id == -1, 1, 0)
-    ) |>
-    dplyr::mutate(era_id = cumsum(as.numeric(.data$era_id))) |>
-    dplyr::ungroup() |>
-    dplyr::arrange() |>
-    dplyr::select(
-      dplyr::all_of(group), "era_id", "name", "date_event"
-    ) |>
-    tidyr::pivot_wider(names_from = "name", values_from = "date_event") %>%
-    dplyr::mutate(!!end := as.Date(!!CDMConnector::dateadd(
-      date = end, number = -gap, interval = "day"
-    ))) |>
-    dplyr::select(dplyr::all_of(c(group, start, end)))
-  return(x)
-}
-
-#' Impute or eliminate values under a certain conditions
-#' @noRd
-rowsToImpute <- function(x, column, range) {
-  # identify NA
+    dplyr::mutate(era_id = dplyr::if_else(
+      cumsum(.data$date_id) == -1 && .data$date_id == -1, 1L, 0L
+    )) |>
+    dplyr::mutate(era_id = cumsum(.data$era_id)) |>
+    dplyr::group_by(.data$era_id, .add = TRUE) |>
+    dplyr::summarise(
+      !!start := min(.data$date_event, na.rm = TRUE),
+      !!end := max(.data$date_event, na.rm = TRUE),
+      dplyr::across(
+        dplyr::all_of(toSummarise), \(x) as.integer(sum(x, na.rm = TRUE))
+      ),
+      .groups = "drop"
+    )
+  if (gap > 0) {
+    x <- x %>%
+      dplyr::mutate(!!end := as.Date(!!CDMConnector::dateadd(
+        date = end, number = -gap, interval = "day"
+      )))
+  }
   x <- x |>
-    dplyr::mutate(impute = dplyr::if_else(
-      is.na(.data[[column]]), 1, 0
-    ))
-
-  # identify < range[1]
-  if (!is.infinite(range[1])) {
-    x <- x |>
-      dplyr::mutate(impute = dplyr::if_else(
-        .data$impute == 0, dplyr::if_else(.data[[column]] < !!range[1], 1, 0), 1
-      ))
-  }
-  # identify > range[2]
-  if (!is.infinite(range[2])) {
-    x <- x |>
-      dplyr::mutate(impute = dplyr::if_else(
-        .data$impute == 0, dplyr::if_else(.data[[column]] > !!range[2], 1, 0), 1
-      ))
-  }
-
+    dplyr::select(dplyr::all_of(c(group, start, end, toSummarise)))
   return(x)
-}
-
-solveImputation <- function(x, column, method, toRound = FALSE) {
-  if (method == "none") {
-    x <- x |>
-      dplyr::filter(.data$impute == 0)
-  } else {
-    imp <- x |>
-      dplyr::filter(.data$impute == 0)
-    if (method == "median") {
-      imp <- imp |>
-        dplyr::summarise(dplyr::across(dplyr::all_of(column),
-          ~ stats::median(., na.rm = TRUE),
-          .names = "x"
-        )) |>
-        dplyr::pull("x")
-    } else if (method == "mean") {
-      imp <- imp |>
-        dplyr::summarise("x" = mean(.data[[column]], na.rm = TRUE)) |>
-        dplyr::pull("x")
-    } else if (method == "mode") {
-      imp <- imp |>
-        dplyr::group_by(.data[[column]]) |>
-        dplyr::summarise(count = as.numeric(dplyr::n()), .groups = "drop") |>
-        dplyr::filter(.data$count == max(.data$count, na.rm = TRUE)) |>
-        dplyr::select("x" = dplyr::all_of(column)) |>
-        dplyr::pull() |>
-        mean()
-    } else {
-      imp <- as.numeric(method)
-    }
-    if (toRound) imp <- round(imp)
-    x <- x |>
-      dplyr::mutate(!!column := dplyr::if_else(
-        .data$impute == 1, .env$imp, .data[[column]]
-      ))
-  }
-  x <- x |> dplyr::select(-"impute")
-  return(x)
-}
-
-uniqueTmpName <- function() {
-  i <- getOption("tmp_table_name", 0) + 1
-  options(tmp_table_name = i)
-  sprintf("tmp_%03i", i)
-}
-dropTmpTables <- function(cdm) {
-  con <- attr(attr(cdm, "cdm_source"), "dbcon")
-  schema <- attr(attr(cdm, "cdm_source"), "write_schema")
-  initialTables <- CDMConnector::listTables(con = con, schema = schema)
-  droptables <- initialTables[startsWith(initialTables, "tmp_")]
-  omopgenerics::dropTable(cdm = cdm, name = droptables)
 }

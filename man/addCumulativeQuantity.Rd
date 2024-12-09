@@ -16,7 +16,7 @@ addCumulativeQuantity(
 )
 }
 \arguments{
-\item{cohort}{Cohort in the cdm.}
+\item{cohort}{A cohort_table object.}
 
 \item{conceptSet}{List of concepts to be included.}
 
@@ -32,8 +32,8 @@ be included.}
 
 \item{nameStyle}{Character string to specify the nameStyle of the new columns.}
 
-\item{name}{Name of the new computed cohort table, if NULL a temporary tables is
-created.}
+\item{name}{Name of the new computed cohort table, if NULL a temporary table
+will be created.}
 }
 \value{
 The same cohort with the added column.

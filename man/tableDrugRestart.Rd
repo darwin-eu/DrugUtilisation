@@ -6,42 +6,26 @@
 \usage{
 tableDrugRestart(
   result,
-  header = c("strata"),
-  splitStrata = TRUE,
-  cohortName = TRUE,
-  cdmName = TRUE,
-  groupColumn = c("cdm_name", "cohort_name"),
+  header = c("cdm_name", "cohort_name"),
+  groupColumn = "variable_name",
   type = "gt",
-  formatEstimateName = c(`N (\%)` = "<count> (<percentage> \%)"),
-  .options = list()
+  hide = c("censor_date", "restrict_to_first_discontinuation", "follow_up_days")
 )
 }
 \arguments{
-\item{result}{A summarised_result object with results from
-summariseDrugRestart().}
+\item{result}{A summarised_result object.}
 
-\item{header}{A vector containing which elements should go into the header
-in order. Allowed values: \code{cdm_name}, \code{cohort_name}, \code{strata}, \code{variable},
-\code{estimate}.}
+\item{header}{Columns to use as header. See options with
+\code{availableTableColumns(result)}.}
 
-\item{splitStrata}{If TRUE strata columns will be split.}
+\item{groupColumn}{Columns to group by. See options with
+\code{availableTableColumns(result)}.}
 
-\item{cohortName}{If TRUE cohort names will be displayed.}
+\item{type}{Type of table. Check supported types with
+\code{visOmopResults::tableType()}.}
 
-\item{cdmName}{If TRUE database names will be displayed.}
-
-\item{groupColumn}{Column to use as group labels. Allowed values: \code{cdm_name},
-\code{cohort_name}, \code{strata}, \code{variable_name}, \code{variable_level}, \code{estimate_name}.}
-
-\item{type}{Type of desired formatted table, possibilities: "gt",
-"flextable", "tibble".}
-
-\item{formatEstimateName}{Named list of estimate name's to join, sorted by
-computation order. Indicate estimate_name's between <...>.}
-
-\item{.options}{Named list with additional formatting options.
-DrugUtilisation::defaultTableOptions() shows allowed arguments and their
-default values.}
+\item{hide}{Columns to hide from the visualisation. See options with
+\code{availableTableColumns(result)}.}
 }
 \value{
 A table with a formatted version of summariseDrugRestart() results.

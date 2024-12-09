@@ -1,3 +1,4 @@
+CDMConnector::requireEunomia()
 connection <- function(type = Sys.getenv("DB_TO_TEST", "duckdb")) {
   switch(type,
     "duckdb" = DBI::dbConnect(duckdb::duckdb(), ":memory:"),
@@ -32,9 +33,9 @@ collectCohort <- function(cohort, id = NULL) {
   if (is.null(id)) id <- settings(cohort)$cohort_definition_id
   x <- cohort |>
     dplyr::filter(.data$cohort_definition_id %in% .env$id) |>
-    dplyr::select("cohort_definition_id", "subject_id", "cohort_start_date", "cohort_end_date") |>
-    dplyr::collect() |>
-    dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date, cohort_end_date)
+    dplyr::collect()
+  x <- x |>
+    dplyr::arrange(dplyr::across(dplyr::all_of(colnames(x))))
   attr(x, "cohort_set") <- NULL
   attr(x, "cohort_attrition") <- NULL
   attr(x, "cohort_codelist") <- NULL

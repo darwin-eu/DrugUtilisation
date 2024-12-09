@@ -21,25 +21,3 @@
 #'   \code{denominator}, \code{denominator_unit}, \code{formula_name} and
 #'   \code{formula}.
 "patternsWithFormula"
-
-# #' Formulas applied to compute daily dose.
-# #'
-# #' @export
-# #'
-# #' @examples
-# #' \donttest{
-# #' library(DrugUtilisation)
-# #' seeFormulas()
-# #' }
-# #'
-# seeFormulas <- function() {
-#   mes <- c(
-#     "Currenly 4 different formualas are applied:",
-#     paste0(cli::style_bold("concentration formulation:   "), cli::col_silver("quantity * numerator / days exposed")),
-#     paste0(cli::style_bold("fixed amount formulation:    "), cli::col_silver("quantity * amount / days exposed")),
-#     paste0(cli::style_bold("time based with denominator: "), cli::col_silver("if (denominator>24) {numerator * 24 / denominator} else {numerator}")),
-#     paste0(cli::style_bold("time based no denominator:   "), cli::col_silver("24 * numerator"))
-#   )
-#   cat(mes, sep = "\n")
-#   invisible(TRUE)
-# }

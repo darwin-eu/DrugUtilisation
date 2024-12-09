@@ -38,9 +38,7 @@ test_that("tableIndication works", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
   cdm <- mockDrugUtilisation(
@@ -66,7 +64,7 @@ test_that("tableIndication works", {
     "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", ""
   )))
 
-  tib <- tableIndication(result, header = "variable", groupColumn = "cdm_name", type = "tibble")
+  tib <- tableIndication(result, header = "variable", groupColumn = "cdm_name")
 
   # strata
   result <- cdm[["cohort1"]] |>
@@ -82,12 +80,8 @@ test_that("tableIndication works", {
       strata = list("age_group", "sex", c("age_group", "sex"))
     )
 
-  fx <- tableIndication(result, cdmName = FALSE, cohortName = FALSE, type = "flextable", header = "group")
+  fx <- tableIndication(result, type = "flextable", header = "group")
   expect_true(inherits(fx, "flextable"))
-
-  # expected errors
-  expect_error(tableIndication(result, header = "variable"))
-  expect_error(tableIndication(result, groupColumn = "cdm_name", cdmName = FALSE))
 
   mockDisconnect(cdm = cdm)
 })
@@ -199,18 +193,10 @@ test_that("tableDoseCoverage", {
   expect_true(inherits(default, "gt_tbl"))
 
   # other options working
-  tib1 <- tableDoseCoverage(coverage, type = "tibble", ingridientName = FALSE, splitStrata = FALSE)
-  expect_true(inherits(tib1, "tbl_df"))
-
   fx1 <- tableDoseCoverage(coverage, header = c("cdm_name", "group"), groupColumn = "variable_name", type = "flextable")
   expect_true(inherits(fx1, "flextable"))
 
   expect_no_error(gt1 <- tableDoseCoverage(coverage, header = c("group")))
-
-  # expected errors
-  expect_error(tableDoseCoverage(coverage, header = "variable", groupColumn = "variable_name"))
-  expect_error(tableDoseCoverage(coverage, groupColumn = "cdm_name", cdmName = FALSE))
-  expect_error(tableDoseCoverage(coverage, header = "hi"))
 
   mockDisconnect(cdm = cdm)
 })
@@ -230,12 +216,12 @@ test_that("tableDrugUtilisation", {
       drug_exposure_start_date = as.Date(c(
         "2020-01-15", "2020-01-20", "2020-02-20", "2021-02-15", "2021-05-12",
         "2022-01-12", "2022-11-15", "2020-01-01", "2021-03-11", "2010-01-01",
-        "2010-03-15", "2025-01-01"
+        "2010-03-15", "2023-01-01"
       )),
       drug_exposure_end_date = as.Date(c(
         "2020-01-25", "2020-03-15", "2020-02-28", "2021-03-15", "2021-05-25",
         "2022-02-15", "2022-12-14", "2020-04-13", "2021-04-20", "2010-01-05",
-        "2010-05-12", "2025-12-31"
+        "2010-05-12", "2023-12-31"
       )),
       drug_type_concept_id = 0,
       quantity = c(10, 20, 30, 1, 10, 5, 15, 20, 30, 14, 10, 2)
@@ -257,7 +243,7 @@ test_that("tableDrugUtilisation", {
       observation_period_id = 1:4,
       person_id = 1:4,
       observation_period_start_date = as.Date("2000-01-01"),
-      observation_period_end_date = as.Date("2030-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     ),
     person = dplyr::tibble(
@@ -304,12 +290,12 @@ test_that("tableDrugRestart", {
       drug_exposure_start_date = as.Date(c(
         "2020-01-15", "2020-01-20", "2020-02-20", "2021-02-15", "2021-05-12",
         "2022-01-12", "2022-11-15", "2020-01-01", "2021-03-11", "2010-01-01",
-        "2010-03-15", "2025-01-01"
+        "2010-03-15", "2023-01-01"
       )),
       drug_exposure_end_date = as.Date(c(
         "2020-01-25", "2020-03-15", "2020-02-28", "2021-03-15", "2021-05-25",
         "2022-02-15", "2022-12-14", "2020-04-13", "2021-04-20", "2010-01-05",
-        "2010-05-12", "2025-12-31"
+        "2010-05-12", "2023-12-31"
       )),
       drug_type_concept_id = 0,
       quantity = c(10, 20, 30, 1, 10, 5, 15, 20, 30, 14, 10, 2)
@@ -334,7 +320,7 @@ test_that("tableDrugRestart", {
       observation_period_id = 1:4,
       person_id = 1:4,
       observation_period_start_date = as.Date("2000-01-01"),
-      observation_period_end_date = as.Date("2030-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     ),
     person = dplyr::tibble(
@@ -358,7 +344,7 @@ test_that("tableDrugRestart", {
   cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "switch_cohort", conceptSet = conceptlist)
   results <- cdm$dus_cohort |>
     PatientProfiles::addDemographics(
-      ageGroup = list(c(0, 50), c(51, 100))
+      ageGroup = list(c(0, 50), c(51, 100)), name = "dus_cohort"
     ) |>
     summariseDrugRestart(
       switchCohortTable = "switch_cohort", followUpDays = c(100, 300, Inf),
@@ -371,7 +357,7 @@ test_that("tableDrugRestart", {
   mockDisconnect(cdm = cdm)
 })
 
-test_that("tableIndication works", {
+test_that("tableProportionOfPatientsCovered works", {
   skip_on_cran()
 
   cdm <- mockDrugUtilisation(
@@ -394,12 +380,8 @@ test_that("tableIndication works", {
   cdm$dus_cohort <- cdm$dus_cohort |>
     dplyr::mutate(
       var0 = "group",
-      var1 = dplyr::if_else(subject_id == 1,
-        "group_1", "group_2"
-      ),
-      var2 = dplyr::if_else(subject_id %in% c(1, 2),
-        "group_a", "group_b"
-      )
+      var1 = dplyr::if_else(subject_id == 1, "group_1", "group_2"),
+      var2 = dplyr::if_else(subject_id %in% c(1, 2), "group_a", "group_b")
     )
 
   ppc <- cdm$dus_cohort |>
@@ -410,10 +392,12 @@ test_that("tableIndication works", {
   # without times specified
   expect_no_error(tab <- tableProportionOfPatientsCovered(ppc))
   expect_true(inherits(tab, "gt_tbl"))
+
   # with times specified
-  expect_no_error(tableProportionOfPatientsCovered(ppc,
-    times = c(0, 5, 10, 15)
-  ))
+  ppc |>
+    omopgenerics::filterAdditional(.data$time %in% c("0", "5", "10", "15")) |>
+    tableProportionOfPatientsCovered() |>
+    expect_no_error()
 
   # after suppression
   ppc_suppressed <- omopgenerics::suppress(ppc, 4)

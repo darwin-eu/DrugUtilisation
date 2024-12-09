@@ -43,7 +43,7 @@
 addDailyDose <- function(drugExposure,
                          ingredientConceptId,
                          name = NULL) {
-  lifecycle::deprecate_soft(when = "0.7.0", what = "addDailyDose()")
+  lifecycle::deprecate_warn(when = "0.7.0", what = "addDailyDose()")
   .addDailyDose(
     drugExposure = drugExposure,
     ingredientConceptId = ingredientConceptId,
@@ -55,13 +55,7 @@ addDailyDose <- function(drugExposure,
                           ingredientConceptId,
                           name = NULL) {
   cdm <- omopgenerics::cdmReference(drugExposure)
-  # initial checks
-  checkInputs(
-    drugExposure = drugExposure, ingredientConceptId = ingredientConceptId,
-    cdm = cdm
-  )
-
-  nm <- uniqueTmpName()
+  nm <- omopgenerics::uniqueTableName(omopgenerics::tmpPrefix())
 
   # select only pattern_id and unit
   dailyDose <- drugExposure |>
@@ -106,8 +100,8 @@ addDailyDose <- function(drugExposure,
 #' Check coverage of daily dose computation in a sample of the cdm for selected
 #' concept sets and ingredient
 #'
-#' @param cdm A cdm reference created using CDMConnector.
-#' @param ingredientConceptId Code indicating the ingredient of interest.
+#' @inheritParams cdmDoc
+#' @inheritParams ingredientConceptIdDoc
 #' @param estimates Estimates to obtain.
 #' @param sampleSize Maximum number of records of an ingredient to estimate dose
 #'  coverage. If an ingredient has more, a random sample equal to `sampleSize`
@@ -134,9 +128,10 @@ summariseDoseCoverage <- function(cdm,
                                   ),
                                   sampleSize = NULL) {
   # initial checks
-  checkInputs(cdm = cdm, ingredientConceptId = ingredientConceptId)
-  checkmate::assertIntegerish(x = sampleSize, lower = 0, len = 1, null.ok = TRUE, any.missing = FALSE, )
-  checkmate::assertCharacter(estimates)
+  cdm <- omopgenerics::validateCdmArgument(cdm)
+  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE, length = 1)
+  omopgenerics::assertNumeric(x = sampleSize, min = 0, length = 1, null = TRUE, integerish = TRUE)
+  omopgenerics::assertCharacter(estimates)
 
   # get daily dosage
   dailyDose <- cdm[["drug_exposure"]] |>
@@ -177,10 +172,11 @@ summariseDoseCoverage <- function(cdm,
   if (!is.null(sampleSize)) {
     dailyDose <- dailyDose |>
       dplyr::group_by(.data$ingredient_name) |>
-      dplyr::sample_n(size = sampleSize, replace = FALSE) |>
+      dplyr::sample_n(size = as.integer(sampleSize), replace = FALSE) |>
       dplyr::ungroup()
+    sampleSize <- as.character(sampleSize)
   } else {
-    sampleSize <- as.integer(NA)
+    sampleSize <- "NA"
   }
 
   # summarise
@@ -212,7 +208,7 @@ summariseDoseCoverage <- function(cdm,
     omopgenerics::newSummarisedResult(settings = dplyr::tibble(
       "result_id" = unique(dailyDoseSummary$result_id),
       "package_name" = "DrugUtilisation",
-      "package_version" = as.character(utils::packageVersion("DrugUtilisation")),
+      "package_version" = pkgVersion(),
       "result_type" = "summarise_dose_coverage",
       "sample_size" = sampleSize
     ))
@@ -225,8 +221,8 @@ summariseDoseCoverage <- function(cdm,
 #'
 #' `r lifecycle::badge("deprecated")`
 #'
-#' @param cdm A cdm reference created using CDMConnector
-#' @param ingredientConceptId Code indicating the ingredient of interest
+#' @inheritParams cdmDoc
+#' @inheritParams ingredientConceptIdDoc
 #'
 #' @return The function returns information of the coverage of computeDailyDose.R
 #' for the selected ingredients and concept sets
@@ -234,7 +230,7 @@ summariseDoseCoverage <- function(cdm,
 #'
 dailyDoseCoverage <- function(cdm,
                               ingredientConceptId) {
-  lifecycle::deprecate_warn(
+  lifecycle::deprecate_stop(
     when = "0.7.0",
     what = "dailyDoseCoverage()",
     with = "summariseDoseCoverage()")

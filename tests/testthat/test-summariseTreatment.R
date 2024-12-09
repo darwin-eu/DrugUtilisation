@@ -8,7 +8,7 @@ test_that("test summariseTreatment", {
       )
   )
   expect_true(inherits(x, "summarised_result"))
-  expect_true(all(x$variable_name |> unique() == c("cohort_1", "cohort_2", "cohort_3", "untreated")))
+  expect_true(all(x$variable_level |> unique() == c("cohort_1", "cohort_2", "cohort_3", "untreated", "not in observation")))
   expect_true(all(x$additional_level |> unique() == c("0 to 30", "31 to 365")))
 
   # test concept works
@@ -26,10 +26,10 @@ test_that("test summariseTreatment", {
   )
   expect_true(inherits(x, "summarised_result"))
   expect_true(all(
-    x |> dplyr::filter(group_level == "cohort_1") |> dplyr::pull("variable_name") ==
-      c("a", "a", "c", "c", "b", "b", "untreated", "untreated")
+    x |> dplyr::filter(group_level == "cohort_1") |> dplyr::pull("variable_level") ==
+      c("a", "a", "b", "b", "c", "c", "untreated", "untreated", "not in observation", "not in observation")
   ))
-  expect_true(all(x$additional_level |> unique() == c("0 to Inf")))
+  expect_true(all(x$additional_level |> unique() == c("0 to inf")))
 
   # test order in cohort works
   expect_no_error(
@@ -41,12 +41,16 @@ test_that("test summariseTreatment", {
       )
   )
   expect_true(inherits(x, "summarised_result"))
-  expect_true(all(x$variable_name |> unique() == c("cohort_2", "cohort_3", "untreated")))
+  expect_true(all(x$variable_level |> unique() == c("cohort_2", "cohort_3", "untreated", "not in observation")))
   expect_true(all(x$additional_level |> unique() == c("0 to 30", "31 to 365")))
 
   # test suppress
   x_sup <- omopgenerics::suppress(x, minCellCount = 100)
-  expect_true(all(is.na(x_sup |> dplyr::filter(estimate_value != "0") |> dplyr::pull("estimate_name"))))
+  expect_true(all(
+    x_sup |>
+      dplyr::filter(estimate_value != "0") |>
+      dplyr::pull("estimate_value") == "-"
+  ))
 
   mockDisconnect(cdm = cdm)
 })

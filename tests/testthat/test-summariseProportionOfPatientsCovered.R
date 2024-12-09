@@ -53,7 +53,7 @@ test_that("simple working example", {
       additional_level == 0,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
 
   # on day 4, 4 of 4 people being treated
   expect_true(ppc |>
@@ -61,7 +61,7 @@ test_that("simple working example", {
       additional_level == 4,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
 
   # on day 6, 3 of 4 people being treated
   expect_true(ppc |>
@@ -69,7 +69,7 @@ test_that("simple working example", {
       additional_level == 6,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "75")
+    dplyr::pull("estimate_value") == "75.00")
 
   # on day 16, 2 of 3 people being treated, 1 has left
   expect_true(ppc |>
@@ -77,7 +77,7 @@ test_that("simple working example", {
       additional_level == 16,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == as.character(round((2 / 3) * 100, 2)))
+    dplyr::pull("estimate_value") == "66.67")
 
   # on day 21, 0 of 3 people being treated, 1 has left
   expect_true(ppc |>
@@ -85,7 +85,7 @@ test_that("simple working example", {
       additional_level == 21,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "0")
+    dplyr::pull("estimate_value") == "0.00")
 
   mockDisconnect(cdm = cdm)
 })
@@ -131,7 +131,7 @@ test_that("multiple cohort entries", {
       additional_level == 4,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
 
   # one of two treated on day 6
   expect_true(ppc |>
@@ -139,7 +139,7 @@ test_that("multiple cohort entries", {
       additional_level == 6,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "50")
+    dplyr::pull("estimate_value") == "50.00")
 
   # both treated on day 10
   expect_true(ppc |>
@@ -147,7 +147,7 @@ test_that("multiple cohort entries", {
       additional_level == 10,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
 
   # one person left on day 21, untreated
   expect_true(ppc |>
@@ -155,13 +155,13 @@ test_that("multiple cohort entries", {
       additional_level == 10,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
   expect_true(ppc |>
     dplyr::filter(
       additional_level == 21,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "0")
+    dplyr::pull("estimate_value") == "0.00")
 
   mockDisconnect(cdm = cdm)
 })
@@ -250,14 +250,14 @@ test_that("multiple cohorts", {
       additional_level == 12,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == as.character(round((2 / 3) * 100, 2)))
+    dplyr::pull("estimate_value") == "66.67")
   # cohort 2 - 1 of 1 people being treated
   expect_true(ppc_cohort_2 |>
     dplyr::filter(
       additional_level == 12,
       estimate_name == "ppc"
     ) |>
-    dplyr::pull("estimate_value") == "100")
+    dplyr::pull("estimate_value") == "100.00")
 
 
   # if one cohort is empty it should still work
@@ -316,12 +316,13 @@ test_that("stratification", {
       followUpDays = 30,
       strata = c("var0")
     )
-  expect_identical(
+  expect_equal(
     ppc_no_strata |>
       dplyr::select(!c("strata_name", "strata_level")),
     ppc_no_strata_2 |>
       dplyr::filter(strata_level == "group") |>
-      dplyr::select(!c("strata_name", "strata_level"))
+      dplyr::select(!c("strata_name", "strata_level")),
+    ignore_attr = TRUE
   )
 
   ppc <- cdm$dus_cohort |>
@@ -329,9 +330,10 @@ test_that("stratification", {
       followUpDays = 30,
       strata = c("var1")
     )
-  expect_identical(
+  expect_equal(
     ppc_no_strata,
-    ppc |> dplyr::filter(strata_level == "overall")
+    ppc |> dplyr::filter(strata_level == "overall"),
+    ignore_attr = TRUE
   )
 
   ppc <- cdm$dus_cohort |>
@@ -587,12 +589,14 @@ test_that("suppression", {
       estimate_name == "denominator_count"
     ) |>
     dplyr::pull("estimate_value") == "4")
-  expect_true(is.na(ppc_suppressed |>
-    dplyr::filter(
-      additional_level == 15,
-      estimate_name == "denominator_count"
-    ) |>
-    dplyr::pull("estimate_value")))
+  expect_true(
+    ppc_suppressed |>
+      dplyr::filter(
+        additional_level == 15,
+        estimate_name == "denominator_count"
+      ) |>
+      dplyr::pull("estimate_value") == "-"
+  )
 
   mockDisconnect(cdm = cdm)
 })

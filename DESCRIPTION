@@ -66,14 +66,12 @@ Suggests:
     flextable,
     ggtext,
     scales,
-    tictoc,
-    DBI
+    DBI,
+    bit64
 Config/testthat/edition: 3
 Imports: 
     CDMConnector (>= 1.4.0),
     CodelistGenerator (>= 3.1.0),
-    checkmate,
-    dbplyr,
     dplyr,
     glue,
     clock,
@@ -82,8 +80,8 @@ Imports:
     cli,
     PatientProfiles (>= 1.0.0),
     purrr,
-    omopgenerics (>= 0.2.3),
-    visOmopResults,
+    omopgenerics (>= 0.4.0),
+    visOmopResults (>= 0.5.0),
     lifecycle,
     stringr
 Depends: 
@@ -93,3 +91,6 @@ URL: https://darwin-eu.github.io/DrugUtilisation/
 BugReports: https://github.com/darwin-eu/DrugUtilisation/issues
 Config/testthat/parallel: true
 VignetteBuilder: knitr
+Remotes:
+    darwin-eu-dev/omopgenerics,
+    darwin-eu-dev/visOmopResults

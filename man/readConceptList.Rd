@@ -17,15 +17,3 @@ list of concept_ids and respective concept_ids of interest
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
-\examples{
-\donttest{
-library(DrugUtilisation)
-
-cdm <- mockDrugUtilisation()
-
-codelist <- readConceptList(
-  path = system.file("concepts", package = "DrugUtilisation"), cdm = cdm
-)
-}
-
-}

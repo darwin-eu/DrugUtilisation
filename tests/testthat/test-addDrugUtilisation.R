@@ -15,12 +15,12 @@ test_that("Basic functionality", {
       drug_exposure_start_date = as.Date(c(
         "2020-01-15", "2020-01-20", "2020-02-20", "2021-02-15", "2021-05-12",
         "2022-01-12", "2022-11-15", "2020-01-01", "2021-03-11", "2010-01-01",
-        "2010-03-15", "2025-01-01"
+        "2010-03-15", "2023-01-01"
       )),
       drug_exposure_end_date = as.Date(c(
         "2020-01-25", "2020-03-15", "2020-02-28", "2021-03-15", "2021-05-25",
         "2022-02-15", "2022-12-14", "2020-04-13", "2021-04-20", "2010-01-05",
-        "2010-05-12", "2025-12-31"
+        "2010-05-12", "2023-12-31"
       )),
       drug_type_concept_id = 0,
       quantity = c(10, 20, 30, 1, 10, 5, 15, 20, 30, 14, 10, 2)
@@ -42,7 +42,7 @@ test_that("Basic functionality", {
       observation_period_id = 1:4,
       person_id = 1:4,
       observation_period_start_date = as.Date("2000-01-01"),
-      observation_period_end_date = as.Date("2030-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
   )
@@ -56,14 +56,20 @@ test_that("Basic functionality", {
   )
   expect_true(all(colnames(cdm$dus_cohort) %in% colnames(x0)))
   expect_identical(colnames(x0) |> sort(), c(
-    "cohort_definition_id", "cohort_end_date", "cohort_start_date",
+    "cohort_definition_id",
+    "cohort_end_date",
+    "cohort_start_date",
     "cumulative_dose_milligram_ingredient_1125315_descendants_1125315",
     "cumulative_quantity_ingredient_1125315_descendants",
-    "exposed_time_ingredient_1125315_descendants", "extra_column",
+    "days_exposed_ingredient_1125315_descendants",
+    "days_prescribed_ingredient_1125315_descendants",
+    "extra_column",
     "initial_daily_dose_milligram_ingredient_1125315_descendants_1125315",
+    "initial_exposure_duration_ingredient_1125315_descendants",
     "initial_quantity_ingredient_1125315_descendants",
     "number_eras_ingredient_1125315_descendants",
-    "number_exposures_ingredient_1125315_descendants", "subject_id",
+    "number_exposures_ingredient_1125315_descendants",
+    "subject_id",
     "time_to_exposure_ingredient_1125315_descendants"
   ))
   expect_identical(x0$number_exposures_ingredient_1125315_descendants, c(
@@ -76,7 +82,7 @@ test_that("Basic functionality", {
     60, 11, 15, 0, 0, 0))
   expect_identical(x0$initial_quantity_ingredient_1125315_descendants, c(
     10, 1, 15, 0, 0, 0))
-  expect_identical(x0$exposed_time_ingredient_1125315_descendants, c(
+  expect_identical(x0$days_exposed_ingredient_1125315_descendants, c(
     45L, 43L, 17L, 0L, 0L, 0L))
   expect_equal(
     x0$cumulative_dose_milligram_ingredient_1125315_descendants_1125315,
@@ -176,7 +182,7 @@ test_that("gapEra consecutive prescriptions", {
       observation_period_id = 1,
       person_id = 1,
       observation_period_start_date = as.Date("2000-01-01"),
-      observation_period_end_date = as.Date("2030-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
   )
@@ -207,12 +213,12 @@ test_that("test subfunctions", {
       drug_exposure_start_date = as.Date(c(
         "2020-01-15", "2020-01-20", "2020-02-20", "2021-02-15", "2021-05-12",
         "2022-01-12", "2022-11-15", "2020-01-01", "2021-03-11", "2010-01-01",
-        "2010-03-15", "2025-01-01"
+        "2010-03-15", "2023-01-01"
       )),
       drug_exposure_end_date = as.Date(c(
         "2020-01-25", "2020-03-15", "2020-02-28", "2021-03-15", "2021-05-25",
         "2022-02-15", "2022-12-14", "2020-04-13", "2021-04-20", "2010-01-05",
-        "2010-05-12", "2025-12-31"
+        "2010-05-12", "2023-12-31"
       )),
       drug_type_concept_id = 0,
       quantity = c(10, 20, 30, 1, 10, 5, 15, 20, 30, 14, 10, 2)
@@ -234,7 +240,7 @@ test_that("test subfunctions", {
       observation_period_id = 1:4,
       person_id = 1:4,
       observation_period_start_date = as.Date("2000-01-01"),
-      observation_period_end_date = as.Date("2030-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
   )
@@ -311,13 +317,23 @@ test_that("test subfunctions", {
   )
 
   ## addExposedTime
-  expect_identical(
-    x0$exposed_time_ingredient_1125315_descendants,
+  expect_warning(expect_identical(
+    x0$days_exposed_ingredient_1125315_descendants,
     cdm$dus_cohort |>
       addExposedTime(conceptSet = codes, gapEra = 1) |>
       dplyr::collect() |>
       dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date) |>
-      dplyr::pull("exposed_time_acetaminophen")
+      dplyr::pull("days_exposed_acetaminophen")
+  ))
+
+  ## addDaysExposed
+  expect_identical(
+    x0$days_exposed_ingredient_1125315_descendants,
+    cdm$dus_cohort |>
+      addDaysExposed(conceptSet = codes, gapEra = 1) |>
+      dplyr::collect() |>
+      dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date) |>
+      dplyr::pull("days_exposed_acetaminophen")
   )
 
   ## addNumberEras
@@ -332,7 +348,7 @@ test_that("test subfunctions", {
 
   # errors: check correct call to parent frame
   expect_snapshot(addNumberEras(cdm$dus_cohort, NULL, gapEra = 1), error = TRUE)
-  expect_snapshot(addExposedTime(cdm$dus_cohort, NULL, gapEra = 1), error = TRUE)
+  expect_snapshot(addDaysExposed(cdm$dus_cohort, NULL, gapEra = 1), error = TRUE)
   expect_snapshot(addTimeToExposure(cdm$dus_cohort, NULL), error = TRUE)
   expect_snapshot(addInitialQuantity(cdm$dus_cohort, NULL), error = TRUE)
   expect_snapshot(addCumulativeQuantity(cdm$dus_cohort, NULL), error = TRUE)
@@ -340,6 +356,74 @@ test_that("test subfunctions", {
   expect_snapshot(addCumulativeDose(cdm$dus_cohort, NULL), error = TRUE)
   expect_snapshot(addInitialDailyDose(cdm$dus_cohort, NULL), error = TRUE)
   expect_snapshot(addDrugUtilisation(cdm$dus_cohort, gapEra = 1), error = TRUE)
+
+  # check overwrite of columns
+  expect_warning(
+    cdm$dus_cohort |>
+      addNumberExposures(conceptSet = codes) |>
+      addNumberExposures(conceptSet = codes)
+  )
+
+  mockDisconnect(cdm = cdm)
+})
+
+test_that("test addDaysPrescribed", {
+  cdm <- mockDrugUtilisation(
+    con = connection(),
+    writeSchema = schema(),
+    drug_exposure = dplyr::tibble(
+      drug_exposure_id = 1,
+      person_id = 1L,
+      drug_concept_id = 1125315L,
+      drug_exposure_start_date = as.Date(c(
+        "2020-01-01", "2020-01-15", "2020-02-01"
+      )),
+      drug_exposure_end_date = as.Date(c(
+        "2020-01-31", "2020-01-20", "2020-02-15"
+      ))
+    ),
+    observation_period = dplyr::tibble(
+      observation_period_id = 1L,
+      person_id = 1L,
+      observation_period_start_date = as.Date("2010-01-01"),
+      observation_period_end_date = as.Date("2023-12-31")
+    ),
+    cohort = dplyr::tibble(
+      cohort_definition_id = c(1L, 2L, 3L),
+      subject_id = 1L,
+      cohort_start_date = as.Date(c("2020-01-01", "2020-01-10", "2020-01-10")),
+      cohort_end_date = as.Date(c("2020-02-15", "2020-03-15", "2020-02-10"))
+    )
+  )
+  codes <- list(aceta = 1125315L)
+
+  # test incident behavior
+  x <- cdm$cohort |>
+    addDaysPrescribed(conceptSet = codes, restrictIncident = TRUE) |>
+    dplyr::collect() |>
+    dplyr::arrange(.data$cohort_definition_id) |>
+    dplyr::pull("days_prescribed_aceta")
+  expect_identical(x, c(52L, 21L, 16L))
+  x <- cdm$cohort |>
+    addDaysPrescribed(conceptSet = codes, restrictIncident = FALSE) |>
+    dplyr::collect() |>
+    dplyr::arrange(.data$cohort_definition_id) |>
+    dplyr::pull("days_prescribed_aceta")
+  expect_identical(x, c(52L, 43L, 38L))
+
+  # test addDaysPrescribed is the same
+  cdm <- generateDrugUtilisationCohortSet(
+    cdm = cdm, name = "my_cohort", conceptSet = codes, daysPrescribed = TRUE
+  )
+  x <- cdm$my_cohort |>
+    dplyr::pull("days_prescribed")
+  expect_identical(x, 52L)
+  expect_warning(
+    y <- cdm$my_cohort |>
+      addDaysPrescribed(conceptSet = codes, nameStyle = "days_prescribed") |>
+      dplyr::pull("days_prescribed")
+  )
+  expect_identical(x, y)
 
   mockDisconnect(cdm = cdm)
 })

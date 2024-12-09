@@ -17,16 +17,8 @@
 #' Generate a custom ggplot2 from a summarised_result object generated with
 #' summariseTreatment function.
 #'
-#' @param result A summarised_result object with results from
-#' summariseDrugRestart().
-#' @param facetX Vector of variables to facet by horizontally. Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name"
-#' @param facetY Vector of variables to facet by vertically Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name".
-#' @param splitStrata Whether to split strata columns.
-#' @param colour Vector of variables to distinct by colour. Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name", and
-#' "variable_level".
+#' @inheritParams resultDoc
+#' @inheritParams plotDoc
 #'
 #' @return A ggplot2 object.
 #'
@@ -47,107 +39,22 @@
 #' }
 #'
 plotTreatment <- function(result,
-                          facetX = "window_name",
-                          facetY = c("cdm_name", "cohort_name", "strata"),
-                          splitStrata = TRUE,
-                          colour = "treatment") {
-  rlang::check_installed("ggplot2")
-  # check input
-  assertChoice(
-    facetX,
-    choices = c("window_name", "cdm_name", "cohort_name", "strata"),
-    null = TRUE, unique = T
+                          facet = cdm_name + cohort_name ~ window_name,
+                          colour = "variable_level") {
+  barPlotInternal(
+    result = result,
+    resultType = "summarise_treatment",
+    facet = facet,
+    colour = colour,
+    lab = "Treatment"
   )
-  assertChoice(
-    facetY,
-    choices = c("window_name", "cdm_name", "cohort_name", "strata"),
-    null = TRUE, unique = T
-  )
-  assertLogical(splitStrata, length = 1)
-  assertChoice(
-    colour,
-    choices = c("window_name", "cdm_name", "cohort_name", "strata", "treatment"),
-    null = T,
-    unique = T
-  )
-
-  result <- omopgenerics::newSummarisedResult(result) |>
-    visOmopResults::filterSettings(
-      .data$result_type == "summarise_treatment"
-    ) |>
-    dplyr::filter(.data$estimate_name == "percentage")
-
-  if (nrow(result) == 0) {
-    cli::cli_warn(c("!" = "There are no results to plot, returning empty plot"))
-    return(ggplot2::ggplot())
-  }
-
-  # to display order accordingly
-  lev <- result$variable_name |>
-    unique() |>
-    rev()
-
-  warnDuplicatePoints(result, unique(c(facetX, facetY, colour)))
-
-  if (splitStrata) {
-    strata <- visOmopResults::strataColumns(result)
-    result <- result |> visOmopResults::splitStrata()
-    facetX <- substituteStrata(facetX, strata)
-    facetY <- substituteStrata(facetY, strata)
-    colour <- substituteStrata(colour, strata)
-  } else {
-    result <- result |> dplyr::rename("strata" = "strata_level")
-    strata <- "strata"
-  }
-
-  result <- result |>
-    dplyr::select(
-      "cdm_name",
-      "cohort_name" = "group_level", dplyr::all_of(strata),
-      "treatment" = "variable_name", "estimate_value",
-      "window_name" = "additional_level"
-    ) |>
-    dplyr::mutate("estimate_value" = as.numeric(.data$estimate_value)) |>
-    dplyr::mutate("treatment" = factor(.data$treatment, levels = lev))
-
-  if (length(colour) > 0) {
-    cols <- colour
-    colourLab <- gsub("_", " ", cols) |>
-      paste0(collapse = ", ")
-    colour <- omopgenerics::uniqueId(exclude = colnames(result))
-    result <- result |>
-      tidyr::unite(col = !!colour, dplyr::all_of(cols), remove = FALSE)
-  } else {
-    colour <- NULL
-    colourLab <- NULL
-  }
-
-  if (length(facetX) == 0) facetX <- "."
-  if (length(facetY) == 0) facetY <- "."
-  form <- paste0(
-    paste0(facetY, collapse = " + "), " ~ ", paste0(facetX, collapse = " + ")
-  ) |>
-    stats::as.formula()
-
-  ggplot2::ggplot(data = result, mapping = ggplot2::aes(x = .data$estimate_value, y = .data$treatment, fill = .data[[colour]])) +
-    ggplot2::geom_col() +
-    ggplot2::facet_grid(form) +
-    ggplot2::labs(fill = colourLab, x = "Percentage", y = "Treatment")
 }
 
 #' Generate a custom ggplot2 from a summarised_result object generated with
 #' summariseDrugRestart() function.
 #'
-#' @param result A summarised_result object with results from
-#' summariseDrugRestart().
-#' @param facetX Vector of variables to facet by horizontally. Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name"
-#' @param facetY Vector of variables to facet by vertically Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name".
-#' @param colour Vector of variables to distinct by colour. Allowed options
-#' are: "cdm_name", "cohort_name", "strata", "variable_name", and
-#' "variable_level".
-#' @param splitStrata Whether to split strata columns.
+#' @inheritParams resultDoc
+#' @inheritParams plotDoc
 #'
 #' @return A ggplot2 object.
 #'
@@ -171,151 +78,25 @@ plotTreatment <- function(result,
 #'
 #' plotDrugRestart(result)
 #'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 #'
 plotDrugRestart <- function(result,
-                            facetX = "variable_name",
-                            facetY = c("cdm_name", "cohort_name", "strata"),
-                            colour = "variable_level",
-                            splitStrata = TRUE) {
-  rlang::check_installed("ggplot2")
-  # check input
-  assertChoice(
-    facetX,
-    choices = c("cdm_name", "cohort_name", "strata", "variable_name"),
-    null = TRUE, unique = TRUE
+                            facet = cdm_name + cohort_name ~ follow_up_days,
+                            colour = "variable_level") {
+  barPlotInternal(
+    result = result,
+    resultType = "summarise_drug_restart",
+    facet = facet,
+    colour = colour,
+    lab = "Event"
   )
-  assertChoice(
-    facetY,
-    choices = c("cdm_name", "cohort_name", "strata", "variable_name"),
-    null = TRUE, unique = TRUE
-  )
-  assertLogical(splitStrata, length = 1)
-  assertChoice(
-    colour,
-    choices = c("cdm_name", "cohort_name", "strata", "variable_name", "variable_level"),
-    null = TRUE,
-    unique = TRUE
-  )
-
-  result <- omopgenerics::newSummarisedResult(result) |>
-    visOmopResults::filterSettings(.data$result_type == "summarise_drug_restart") |>
-    dplyr::filter(.data$estimate_name == "percentage")
-
-  if (nrow(result) == 0) {
-    cli::cli_warn(c("!" = "There are no results to plot, returning empty plot"))
-    return(ggplot2::ggplot())
-  }
-
-  # to display order accordingly
-  lev <- c("restart", "switch", "restart and switch", "not treated") |> rev()
-
-  warnDuplicatePoints(result, unique(c(facetX, facetY, colour)))
-
-  if (splitStrata) {
-    strata <- visOmopResults::strataColumns(result)
-    result <- result |> visOmopResults::splitStrata()
-    facetX <- substituteStrata(facetX, strata)
-    facetY <- substituteStrata(facetY, strata)
-    colour <- substituteStrata(colour, strata)
-  } else {
-    result <- result |> dplyr::rename("strata" = "strata_level")
-    strata <- "strata"
-  }
-
-  result <- result |>
-    dplyr::select(
-      "cdm_name",
-      "cohort_name" = "group_level", dplyr::all_of(strata),
-      "variable_name", "estimate_value", "variable_level"
-    ) |>
-    dplyr::mutate("estimate_value" = as.numeric(.data$estimate_value)) |>
-    dplyr::mutate("variable_level" = factor(
-      .data$variable_level,
-      levels = lev, labels = stringr::str_to_sentence(lev)
-    ))
-
-  if (length(colour) > 0) {
-    cols <- colour
-    colourLab <- gsub("_", " ", cols) |>
-      paste0(collapse = ", ")
-    colour <- omopgenerics::uniqueId(exclude = colnames(result))
-    result <- result |>
-      tidyr::unite(col = !!colour, dplyr::all_of(cols), remove = FALSE)
-  } else {
-    colour <- NULL
-    colourLab <- NULL
-  }
-
-  if (length(facetX) == 0) facetX <- "."
-  if (length(facetY) == 0) facetY <- "."
-  form <- paste0(
-    paste0(facetY, collapse = " + "), " ~ ", paste0(facetX, collapse = " + ")
-  ) |>
-    stats::as.formula()
-
-  ggplot2::ggplot(
-    data = result,
-    mapping = ggplot2::aes(
-      x = .data$estimate_value,
-      y = .data$variable_level,
-      fill = .data[[colour]]
-    )
-  ) +
-    ggplot2::geom_col() +
-    ggplot2::facet_grid(form) +
-    ggplot2::labs(fill = colourLab, x = "Percentage", y = "Event") +
-    ggplot2::theme(legend.title = ggplot2::element_blank())
-}
-
-warnDuplicatePoints <- function(result, exclude) {
-  result <- result |>
-    dplyr::rename("cohort_name" = "group_level", "strata" = "strata_level", "treatment" = "variable_name")
-  potential <- c("result_id", "cdm_name", "cohort_name", "strata", "treatment")
-  potential <- potential[!potential %in% exclude]
-  duplicates <- result |>
-    dplyr::select(dplyr::all_of(potential)) |>
-    dplyr::distinct()
-  if (nrow(duplicates) > 1) {
-    x <- list()
-    for (col in colnames(duplicates)) {
-      x[[col]] <- unique(duplicates[[col]])
-    }
-    x <- x[lengths(x) > 1]
-    mes <- c("!" = "There are duplicated points, not included either in facetX, facetY or colour:")
-    for (k in seq_along(x)) {
-      col <- names(x)[k]
-      values <- x[[k]]
-      mes <- c(mes, "*" = paste0(col, ": ", paste0(values, collapse = ", "), "."))
-    }
-    cli::cli_inform(mes)
-  }
-  return(invisible(NULL))
-}
-substituteStrata <- function(x, strata) {
-  id <- which(x == "strata")
-  if (length(id) == 1) {
-    len <- length(x)
-    if (id == 1) {
-      x <- c(strata, x[-1])
-    } else if (id == len) {
-      x <- c(x[1:(id - 1)], strata)
-    } else {
-      x <- c(x[1:(id - 1)], strata, x[(id + 1):len])
-    }
-  }
-  return(x)
 }
 
 #' Generate a plot visualisation (ggplot2) from the output of
 #' summariseIndication
 #'
-#' @param result A summarised_result object.
-#' @param x Variables to be used in the x axis.
-#' @param facet Variables to be used to facet the plot.
-#' @param color Variables to be used to color the plot.
-#' @param splitStrata Whether to split strata.
+#' @inheritParams resultDoc
+#' @inheritParams plotDoc
 #'
 #' @return A ggplot2 object
 #'
@@ -347,103 +128,314 @@ substituteStrata <- function(x, strata) {
 #' }
 #'
 plotIndication <- function(result,
-                           x = "window",
-                           facet = c("cdm_name", "cohort_name", "strata"),
-                           color = c("indication"),
-                           splitStrata = TRUE) {
+                           facet = cdm_name + cohort_name ~ window_name,
+                           colour = "variable_level") {
+  barPlotInternal(
+    result = result,
+    resultType = "summarise_indication",
+    facet = facet,
+    colour = colour,
+    lab = "Indication"
+  )
+}
+
+#' Plot the results of `summariseDrugUtilisation`
+#'
+#' @inheritParams resultDoc
+#' @param variable Variable to plot. See `unique(result$variable_name)` for
+#' options.
+#' @param plotType Must be a choice between: 'scatterplot', 'barplot',
+#' 'densityplot', and 'boxplot'.
+#' @inheritParams plotDoc
+#'
+#' @return A ggplot2 object.
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' cdm <- mockDrugUtilisation(numberIndividuals = 100)
+#' codes <- list(aceta = c(1125315, 1125360, 2905077, 43135274))
+#' cdm <- generateDrugUtilisationCohortSet(
+#'   cdm = cdm,
+#'   name = "cohort",
+#'   conceptSet = codes
+#' )
+#'
+#' result <- cdm$cohort |>
+#'   PatientProfiles::addSex() |>
+#'   summariseDrugUtilisation(
+#'     strata = "sex",
+#'     ingredientConceptId = 1125315,
+#'     estimates = c("min", "q25", "median", "q75", "max", "density")
+#'   )
+#'
+#' result |>
+#'   dplyr::filter(estimate_name == "median") |>
+#'   plotDrugUtilisation(
+#'     variable = "days prescribed",
+#'     plotType = "barplot"
+#'   )
+#'
+#' result |>
+#'   plotDrugUtilisation(
+#'     variable = "days exposed",
+#'     facet = cohort_name ~ cdm_name,
+#'     colour = "sex",
+#'     plotType = "boxplot"
+#'   )
+#'
+#' result |>
+#'   plotDrugUtilisation(
+#'     variable = "cumulative dose milligram",
+#'     plotType = "densityplot",
+#'     facet = "cohort_name",
+#'     colour = "sex"
+#'   )
+#'
+#' mockDisconnect(cdm)
+#' }
+#'
+plotDrugUtilisation <- function(result,
+                                variable = "number exposures",
+                                plotType = "barplot",
+                                facet = strataColumns(result),
+                                colour = "cohort_name") {
   # initial checks
-  assertClass(result, class = "summarised_result")
+  result <- omopgenerics::validateResultArgument(result)
   result <- result |>
-    visOmopResults::filterSettings(.data$result_type == "summarise_indication")
-  if (nrow(result) == 0) {
-    cli::cli_warn(c("!" = "No `summarise_indication` records found, returning empty plot."))
-    return(ggplot2::ggplot())
-  }
-  assertLogical(splitStrata, length = 1)
-  assertCharacter(x)
-  assertCharacter(facet)
-  assertCharacter(color)
-  if (splitStrata) {
-    strata <- visOmopResults::strataColumns(result)
-  } else {
-    strata <- "strata"
-  }
-  facet <- insertValue(facet, which(facet == "strata"), strata)
-  x <- insertValue(x, which(x == "strata"), strata)
-  color <- insertValue(color, which(color == "strata"), strata)
-  facet <- insertValue(facet, which(facet == "group"), "cohort_name")
-  x <- insertValue(x, which(x == "group"), "cohort_name")
-  color <- insertValue(color, which(color == "group"), "cohort_name")
-  opts <- c("cdm_name", "cohort_name", strata, "indication", "window")
-  assertChoice(x, choices = opts, unique = TRUE)
-  assertChoice(facet, choices = opts, unique = TRUE)
-  assertChoice(color, choices = opts, unique = TRUE)
-  intersection <- intersect(x, facet)
-  if (length(intersection) > 0) {
-    cli::cli_abort("{intersection} present in x and facet, no common values allowed")
-  }
-  if (length(x) == 0) cli::cli_abort("`x` can not be empty")
+    dplyr::filter(!.data$variable_name %in% c("number records", "number subjects"))
+  omopgenerics::assertChoice(variable, unique(result$variable_name), length = 1)
+  omopgenerics::assertChoice(plotType, c("barplot", "boxplot", "densityplot", "scatterplot"))
 
-  if (splitStrata) {
-    result <- result |>
-      visOmopResults::splitStrata()
-  } else {
-    result <- result |>
-      dplyr::mutate(
-        "strata" = paste0(.data$strata_name, ": ", .data$strata_level)
+  # subset variable
+  result <- result |>
+    dplyr::filter(.data$variable_name == .env$variable)
+
+  # check estimates
+  estimates <- unique(result$estimate_name)
+  if (plotType %in% c("barplot", "scatterplot")) {
+    if (length(estimates) > 1) {
+      "Only one estimate allowed for {.pkg plotType = '{plotType}'}, multiple estimates in data: {.var {estimates}}." |>
+        cli::cli_abort()
+    }
+    vars <- getVariables(result)
+    x <- vars[!vars %in% c(asCharacterFacet(facet), result)]
+    if (length(x) == 0) {
+      result <- result |>
+        omopgenerics::tidy() |>
+        dplyr::mutate(x = "")
+      x <- "x"
+      xlab <- ""
+    } else {
+      xlab <- paste0(x, collapse = "; ")
+    }
+    if (plotType == "barplot") {
+      p <- visOmopResults::barPlot(
+        result = result,
+        x = correctX(x),
+        y = estimates,
+        facet = facet,
+        colour = colour,
+        label = vars
       )
-  }
-  result <- result |>
-    dplyr::filter(.data$estimate_name == "percentage") |>
-    dplyr::select(
-      "cdm_name",
-      "cohort_name" = "group_level",
-      "indication" = "variable_level", "window" = "variable_name",
-      dplyr::all_of(strata), "estimate_value"
-    ) |>
-    dplyr::mutate("estimate_value" = as.numeric(.data$estimate_value)) |>
-    dplyr::group_by(dplyr::across(!c("estimate_value", "indication"))) |>
-    dplyr::mutate(
-      estimate_value = 100 * .data$estimate_value / sum(.data$estimate_value)
-    ) |>
-    dplyr::ungroup() |>
-    tidyr::unite(col = "x", dplyr::all_of(x), remove = FALSE)
-
-  notPresent <- unique(c(x, facet, color))
-  notPresent <- notPresent[!notPresent %in% opts]
-  if (length(notPresent) > 0) {
-    notPresentNoUnique <- character()
-    for (k in notPresent) {
-      if (length(result[[k]] |> unique()) > 0) {
-        notPresentNoUnique <- c(notPresentNoUnique, k)
-      }
+    } else {
+      p <- visOmopResults::scatterPlot(
+        result = result,
+        x = correctX(x),
+        y = estimates,
+        line = FALSE,
+        point = TRUE,
+        ribbon = FALSE,
+        ymin = NULL,
+        ymax = NULL,
+        facet = facet,
+        colour = colour,
+        label = vars,
+        group = vars
+      )
     }
-    if (length(notPresentNoUnique) > 0) {
-      cli::cli_abort("{.var {notPresent}} must be in either 'x', 'facet' or 'color'")
+    ylab <- paste0(variable, " (", estimates, ")")
+  } else if (plotType == "densityplot") {
+    if (!all(c("density_x", "density_y") %in% estimates)) {
+      "'density_x' and 'density_y' must be present for {.pkg plotType = '{plotType}'}." |>
+        cli::cli_abort()
     }
-  }
-
-  if (length(color) > 0) {
     result <- result |>
-      tidyr::unite(col = "color", dplyr::all_of(color), remove = FALSE)
-  } else {
-    result <- result |> dplyr::mutate("color" = "percentage")
+      dplyr::filter(.data$estimate_name %in% c("density_x", "density_y"))
+    p <- visOmopResults::scatterPlot(
+      result = result,
+      x = "density_x",
+      y = "density_y",
+      line = TRUE,
+      point = FALSE,
+      ribbon = FALSE,
+      ymin = NULL,
+      ymax = NULL,
+      facet = facet,
+      colour = colour,
+    )
+    xlab <- variable
+    ylab <- "Density"
+  } else if (plotType == "boxplot") {
+    est <- c("min", "q25", "median", "q75", "max")
+    if (!all(est %in% estimates)) {
+      "{.var {est}} must be present for {.pkg plotType = '{plotType}'}." |>
+        cli::cli_abort()
+    }
+    result <- result |>
+      dplyr::filter(.data$estimate_name %in% .env$est)
+    vars <- getVariables(result)
+    x <- vars[!vars %in% c(asCharacterFacet(facet), result)]
+    if (length(x) == 0) {
+      result <- result |>
+        omopgenerics::tidy() |>
+        dplyr::mutate(x = "")
+      x <- "x"
+      xlab <- ""
+    } else {
+      xlab <- paste0(x, collapse = "; ")
+    }
+    p <- visOmopResults::boxPlot(
+      result = result,
+      x = correctX(x),
+      facet = facet,
+      colour = colour,
+      ymin = "min",
+      lower = "q25",
+      middle = "median",
+      upper = "q75",
+      ymax = "max",
+      label = vars
+    )
+    ylab <- variable
   }
 
-  result <- result |>
-    dplyr::select(dplyr::all_of(c("x", facet, "color", "estimate_value")))
+  p <- p +
+    ggplot2::xlab(label = xlab) +
+    ggplot2::ylab(label = ylab)
 
-  p <- result |>
-    ggplot2::ggplot(mapping = ggplot2::aes(
-      x = .data$x, y = .data$estimate_value, color = .data$color,
-      fill = .data$color
-    )) +
-    ggplot2::geom_col() +
-    ggplot2::xlab("") +
-    ggplot2::ylab("Percentage") +
-    ggplot2::ylim(c(0, 101))
+  return(p)
+}
+asCharacterFacet <- function(facet) {
+  as.character(facet) |>
+    strsplit(split = " + ", fixed = TRUE) |>
+    purrr::flatten_chr() |>
+    purrr::keep(\(x) !x %in% c(".", "~"))
+}
+correctX <- function(x) { # issue in visOmopResults
+  if (length(x) == 0) return(NULL)
+  return(x)
+}
 
-  if (length(facet) > 0) {
+#' Plot proportion of patients covered
+#'
+#' @inheritParams resultDoc
+#' @inheritParams plotDoc
+#' @param ribbon Whether to plot a ribbon with the confidence intervals.
+#'
+#' @return Plot of proportion Of patients covered over time
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation()
+#'
+#' cdm <- generateDrugUtilisationCohortSet(
+#'   cdm = cdm,
+#'   name = "my_cohort",
+#'   conceptSet = list(drug_of_interest = c(1503297, 1503327))
+#' )
+#'
+#' result <- cdm$my_cohort |>
+#'   summariseProportionOfPatientsCovered(followUpDays = 365)
+#'
+#' plotProportionOfPatientsCovered(result)
+#'
+#' CDMConnector::cdmDisconnect(cdm = cdm)
+#' }
+#'
+plotProportionOfPatientsCovered <- function(result,
+                                            facet = "cohort_name",
+                                            colour = strataColumns(result),
+                                            ribbon = TRUE) {
+  rlang::check_installed("ggplot2", reason = "for plot functions")
+  rlang::check_installed("scales", reason = "for plot functions")
+
+  result <- omopgenerics::validateResultArgument(result)
+  omopgenerics::assertLogical(ribbon, length = 1)
+
+  workingResult <- result |>
+    omopgenerics::filterSettings(
+      .data$result_type == "summarise_proportion_of_patients_covered"
+    ) |>
+    dplyr::filter(stringr::str_starts(.data$estimate_name, "ppc"))
+
+  if (nrow(workingResult) == 0) {
+    cli::cli_warn("No PPC results found")
+    return(ggplot2::ggplot() +
+             ggplot2::theme_void())
+  }
+
+  checkVersion(result)
+
+  workingResult <- workingResult|>
+    dplyr::mutate(estimate_value = as.numeric(.data$estimate_value) / 100) |>
+    omopgenerics::tidy() |>
+    dplyr::mutate(time = as.numeric(.data$time)) |>
+    dplyr::select(!dplyr::all_of(c("variable_name", "variable_level")))
+
+  group <- colnames(workingResult) |>
+    purrr::keep(\(x) !x %in% c("time", "ppc", "ppc_lower", "ppc_upper"))
+
+  workingResult <- workingResult |>
+    uniteColumn(group, "group_vars") |>
+    uniteColumn(colour, "colour_vars")
+
+  p <- ggplot2::ggplot(
+    data = workingResult,
+    mapping = ggplot2::aes(
+      x = .data$time, y = .data$ppc, group = .data$group_vars,
+      colour = .data$colour_vars, ymin = .data$ppc_lower,
+      ymax = .data$ppc_upper, fill = .data$colour_vars
+    )
+  ) +
+    ggplot2::geom_line()
+
+  if (ribbon) {
+    p <- p +
+      ggplot2::geom_ribbon(alpha = 0.3, show.legend = FALSE, linewidth = 0)
+  }
+
+  p <- p +
+    ggplot2::labs(
+      y = "Proportion of patients covered (PPC)",
+      x = "Time (days)",
+      colour = paste0(colour, collapse = "; ")
+    ) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = "top") +
+    ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 0.1))
+
+  if (rlang::is_bare_formula(facet)) {
+    notPresent <- facet |>
+      as.character() |>
+      purrr::keep(\(x) x != "~") |>
+      purrr::map(\(x) stringr::str_split_1(x, pattern = stringr::fixed(" + "))) |>
+      purrr::flatten_chr() |>
+      purrr::keep(\(x) x != ".") |>
+      purrr::keep(\(x) !x %in% colnames(workingResult)) |>
+      unique()
+    if (length(notPresent) > 0) {
+      cli::cli_abort("{.var {notPresent}} not present in data.")
+    }
+    p <- p +
+      ggplot2::facet_grid(facet)
+  } else if (!is.null(facet)) {
+    mes <- "`facet` must point to columns in `result`"
+    if (!is.character(facet)) cli::cli_abort(message = mes)
+    if (any(!facet %in% colnames(workingResult))) cli::cli_abort(message = mes)
     p <- p +
       ggplot2::facet_wrap(facets = facet)
   }
@@ -451,15 +443,85 @@ plotIndication <- function(result,
   return(p)
 }
 
-insertValue <- function(x, pos, value) {
-  if (length(pos) == 1) {
-    if (pos == 1) {
-      x <- c(value, x[-1])
-    } else if (pos == length(x)) {
-      x <- c(x[-length(x)], value)
-    } else {
-      x <- c(x[1:(pos - 1)], value, x[(pos + 1):length(x)])
-    }
+uniteColumn <- function(x, cols, name, call = parent.frame()) {
+  nm <- gsub("_vars", "", name)
+  mes <- glue::glue("`{nm}` must point to columns in `result`")
+  if (!is.character(cols) && !is.null(cols)) {
+    cli::cli_abort(message = mes, call = call)
+  }
+  if (any(!cols %in% colnames(x))) cli::cli_abort(message = mes, call = call)
+
+  if (length(cols) == 0) {
+    x <- dplyr::mutate(x, !!name := "")
+  } else {
+    x <- x |>
+      tidyr::unite(col = !!name, dplyr::all_of(cols), sep = "; ", remove = FALSE)
   }
   return(x)
+}
+
+barPlotInternal <- function(result,
+                            resultType,
+                            facet,
+                            colour,
+                            lab,
+                            call = parent.frame()) {
+  rlang::check_installed("ggplot2")
+  rlang::check_installed("visOmopResults")
+
+  result <- omopgenerics::validateResultArgument(result, call = call)
+
+  result <- result |>
+    omopgenerics::filterSettings(.data$result_type == .env$resultType) |>
+    dplyr::filter(.data$estimate_name == "percentage")
+
+  if (nrow(result) == 0) {
+    cli::cli_warn(c("!" = "There are no results to plot, returning empty plot"))
+    return(emptyPlot())
+  }
+
+  checkVersion(result)
+
+  # to display order accordingly
+  lev <- result$variable_level |>
+    unique() |>
+    rev()
+  result <- result |>
+    dplyr::mutate(variable_level = factor(.data$variable_level, levels = lev)) |>
+    omopgenerics::tidy() |>
+    dplyr::select(!"variable_name")
+  label <- result |>
+    dplyr::select(!c("percentage", "variable_level")) |>
+    as.list() |>
+    purrr::map(unique) |>
+    purrr::keep(\(x) length(x) > 1) |>
+    names()
+
+  visOmopResults::barPlot(
+    result = result,
+    x = "variable_level",
+    y = "percentage",
+    facet = facet,
+    colour = colour,
+    label = label
+  ) +
+    ggplot2::coord_flip() +
+    ggplot2::theme(legend.position = "top") +
+    ggplot2::ylim(c(0, 100)) +
+    ggplot2::labs(colour = "", fill = "", y = "Percentage (%)", x = lab)
+}
+getVariables <- function(res) {
+  res |>
+    dplyr::select(!c("estimate_name", "estimate_type", "estimate_value")) |>
+    dplyr::distinct() |>
+    omopgenerics::splitAll() |>
+    omopgenerics::addSettings() |>
+    as.list() |>
+    purrr::map(unique) |>
+    purrr::keep(\(x) length(x) > 1) |>
+    names()
+}
+emptyPlot <- function() {
+  ggplot2::ggplot() +
+    ggplot2::theme_void()
 }

@@ -101,41 +101,6 @@ test_that("input validation", {
     )
   )
 
-  cohort1 <- dplyr::tibble(
-    cohort_definition_id = as.integer(c()),
-    subject_id = as.integer(c()),
-    cohort_start_date = as.Date(c()),
-    cohort_end_date = as.Date(c())
-  )
-
-  observationPeriod <- dplyr::tibble(
-    observation_period_id = c(1, 2, 3),
-    person_id = c(1, 2, 3),
-    observation_period_start_date = as.Date(c(
-      "2015-01-01", "2016-05-15", "2012-12-30"
-    )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
-    period_type_concept_id = 44814724
-  )
-
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = cohort1,
-      observation_period = observationPeriod
-    )
-
-  expect_no_error(
-    requirePriorDrugWashout(
-      cohort = cdm$cohort1,
-      days = 90,
-      name = "cohort2"
-    )
-  )
-
   mockDisconnect(cdm = cdm)
 })
 
@@ -158,9 +123,7 @@ test_that("requirePrioUseWashout example", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
 
@@ -240,9 +203,7 @@ test_that("requirePrioUseWashout example", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
 
@@ -339,9 +300,7 @@ test_that("test cohortId, example 2", {
     observation_period_start_date = as.Date(c(
       "2015-01-01", "2016-05-15", "2012-12-30"
     )),
-    observation_period_end_date = as.Date(c(
-      "2025-01-01", "2026-05-15", "2030-12-30"
-    )),
+    observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
 

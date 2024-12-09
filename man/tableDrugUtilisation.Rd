@@ -6,52 +6,26 @@
 \usage{
 tableDrugUtilisation(
   result,
-  header = c("group", "strata"),
-  splitStrata = TRUE,
-  cohortName = TRUE,
-  cdmName = TRUE,
-  conceptSet = TRUE,
-  ingredient = TRUE,
-  groupColumn = NULL,
+  header = c("cdm_name"),
+  groupColumn = c("cohort_name", strataColumns(result)),
   type = "gt",
-  formatEstimateName = c(`N (\%)` = "<count_missing> (<percentage_missing> \%)", N =
-    "<count>", `Mean (SD)` = "<mean> (<sd>)", `Median (Q25 - Q75)` =
-    "<median> (<q25> - <q75>)"),
-  .options = list()
+  hide = "variable_level"
 )
 }
 \arguments{
-\item{result}{A summarised_result object with results from
-summariseDrugUtilisation().}
+\item{result}{A summarised_result object.}
 
-\item{header}{A vector containing which elements should go into the header
-in order. Allowed are: \code{cdm_name}, \code{group}, \code{strata}, \code{variable}, \code{estimate}.}
+\item{header}{Columns to use as header. See options with
+\code{availableTableColumns(result)}.}
 
-\item{splitStrata}{If TRUE strata columns will be split.}
+\item{groupColumn}{Columns to group by. See options with
+\code{availableTableColumns(result)}.}
 
-\item{cohortName}{If TRUE cohort names will be displayed.}
+\item{type}{Type of table. Check supported types with
+\code{visOmopResults::tableType()}.}
 
-\item{cdmName}{If TRUE database names will be displayed.}
-
-\item{conceptSet}{If TRUE concept sets name will be displayed.}
-
-\item{ingredient}{If TRUE ingredients names will be displayed for dose
-calculation.}
-
-\item{groupColumn}{Column to use as group labels, these can be:
-"cdm_name", "cohort_name", "concept_set", "variable_name", and/or
-"ingredient". If strata is split, any of the levels can be used, otherwise
-"strata_name" and "strata_level" can be used for table group format.}
-
-\item{type}{Type of desired formatted table, possibilities: "gt",
-"flextable", "tibble".}
-
-\item{formatEstimateName}{Named list of estimate name's to join, sorted by
-computation order. Indicate estimate_name's between <...>.}
-
-\item{.options}{Named list with additional formatting options.
-DrugUtilisation::defaultTableOptions() shows allowed
-arguments and their default values.}
+\item{hide}{Columns to hide from the visualisation. See options with
+\code{availableTableColumns(result)}.}
 }
 \value{
 A table with a formatted version of summariseIndication() results.
@@ -68,9 +42,11 @@ library(CodelistGenerator)
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
-cdm[["dus_cohort"]] \%>\%
-  summariseDrugUtilisation(ingredientConceptId = 1125315) |>
-  tableDrugUtilisation()
+
+drugUse <- cdm$dus_cohort |>
+  summariseDrugUtilisation(ingredientConceptId = 1125315)
+
+tableDrugUtilisation(drugUse)
 }
 
 }

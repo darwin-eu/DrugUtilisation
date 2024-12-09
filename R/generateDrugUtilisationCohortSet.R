@@ -23,13 +23,14 @@
 #' overlap or have fewer days between them than the specified gap era will be
 #' concatenated into a single cohort entry.
 #'
-#' @param cdm A cdm reference.
-#' @param name The name of the new cohort table to add to the cdm reference.
-#' @param conceptSet The concepts used to create the cohort, provide as a
-#' codelist or concept set expression.
-#' @param gapEra Number of days between two continuous exposures to be
-#' considered in the same era. Records that have fewer days between them than
-#' this gap will be concatenated into the same cohort record.
+#' @inheritParams cdmDoc
+#' @inheritParams newNameDoc
+#' @inheritParams conceptSetDoc
+#' @inheritParams gapEraDoc
+#' @param subsetCohort Cohort table to subset.
+#' @param subsetCohortId Cohort id to subset.
+#' @inheritParams numberExposuresDoc
+#' @inheritParams daysPrescribedDoc
 #' @param durationRange Deprecated.
 #' @param imputeDuration Deprecated.
 #' @param priorUseWashout Deprecated.
@@ -51,13 +52,16 @@
 #' cdm <- mockDrugUtilisation()
 #'
 #' druglist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm, c("acetaminophen", "metformin")
+#'   cdm, c("acetaminophen", "metformin"), nameStyle = "{concept_name}"
 #' )
 #'
 #' cdm <- generateDrugUtilisationCohortSet(
 #'   cdm = cdm,
 #'   name = "drug_cohorts",
-#'   conceptSet = druglist
+#'   conceptSet = druglist,
+#'   gapEra = 30,
+#'   numberExposures = TRUE,
+#'   daysPrescribed = TRUE
 #' )
 #'
 #' cdm$drug_cohorts |>
@@ -68,6 +72,10 @@ generateDrugUtilisationCohortSet <- function(cdm,
                                              name,
                                              conceptSet,
                                              gapEra = 1,
+                                             subsetCohort = NULL,
+                                             subsetCohortId = NULL,
+                                             numberExposures = FALSE,
+                                             daysPrescribed = FALSE,
                                              durationRange = lifecycle::deprecated(),
                                              imputeDuration = lifecycle::deprecated(),
                                              priorUseWashout = lifecycle::deprecated(),
@@ -75,46 +83,56 @@ generateDrugUtilisationCohortSet <- function(cdm,
                                              cohortDateRange = lifecycle::deprecated(),
                                              limit = lifecycle::deprecated()) {
   if (lifecycle::is_present(durationRange)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0",
       what = "generateDrugUtilisationCohortSet(durationRange = )"
     )
   }
   if (lifecycle::is_present(imputeDuration)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0", what = "generateDrugUtilisationCohortSet(imputeDuration = )"
     )
   }
   if (lifecycle::is_present(priorUseWashout)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0",
       what = "generateDrugUtilisationCohortSet(priorUseWashout = )",
       with = "requirePriorDrugWashout()"
     )
   }
   if (lifecycle::is_present(priorObservation)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0",
       what = "generateDrugUtilisationCohortSet(priorObservation = )",
       with = "requireObservationBeforeDrug()"
     )
   }
   if (lifecycle::is_present(cohortDateRange)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0",
       what = "generateDrugUtilisationCohortSet(cohortDateRange = )",
       with = "requireDrugInDateRange()"
     )
   }
   if (lifecycle::is_present(limit)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       when = "0.7.0",
       what = "generateDrugUtilisationCohortSet(limit = )",
       with = "requireIsFirstDrugEntry()"
     )
   }
 
-  checkInputs(cdm = cdm, name = name, conceptSet = conceptSet, gapEra = gapEra)
+  cdm <- omopgenerics::validateCdmArgument(cdm)
+  name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
+  conceptSet <- validateConceptSet(conceptSet)
+  omopgenerics::assertNumeric(gapEra, integerish = TRUE, length = 1)
+  omopgenerics::assertLogical(numberExposures, length = 1)
+  omopgenerics::assertLogical(daysPrescribed, length = 1)
+  omopgenerics::assertCharacter(subsetCohort, length = 1, null = TRUE)
+  if (!is.null(subsetCohort)) {
+    validateCohort(cdm[[subsetCohort]])
+    subsetCohortId <- omopgenerics::validateCohortIdArgument({{subsetCohortId}}, cdm[[subsetCohort]])
+  }
 
   # get conceptSet
   cohortSet <- dplyr::tibble(cohort_name = names(conceptSet)) |>
@@ -134,17 +152,35 @@ generateDrugUtilisationCohortSet <- function(cdm,
     ) |>
     dplyr::mutate("type" = "index event")
 
-  cdm[[name]] <- subsetTables(cdm, conceptSet, name) |>
+  cdm[[name]] <- subsetTables(cdm, conceptSet, name, subsetCohort, subsetCohortId) |>
     omopgenerics::newCohortTable(
       cohortSetRef = cohortSet, cohortCodelistRef = cohortCodelistAttr
-    ) |>
-    erafyCohort(gapEra)
+    )
 
-  dropTmpTables(cdm)
+  cols <- c(
+    "number_exposures"[numberExposures], "days_prescribed"[daysPrescribed]
+  )
+
+  # collapse records
+  if (gapEra > 0) {
+    cli::cli_inform(c("i" = "Collapsing records with gapEra = {gapEra} days."))
+    cdm[[name]] <- cdm[[name]] |>
+      erafy(gap = gapEra, toSummarise = cols) |>
+      dplyr::compute(name = name, temporary = FALSE) |>
+      omopgenerics::recordCohortAttrition(glue::glue(
+        "Collapse records separated by {gapEra} or less days"
+      ))
+  } else {
+    cdm[[name]] <- cdm[[name]] |>
+      dplyr::select(
+        "cohort_definition_id", "subject_id", "cohort_start_date",
+        "cohort_end_date", dplyr::all_of(cols)
+      ) |>
+      dplyr::compute(name = name, temporary = FALSE)
+  }
 
   return(cdm)
 }
-
 
 #' Get the gapEra used to create a cohort
 #'
@@ -179,16 +215,10 @@ generateDrugUtilisationCohortSet <- function(cdm,
 #' }
 #'
 cohortGapEra <- function(cohort, cohortId = NULL) {
-  assertClass(cohort, class = "cohort_table")
-  assertNumeric(cohortId, integerish = TRUE, null = TRUE)
+  omopgenerics::assertClass(cohort, class = "cohort_table")
+  cohortId <- omopgenerics::validateCohortIdArgument({cohortId}, cohort, validation = "warning")
+
   set <- settings(cohort)
-  opts <- set |> dplyr::pull("cohort_definition_id")
-  if (is.null(cohortId)) cohortId <- opts
-  removed <- cohortId[!cohortId %in% opts]
-  if (length(removed) > 0) {
-    cli::cli_warn(c("!" = "cohortIds: {removed} not present in settings."))
-  }
-  cohortId <- cohortId[cohortId %in% opts]
   if ("gap_era" %in% colnames(set)) {
     gapEra <- set |>
       dplyr::select("gap_era", "cohort_definition_id") |>

@@ -101,21 +101,5 @@ imputeDailyDose is not "none". If NULL no restrictions are applied.}
 The same cohort with the added columns.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-}
-\examples{
-\donttest{
-library(DrugUtilisation)
-
-cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm,
-  name = "acetaminophen"
-)
-
-cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
-cdm[["dus_cohort"]] |>
-  addDrugUse(ingredientConceptId = 1125315)
-}
-
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 }

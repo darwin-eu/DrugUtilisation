@@ -7,6 +7,7 @@ cohorts.}
 \usage{
 summariseDrugUtilisation(
   cohort,
+  cohortId = NULL,
   strata = list(),
   estimates = c("q25", "median", "q75", "mean", "sd", "count_missing",
     "percentage_missing"),
@@ -18,26 +19,32 @@ summariseDrugUtilisation(
   gapEra = 1,
   numberExposures = TRUE,
   numberEras = TRUE,
-  exposedTime = TRUE,
+  daysExposed = TRUE,
+  daysPrescribed = TRUE,
   timeToExposure = TRUE,
+  initialExposureDuration = TRUE,
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
   initialDailyDose = TRUE,
-  cumulativeDose = TRUE
+  cumulativeDose = TRUE,
+  exposedTime = lifecycle::deprecated()
 )
 }
 \arguments{
-\item{cohort}{Cohort with drug use variables and strata.}
+\item{cohort}{A cohort_table object.}
 
-\item{strata}{Stratification list.}
+\item{cohortId}{A cohort definition id to restrict by. If NULL, all cohorts
+will be included.}
+
+\item{strata}{A list of variables to stratify results. These variables
+must have been added as additional columns in the cohort table.}
 
 \item{estimates}{Estimates that we want for the columns.}
 
 \item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
-the study. It is a compulsory input, no default value is provided.}
+the study.}
 
-\item{conceptSet}{List of concepts to be included. If NULL all the
-descendants of ingredient concept id will be used.}
+\item{conceptSet}{List of concepts to be included.}
 
 \item{indexDate}{Name of a column that indicates the date to start the
 analysis.}
@@ -52,23 +59,39 @@ be included.}
 \item{gapEra}{Number of days between two continuous exposures to be
 considered in the same era.}
 
-\item{numberExposures}{Whether to add a column with the number of exposures.}
+\item{numberExposures}{Whether to include 'number_exposures' (number of drug
+exposure records between indexDate and censorDate).}
 
-\item{numberEras}{Whether to add a column with the number of eras.}
+\item{numberEras}{Whether to include 'number_eras' (number of continuous
+exposure episodes between indexDate and censorDate).}
 
-\item{exposedTime}{Whether to add a column with the number of exposed days.}
+\item{daysExposed}{Whether to include 'days_exposed' (number of days that the
+individual is in a continuous exposure episode, including allowed treatment
+gaps, between indexDate and censorDate; sum of the length of the different
+drug eras).}
 
-\item{timeToExposure}{Whether to add a column with the number of days between
-indexDate and start of the first exposure.}
+\item{daysPrescribed}{Whether to include 'days_prescribed' (sum of the number
+of days for each prescription that contribute in the analysis).}
 
-\item{initialQuantity}{Whether to add a column with the initial quantity.}
+\item{timeToExposure}{Whether to include 'time_to_exposure' (number of days
+between indexDate and the first episode).}
 
-\item{cumulativeQuantity}{Whether to add a column with the cumulative
-quantity of the identified prescription.}
+\item{initialExposureDuration}{Whether to include 'initial_exposure_duration'
+(number of prescribed days of the first drug exposure record).}
 
-\item{initialDailyDose}{Whether to add a column with the initial daily dose.}
+\item{initialQuantity}{Whether to include 'initial_quantity' (quantity of the
+first drug exposure record).}
 
-\item{cumulativeDose}{Whether to add a column with the cumulative dose.}
+\item{cumulativeQuantity}{Whether to include 'cumulative_quantity' (sum of
+the quantity of the different exposures considered in the analysis).}
+
+\item{initialDailyDose}{Whether to include 'initial_daily_dose_{unit}'
+(daily dose of the first considered prescription).}
+
+\item{cumulativeDose}{Whether to include 'cumulative_dose_{unit}' (sum of
+the cumulative dose of the analysed drug exposure records).}
+
+\item{exposedTime}{deprecated.}
 }
 \value{
 A summary of drug utilisation stratified by cohort_name and strata_name
@@ -87,7 +110,7 @@ codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 cdm <- generateDrugUtilisationCohortSet(
   cdm, "dus_cohort", codelist
 )
-cdm[["dus_cohort"]] \%>\%
+cdm[["dus_cohort"]] |>
   summariseDrugUtilisation(ingredientConceptId = 1125315)
 }
 

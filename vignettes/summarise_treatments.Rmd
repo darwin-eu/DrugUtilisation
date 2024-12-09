@@ -112,16 +112,7 @@ The package includes `table` and `plot` functions to help visualise the results 
 The `tableTreatment()` function generates a table in gt, flextable, or tibble format from the summarised_result produced by `summariseTreatment()`. This function has customisation options to format the table according to user preferences.
 
 ```{r}
-tableTreatment(
-  result = results,
-  header = c("strata"),
-  splitStrata = FALSE,
-  cdmName = FALSE,
-  groupColumn = c("cohort_name"),
-  type = "gt",
-  formatEstimateName = c("N (%)" = "<count> (<percentage> %)"),
-  .options = list()
-)
+tableTreatment(result = results)
 ```
 
 ## Plots
@@ -131,9 +122,7 @@ The `plotTreatment()` function creates a bar plot showing the percentage of trea
 ```{r, fig.height=8, fig.width=8}
 plotTreatment(
   result = results,
-  facetX = c("cohort_name", "window_name"),
-  facetY = c("strata"),
-  splitStrata = TRUE,
-  colour = "treatment"
+  facet =  sex + age_group ~ window_name + cohort_name,
+  colour = "variable_level"
 )
 ```

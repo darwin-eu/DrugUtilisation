@@ -8,9 +8,10 @@ concept sets and ingredient}
 dailyDoseCoverage(cdm, ingredientConceptId)
 }
 \arguments{
-\item{cdm}{A cdm reference created using CDMConnector}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{ingredientConceptId}{Code indicating the ingredient of interest}
+\item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
+the study.}
 }
 \value{
 The function returns information of the coverage of computeDailyDose.R

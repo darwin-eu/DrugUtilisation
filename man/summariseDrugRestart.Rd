@@ -6,16 +6,21 @@
 \usage{
 summariseDrugRestart(
   cohort,
+  cohortId = NULL,
   switchCohortTable,
   switchCohortId = NULL,
   strata = list(),
   followUpDays = Inf,
   censorDate = NULL,
+  incident = TRUE,
   restrictToFirstDiscontinuation = TRUE
 )
 }
 \arguments{
-\item{cohort}{A cohort table.}
+\item{cohort}{A cohort_table object.}
+
+\item{cohortId}{A cohort definition id to restrict by. If NULL, all cohorts
+will be included.}
 
 \item{switchCohortTable}{A cohort table in the cdm that contains possible
 alternative treatments.}
@@ -23,14 +28,18 @@ alternative treatments.}
 \item{switchCohortId}{The cohort ids to be used from switchCohortTable. If
 NULL all cohort definition ids are used.}
 
-\item{strata}{List with column names or vectors of column names groups to
-stratify results by.}
+\item{strata}{A list of variables to stratify results. These variables
+must have been added as additional columns in the cohort table.}
 
 \item{followUpDays}{A vector of number of days to follow up. It can be
 multiple values.}
 
-\item{censorDate}{Date of censoring. Individuals are always censored at the
-end of observation.}
+\item{censorDate}{Name of a column that indicates the date to stop the
+analysis, if NULL end of individuals observation is used.}
+
+\item{incident}{Whether the switch treatment has to be incident (start after
+discontinuation) or not (it can start before the discontinuation and last
+till after).}
 
 \item{restrictToFirstDiscontinuation}{Whether to consider only the first
 discontinuation episode or all of them.}

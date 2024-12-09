@@ -6,43 +6,26 @@
 \usage{
 tableDoseCoverage(
   result,
-  header = c("variable", "estimate"),
-  splitStrata = TRUE,
-  ingridientName = TRUE,
-  cdmName = TRUE,
-  groupColumn = NULL,
+  header = c("variable_name", "estimate_name"),
+  groupColumn = c("cdm_name", "ingredient_name"),
   type = "gt",
-  formatEstimateName = c(`N (\%)` = "<count_missing> (<percentage_missing> \%)", N =
-    "<count>", `Mean (SD)` = "<mean> (<sd>)", `Median (Q25 - Q75)` =
-    "<median> (<q25> - <q75>)"),
-  .options = list()
+  hide = c("variable_level", "sample_size")
 )
 }
 \arguments{
-\item{result}{A summarised_result object with results from
-summariseDoseCoverage().}
+\item{result}{A summarised_result object.}
 
-\item{header}{A vector containing which elements should go into the header
-in order. Allowed are: \code{cdm_name}, \code{group}, \code{strata}, \code{variable}, and
-\code{estimate}.}
+\item{header}{Columns to use as header. See options with
+\code{availableTableColumns(result)}.}
 
-\item{splitStrata}{If TRUE strata columns will be split.}
+\item{groupColumn}{Columns to group by. See options with
+\code{availableTableColumns(result)}.}
 
-\item{ingridientName}{If TRUE cohort names will be displayed.}
+\item{type}{Type of table. Check supported types with
+\code{visOmopResults::tableType()}.}
 
-\item{cdmName}{If TRUE database names will be displayed.}
-
-\item{groupColumn}{Column to use as group labels.}
-
-\item{type}{Type of desired formatted table, possibilities: "gt",
-"flextable", "tibble".}
-
-\item{formatEstimateName}{Named list of estimate name's to join, sorted by
-computation order. Indicate estimate_name's between <...>.}
-
-\item{.options}{Named list with additional formatting options.
-DrugUtilisation::defaultTableOptions() shows allowed
-arguments and their default values.}
+\item{hide}{Columns to hide from the visualisation. See options with
+\code{availableTableColumns(result)}.}
 }
 \value{
 A table with a formatted version of summariseDrugCoverage() results.

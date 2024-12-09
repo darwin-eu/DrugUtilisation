@@ -7,27 +7,19 @@ summariseDrugRestart() function.}
 \usage{
 plotDrugRestart(
   result,
-  facetX = "variable_name",
-  facetY = c("cdm_name", "cohort_name", "strata"),
-  colour = "variable_level",
-  splitStrata = TRUE
+  facet = cdm_name + cohort_name ~ follow_up_days,
+  colour = "variable_level"
 )
 }
 \arguments{
-\item{result}{A summarised_result object with results from
-summariseDrugRestart().}
+\item{result}{A summarised_result object.}
 
-\item{facetX}{Vector of variables to facet by horizontally. Allowed options
-are: "cdm_name", "cohort_name", "strata", "variable_name"}
+\item{facet}{Columns to facet by. See options with
+\code{availablePlotColumns(result)}. Formula is also allowed to specify rows and
+columns.}
 
-\item{facetY}{Vector of variables to facet by vertically Allowed options
-are: "cdm_name", "cohort_name", "strata", "variable_name".}
-
-\item{colour}{Vector of variables to distinct by colour. Allowed options
-are: "cdm_name", "cohort_name", "strata", "variable_name", and
-"variable_level".}
-
-\item{splitStrata}{Whether to split strata columns.}
+\item{colour}{Columns to color by. See options with
+\code{availablePlotColumns(result)}.}
 }
 \value{
 A ggplot2 object.
@@ -54,7 +46,6 @@ result <- cdm$cohort1 |>
 
 plotDrugRestart(result)
 
-CDMConnector::cdmDisconnect(cdm = cdm)
 }
 
 }

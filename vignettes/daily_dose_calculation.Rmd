@@ -12,9 +12,6 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-if (Sys.getenv("EUNOMIA_DATA_FOLDER") == "") Sys.setenv("EUNOMIA_DATA_FOLDER" = tempdir())
-if (!dir.exists(Sys.getenv("EUNOMIA_DATA_FOLDER"))) dir.create(Sys.getenv("EUNOMIA_DATA_FOLDER"))
-if (!CDMConnector::eunomia_is_available()) CDMConnector::downloadEunomiaData()
 knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
@@ -175,5 +172,5 @@ tableDoseCoverage(coverageResult)
 The user also has the freedom to customize the gt table output. For example the following will suppress the `cdmName`:
 
 ```{r, message= FALSE, warning=FALSE}
-tableDoseCoverage(coverageResult, cdmName = F)
+tableDoseCoverage(coverageResult, groupColumn = "ingredient_name", hide = "cdm_name")
 ```

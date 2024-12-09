@@ -22,40 +22,82 @@ reference:
   - generateDrugUtilisationCohortSet
   - generateIngredientCohortSet
   - generateAtcCohortSet
+  - erafyCohort
   - cohortGapEra
 - subtitle: Apply inclusion criteria to drug cohorts
   desc: Apply inclusion criteria that filter drug cohort entries based on specified rules.
 - contents:
-  - matches("require*")
+  - requireDrugInDateRange
+  - requireIsFirstDrugEntry
+  - requireObservationBeforeDrug
+  - requirePriorDrugWashout
 - subtitle: Identify and summarise indications for patients in drug cohorts
   desc: Indications identified based on their presence in indication cohorts or OMOP CDM clinical tabes.
 - contents:
-  - matches("*Indication")
+  - addIndication
+  - summariseIndication
+  - tableIndication
+  - plotIndication
 - subtitle: Drug use functions
   desc: Drug use functions are used to summarise and obtain the drug use information
 - contents:
-  - matches("addDrugUtilisation|summariseDrugUtilisation|tableDrugUtilisation|addNumberExposures|addNumberEras|addExposedTime|addTimeToExposure|addInitialQuantity|addCumulativeQuantity|addCumulativeDose|addInitialDailyDose")
+  - addDrugUtilisation
+  - summariseDrugUtilisation
+  - tableDrugUtilisation
+  - plotDrugUtilisation
+- subtitle: Drug use individual functions
+  desc: Drug use functions can be used to add a single estimates
+- contents:
+  - addNumberExposures
+  - addNumberEras
+  - addTimeToExposure
+  - addDaysExposed
+  - addDaysPrescribed
+  - addInitialExposureDuration
+  - addInitialQuantity
+  - addCumulativeQuantity
+  - addInitialDailyDose
+  - addCumulativeDose
 - subtitle: Summarise treatment persistence using proportion of patients covered (PPC)
   desc: Summarise the proportion of patients in the drug cohort over time.
 - contents:
-  - matches("*summariseProportionOfPatientsCovered|plotProportionOfPatientsCovered|tableProportionOfPatientsCovered")
+  - summariseProportionOfPatientsCovered
+  - tableProportionOfPatientsCovered
+  - plotProportionOfPatientsCovered
 - subtitle: Summarise treatments during certain windows
   desc: Summarise the use of different treatments during certain windows
 - contents:
-  - matches("Treatment")
+  - addTreatment
+  - summariseTreatment
+  - tableTreatment
+  - plotTreatment
 - subtitle: Summarise treatment restart or switch during certain time
   desc: Summarise the restart of a treatment, or switch to another, during certain time
 - contents:
-  - matches("summariseDrugRestart|tableDrugRestart|plotDrugRestart")
+  - addDrugRestart
+  - summariseDrugRestart
+  - tableDrugRestart
+  - plotDrugRestart
 - subtitle: Daily dose documentation
   desc: Functions to assess coverage for the diferent ingredients and document how daily dose is calculated
 - contents:
-  - matches("patternsWithFormula|patternTable|summariseDoseCoverage|tableDoseCoverage")
+  - patternsWithFormula
+  - patternTable
+  - summariseDoseCoverage
+  - tableDoseCoverage
 - subtitle: Complementary functions
   desc: Complementary functions
 - contents:
-  - matches("defaultTableOptions|mockDrugUtilisation|benchmark*")
+  - benchmarkDrugUtilisation
+  - mockDrugUtilisation
 - subtitle: Deprecated functions
   desc: This functions has been deprecated
 - contents:
-  - matches("addDailyDose|addRoute|addDrugUse|summariseDrugUse|indicationToStrata|dailyDoseCoverage|stratifyByUnit|readConceptList")
+  - addExposedTime
+  - addDailyDose
+  - addRoute
+  - addDrugUse
+  - summariseDrugUse
+  - dailyDoseCoverage
+  - stratifyByUnit
+  - readConceptList

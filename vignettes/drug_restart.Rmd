@@ -126,7 +126,7 @@ For instance, we reproduce the last calculation but this time straifying by sex.
 
 ```{r}
 results <- cdm$cohort1 |>
-  PatientProfiles::addSex() |>
+  PatientProfiles::addSex(name = "cohort1") |>
   summariseDrugRestart(
     switchCohortTable = "insulin",
     switchCohortId = NULL,
@@ -147,16 +147,7 @@ The function `tableDrugRestart()` will create a gt, flextable or tibble table fr
 
 ```{r}
 results |>
-  tableDrugRestart(
-    header = c("strata"),
-    splitStrata = TRUE,
-    cohortName = TRUE,
-    cdmName = FALSE,
-    groupColumn = c("cohort_name"),
-    type = "gt",
-    formatEstimateName = c(`N (%)` = "<count> (<percentage> %)"),
-    .options = list()
-  )
+  tableDrugRestart()
 ```
 
 ## Plot
@@ -165,10 +156,5 @@ The `plotDrugRestart()` function creates a bar plot depicting the percentage of 
 
 ```{r, fig.height=8, fig.width=8}
 results |>
-  plotDrugRestart(
-    facetX = "variable_name",
-    facetY = c("cohort_name", "strata"),
-    colour = "variable_level",
-    splitStrata = TRUE
-  )
+  plotDrugRestart(facet = cohort_name + sex ~ follow_up_days)
 ```

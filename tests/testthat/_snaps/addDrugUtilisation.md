@@ -4,15 +4,15 @@
       addNumberEras(cdm$dus_cohort, NULL, gapEra = 1)
     Condition
       Error in `addNumberEras()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
     Code
-      addExposedTime(cdm$dus_cohort, NULL, gapEra = 1)
+      addDaysExposed(cdm$dus_cohort, NULL, gapEra = 1)
     Condition
-      Error in `addExposedTime()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      Error in `addDaysExposed()`:
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
@@ -20,7 +20,7 @@
       addTimeToExposure(cdm$dus_cohort, NULL)
     Condition
       Error in `addTimeToExposure()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
@@ -28,7 +28,7 @@
       addInitialQuantity(cdm$dus_cohort, NULL)
     Condition
       Error in `addInitialQuantity()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
@@ -36,7 +36,7 @@
       addCumulativeQuantity(cdm$dus_cohort, NULL)
     Condition
       Error in `addCumulativeQuantity()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
@@ -44,7 +44,7 @@
       addNumberExposures(cdm$dus_cohort, NULL)
     Condition
       Error in `addNumberExposures()`:
-      ! conceptSet must be a uniquely named list of integerish, no NA are allowed
+      ! `conceptSet` can not be NULL. It muts be a named list of concept_id(s).
 
 ---
 
@@ -52,7 +52,7 @@
       addCumulativeDose(cdm$dus_cohort, NULL)
     Condition
       Error in `addCumulativeDose()`:
-      ! Either conceptSet or ingredientConceptId must be provided.
+      ! `ingredientConceptId` or `conceptSet` must be provided.
 
 ---
 
@@ -60,7 +60,7 @@
       addInitialDailyDose(cdm$dus_cohort, NULL)
     Condition
       Error in `addInitialDailyDose()`:
-      ! Either conceptSet or ingredientConceptId must be provided.
+      ! `ingredientConceptId` or `conceptSet` must be provided.
 
 ---
 
@@ -68,5 +68,5 @@
       addDrugUtilisation(cdm$dus_cohort, gapEra = 1)
     Condition
       Error in `addDrugUtilisation()`:
-      ! Either conceptSet or ingredientConceptId must be provided.
+      ! `ingredientConceptId` or `conceptSet` must be provided.
 

@@ -24,19 +24,8 @@
 #' @return list of concept_ids and respective concept_ids of interest
 #' @export
 #'
-#' @examples
-#' \donttest{
-#' library(DrugUtilisation)
-#'
-#' cdm <- mockDrugUtilisation()
-#'
-#' codelist <- readConceptList(
-#'   path = system.file("concepts", package = "DrugUtilisation"), cdm = cdm
-#' )
-#' }
-#'
 readConceptList <- function(path, cdm) {
-  lifecycle::deprecate_warn(
+  lifecycle::deprecate_stop(
     when = "0.5.0",
     what = "readConceptList()",
     with = "CodelistGenerator::codesFromConceptSet()"

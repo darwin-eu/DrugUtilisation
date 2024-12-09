@@ -95,7 +95,7 @@ cohort |>
   dplyr::glimpse()
 ```
 
-## exposedTime 
+## daysExposed 
 
 This argument set to TRUE will add a column specifying the time in days a person has been exposed to the drug of interest. Take note that `gapEra` and `restrictIncident` will be taken into account for this calculation: 
 
@@ -103,7 +103,7 @@ This argument set to TRUE will add a column specifying the time in days a person
 
 2) **Incident exposures:** if `restrictIncident = TRUE`, exposed time will consider only those drug exposures starting after indexDate, while if `restrictIncident = FALSE`, exposures that started before indexDate and ended afterwards will also be taken into account.
 
-The subfunction to get only this information is `addExposedTime()`.
+The subfunction to get only this information is `addDaysExposed()`.
 
 ## timeToExposure
 
@@ -141,7 +141,7 @@ addDrugUtilisation(
   gapEra = 1,
   numberExposures = TRUE,
   numberEras = TRUE,
-  exposedTime = TRUE,
+  daysExposed = TRUE,
   timeToExposure = TRUE,
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
@@ -178,7 +178,7 @@ cdm$drug_utilisation_example <- cdm$cohort1 |>
     gapEra = 7,
     numberExposures = FALSE,
     numberEras = FALSE,
-    exposedTime = FALSE,
+    daysExposed = FALSE,
     timeToExposure = FALSE,
     initialQuantity = TRUE,
     cumulativeQuantity = TRUE,
@@ -216,8 +216,9 @@ duResults <- summariseDrugUtilisation(
   gapEra = 7,
   numberExposures = TRUE,
   numberEras = TRUE,
-  exposedTime = TRUE,
+  daysExposed = TRUE,
   timeToExposure = TRUE,
+  initialExposureDuration = TRUE,
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
   initialDailyDose = TRUE,
@@ -255,7 +256,7 @@ duResults <- cdm$cohort1 |>
     gapEra = 7,
     numberExposures = TRUE,
     numberEras = TRUE,
-    exposedTime = TRUE,
+    daysExposed = TRUE,
     timeToExposure = TRUE,
     initialQuantity = TRUE,
     cumulativeQuantity = TRUE,
@@ -275,25 +276,4 @@ Results from `summariseDrugUtilisation()` can be nicely visualised in a tabular 
 
 ```{r, eval = TRUE}
 tableDrugUtilisation(duResults)
-```
-
-By default, it returns a gt table object, in which strata is split and both cohort name (group columns in the summarised result) and strata are in the table's header. However, this dispositions can be customised, for instance:
-
-```{r, eval = TRUE}
-tableDrugUtilisation(
-  duResults,
-  header = c("group", "estimate"),
-  splitStrata = FALSE,
-  cohortName = TRUE,
-  cdmName = FALSE,
-  conceptSet = TRUE,
-  ingredient = TRUE,
-  groupColumn = list("Strata" = c("strata_name", "strata_level")),
-  type = "flextable",
-  formatEstimateName = c(
-    `Missing, N (%)` = "<count_missing> (<percentage_missing> %)",
-    N = "<count>",
-    `Non-missing, Mean (SD)` = "<mean> (<sd>)"
-  )
-)
 ```

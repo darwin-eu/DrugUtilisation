@@ -6,44 +6,51 @@
 \usage{
 tableProportionOfPatientsCovered(
   result,
-  times = NULL,
-  header = c("group", "strata"),
-  splitStrata = TRUE,
-  cohortName = TRUE,
-  cdmName = TRUE,
-  groupColumn = "variable_name",
+  header = c("cohort_name", strataColumns(result)),
+  groupColumn = "cdm_name",
   type = "gt",
-  .options = list()
+  hide = c("variable_name", "variable_level")
 )
 }
 \arguments{
-\item{result}{A summarised_result object with results from
-summariseProportionOfPatientsCovered().}
+\item{result}{A summarised_result object.}
 
-\item{times}{Days to include in the table. If NULL all days will be
-included.}
+\item{header}{Columns to use as header. See options with
+\code{availableTableColumns(result)}.}
 
-\item{header}{A vector containing which elements should go into the header
-in order. Allowed are: \code{cdm_name}, \code{group}, \code{strata}, \code{variable}.}
+\item{groupColumn}{Columns to group by. See options with
+\code{availableTableColumns(result)}.}
 
-\item{splitStrata}{If TRUE strata columns will be split.}
+\item{type}{Type of table. Check supported types with
+\code{visOmopResults::tableType()}.}
 
-\item{cohortName}{If TRUE cohort names will be displayed.}
-
-\item{cdmName}{If TRUE database names will be displayed.}
-
-\item{groupColumn}{Column to use as group labels.}
-
-\item{type}{Type of desired formatted table, possibilities: "gt",
-"flextable", "tibble".}
-
-\item{.options}{Named list with additional formatting options.
-DrugUtilisation::defaultTableOptions() shows allowed
-arguments and their default values.}
+\item{hide}{Columns to hide from the visualisation. See options with
+\code{availableTableColumns(result)}.}
 }
 \value{
 A table with a formatted version of summariseProportionOfPatientsCovered() results.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\examples{
+\donttest{
+library(DrugUtilisation)
+
+cdm <- mockDrugUtilisation()
+
+cdm <- generateDrugUtilisationCohortSet(
+  cdm = cdm,
+  name = "my_cohort",
+  conceptSet = list(drug_of_interest = c(1503297, 1503327))
+)
+
+result <- cdm$my_cohort |>
+  summariseProportionOfPatientsCovered(followUpDays = 365)
+
+tableProportionOfPatientsCovered(result)
+
+CDMConnector::cdmDisconnect(cdm = cdm)
+}
+
 }

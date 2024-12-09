@@ -21,10 +21,9 @@
 #' known as the “proportion of patients covered” (PPC) method for assessing
 #' treatment persistence.
 #'
-#' @param cohort A cohort table
-#' @param cohortId Cohort definition ID of interest. If NUll, results for all
-#' cohorts will be returned.
-#' @param strata List of variables to stratify by.
+#' @inheritParams cohortDoc
+#' @inheritParams cohortIdDoc
+#' @inheritParams strataDoc
 #' @param followUpDays Number of days to follow up individuals for. If NULL the
 #' maximum amount of days from an individuals first cohort start date to their
 #' last cohort end date will be used
@@ -36,35 +35,21 @@ summariseProportionOfPatientsCovered <- function(cohort,
                                                  cohortId = NULL,
                                                  strata = list(),
                                                  followUpDays = NULL) {
-  checkmate::assert_integerish(followUpDays,
-    lower = 1,
-    len = 1,
-    null.ok = TRUE
-  )
-
-  checkmate::checkList(strata, types = "character")
-  if (isFALSE(all(unlist(strata) %in% colnames(cohort)))) {
-    cli::cli_abort("strata not found in cohort table")
-  }
-
-  cohortIds <- omopgenerics::settings(cohort) |>
-    dplyr::pull("cohort_definition_id")
-  if (!is.null(cohortId)) {
-    cohortIds <- cohortIds[cohortIds %in% cohortId]
-  }
-  if (length(cohortIds) == 0) {
-    cli::cli_abort("Cohort ID not found")
-  }
+  # check input
+  omopgenerics::assertNumeric(followUpDays, min = 1, length = 1, null = TRUE)
+  strata <- validateStrata(strata, cohort, call = call)
+  cohort <- validateCohort(cohort)
+  cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
 
   cdm <- omopgenerics::cdmReference(cohort)
 
   analysisSettings <- dplyr::tibble(
     "result_id" = 1L,
     "result_type" = "summarise_proportion_of_patients_covered",
-    "package_name" = "DrugUtilisation",
-    "package_version" = as.character(utils::packageVersion("DrugUtilisation"))
+    package_name = "DrugUtilisation",
+    package_version = pkgVersion()
   )
-  if (nrow(cohort |> utils::head(1) |> dplyr::collect()) == 0) {
+  if (omopgenerics::isTableEmpty(cohort)) {
     cli::cli_warn("No records found in cohort table")
     return(omopgenerics::emptySummarisedResult(settings = analysisSettings))
   }
@@ -90,70 +75,53 @@ summariseProportionOfPatientsCovered <- function(cohort,
       dplyr::select("cohort_definition_id", "max_days")
   }
 
-  ppc <- list()
-  for (j in seq_along(cohortIds)) {
-    workingCohortId <- cohortIds[j]
+  ppc <- purrr::map(cohortId, \(x) {
     workingMaxDays <- maxDays |>
-      dplyr::filter(.data$cohort_definition_id == .env$workingCohortId) |>
+      dplyr::filter(.data$cohort_definition_id == .env$x) |>
       dplyr::pull()
-
-    ppc[[j]] <- getPPC(cohort,
-      cohortId = workingCohortId,
-      strata = strata,
-      days = workingMaxDays
-    )
-  }
-
-  ppc <- dplyr::bind_rows(ppc)
+    getPPC(cohort, cohortId = x, strata = strata, days = workingMaxDays)
+  }) |>
+    dplyr::bind_rows()
 
   if (nrow(ppc) == 0) {
     cli::cli_inform(c(
       "i" =
         "No results found for any cohort, returning an empty summarised result"
     ))
-    return(omopgenerics::newSummarisedResult(omopgenerics::emptySummarisedResult(),
-      settings = analysisSettings
-    ))
+    return(omopgenerics::emptySummarisedResult(settings = analysisSettings))
   }
 
   ppc <- ppc |>
-    dplyr::mutate(ppc = round((.data$outcome_count / .data$denominator_count) * 100, 2)) |>
+    dplyr::mutate(
+      !!!calculatePPC(ppc$outcome_count, ppc$denominator_count, 0.05),
+      outcome_count = as.character(.data$outcome_count),
+      denominator_count = as.character(.data$denominator_count)
+    ) |>
     tidyr::pivot_longer(
-      c(
-        "outcome_count",
-        "denominator_count",
-        "ppc"
-      ),
+      c("outcome_count", "denominator_count", "ppc", "ppc_lower", "ppc_upper"),
       names_to = "estimate_name",
       values_to = "estimate_value"
     ) |>
-    dplyr::mutate(estimate_type = dplyr::if_else(.data$estimate_name == "ppc",
-      "percentage", "integer"
+    dplyr::mutate(estimate_type = dplyr::if_else(
+      stringr::str_starts(.data$estimate_name, "ppc"),
+      "percentage",
+      "integer"
     ))
 
-
   ppc <- ppc |>
+    omopgenerics::uniteGroup(cols = "cohort_name") |>
+    omopgenerics::uniteAdditional(cols = "time") |>
     dplyr::mutate(
       result_id = 1L,
       cdm_name = omopgenerics::cdmName(cdm),
-      group_name = "cohort",
-      group_level = .data$cohort_name,
-      strata_name = .data$strata_name,
-      strata_level = .data$strata_level,
       variable_name = "overall",
       variable_level = "overall",
-      estimate_name = .data$estimate_name,
-      estimate_type = .data$estimate_type,
-      estimate_value = as.character(.data$estimate_value),
-      additional_name = "time",
-      additional_level = as.character(.data$time)
+      estimate_value = as.character(.data$estimate_value)
     ) |>
     dplyr::select(omopgenerics::resultColumns())
 
 
-  ppc <- omopgenerics::newSummarisedResult(ppc,
-    settings = analysisSettings
-  )
+  ppc <- omopgenerics::newSummarisedResult(ppc, settings = analysisSettings)
 
   ppc
 }
@@ -325,4 +293,18 @@ getStratifiedCounts <- function(workingCohort, workingStrata) {
     dplyr::mutate(strata_name = !!paste0(workingStrata, collapse = " &&& ")) %>%
     dplyr::relocate("strata_level", .after = "strata_name") %>%
     dplyr::select(!dplyr::any_of(workingStrata))
+}
+
+calculatePPC <- function(num, den, alpha) {
+  p <- num / den
+  q <- 1 - p
+  z <- stats::qnorm(1 - alpha / 2)
+  t1 <- (num + z^2 / 2) / (den + z^2)
+  t2 <- z * sqrt(den) / (den + z^2) * sqrt(p * q + z^2 / (4 * den))
+  upper <- t1 + t2
+  upper[upper > 1] <- 1
+  lower <- t1 - t2
+  lower[lower < 0] <- 0
+  list(ppc = p, ppc_lower = lower, ppc_upper = upper) |>
+    purrr::map(\(x) sprintf("%.2f", 100 * x))
 }

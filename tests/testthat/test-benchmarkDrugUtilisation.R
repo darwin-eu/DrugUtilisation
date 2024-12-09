@@ -1,30 +1,30 @@
 test_that("test benchmarking function", {
   skip_on_cran()
-  skip_if_not_installed("tictoc")
 
-  cdm <- mockDrugUtilisation(
-    con = connection(), writeSchema = schema(), numberIndividuals = 100
+  con <- duckdb::dbConnect(duckdb::duckdb(), CDMConnector::eunomiaDir())
+  cdm <- CDMConnector::cdmFromCon(
+    con = con, cdmSchema = "main", writeSchema = "main"
   )
 
+  initialTables <- omopgenerics::listSourceTables(cdm =  cdm)
 
-  # current mock only have concept set of length 4
-  # add daily dose only work with 1 ingredient at the moment
-  # benchmarking multiple cohorts
-  timings <- benchmarkDrugUtilisation(
-    cdm = cdm, ingredientId = 1125315, numberOfCohort = 1:4
+  expect_no_error(result <- benchmarkDrugUtilisation(cdm = cdm))
+  expect_true(inherits(result, "summarised_result"))
+
+  finalTables <- omopgenerics::listSourceTables(cdm =  cdm) |>
+    purrr::keep(\(x) !startsWith(x, "og_"))
+  expect_identical(initialTables, finalTables)
+
+  cdm <- CDMConnector::generateConceptCohortSet(
+    cdm = cdm,
+    conceptSet = list(viral_sinusitis = 40481087),
+    name = "indication",
+    limit = "all",
+    end = 0
   )
-
-  expect_true(tibble::is_tibble(timings))
-
-  expect_true("DUS 1 cohorts" %in% timings$task)
-
-  expect_true("DUS 4 cohorts" %in% timings$task)
-
-  expect_true("add indication 2 cohorts" %in% timings$task)
-
-  expect_true("add drug utilisation for 3 cohorts" %in% timings$task)
-
-  expect_true("summarise drug utilisation for 4 cohorts" %in% timings$task)
+  expect_no_error(benchmarkDrugUtilisation(
+    cdm = cdm, indicationCohort = "indication"
+  ))
 
   mockDisconnect(cdm = cdm)
 })

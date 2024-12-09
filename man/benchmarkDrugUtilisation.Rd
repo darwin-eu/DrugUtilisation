@@ -6,27 +6,24 @@
 \usage{
 benchmarkDrugUtilisation(
   cdm,
-  numberOfCohort = 1:4,
-  indicationCohortName = "cohort1",
-  ingredientId = 1125315,
-  drugExposureName = "drug_exposure"
+  ingredient = "acetaminophen",
+  alternativeIngredient = c("ibuprofen", "aspirin", "diclofenac"),
+  indicationCohort = NULL
 )
 }
 \arguments{
-\item{cdm}{A CDM reference object}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{numberOfCohort}{Number of cohort to generate for benchmarking. An integer or a vector of integers}
+\item{ingredient}{Name of ingredient to benchmark.}
 
-\item{indicationCohortName}{Name of indication cohort table}
+\item{alternativeIngredient}{Name of ingredients to use as alternative
+treatments.}
 
-\item{ingredientId}{Ingredient OMOP concept that we are interested for
-the study. It is a compulsory input, no default value is provided.}
-
-\item{drugExposureName}{Name of drug_exposure table in cdm, the table must contain drug_concept_id, quantity,
-drug_exposure_start_date and drug_exposure_end_date as columns}
+\item{indicationCohort}{Name of a cohort in the cdm_reference object to use
+as indicatiomn.}
 }
 \value{
-a tibble with time taken for different analyses
+A summarise_result object.
 }
 \description{
 Run benchmark of drug utilisation cohort generation
@@ -34,11 +31,16 @@ Run benchmark of drug utilisation cohort generation
 \examples{
 \donttest{
 library(DrugUtilisation)
+library(CDMConnector)
+library(duckdb)
 
-cdm <- mockDrugUtilisation()
+requireEunomia()
+con <- dbConnect(duckdb(), eunomiaDir())
+cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
 
 timings <- benchmarkDrugUtilisation(cdm)
 
 timings
 }
+
 }

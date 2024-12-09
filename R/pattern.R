@@ -145,7 +145,7 @@ drugStrengthPattern <- function(cdm,
 #' }
 #'
 addRoute <- function(drugTable) {
-  lifecycle::deprecate_soft(when = "0.7.0", what = "addRoute()")
+  lifecycle::deprecate_warn(when = "0.7.0", what = "addRoute()")
   .addRoute(drugTable = drugTable)
 }
 
@@ -169,8 +169,7 @@ addRoute <- function(drugTable) {
 
 #' Function to create a tibble with the patterns from current drug strength table
 #'
-#' @param cdm 'cdm' object created with CDMConnector::cdm_from_con(). It must
-#' must contain 'drug_strength' and 'concept' tables.
+#' @inheritParams cdmDoc
 #'
 #' @return The function creates a tibble with the different patterns found in
 #' the table, plus a column of potentially valid and invalid combinations.
@@ -188,7 +187,7 @@ addRoute <- function(drugTable) {
 #'
 patternTable <- function(cdm) {
   # Initial chekc on inputs
-  checkInputs(cdm = cdm)
+  cdm <- omopgenerics::validateCdmArgument(cdm)
 
   # drug strength pattern
   drugStrengthPattern <- drugStrengthPattern(cdm = cdm, unit = FALSE) |>
@@ -258,9 +257,9 @@ patternTable <- function(cdm) {
 #'
 #' `r lifecycle::badge("deprecated")`
 #'
-#' @param conceptSet List of concept sets
-#' @param cdm cdm reference
-#' @param ingredientConceptId ConceptId that refers to an ingredient
+#' @inheritParams conceptSetDoc
+#' @inheritParams cdmDoc
+#' @inheritParams ingredientConceptIdDoc
 #'
 #' @return The conceptSet stratified by unit
 #'
@@ -280,16 +279,15 @@ patternTable <- function(cdm) {
 #' }
 #'
 stratifyByUnit <- function(conceptSet, cdm, ingredientConceptId) {
-  lifecycle::deprecate_soft(
+  lifecycle::deprecate_warn(
     what = "stratifyByUnit()",
     when = "0.7.0",
     with = "CodelistGenerator::stratifyByDoseUnit()"
   )
   # check initial inputs
-  checkInputs(
-    conceptSet = conceptSet, cdm = cdm,
-    ingredientConceptId = ingredientConceptId
-  )
+  conceptSet <- validateConceptSet(conceptSet)
+  cdm <- omopgenerics::validateCdmArgument(cdm)
+  omopgenerics::assertNumeric(ingredientConceptId, length = 1, integerish = TRUE)
 
   # add the conceptSet to a tibble
   x <- lapply(conceptSet, function(x) {

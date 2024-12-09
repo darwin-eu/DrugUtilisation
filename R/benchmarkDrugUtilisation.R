@@ -13,143 +13,242 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 #' Run benchmark of drug utilisation cohort generation
-#' @param cdm A CDM reference object
-#' @param numberOfCohort Number of cohort to generate for benchmarking. An integer or a vector of integers
-#' @param indicationCohortName  Name of indication cohort table
-#' @param ingredientId Ingredient OMOP concept that we are interested for
-#' the study. It is a compulsory input, no default value is provided.
-#' @param drugExposureName Name of drug_exposure table in cdm, the table must contain drug_concept_id, quantity,
-#' drug_exposure_start_date and drug_exposure_end_date as columns
-#' @return a tibble with time taken for different analyses
+#'
+#' @inheritParams cdmDoc
+#' @param ingredient Name of ingredient to benchmark.
+#' @param alternativeIngredient Name of ingredients to use as alternative
+#' treatments.
+#' @param indicationCohort Name of a cohort in the cdm_reference object to use
+#' as indicatiomn.
+#'
+#' @return A summarise_result object.
+#'
 #' @export
+#'
 #' @examples
 #' \donttest{
 #' library(DrugUtilisation)
+#' library(CDMConnector)
+#' library(duckdb)
 #'
-#' cdm <- mockDrugUtilisation()
+#' requireEunomia()
+#' con <- dbConnect(duckdb(), eunomiaDir())
+#' cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
 #'
 #' timings <- benchmarkDrugUtilisation(cdm)
 #'
 #' timings
 #' }
+#'
 benchmarkDrugUtilisation <- function(cdm,
-                                     numberOfCohort = 1:4,
-                                     indicationCohortName = "cohort1",
-                                     ingredientId = 1125315,
-                                     drugExposureName = "drug_exposure") {
-  rlang::check_installed("tictoc")
+                                     ingredient = "acetaminophen",
+                                     alternativeIngredient = c("ibuprofen", "aspirin", "diclofenac"),
+                                     indicationCohort = NULL) {
+  # initial checks
+  cdm <- omopgenerics::validateCdmArgument(cdm = cdm)
+  omopgenerics::assertCharacter(ingredient, length = 1)
+  omopgenerics::assertCharacter(alternativeIngredient)
+  omopgenerics::assertCharacter(indicationCohort, length = 1, null = TRUE)
 
-  errorMessage <- checkmate::makeAssertCollection()
+  result <- dplyr::tibble(task = character(), time = numeric())
 
-  checkmate::assertIntegerish(ingredientId,
-    len = 1,
-    add = errorMessage,
-    null.ok = FALSE
+  # get necessary concepts
+  task <- "get necessary concepts"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  prefix <- omopgenerics::tmpPrefix()
+  concept <- CodelistGenerator::getDrugIngredientCodes(
+    cdm = cdm, name = ingredient
   )
+  ingredientNames <-  cdm$concept |>
+    dplyr::filter(.data$concept_class_id == "Ingredient") |>
+    dplyr::select("concept_id", "concept_name") |>
+    dplyr::collect()
+  ingredientConceptId <- ingredientNames |>
+    dplyr::filter(tolower(.data$concept_name) == .env$ingredient) |>
+    dplyr::pull("concept_id")
+  mainCohort <- paste0(prefix, "main")
+  altCohort <- paste0(prefix, "alt")
+  inclusion <- paste0(prefix, "inclusion")
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-  checkmate::assertIntegerish(numberOfCohort,
-    lower = 1,
-    add = errorMessage,
-    null.ok = FALSE
-  )
-
-  checkmate::assertCharacter(indicationCohortName,
-    len = 1,
-    add = errorMessage,
-    null.ok = FALSE
-  )
-
-
-  checkmate::assertCharacter(drugExposureName,
-    len = 1,
-    add = errorMessage,
-    null.ok = FALSE
-  )
-
-  checkmate::reportAssertions(collection = errorMessage)
-
-  conceptSet <- CodelistGenerator::getDrugIngredientCodes(cdm)
-
-  checkmate::assertTRUE(length(conceptSet) >= max(numberOfCohort),
-    add = errorMessage
-  )
-
-  time_record <- list()
-
-  for (j in numberOfCohort) {
-    conceptSetList <- conceptSet[c(1:j)]
-
-    name <- paste0("dus_", j)
-
-    tictoc::tic()
-
-
+  # create cohort
+  task <- "generateDrugUtilisation"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
     cdm <- generateDrugUtilisationCohortSet(
       cdm = cdm,
-      name = name,
-      conceptSet = conceptSetList
+      conceptSet = concept,
+      name = mainCohort,
+      gapEra = 30
     )
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-    omopgenerics::cohortCount(cdm[[name]])
-
-    t <- tictoc::toc(quiet = TRUE)
-
-    time_record[[paste0("DUS cohorts generation ", j)]] <- dplyr::tibble(
-      task = paste0("DUS ", j, " cohorts"),
-      time_taken_secs = as.numeric(t$toc - t$tic)
+  # create cohort numberExposures and daysPrescribed
+  task <- "generateDrugUtilisation with numberExposures and daysPrescribed"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm <- generateDrugUtilisationCohortSet(
+      cdm = cdm,
+      conceptSet = concept,
+      name = mainCohort,
+      gapEra = 30,
+      numberExposures = TRUE,
+      daysPrescribed = TRUE
     )
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
+  # apply inclusion criteria
+  task <- "require"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm[[inclusion]] <- cdm[[mainCohort]] |>
+      requireObservationBeforeDrug(days = 365, name = inclusion) |>
+      requirePriorDrugWashout(days = 365, name = inclusion)
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-    tictoc::tic()
+  # create alternative ingredient
+  task <- "generateIngredientCohortSet"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm <- generateIngredientCohortSet(
+      cdm = cdm,
+      ingredient = alternativeIngredient,
+      name = altCohort
+    )
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-    cdm[[name]] |>
-      addIndication(
-        indicationCohortName = indicationCohortName,
-        indicationWindow = list(c(0, 0)),
-        unknownIndicationTable = NULL
+  # summariseDrugUtilisation
+  task <- "summariseDrugUtilisation"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm[[mainCohort]] |>
+      summariseDrugUtilisation(
+        gapEra = 30, ingredientConceptId = ingredientConceptId
       )
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-    t <- tictoc::toc(quiet = TRUE)
-
-    time_record[[paste0("add indication ", j)]] <- dplyr::tibble(
-      task = paste0("add indication ", j, " cohorts"),
-      time_taken_secs = as.numeric(t$toc - t$tic)
+  if (!is.null(indicationCohort)) {
+    # summariseIndication
+    task <- "summariseIndication"
+    benchmarkMessage(task)
+    t0 <- Sys.time()
+    suppressMessages(
+      cdm[[mainCohort]] |>
+        summariseIndication(
+          indicationWindow = list(c(-Inf, 0), c(-7, 7)),
+          indicationCohortName = indicationCohort
+        )
     )
-
-    tictoc::tic()
-
-    x <- cdm[[name]] |>
-      addDrugUtilisation(ingredientConceptId = ingredientId, gapEra = 30)
-
-    t <- tictoc::toc(quiet = TRUE)
-
-    time_record[[paste0("add drug utilisation ", j)]] <- dplyr::tibble(
-      task = paste0("add drug utilisation for ", j, " cohorts"),
-      time_taken_secs = as.numeric(t$toc - t$tic)
-    )
-
-
-    tictoc::tic()
-
-    cdm[[name]] |>
-      summariseDrugUtilisation(ingredientConceptId = ingredientId, gapEra = 30)
-
-    time_record[[paste0("summarise drug utilisation ", j)]] <- dplyr::tibble(
-      task = paste0("summarise drug utilisation for ", j, " cohorts"),
-      time_taken_secs = as.numeric(t$toc - t$tic)
-    )
+    time <- as.numeric(Sys.time() - t0)
+    result <- result |>
+      dplyr::union_all(dplyr::tibble(task = task, time = time))
   }
 
-  tictoc::tic()
+  # summariseDrugRestart
+  task <- "summariseDrugRestart"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm[[mainCohort]] |>
+      summariseDrugRestart(switchCohortTable = altCohort)
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-  time_record <- dplyr::bind_rows(time_record) |>
-    dplyr::mutate(time_taken_secs = round(.data$time_taken_secs, 2)) |>
-    dplyr::mutate(time_taken_mins = round(.data$time_taken_secs / 60, 2)) |>
-    dplyr::mutate(time_taken_hours = round(.data$time_taken_mins / 60, 2)) |>
-    dplyr::mutate(person_n = cdm$person |>
-      dplyr::count() |>
-      dplyr::pull())
+  # summarisePPC
+  task <- "summariseProportionOfPatientsCovered"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm[[mainCohort]] |>
+      summariseProportionOfPatientsCovered()
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
 
-  return(time_record)
+  # summariseTreatment
+  task <- "summariseTreatment"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  suppressMessages(
+    cdm[[mainCohort]] |>
+      summariseTreatment(
+        treatmentCohortName = altCohort,
+        window = list(c(-Inf, -1), c(0, 0), c(1, Inf))
+      )
+  )
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
+
+  # dropping created tables
+  task <- "drop created tables"
+  benchmarkMessage(task)
+  t0 <- Sys.time()
+  omopgenerics::dropSourceTable(cdm = cdm, name = dplyr::starts_with(prefix))
+  time <- as.numeric(Sys.time() - t0)
+  result <- result |>
+    dplyr::union_all(dplyr::tibble(task = task, time = time))
+
+  # create result object
+  result <- result |>
+    omopgenerics::uniteGroup(cols = "task") |>
+    omopgenerics::uniteStrata() |>
+    omopgenerics::uniteAdditional() |>
+    dplyr::rename(estimate_value = "time") |>
+    dplyr::mutate(
+      result_id = 1L,
+      cdm_name = omopgenerics::cdmName(cdm),
+      variable_name = "overall",
+      variable_level = "overall",
+      estimate_name = "time_seconds",
+      estimate_type = "numeric",
+      estimate_value = sprintf("%.2f", .data$estimate_value)
+    ) |>
+    omopgenerics::newSummarisedResult(settings = dplyr::tibble(
+      result_id = 1L,
+      result_type = "benchmark_drug_utilisation",
+      package_name = "DrugUtilisation",
+      package_version = pkgVersion(),
+      person_n = as.character(numberRecords(cdm$person)),
+      ingredient = ingredient,
+      alternative_ingredient = paste0(alternativeIngredient, collapse = "; "),
+      source_type = omopgenerics::sourceType(cdm)
+    ))
+
+  return(result)
+}
+
+benchmarkMessage <- function(msg, nm = NULL) {
+  date <- format(Sys.time(), "%d-%m-%Y %H:%M:%S")
+  msg <- paste0("{.pkg {date}} Benchmark ", msg) |>
+    rlang::set_names(nm = nm)
+  cli::cli_inform(msg)
 }

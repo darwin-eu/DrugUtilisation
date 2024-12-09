@@ -68,12 +68,12 @@ discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
 
 We can plot our study result like so:
 ```{r, out.width="75%"}
-CohortSurvival::plotSurvival(discontinuationSummary)
+#CohortSurvival::plotSurvival(discontinuationSummary)
 ```
 
 Or we can similarly create a table summarising the result
 ```{r}
-CohortSurvival::tableSurvival(discontinuationSummary)
+#CohortSurvival::tableSurvival(discontinuationSummary)
 ```
 
 We can also easily stratify our results. Here we add patient demographics to our cohort table using the PatientProfiles packages and then stratify results by age group and sex.
@@ -96,11 +96,11 @@ discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
 
 Again we could present our results in a plot or a table.
 ```{r, out.width="75%"}
-CohortSurvival::plotSurvival(discontinuationSummary, facet = "strata_level")
+#CohortSurvival::plotSurvival(discontinuationSummary, facet = "strata_level")
 ```
 
 ```{r}
-CohortSurvival::tableSurvival(discontinuationSummary)
+#CohortSurvival::tableSurvival(discontinuationSummary)
 ```
 
 
@@ -128,8 +128,6 @@ ppcSummary <- cdm$amoxicillin |>
 ```
 
 ```{r, out.width="75%"}
-plotProportionOfPatientsCovered(ppcSummary,
-  facet = "strata_level"
-)
+plotProportionOfPatientsCovered(ppcSummary, facet = c("sex", "age_group"))
 ```
  

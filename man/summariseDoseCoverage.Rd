@@ -14,9 +14,10 @@ summariseDoseCoverage(
 )
 }
 \arguments{
-\item{cdm}{A cdm reference created using CDMConnector.}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{ingredientConceptId}{Code indicating the ingredient of interest.}
+\item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
+the study.}
 
 \item{estimates}{Estimates to obtain.}
 

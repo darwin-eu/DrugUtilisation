@@ -6,35 +6,26 @@
 \usage{
 tableIndication(
   result,
-  header = c("group", "strata"),
-  splitStrata = TRUE,
-  cohortName = TRUE,
-  cdmName = TRUE,
+  header = c("cdm_name", "cohort_name", strataColumns(result)),
   groupColumn = "variable_name",
-  type = "gt",
-  .options = list()
+  hide = c("window_name", "mutually_exclusive", "unknown_indication_table"),
+  type = "gt"
 )
 }
 \arguments{
-\item{result}{A summarised_result created by summariseIndication().}
+\item{result}{A summarised_result object.}
 
-\item{header}{A vector containing which elements should go into the header
-in order. Allowed are: \code{cdm_name}, \code{group}, \code{strata}, \code{variable}.}
+\item{header}{Columns to use as header. See options with
+\code{availableTableColumns(result)}.}
 
-\item{splitStrata}{If TRUE strata columns will be split.}
+\item{groupColumn}{Columns to group by. See options with
+\code{availableTableColumns(result)}.}
 
-\item{cohortName}{If TRUE cohort names will be displayed.}
+\item{hide}{Columns to hide from the visualisation. See options with
+\code{availableTableColumns(result)}.}
 
-\item{cdmName}{If TRUE database names will be displayed.}
-
-\item{groupColumn}{Column to use as group labels.}
-
-\item{type}{Type of desired formatted table, possibilities: "gt",
-"flextable", "tibble".}
-
-\item{.options}{Named list with additional formatting options.
-DrugUtilisation::defaultTableOptions() shows allowed
-arguments and their default values.}
+\item{type}{Type of table. Check supported types with
+\code{visOmopResults::tableType()}.}
 }
 \value{
 A table with a formatted version of summariseIndication() results.
@@ -56,7 +47,7 @@ result <- cdm$cohort1 |>
     unknownIndicationTable = "condition_occurrence"
   )
 
-tableIndication(result, type = "tibble")
+tableIndication(result)
 }
 
 }

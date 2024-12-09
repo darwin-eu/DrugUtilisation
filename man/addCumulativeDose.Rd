@@ -17,13 +17,12 @@ addCumulativeDose(
 )
 }
 \arguments{
-\item{cohort}{Cohort in the cdm.}
+\item{cohort}{A cohort_table object.}
 
 \item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
-the study. It is a compulsory input, no default value is provided.}
+the study.}
 
-\item{conceptSet}{List of concepts to be included. If NULL all the
-descendants of ingredient concept id will be used.}
+\item{conceptSet}{List of concepts to be included.}
 
 \item{indexDate}{Name of a column that indicates the date to start the
 analysis.}
@@ -37,8 +36,8 @@ be included.}
 
 \item{nameStyle}{Character string to specify the nameStyle of the new columns.}
 
-\item{name}{Name of the new computed cohort table, if NULL a temporary tables is
-created.}
+\item{name}{Name of the new computed cohort table, if NULL a temporary table
+will be created.}
 }
 \value{
 The same cohort with the added column.

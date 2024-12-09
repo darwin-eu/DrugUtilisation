@@ -31,9 +31,8 @@ test_that("basic plot", {
     summariseProportionOfPatientsCovered()
 
   expect_no_error(plotProportionOfPatientsCovered(ppc))
-  expect_no_error(plotProportionOfPatientsCovered(ppc, ylim = c(0.25, 1)))
   expect_no_error(plotProportionOfPatientsCovered(ppc, facet = "cdm_name"))
-  expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "group_level"))
+  expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "cohort_name"))
 
 
   # expected warnings - empty result or result with no ppc
@@ -41,15 +40,11 @@ test_that("basic plot", {
     omopgenerics::emptySummarisedResult()
   ))
   expect_warning(plotProportionOfPatientsCovered(ppc |>
-    dplyr::filter(estimate_name != "ppc")))
+    dplyr::filter(!stringr::str_starts(.data$estimate_name, "ppc"))))
   # expected errors
   expect_error(plotProportionOfPatientsCovered(cars))
-  expect_error(plotProportionOfPatientsCovered(ppc,
-    facet = "not_a_var"
-  ))
-  expect_error(plotProportionOfPatientsCovered(ppc,
-    colour = "not_a_var"
-  ))
+  expect_error(plotProportionOfPatientsCovered(ppc, facet = "not_a_var"))
+  expect_error(plotProportionOfPatientsCovered(ppc, colour = "not_a_var"))
 
   mockDisconnect(cdm = cdm)
 })
@@ -90,8 +85,8 @@ test_that("multiple cohorts", {
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered()
 
-  expect_no_error(plotProportionOfPatientsCovered(ppc, facet = "group_level"))
-  expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "group_level"))
+  expect_no_error(plotProportionOfPatientsCovered(ppc, facet = "cohort_name"))
+  expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "cohort_name"))
 
   mockDisconnect(cdm = cdm)
 })
@@ -134,14 +129,15 @@ test_that("stratification", {
 
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered(strata = list(
-      c("var1"),
-      c("var2"),
-      c("var1", "var2")
+      c("var1"), c("var2"), c("var1", "var2")
     ))
 
-  expect_no_error(plotProportionOfPatientsCovered(ppc,
-    facet = "strata_name",
-    colour = "strata_level"
+  expect_no_error(plotProportionOfPatientsCovered(
+    ppc, facet = "cohort_name", colour = c("var1", "var2")
+  ))
+
+  expect_no_error(plotProportionOfPatientsCovered(
+    ppc, facet = "cohort_name", colour = c("var1", "var2"), ribbon = FALSE
   ))
 
   mockDisconnect(cdm = cdm)

@@ -44,16 +44,18 @@ mockDrugUtilisation <- function(con = NULL,
                                 seed = NULL,
                                 ...) {
   tables <- list(...)
-  assertNumeric(seed, length = 1, null = TRUE)
-  assertNumeric(numberIndividuals, length = 1, integerish = TRUE, min = 1)
-  assertList(tables, named = TRUE, class = "data.frame")
+  omopgenerics::assertNumeric(seed, length = 1, null = TRUE)
+  omopgenerics::assertNumeric(numberIndividuals, length = 1, integerish = TRUE, min = 1)
+  omopgenerics::assertList(tables, named = TRUE, class = "data.frame")
 
   if (is.null(con)) con <- duckdb::dbConnect(duckdb::duckdb(), ":memory:")
   if (is.null(writeSchema)) writeSchema <- c(schema = "main", prefix = "mock_")
 
   # get vocabulary
   vocab <- vocabularyTables(
-    tables[["concept"]], tables[["concept_ancestor"]], tables[["drug_strength"]],
+    tables[["concept"]],
+    tables[["concept_ancestor"]],
+    tables[["drug_strength"]],
     tables[["concept_relationship"]]
   )
   tables$concept <- vocab$concept
@@ -117,6 +119,31 @@ mockDrugUtilisation <- function(con = NULL,
   cohortPos <- lapply(tables, isCohort) |> unlist()
   cohorts <- tables[cohortPos] |> createCohorts(tables$observation_period)
   tables <- tables[!cohortPos]
+
+  colTypes <- omopgenerics::omopTableFields() |>
+    dplyr::filter(.data$type == "cdm_table") |>
+    dplyr::mutate(cdm_datatype = dplyr::case_when(
+      .data$cdm_datatype == "float" ~ "as.numeric",
+      grepl("varchar", .data$cdm_datatype) ~ "as.character",
+      grepl("date", .data$cdm_datatype) ~ "as.Date",
+      .default = paste0("as.", .data$cdm_datatype)
+    ))
+  for (nm in names(tables)) {
+    cols <- colTypes |>
+      dplyr::filter(.data$cdm_table_name == .env$nm)
+    q <- cols$cdm_datatype |>
+      rlang::set_names(cols$cdm_field_name) |>
+      purrr::imap_chr(\(cont, col) {
+        if (col %in% colnames(tables[[nm]])) {
+          paste0(cont, "(.data[['", col, "']])")
+        } else {
+          paste0(cont, "(NA)")
+        }
+      }) |>
+      rlang::parse_exprs()
+    tables[[nm]] <- tables[[nm]] |>
+      dplyr::mutate(!!!q)
+  }
 
   cdm <- omopgenerics::cdmFromTables(
     tables = tables, cdmName = "DUS MOCK", cohortTables = cohorts
@@ -315,6 +342,11 @@ createCohort <- function(observation_period) {
       "subject_id" = "person_id", "cohort_start_date",
       "cohort_end_date"
     )
+  attr(cohort, "cohort_set") <- dplyr::tibble(
+    cohort_definition_id = c(1L, 2L, 3L),
+    cohort_name = c("cohort_1", "cohort_2", "cohort_3")
+  )
+  return(cohort)
 }
 
 # To create a random date between two dates

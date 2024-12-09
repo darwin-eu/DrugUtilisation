@@ -28,29 +28,5 @@ summariseDrugUse(
 A summary of the drug use stratified by cohort_name and strata_name
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-}
-\examples{
-\donttest{
-library(DrugUtilisation)
-library(PatientProfiles)
-
-cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
-cdm <- generateDrugUtilisationCohortSet(
-  cdm, "dus_cohort", codelist
-)
-cdm[["dus_cohort"]] <- cdm[["dus_cohort"]] |>
-  addDrugUse(ingredientConceptId = 1125315)
-result <- summariseDrugUse(cdm[["dus_cohort"]])
-print(result)
-
-cdm[["dus_cohort"]] <- cdm[["dus_cohort"]] |>
-  addSex() |>
-  addAge(ageGroup = list("<40" = c(0, 39), ">=40" = c(40, 150)))
-
-cdm[["dus_cohort"]] |>
-  summariseDrugUse(strata = list("age_group", "sex", c("age_group", "sex")))
-}
-
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 }

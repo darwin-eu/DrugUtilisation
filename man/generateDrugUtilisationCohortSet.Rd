@@ -9,6 +9,10 @@ generateDrugUtilisationCohortSet(
   name,
   conceptSet,
   gapEra = 1,
+  subsetCohort = NULL,
+  subsetCohortId = NULL,
+  numberExposures = FALSE,
+  daysPrescribed = FALSE,
   durationRange = lifecycle::deprecated(),
   imputeDuration = lifecycle::deprecated(),
   priorUseWashout = lifecycle::deprecated(),
@@ -18,16 +22,25 @@ generateDrugUtilisationCohortSet(
 )
 }
 \arguments{
-\item{cdm}{A cdm reference.}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{name}{The name of the new cohort table to add to the cdm reference.}
+\item{name}{Name of the new cohort table, it must be a length 1 character
+vector.}
 
-\item{conceptSet}{The concepts used to create the cohort, provide as a
-codelist or concept set expression.}
+\item{conceptSet}{List of concepts to be included.}
 
 \item{gapEra}{Number of days between two continuous exposures to be
-considered in the same era. Records that have fewer days between them than
-this gap will be concatenated into the same cohort record.}
+considered in the same era.}
+
+\item{subsetCohort}{Cohort table to subset.}
+
+\item{subsetCohortId}{Cohort id to subset.}
+
+\item{numberExposures}{Whether to include 'number_exposures' (number of drug
+exposure records between indexDate and censorDate).}
+
+\item{daysPrescribed}{Whether to include 'days_prescribed' (number of days
+prescribed used to create each era).}
 
 \item{durationRange}{Deprecated.}
 
@@ -61,13 +74,16 @@ library(dplyr)
 cdm <- mockDrugUtilisation()
 
 druglist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm, c("acetaminophen", "metformin")
+  cdm, c("acetaminophen", "metformin"), nameStyle = "{concept_name}"
 )
 
 cdm <- generateDrugUtilisationCohortSet(
   cdm = cdm,
   name = "drug_cohorts",
-  conceptSet = druglist
+  conceptSet = druglist,
+  gapEra = 30,
+  numberExposures = TRUE,
+  daysPrescribed = TRUE
 )
 
 cdm$drug_cohorts |>

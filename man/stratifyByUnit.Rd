@@ -7,11 +7,12 @@
 stratifyByUnit(conceptSet, cdm, ingredientConceptId)
 }
 \arguments{
-\item{conceptSet}{List of concept sets}
+\item{conceptSet}{List of concepts to be included.}
 
-\item{cdm}{cdm reference}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{ingredientConceptId}{ConceptId that refers to an ingredient}
+\item{ingredientConceptId}{Ingredient OMOP concept that we are interested for
+the study.}
 }
 \value{
 The conceptSet stratified by unit

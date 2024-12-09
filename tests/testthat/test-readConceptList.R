@@ -1,4 +1,5 @@
 test_that("test inputs", {
+  skip("deprecated function")
   skip_on_cran()
   cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
   expect_warning(expect_error(readConceptList()))

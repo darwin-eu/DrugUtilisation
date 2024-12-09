@@ -27,7 +27,6 @@ supports:
 - Detailing treatment restart and switching after an initial treatment
   discontinuation
 
-
 ## Example usage
 
 First, we need to create a cdm reference for the data we´ll be using.

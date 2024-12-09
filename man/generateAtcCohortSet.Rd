@@ -8,9 +8,12 @@ generateAtcCohortSet(
   cdm,
   name,
   atcName = NULL,
-  level = c("ATC 1st"),
-  doseForm = NULL,
   gapEra = 1,
+  subsetCohort = NULL,
+  subsetCohortId = NULL,
+  numberExposures = FALSE,
+  daysPrescribed = FALSE,
+  ...,
   durationRange = lifecycle::deprecated(),
   imputeDuration = lifecycle::deprecated(),
   priorUseWashout = lifecycle::deprecated(),
@@ -20,22 +23,28 @@ generateAtcCohortSet(
 )
 }
 \arguments{
-\item{cdm}{A cdm reference.}
+\item{cdm}{A \code{cdm_reference} object.}
 
-\item{name}{The name of the new cohort table to add to the cdm reference.}
+\item{name}{Name of the new cohort table, it must be a length 1 character
+vector.}
 
 \item{atcName}{Names of ATC classification of interest.}
-
-\item{level}{ATC level. Can be one or more of "ATC 1st", "ATC 2nd",
-"ATC 3rd", "ATC 4th", and "ATC 5th"}
-
-\item{doseForm}{Only descendants codes with the specified dose form
-will be returned. If NULL, descendant codes will be returned regardless
-of dose form.}
 
 \item{gapEra}{Number of days between two continuous exposures to be
 considered in the same era. Records that have fewer days between them than
 this gap will be concatenated into the same cohort record.}
+
+\item{subsetCohort}{Cohort table to subset.}
+
+\item{subsetCohortId}{Cohort id to subset.}
+
+\item{numberExposures}{Whether to include 'number_exposures' (number of drug
+exposure records between indexDate and censorDate).}
+
+\item{daysPrescribed}{Whether to include 'days_prescribed' (number of days
+prescribed used to create each era).}
+
+\item{...}{Arguments to be passed to \code{CodelistGenerator::getATCCodes()}.}
 
 \item{durationRange}{Deprecated.}
 

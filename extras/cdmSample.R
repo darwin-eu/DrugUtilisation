@@ -34,10 +34,10 @@ cdmSubset <- function(cdm,
                       cohortName,
                       cohortId = NULL,
                       tablesToSubset = NULL) {
-  checkmate::assertClass(cdm, "cdm_reference")
-  checkmate::assertCharacter(cohortName, len = 1)
-  checkmate::assertTRUE(cohortName %in% names(cdm))
-  checkmate::assertIntegerish(cohortId, len = 1, null.ok = TRUE)
+  omopgenerics::assertClass(cdm, "cdm_reference")
+  omopgenerics::assertCharacter(cohortName, length = 1)
+  omopgenerics::assertTrue(cohortName %in% names(cdm))
+  omopgenerics::assertNumeric(cohortId, length = 1, null = TRUE, integerish = TRUE)
 
   if (!("subject_id" %in% colnames(cdm[[cohortName]]))) {
     stop("subject_id column is not present in cdm[[cohortName]]")
@@ -93,8 +93,8 @@ cdmSubset <- function(cdm,
 cdmSample <- function(cdm,
                       numberIndividuals = 500000,
                       tablesToSubset = NULL) {
-  checkmate::assertClass(cdm, "cdm_reference")
-  checkmate::assertIntegerish(numberIndividuals, len = 1)
+  omopgenerics::assertClass(cdm, "cdm_reference")
+  omopgenerics::assertNumeric(numberIndividuals, length = 1, integerish = TRUE)
 
   numberIndividuals <- as.numeric(numberIndividuals)
 
@@ -116,7 +116,7 @@ cdmSample <- function(cdm,
 cdmSubsetSubjects <- function(cdm,
                               subjects,
                               tablesToSubset) {
-  checkmate::assertCharacter(tablesToSubset, null.ok = TRUE)
+  omopgenerics::assertCharacter(tablesToSubset, null = TRUE)
   if (is.null(tablesToSubset)) {
     tablesToSubset <- lapply(names(cdm), function(x) {
       x <- cdm[[x]]
@@ -132,7 +132,7 @@ cdmSubsetSubjects <- function(cdm,
   if(length(tablesToSubset) == 0) {
     stop("No table found to be subseted.")
   }
-  checkmate::assertTRUE(all(tablesToSubset %in% names(cdm)))
+  omopgenerics::assertTrue(all(tablesToSubset %in% names(cdm)))
 
   newCdmTables <- lapply(tablesToSubset, function(x){
     cdm[[x]] |>
