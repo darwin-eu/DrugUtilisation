@@ -10,7 +10,7 @@ articles:
   mock_data: mock_data.html
   summarise_treatments: summarise_treatments.html
   treatment_discontinuation: treatment_discontinuation.html
-last_built: 2024-11-04T09:21Z
+last_built: 2024-12-09T23:35Z
 urls:
   reference: https://darwin-eu.github.io/DrugUtilisation/reference
   article: https://darwin-eu.github.io/DrugUtilisation/articles

@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Create mock data to test DrugUtilisation package">
 </head>
 <body>
@@ -98,24 +98,31 @@ cdm reference like so:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
-<span><span class="co">#&gt; Columns: 11</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ person_id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></span>
-<span><span class="co">#&gt; $ gender_concept_id    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8507, 8507, 8532, 8507, 8507, 8532, 8507, 8507, 8…</span></span>
-<span><span class="co">#&gt; $ year_of_birth        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2018, 1954, 1973, 1951, 2011, 2004, 1992, 2011, 1…</span></span>
-<span><span class="co">#&gt; $ day_of_birth         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 27, 3, 11, 17, 28, 10, 11, 5, 1, 12</span></span>
-<span><span class="co">#&gt; $ birth_datetime       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2018-10-27, 1954-02-03, 1973-03-11, 1951-09-17, 2…</span></span>
-<span><span class="co">#&gt; $ race_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
-<span><span class="co">#&gt; $ ethnicity_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
-<span><span class="co">#&gt; $ location_id          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
-<span><span class="co">#&gt; $ provider_id          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
-<span><span class="co">#&gt; $ care_site_id         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
-<span><span class="co">#&gt; $ month_of_birth       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 2, 3, 9, 8, 6, 6, 8, 8, 2</span></span>
+<span><span class="co">#&gt; Columns: 18</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ person_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></span>
+<span><span class="co">#&gt; $ gender_concept_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8507, 8507, 8532, 8507, 8507, 8532, 8507, …</span></span>
+<span><span class="co">#&gt; $ year_of_birth               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2018, 1954, 1973, 1951, 2011, 2004, 1992, …</span></span>
+<span><span class="co">#&gt; $ day_of_birth                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 27, 3, 11, 17, 28, 10, 11, 5, 1, 12</span></span>
+<span><span class="co">#&gt; $ birth_datetime              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2018-10-27, 1954-02-03, 1973-03-11, 1951-0…</span></span>
+<span><span class="co">#&gt; $ race_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ ethnicity_concept_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ location_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ provider_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ care_site_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ month_of_birth              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 2, 3, 9, 8, 6, 6, 8, 8, 2</span></span>
+<span><span class="co">#&gt; $ person_source_value         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ gender_source_value         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ gender_source_concept_id    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ race_source_value           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ race_source_concept_id      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ ethnicity_source_value      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ ethnicity_source_concept_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></span>
 <span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    10</span></span></code></pre></div>
@@ -124,22 +131,22 @@ cdm reference like so:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 10</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ concept_id       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8505, 8507, 8532, 8576, 8587, 8718, 9202, 9551, 9655,…</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8505, 8507, 8532, 8576, 8587, 8718, 9202, 9551, 9655,…</span></span>
 <span><span class="co">#&gt; $ concept_name     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "hour", "MALE", "FEMALE", "milligram", "milliliter", …</span></span>
 <span><span class="co">#&gt; $ domain_id        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Unit", "Gender", "Gender", "Unit", "Unit", "Unit", "…</span></span>
 <span><span class="co">#&gt; $ vocabulary_id    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "UCUM", "Gender", "Gender", "UCUM", "UCUM", "UCUM", "…</span></span>
 <span><span class="co">#&gt; $ concept_class_id <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Unit", "Gender", "Gender", "Unit", "Unit", "Unit", "…</span></span>
 <span><span class="co">#&gt; $ standard_concept <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "S", "S", "S", "S", "S", "S", "S", "S", "S", NA, "S",…</span></span>
 <span><span class="co">#&gt; $ concept_code     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "h", "M", "F", "mg", "mL", "[iU]", "OP", "10*-3.eq", …</span></span>
-<span><span class="co">#&gt; $ valid_start_date <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "01/01/1970", "01/01/1970", "01/01/1970", "01/01/1970…</span></span>
-<span><span class="co">#&gt; $ valid_end_date   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "31/12/2099", "31/12/2099", "31/12/2099", "31/12/2099…</span></span>
-<span><span class="co">#&gt; $ invalid_reason   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ valid_start_date <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1-01-19, 1-01-19, 1-01-19, 1-01-19, 1-01-19, 1-01-19…</span></span>
+<span><span class="co">#&gt; $ valid_end_date   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 31-12-20, 31-12-20, 31-12-20, 31-12-20, 31-12-20, 31…</span></span>
+<span><span class="co">#&gt; $ invalid_reason   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">concept</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    38</span></span></code></pre></div>
@@ -147,19 +154,30 @@ cdm reference like so:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">visit_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
-<span><span class="co">#&gt; Columns: 6</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ visit_occurrence_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…</span></span>
-<span><span class="co">#&gt; $ person_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 3, 3, 3, 4, 4, 4, 6, 6, 6, 6, 7, 7, 7, …</span></span>
-<span><span class="co">#&gt; $ visit_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9202, 9202, 9202, 9202, 9202, 9202, 9202, 9202, …</span></span>
-<span><span class="co">#&gt; $ visit_start_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-10-27, 1988-08-10, 1994-01-24, 1997-07-06,…</span></span>
-<span><span class="co">#&gt; $ visit_end_date        <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-12-16, 1991-08-30, 2001-10-12, 2001-05-29,…</span></span>
-<span><span class="co">#&gt; $ visit_type_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span></span>
+<span><span class="co">#&gt; Columns: 17</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ visit_occurrence_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1…</span></span>
+<span><span class="co">#&gt; $ person_id                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 3, 3, 3, 4, 4, 4, 6, 6, 6, 6, 7…</span></span>
+<span><span class="co">#&gt; $ visit_concept_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 9202, 9202, 9202, 9202, 9202, 9202, 9202…</span></span>
+<span><span class="co">#&gt; $ visit_start_date              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-10-27, 1988-08-10, 1994-01-24, 199…</span></span>
+<span><span class="co">#&gt; $ visit_end_date                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-12-16, 1991-08-30, 2001-10-12, 200…</span></span>
+<span><span class="co">#&gt; $ visit_type_concept_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ visit_start_datetime          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ visit_end_datetime            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ provider_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ care_site_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ visit_source_value            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ visit_source_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ admitting_source_concept_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ admitting_source_value        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ discharge_to_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ discharge_to_source_value     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ preceding_visit_occurrence_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
 <span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">visit_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    48</span></span></code></pre></div>
@@ -168,7 +186,7 @@ cdm reference like so:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 1, 1, 3, 1, 1, 1, 2, 3, 2</span></span>
 <span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></span>
 <span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-10-30, 2019-08-31, 1996-01-16, 2000-06-05, 2…</span></span>
@@ -177,7 +195,7 @@ cdm reference like so:</p>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">cohort1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    10</span></span></code></pre></div>
@@ -186,7 +204,7 @@ cdm reference like so:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 2, 2, 1, 2, 2, 1, 2, 2, 2</span></span>
 <span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></span>
 <span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-11-15, 1988-12-24, 1990-10-29, 2004-09-25, 2…</span></span>
@@ -195,7 +213,7 @@ cdm reference like so:</p>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">cohort2</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    10</span></span></code></pre></div>
@@ -215,7 +233,7 @@ of this seed:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 1, 2, 1, 1, 3, 1, 3, 2, 1</span></span>
 <span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span></span>
 <span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2018-06-14, 2019-04-10, 2020-01-28, 2010-07-09, 2…</span></span>
@@ -237,24 +255,31 @@ the tables.</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
-<span><span class="co">#&gt; Columns: 11</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ person_id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…</span></span>
-<span><span class="co">#&gt; $ gender_concept_id    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8507, 8507, 8507, 8507, 8507, 8507, 8532, 8507, 8…</span></span>
-<span><span class="co">#&gt; $ year_of_birth        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1982, 1963, 1996, 1986, 1998, 1995, 1954, 1967, 1…</span></span>
-<span><span class="co">#&gt; $ day_of_birth         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 24, 17, 4, 25, 9, 20, 4, 8, 22, 23, 5, 23, 7, …</span></span>
-<span><span class="co">#&gt; $ birth_datetime       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1982-03-01, 1963-02-24, 1996-06-17, 1986-12-04, …</span></span>
-<span><span class="co">#&gt; $ race_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ ethnicity_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ location_id          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ provider_id          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ care_site_id         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ month_of_birth       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 2, 6, 12, 9, 5, 9, 11, 9, 7, 11, 7, 8, 12, 1, …</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: 18</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ person_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,…</span></span>
+<span><span class="co">#&gt; $ gender_concept_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8507, 8507, 8507, 8507, 8507, 8507, 8532, …</span></span>
+<span><span class="co">#&gt; $ year_of_birth               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1982, 1963, 1996, 1986, 1998, 1995, 1954, …</span></span>
+<span><span class="co">#&gt; $ day_of_birth                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 24, 17, 4, 25, 9, 20, 4, 8, 22, 23, 5, …</span></span>
+<span><span class="co">#&gt; $ birth_datetime              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1982-03-01, 1963-02-24, 1996-06-17, 1986-…</span></span>
+<span><span class="co">#&gt; $ race_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ ethnicity_concept_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ location_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ provider_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ care_site_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ month_of_birth              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 2, 6, 12, 9, 5, 9, 11, 9, 7, 11, 7, 8, …</span></span>
+<span><span class="co">#&gt; $ person_source_value         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ gender_source_value         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ gender_source_concept_id    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ race_source_value           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ race_source_concept_id      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ ethnicity_source_value      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ ethnicity_source_concept_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   100</span></span></code></pre></div>
@@ -266,19 +291,30 @@ produced using default settings.</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">visit_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
-<span><span class="co">#&gt; Columns: 6</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ visit_occurrence_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…</span></span>
-<span><span class="co">#&gt; $ person_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, …</span></span>
-<span><span class="co">#&gt; $ visit_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9202, 9202, 9202, 9202, 9202, 9202, 9202, 9202, …</span></span>
-<span><span class="co">#&gt; $ visit_start_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2008-12-12, 2008-10-22, 2010-07-09, 2018-09-05,…</span></span>
-<span><span class="co">#&gt; $ visit_end_date        <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2008-12-30, 2011-01-16, 2010-07-23, 2019-08-24,…</span></span>
-<span><span class="co">#&gt; $ visit_type_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: 17</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ visit_occurrence_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1…</span></span>
+<span><span class="co">#&gt; $ person_id                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 5, 5, 5…</span></span>
+<span><span class="co">#&gt; $ visit_concept_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 9202, 9202, 9202, 9202, 9202, 9202, 9202…</span></span>
+<span><span class="co">#&gt; $ visit_start_date              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2008-12-12, 2008-10-22, 2010-07-09, 201…</span></span>
+<span><span class="co">#&gt; $ visit_end_date                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2008-12-30, 2011-01-16, 2010-07-23, 201…</span></span>
+<span><span class="co">#&gt; $ visit_type_concept_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ visit_start_datetime          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ visit_end_datetime            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ provider_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ care_site_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ visit_source_value            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ visit_source_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ admitting_source_concept_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ admitting_source_value        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ discharge_to_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ discharge_to_source_value     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ preceding_visit_occurrence_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">visit_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [1 x 1]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   498</span></span></code></pre></div>
@@ -313,15 +349,31 @@ table, one could do the following:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
-<span><span class="co">#&gt; Columns: 7</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ drug_exposure_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3</span></span>
-<span><span class="co">#&gt; $ person_id                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
-<span><span class="co">#&gt; $ drug_concept_id          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 3, 4</span></span>
-<span><span class="co">#&gt; $ drug_exposure_start_date <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2000-01-01, 2000-01-10, 2000-02-20</span></span>
-<span><span class="co">#&gt; $ drug_exposure_end_date   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2000-02-10, 2000-03-01, 2000-02-20</span></span>
-<span><span class="co">#&gt; $ quantity                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41, 52, 1</span></span>
-<span><span class="co">#&gt; $ drug_type_concept_id     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: 23</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; $ drug_exposure_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3</span></span>
+<span><span class="co">#&gt; $ person_id                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1</span></span>
+<span><span class="co">#&gt; $ drug_concept_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 3, 4</span></span>
+<span><span class="co">#&gt; $ drug_exposure_start_date     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2000-01-01, 2000-01-10, 2000-02-20</span></span>
+<span><span class="co">#&gt; $ drug_exposure_end_date       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2000-02-10, 2000-03-01, 2000-02-20</span></span>
+<span><span class="co">#&gt; $ quantity                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41, 52, 1</span></span>
+<span><span class="co">#&gt; $ drug_type_concept_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 0, 0</span></span>
+<span><span class="co">#&gt; $ drug_exposure_start_datetime <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ drug_exposure_end_datetime   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ verbatim_end_date            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ stop_reason                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ refills                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ days_supply                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ sig                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ route_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ lot_number                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ provider_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ visit_occurrence_id          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ visit_detail_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ drug_source_value            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ drug_source_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ route_source_value           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span>
+<span><span class="co">#&gt; $ dose_unit_source_value       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA</span></span></code></pre></div>
 <p>However, one needs to be vigilant that the customised omop table is
 implicitly dependent on other omop tables. For example, the
 <code>drug_exposure_start_date</code> of someone in the
@@ -360,7 +412,7 @@ similar fashion.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.2 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3-dev165 [unknown@Linux 6.5.0-1025-azure:R 4.4.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
 <span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 2</span></span>
 <span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2000-01-01, 2001-01-01, 2000-01-01</span></span>
