@@ -94,7 +94,7 @@ test_that("summarise drug restart", {
       switchCohortId = 1:2,
       followUpDays = c(10)
     )
-  expect_true(all(visOmopResults::strataColumns(resultsStra) == c("age_group", "sex")))
+  expect_true(all(omopgenerics::strataColumns(resultsStra) == c("age_group", "sex")))
 
   # restrict
   restrict <- cdm$dus_cohort |>

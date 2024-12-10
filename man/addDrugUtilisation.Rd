@@ -74,10 +74,10 @@ first drug exposure record).}
 \item{cumulativeQuantity}{Whether to include 'cumulative_quantity' (sum of
 the quantity of the different exposures considered in the analysis).}
 
-\item{initialDailyDose}{Whether to include 'initial_daily_dose_{unit}'
+\item{initialDailyDose}{Whether to include 'initial_daily_dose_\{unit\}'
 (daily dose of the first considered prescription).}
 
-\item{cumulativeDose}{Whether to include 'cumulative_dose_{unit}' (sum of
+\item{cumulativeDose}{Whether to include 'cumulative_dose_\{unit\}' (sum of
 the cumulative dose of the analysed drug exposure records).}
 
 \item{nameStyle}{Character string to specify the nameStyle of the new columns.}

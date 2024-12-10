@@ -99,9 +99,9 @@ NULL
 #' first drug exposure record).
 #' @param cumulativeQuantity Whether to include 'cumulative_quantity' (sum of
 #' the quantity of the different exposures considered in the analysis).
-#' @param initialDailyDose Whether to include 'initial_daily_dose_{unit}'
+#' @param initialDailyDose Whether to include 'initial_daily_dose_\{unit\}'
 #' (daily dose of the first considered prescription).
-#' @param cumulativeDose Whether to include 'cumulative_dose_{unit}' (sum of
+#' @param cumulativeDose Whether to include 'cumulative_dose_\{unit\}' (sum of
 #' the cumulative dose of the analysed drug exposure records).
 #' @param exposedTime deprecated.
 #'

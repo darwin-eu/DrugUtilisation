@@ -200,6 +200,9 @@ plotDrugUtilisation <- function(result,
                                 plotType = "barplot",
                                 facet = strataColumns(result),
                                 colour = "cohort_name") {
+  rlang::check_installed("visOmopResults")
+  rlang::check_installed("ggplot2")
+
   # initial checks
   result <- omopgenerics::validateResultArgument(result)
   result <- result |>

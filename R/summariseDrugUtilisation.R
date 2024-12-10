@@ -193,7 +193,7 @@ summariseDrugUtilisation <- function(cohort,
       by = "ingredient_id"
     ) |>
     dplyr::select(-c(dplyr::starts_with("additional"))) |>
-    visOmopResults::uniteAdditional(cols = c("concept_set", "ingredient")) |>
+    omopgenerics::uniteAdditional(cols = c("concept_set", "ingredient")) |>
     dplyr::select(dplyr::all_of(omopgenerics::resultColumns())) |>
     dplyr::arrange(.data$result_id, .data$group_name, .data$group_level, .data$strata_name, .data$strata_level) |>
     omopgenerics::newSummarisedResult(settings = dplyr::tibble(

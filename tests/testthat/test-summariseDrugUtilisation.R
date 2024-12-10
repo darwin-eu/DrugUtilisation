@@ -57,7 +57,7 @@ test_that("summariseDrugUtilisation works", {
   expect_true(all(sort(unique(x0$variable_name)) == sort(variables)))
   expect_true(all(unique(x0$variable_level) %in% c(NA, "milligram")))
   expect_true(settings(x0)$result_type == "summarise_drug_utilisation")
-  expect_true(all(visOmopResults::additionalColumns(x0) == c("concept_set", "ingredient")))
+  expect_true(all(omopgenerics::additionalColumns(x0) == c("concept_set", "ingredient")))
   expect_true(
     x0 |> dplyr:::filter(grepl("dose", variable_name)) |> dplyr::pull("additional_level") |> unique() == "ingredient_1125315_descendants &&& acetaminophen"
   )
@@ -80,7 +80,7 @@ test_that("summariseDrugUtilisation works", {
     )
   ))
   expect_true(settings(x1)$result_type == "summarise_drug_utilisation")
-  expect_true(all(x1 |> visOmopResults::strataColumns() == c("sex")))
+  expect_true(all(x1 |> omopgenerics::strataColumns() == c("sex")))
 
   # concept
   codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, name = "acetaminophen")

@@ -5,7 +5,7 @@
 #' @inheritParams gapEraDoc
 #' @inheritParams cohortIdDoc
 #' @param nameStyle String to create the new names of cohorts. Must contain
-#' '{cohort_name}' if more than one cohort is present and '{gap_era}' if more
+#' '\{cohort_name\}' if more than one cohort is present and '\{gap_era\}' if more
 #' than one gapEra is provided.
 #' @inheritParams newNameDoc
 #'

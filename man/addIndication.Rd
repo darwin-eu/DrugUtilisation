@@ -38,8 +38,8 @@ analysis, if NULL end of individuals observation is used.}
 (one column per window) or not (one column per window and indication).}
 
 \item{nameStyle}{Name style for the indications. By default:
-'indication_{window_name}' (mutuallyExclusive = TRUE),
-'indication_{window_name}_{cohort_name}' (mutuallyExclusive = FALSE).}
+'indication_\{window_name\}' (mutuallyExclusive = TRUE),
+'indication_\{window_name\}_\{cohort_name\}' (mutuallyExclusive = FALSE).}
 
 \item{name}{Name of the new computed cohort table, if NULL a temporary table
 will be created.}

@@ -34,8 +34,8 @@
 #' @param mutuallyExclusive Whether to consider mutually exclusive categories
 #' (one column per window) or not (one column per window and indication).
 #' @param nameStyle Name style for the indications. By default:
-#' 'indication_{window_name}' (mutuallyExclusive = TRUE),
-#' 'indication_{window_name}_{cohort_name}' (mutuallyExclusive = FALSE).
+#' 'indication_\{window_name\}' (mutuallyExclusive = TRUE),
+#' 'indication_\{window_name\}_\{cohort_name\}' (mutuallyExclusive = FALSE).
 #' @inheritParams compNameDoc
 #'
 #' @return The original table with a variable added that summarises the
@@ -106,8 +106,8 @@ addIndication <- function(cohort,
 #' @param mutuallyExclusive Whether to consider mutually exclusive categories
 #' (one column per window) or not (one column per window and treatment).
 #' @param nameStyle Name style for the treatment columns. By default:
-#' 'treatment_{window_name}' (mutuallyExclusive = TRUE),
-#' 'treatment_{window_name}_{cohort_name}' (mutuallyExclusive = FALSE).
+#' 'treatment_\{window_name\}' (mutuallyExclusive = TRUE),
+#' 'treatment_\{window_name\}_\{cohort_name\}' (mutuallyExclusive = FALSE).
 #' @inheritParams compNameDoc
 #'
 #' @return The original table with a variable added that summarises the

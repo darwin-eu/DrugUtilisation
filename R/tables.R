@@ -319,6 +319,8 @@ dusTable <- function(result,
                      estimateName,
                      type,
                      call = parent.frame()) {
+  rlang::check_installed("visOmopResults")
+
   # check inputs
   result <- omopgenerics::validateResultArgument(result, call = call)
   omopgenerics::assertCharacter(header, null = TRUE, call = call)
@@ -332,7 +334,7 @@ dusTable <- function(result,
 
   # subset to result_type
   result <- result |>
-    visOmopResults::filterSettings(.data$result_type == .env$resultType)
+    omopgenerics::filterSettings(.data$result_type == .env$resultType)
   if (nrow(result) == 0) {
     cli::cli_warn("There are no results with `result_type = {resultType}`")
     return(emptyTable(type))

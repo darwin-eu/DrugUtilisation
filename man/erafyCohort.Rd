@@ -22,7 +22,7 @@ considered in the same era.}
 will be included.}
 
 \item{nameStyle}{String to create the new names of cohorts. Must contain
-'{cohort_name}' if more than one cohort is present and '{gap_era}' if more
+'\{cohort_name\}' if more than one cohort is present and '\{gap_era\}' if more
 than one gapEra is provided.}
 
 \item{name}{Name of the new cohort table, it must be a length 1 character

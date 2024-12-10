@@ -35,8 +35,8 @@ analysis, if NULL end of individuals observation is used.}
 (one column per window) or not (one column per window and treatment).}
 
 \item{nameStyle}{Name style for the treatment columns. By default:
-'treatment_{window_name}' (mutuallyExclusive = TRUE),
-'treatment_{window_name}_{cohort_name}' (mutuallyExclusive = FALSE).}
+'treatment_\{window_name\}' (mutuallyExclusive = TRUE),
+'treatment_\{window_name\}_\{cohort_name\}' (mutuallyExclusive = FALSE).}
 
 \item{name}{Name of the new computed cohort table, if NULL a temporary table
 will be created.}
