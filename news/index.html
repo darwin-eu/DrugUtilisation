@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,36 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.0" id="drugutilisation-080">DrugUtilisation 0.8.0<a class="anchor" aria-label="anchor" href="#drugutilisation-080"></a></h2><p class="text-muted">CRAN release: 2024-12-10</p>
+<ul><li>Account for omopgenerics 0.4.0 by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Add argument … to generateATC/IngredientCohortSet by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>benchmarkDrugUtilisation to test all functions by <a href="https://github.com/MimiYuchenGuo" class="external-link">@MimiYuchenGuo</a></li>
+<li>Add messages about dropped records in cohort creation by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Refactor of table functions following visOmopResults 0.5.0 release by <a href="https://github.com/catalamart" class="external-link">@catalamart</a></li>
+<li>Add confidence intervals to PPC by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Cast settings to characters by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>checkVersion utility function for tables and plots by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Export erafyCohort by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Deprecation warnings to errors for deprecated arguments in geenrateDrugUtilisation by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Add numberExposures and daysPrescribed to generate functions by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Add subsetCohort and subsetCohortId arguments to cohort creation functions by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>New function: addDrugRestart by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Add initialExposureDuration by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Add message if too many indications by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>not treated -&gt; untreated by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>warn overwrite columns by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Use omopgenerics assert function by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>add documentation helpers for consistent argument documentation by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>allow integer64 in sampleSize by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>add cohortId to summarise* functions by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>Fix cast warning in mock by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>addDaysPrescribed by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>exposedTime -&gt; daysExposed by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>test addDaysPrescribed by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>plotDrugUtilisation by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+<li>refactor plots to use visOmopResults plot tools by <a href="https://github.com/catalamarti" class="external-link">@catalamarti</a></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.0" id="drugutilisation-070">DrugUtilisation 0.7.0<a class="anchor" aria-label="anchor" href="#drugutilisation-070"></a></h2><p class="text-muted">CRAN release: 2024-07-29</p>
 <ul><li><p>Deprecate dose specific functions: <code>addDailyDose</code>, <code>addRoute</code>, <code>stratifyByUnit</code>.</p></li>
 <li><p>Deprecate drug use functions: <code>addDrugUse</code>, <code>summariseDrugUse</code>.</p></li>
@@ -55,7 +85,8 @@
 <li><p>New functionality <code>summariseDrugRestart</code>, <code>tableDrugRestart</code> and <code>plotDrugRestart</code>.</p></li>
 <li><p>New functionality <code>addDrugUtilisation</code>, <code>summariseDrugUtilisation</code> and <code>tableDrugUtilisation</code></p></li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
