@@ -75,7 +75,11 @@ cdm <- generateIngredientCohortSet(
 )
 
 cdm$drug_cohort |>
-  addIndication("indication_cohorts", indicationWindow = list(c(0, 0))) |>
+  addIndication(
+    indicationCohortName = "indication_cohorts",
+    indicationWindow = list(c(0, 0)),
+    unknownIndicationTable = "condition_occurrence"
+  ) |>
   glimpse()
 }
 

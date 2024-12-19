@@ -109,6 +109,9 @@ summariseDrugUtilisation <- function(cohort,
   }
   conceptSet <- validateConceptSet(conceptSet, call = call)
 
+  cohortTableName <- omopgenerics::tableName(cohort)
+  cohortTableName[is.na(cohortTableName)] <- "temp"
+
   # concept dictionary
   dic <- dplyr::tibble(concept_set = names(conceptSet)) |>
     dplyr::mutate(
@@ -200,7 +203,12 @@ summariseDrugUtilisation <- function(cohort,
       result_id = 1L,
       result_type = "summarise_drug_utilisation",
       package_name = "DrugUtilisation",
-      package_version = pkgVersion()
+      package_version = pkgVersion(),
+      cohort_table_name = cohortTableName,
+      index_date = indexDate,
+      censor_date = as.character(censorDate %||% "NA"),
+      restrict_incident = as.character(restrictIncident),
+      gap_era = as.character(gapEra)
     ))
 }
 

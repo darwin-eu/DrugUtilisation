@@ -83,6 +83,9 @@ summariseDrugRestart <- function(cohort,
     validateCohort()
   switchCohortId <- omopgenerics::validateCohortIdArgument({{switchCohortId}}, cdm[[switchCohortTable]])
 
+  cohortTableName <- omopgenerics::tableName(cohort)
+  cohortTableName[is.na(cohortTableName)] <- "temp"
+
   tmpName <- omopgenerics::uniqueTableName(omopgenerics::tmpPrefix())
 
   ns <- "drug_restart_in_{follow_up_days}_days"
@@ -207,8 +210,11 @@ summariseDrugRestart <- function(cohort,
         result_type = "summarise_drug_restart",
         package_name = "DrugUtilisation",
         package_version = pkgVersion(),
+        cohort_table_name = cohortTableName,
+        switch_cohort_table = switchCohortTable,
+        incident = as.character(incident),
         restrict_to_first_discontinuation = as.character(restrictToFirstDiscontinuation),
-        censor_date = censorDate
+        censor_date = as.character(censorDate %||% "NA")
       )
     )
 

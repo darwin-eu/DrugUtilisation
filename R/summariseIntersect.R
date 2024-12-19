@@ -79,7 +79,7 @@ summariseIndication <- function(cohort,
                                 indexDate = "cohort_start_date",
                                 mutuallyExclusive = TRUE,
                                 censorDate = NULL) {
-  .summariseIntersect(
+  res <- .summariseIntersect(
     cohort = cohort,
     cohortId = {{cohortId}},
     cohortTable = indicationCohortName,
@@ -91,7 +91,12 @@ summariseIndication <- function(cohort,
     indexDate = indexDate,
     censorDate = censorDate,
     nm = "indications"
-  ) |>
+  )
+
+  cohortTableName <- omopgenerics::tableName(cohort)
+  cohortTableName[is.na(cohortTableName)] <- "temp"
+
+  res <- res |>
     omopgenerics::newSummarisedResult(
       settings = dplyr::tibble(
         result_id = 1L,
@@ -99,7 +104,11 @@ summariseIndication <- function(cohort,
         package_name = "DrugUtilisation",
         package_version = pkgVersion(),
         mutually_exclusive = as.character(mutuallyExclusive),
-        unknown_indication_table = paste0(unknownIndicationTable, collapse = "; ")
+        unknown_indication_table = paste0(unknownIndicationTable, collapse = "; "),
+        cohort_table_name = cohortTableName,
+        indication_cohort_name = indicationCohortName,
+        index_date = indexDate,
+        censor_date = as.character(censorDate %||% "NA")
       )
     )
 }
@@ -149,7 +158,7 @@ summariseTreatment <- function(cohort,
   if (lifecycle::is_present(minCellCount)) {
     lifecycle::deprecate_stop("0.7.0", "summariseTreatment(minCellCount= )")
   }
-  .summariseIntersect(
+  res <- .summariseIntersect(
     cohort = cohort,
     cohortId = {{cohortId}},
     cohortTable = treatmentCohortName,
@@ -161,14 +170,23 @@ summariseTreatment <- function(cohort,
     indexDate = indexDate,
     censorDate = censorDate,
     nm = "medications"
-  ) |>
+  )
+
+  cohortTableName <- omopgenerics::tableName(cohort)
+  cohortTableName[is.na(cohortTableName)] <- "temp"
+
+  res <- res |>
     omopgenerics::newSummarisedResult(
       settings = dplyr::tibble(
         result_id = 1L,
         result_type = "summarise_treatment",
         package_name = "DrugUtilisation",
         package_version = pkgVersion(),
-        mutually_exclusive = as.character(mutuallyExclusive)
+        mutually_exclusive = as.character(mutuallyExclusive),
+        cohort_table_name = cohortTableName,
+        treatment_cohort_name = treatmentCohortName,
+        index_date = as.character(indexDate),
+        censor_date = as.character(censorDate %||% "NA")
       )
     )
 }

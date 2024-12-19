@@ -62,7 +62,11 @@
 #' )
 #'
 #' cdm$drug_cohort |>
-#'   addIndication("indication_cohorts", indicationWindow = list(c(0, 0))) |>
+#'   addIndication(
+#'     indicationCohortName = "indication_cohorts",
+#'     indicationWindow = list(c(0, 0)),
+#'     unknownIndicationTable = "condition_occurrence"
+#'   ) |>
 #'   glimpse()
 #' }
 #'
@@ -314,7 +318,7 @@ addUnknownIntersect <- function(x, indexDate, censorDate, window, table, prefix)
 collapseIntersections <- function(x, windowNames, nameStyle, prefix, noLabel) {
   windowNames <- glue::glue(nameStyle, window_name = windowNames) |>
     as.character()
-
+  cdm <- omopgenerics::cdmReference(x)
   # get intersections names
   intersections <- colnames(x) |>
     purrr::keep(\(x) startsWith(x, "x_win")) |>
@@ -323,45 +327,69 @@ collapseIntersections <- function(x, windowNames, nameStyle, prefix, noLabel) {
       paste0(x[-(1:2)], collapse = "_")
     }) |>
     unique()
-  if ("unknown" %in% intersections) {
-    noLabel <- paste0(
-      "dplyr::if_else(.data[['x_win{k}_unknown']] == 1L, 'unknown', '", noLabel,
-      "')"
-    )
-  } else {
-    noLabel <- paste0("'", noLabel, "'")
-  }
-  intersections <- intersections[intersections != "unknown"]
-  q <- rep(list(c(1, 0)), length(intersections)) |>
-    rlang::set_names(intersections) |>
-    do.call(what = tidyr::expand_grid)
-  q <- purrr::map_chr(seq_len(nrow(q)), \(i) {
-    win <- "win{k}"
-    leftLab <- glue::glue(".data[['x_{win}_{intersections}']] == {q[i,]}L") |>
-      stringr::str_flatten(collapse = " & ")
-    if (sum(q[i,]) > 0) {
-      rightLab <- paste0(sort(intersections[as.logical(q[i,])]), collapse = " and ")
-      rightLab <- paste0("'", rightLab, "'")
+  unknown <- "unknown" %in% intersections
+  intersections <- sort(intersections[intersections != "unknown"])
+  prefixInternal <- omopgenerics::tmpPrefix()
+  xn <- x
+  for (k in seq_along(windowNames)) {
+    nm <- omopgenerics::uniqueTableName(prefix = prefixInternal)
+
+    cols <- as.character(glue::glue("x_win{k}_{intersections}"))
+
+    if (unknown) {
+      unknownK <- as.character(glue::glue("x_win{k}_unknown"))
     } else {
-      rightLab <- noLabel
+      unknownK <- character()
     }
-    paste0(leftLab, " ~ ", rightLab, "")
-  }) |>
-    paste0(collapse = ",\n")
-  q <- paste0("dplyr::coalesce(dplyr::case_when(", q, "), 'not in observation')")
-  q <- purrr::map_chr(seq_along(windowNames), \(k) {
-    q |>
-      glue::glue(k = k) |>
-      as.character()
-  }) |>
-    rlang::parse_exprs() |>
-    rlang::set_names(windowNames)
-  x |>
-    dplyr::mutate(!!!q) |>
+
+    colName <- windowNames[k]
+    xi <- x |>
+      dplyr::select(dplyr::all_of(c(cols, unknownK))) |>
+      dplyr::distinct() |>
+      dplyr::collect() |>
+      dplyr::filter(!dplyr::if_any(dplyr::everything(), is.na)) |>
+      dplyr::mutate(!!colName := "")
+
+    for (i in seq_along(cols)) {
+      xi <- xi |>
+        dplyr::mutate(!!colName := dplyr::case_when(
+          .data[[cols[i]]] == 1L & .data[[colName]] == "" ~ .env$intersections[i],
+          .data[[cols[i]]] == 1L & .data[[colName]] != "" ~ paste0(.data[[colName]], " and ", .env$intersections[i]),
+          .default = .data[[colName]]
+        ))
+    }
+
+    if (unknown) {
+      xi <- xi |>
+        dplyr::mutate(!!colName := dplyr::if_else(
+          .data[[colName]] == "",
+          dplyr::if_else(.data[[glue::glue('x_win{k}_unknown')]] == 1L, 'unknown', .env$noLabel),
+          .data[[colName]]
+        ))
+    } else {
+      xi <- xi |>
+        dplyr::mutate(!!colName := dplyr::if_else(
+          .data[[colName]] == "", .env$noLabel, .data[[colName]]
+        ))
+    }
+
+    cdm <- omopgenerics::insertTable(cdm = cdm, name = nm, table = xi)
+
+    xn <- xn |>
+      dplyr::left_join(cdm[[nm]], by = c(cols, unknownK))
+
+  }
+  xn <- xn |>
     dplyr::select(!dplyr::starts_with("x_win")) |>
+    dplyr::mutate(dplyr::across(
+      dplyr::all_of(windowNames),
+      \(x) dplyr::coalesce(x, "not in observation")
+    )) |>
     dplyr::compute(
       name = omopgenerics::uniqueTableName(prefix), temporary = FALSE
     )
+  omopgenerics::dropSourceTable(cdm = cdm, name = dplyr::starts_with(prefixInternal))
+  return(xn)
 }
 nameStyleColumns <- function(x, windowNames, nameStyle) {
   tib <- dplyr::tibble(original_name = colnames(x)) |>
