@@ -41,13 +41,17 @@ summariseProportionOfPatientsCovered <- function(cohort,
   cohort <- validateCohort(cohort)
   cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
 
+  cohortTableName <- omopgenerics::tableName(cohort)
+  cohortTableName[is.na(cohortTableName)] <- "temp"
+
   cdm <- omopgenerics::cdmReference(cohort)
 
   analysisSettings <- dplyr::tibble(
     "result_id" = 1L,
     "result_type" = "summarise_proportion_of_patients_covered",
     package_name = "DrugUtilisation",
-    package_version = pkgVersion()
+    package_version = pkgVersion(),
+    cohort_table_name = cohortTableName
   )
   if (omopgenerics::isTableEmpty(cohort)) {
     cli::cli_warn("No records found in cohort table")
