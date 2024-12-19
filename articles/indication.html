@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,12 +157,12 @@ with the label of the indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
-<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3103, 3595, 3629, 3989, 4072, 4279, 2771, 4883, 1…</span></span>
-<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1984-10-08, 1957-07-03, 1973-05-20, 1959-01-20, …</span></span>
-<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1984-10-22, 1957-07-10, 1973-07-26, 1959-02-03, …</span></span>
-<span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bronchitis", "bronchitis", "sinusitis", "bronchi…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 859, 1239, 2384, 2485, 2692, 640, 1092, 1216, 850…</span></span>
+<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1970-05-26, 2010-02-27, 2003-10-11, 1920-04-28, …</span></span>
+<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1970-06-09, 2010-03-13, 2003-10-18, 1920-05-12, …</span></span>
+<span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bronchitis", "bronchitis", "bronchitis", "bronch…</span></span></code></pre></div>
 <p>We can see that individuals are classified as having sinusistis
 (without bronchitis), bronchitis (without sinusitis), sinusitis and
 bronchitis, or no observed indication.</p>
@@ -170,12 +170,12 @@ bronchitis, or no observed indication.</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [4 x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis                   18</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                     <span style="text-decoration: underline;">11</span>351</span></span></code></pre></div>
 <p>As well as the indication cohort table, we can also use the clinical
@@ -196,13 +196,13 @@ initiation.</p>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [5 x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis                   18</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         7</span></span></code></pre></div>
 <p>We can add indications for multiple time windows. Unsurprisingly we
@@ -219,8 +219,8 @@ likely increase our risk of false positives).</p>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_0_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [4 x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_0_to_0     n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> unknown           <span style="text-decoration: underline;">11</span>211</span></span>
@@ -230,26 +230,26 @@ likely increase our risk of false positives).</p>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [5 x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> sinusitis                   18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none                         7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis                   18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         7</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m365_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [5 x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.5.0-1025-azure:R 4.4.2//tmp/Rtmp7t5Mw2/file1dee7ca97e9f.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpKHhnqJ/file2502316efbf3.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m365_to_0         n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> sinusitis                  211</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none                         4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis and sinusitis   101</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> unknown                  <span style="text-decoration: underline;">10</span>968</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis   101</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">10</span>968</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis                  211</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                         4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis                <span style="text-decoration: underline;">2</span>615</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="summarise-indications-with-summariseindication">Summarise indications with summariseIndication()<a class="anchor" aria-label="anchor" href="#summarise-indications-with-summariseindication"></a>
@@ -270,23 +270,23 @@ indication.</p>
 <p>We can then easily create a plot or a table of the results</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableIndication.html">tableIndication</a></span><span class="op">(</span><span class="va">indicationSummary</span><span class="op">)</span></span></code></pre></div>
-<div id="jgfcdcfdjp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jgfcdcfdjp table {
+<div id="vfqkckaiqz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vfqkckaiqz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jgfcdcfdjp thead, #jgfcdcfdjp tbody, #jgfcdcfdjp tfoot, #jgfcdcfdjp tr, #jgfcdcfdjp td, #jgfcdcfdjp th {
+#vfqkckaiqz thead, #vfqkckaiqz tbody, #vfqkckaiqz tfoot, #vfqkckaiqz tr, #vfqkckaiqz td, #vfqkckaiqz th {
   border-style: none;
 }
 
-#jgfcdcfdjp p {
+#vfqkckaiqz p {
   margin: 0;
   padding: 0;
 }
 
-#jgfcdcfdjp .gt_table {
+#vfqkckaiqz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -312,12 +312,12 @@ indication.</p>
   border-left-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_caption {
+#vfqkckaiqz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jgfcdcfdjp .gt_title {
+#vfqkckaiqz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -329,7 +329,7 @@ indication.</p>
   border-bottom-width: 0;
 }
 
-#jgfcdcfdjp .gt_subtitle {
+#vfqkckaiqz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -341,7 +341,7 @@ indication.</p>
   border-top-width: 0;
 }
 
-#jgfcdcfdjp .gt_heading {
+#vfqkckaiqz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -353,13 +353,13 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_bottom_border {
+#vfqkckaiqz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_col_headings {
+#vfqkckaiqz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -374,7 +374,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_col_heading {
+#vfqkckaiqz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -394,7 +394,7 @@ indication.</p>
   overflow-x: hidden;
 }
 
-#jgfcdcfdjp .gt_column_spanner_outer {
+#vfqkckaiqz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -406,15 +406,15 @@ indication.</p>
   padding-right: 4px;
 }
 
-#jgfcdcfdjp .gt_column_spanner_outer:first-child {
+#vfqkckaiqz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jgfcdcfdjp .gt_column_spanner_outer:last-child {
+#vfqkckaiqz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jgfcdcfdjp .gt_column_spanner {
+#vfqkckaiqz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -426,11 +426,11 @@ indication.</p>
   width: 100%;
 }
 
-#jgfcdcfdjp .gt_spanner_row {
+#vfqkckaiqz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jgfcdcfdjp .gt_group_heading {
+#vfqkckaiqz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -456,7 +456,7 @@ indication.</p>
   text-align: left;
 }
 
-#jgfcdcfdjp .gt_empty_group_heading {
+#vfqkckaiqz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -471,15 +471,15 @@ indication.</p>
   vertical-align: middle;
 }
 
-#jgfcdcfdjp .gt_from_md > :first-child {
+#vfqkckaiqz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jgfcdcfdjp .gt_from_md > :last-child {
+#vfqkckaiqz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jgfcdcfdjp .gt_row {
+#vfqkckaiqz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -498,7 +498,7 @@ indication.</p>
   overflow-x: hidden;
 }
 
-#jgfcdcfdjp .gt_stub {
+#vfqkckaiqz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -511,7 +511,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#jgfcdcfdjp .gt_stub_row_group {
+#vfqkckaiqz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -525,15 +525,15 @@ indication.</p>
   vertical-align: top;
 }
 
-#jgfcdcfdjp .gt_row_group_first td {
+#vfqkckaiqz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jgfcdcfdjp .gt_row_group_first th {
+#vfqkckaiqz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jgfcdcfdjp .gt_summary_row {
+#vfqkckaiqz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -543,16 +543,16 @@ indication.</p>
   padding-right: 5px;
 }
 
-#jgfcdcfdjp .gt_first_summary_row {
+#vfqkckaiqz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_first_summary_row.thick {
+#vfqkckaiqz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jgfcdcfdjp .gt_last_summary_row {
+#vfqkckaiqz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -562,7 +562,7 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_grand_summary_row {
+#vfqkckaiqz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -572,7 +572,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#jgfcdcfdjp .gt_first_grand_summary_row {
+#vfqkckaiqz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -582,7 +582,7 @@ indication.</p>
   border-top-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_last_grand_summary_row_top {
+#vfqkckaiqz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -592,11 +592,11 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_striped {
+#vfqkckaiqz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jgfcdcfdjp .gt_table_body {
+#vfqkckaiqz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -605,7 +605,7 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_footnotes {
+#vfqkckaiqz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -619,7 +619,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_footnote {
+#vfqkckaiqz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -628,7 +628,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#jgfcdcfdjp .gt_sourcenotes {
+#vfqkckaiqz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -642,7 +642,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#jgfcdcfdjp .gt_sourcenote {
+#vfqkckaiqz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -650,79 +650,79 @@ indication.</p>
   padding-right: 5px;
 }
 
-#jgfcdcfdjp .gt_left {
+#vfqkckaiqz .gt_left {
   text-align: left;
 }
 
-#jgfcdcfdjp .gt_center {
+#vfqkckaiqz .gt_center {
   text-align: center;
 }
 
-#jgfcdcfdjp .gt_right {
+#vfqkckaiqz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jgfcdcfdjp .gt_font_normal {
+#vfqkckaiqz .gt_font_normal {
   font-weight: normal;
 }
 
-#jgfcdcfdjp .gt_font_bold {
+#vfqkckaiqz .gt_font_bold {
   font-weight: bold;
 }
 
-#jgfcdcfdjp .gt_font_italic {
+#vfqkckaiqz .gt_font_italic {
   font-style: italic;
 }
 
-#jgfcdcfdjp .gt_super {
+#vfqkckaiqz .gt_super {
   font-size: 65%;
 }
 
-#jgfcdcfdjp .gt_footnote_marks {
+#vfqkckaiqz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jgfcdcfdjp .gt_asterisk {
+#vfqkckaiqz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jgfcdcfdjp .gt_indent_1 {
+#vfqkckaiqz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jgfcdcfdjp .gt_indent_2 {
+#vfqkckaiqz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jgfcdcfdjp .gt_indent_3 {
+#vfqkckaiqz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jgfcdcfdjp .gt_indent_4 {
+#vfqkckaiqz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jgfcdcfdjp .gt_indent_5 {
+#vfqkckaiqz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jgfcdcfdjp .katex-display {
+#vfqkckaiqz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jgfcdcfdjp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vfqkckaiqz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]cdm_name
 [header_level]Synthea synthetic health database
 [header_name]cohort_name
@@ -731,7 +731,7 @@ indication.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Synthea synthetic health database
 [header_name]cohort_name
 [header_level]acetaminophen">
@@ -739,7 +739,11 @@ indication.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="censor_date">censor_date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="cohort_table_name">cohort_table_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="index_date">index_date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="indication_cohort_name">indication_cohort_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="estimate_name">estimate_name</th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]cohort_name
 [header_level]acetaminophen">
@@ -752,9 +756,13 @@ indication.</p>
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row">
-<th colspan="3" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication on index date">Indication on index date</th>
+<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication on index date">Indication on index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -763,6 +771,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,524 (18.2 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -771,6 +783,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">1 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -779,6 +795,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -787,6 +807,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,211 (80.7 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -795,6 +819,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">163 (1.2 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -803,9 +831,13 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="3" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
+<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -814,6 +846,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,527 (18.2 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -822,6 +858,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">18 (0.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -830,6 +870,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">3 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -838,6 +882,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,344 (81.6 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -846,6 +894,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -854,9 +906,13 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="3" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
+<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -865,6 +921,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,615 (18.8 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -873,6 +933,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">211 (1.5 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -881,6 +945,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">101 (0.7 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -889,6 +957,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">10,968 (78.9 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -897,6 +969,10 @@ indication.</p>
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">4 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -925,23 +1001,23 @@ results by age groups and sex.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableIndication.html">tableIndication</a></span><span class="op">(</span><span class="va">indicationSummaryStratified</span><span class="op">)</span></span></code></pre></div>
-<div id="dimabcrqxi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dimabcrqxi table {
+<div id="aaosytcqax" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aaosytcqax table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dimabcrqxi thead, #dimabcrqxi tbody, #dimabcrqxi tfoot, #dimabcrqxi tr, #dimabcrqxi td, #dimabcrqxi th {
+#aaosytcqax thead, #aaosytcqax tbody, #aaosytcqax tfoot, #aaosytcqax tr, #aaosytcqax td, #aaosytcqax th {
   border-style: none;
 }
 
-#dimabcrqxi p {
+#aaosytcqax p {
   margin: 0;
   padding: 0;
 }
 
-#dimabcrqxi .gt_table {
+#aaosytcqax .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -967,12 +1043,12 @@ results by age groups and sex.</p>
   border-left-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_caption {
+#aaosytcqax .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dimabcrqxi .gt_title {
+#aaosytcqax .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -984,7 +1060,7 @@ results by age groups and sex.</p>
   border-bottom-width: 0;
 }
 
-#dimabcrqxi .gt_subtitle {
+#aaosytcqax .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -996,7 +1072,7 @@ results by age groups and sex.</p>
   border-top-width: 0;
 }
 
-#dimabcrqxi .gt_heading {
+#aaosytcqax .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1008,13 +1084,13 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_bottom_border {
+#aaosytcqax .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_col_headings {
+#aaosytcqax .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1029,7 +1105,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_col_heading {
+#aaosytcqax .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1049,7 +1125,7 @@ results by age groups and sex.</p>
   overflow-x: hidden;
 }
 
-#dimabcrqxi .gt_column_spanner_outer {
+#aaosytcqax .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1061,15 +1137,15 @@ results by age groups and sex.</p>
   padding-right: 4px;
 }
 
-#dimabcrqxi .gt_column_spanner_outer:first-child {
+#aaosytcqax .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dimabcrqxi .gt_column_spanner_outer:last-child {
+#aaosytcqax .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dimabcrqxi .gt_column_spanner {
+#aaosytcqax .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1081,11 +1157,11 @@ results by age groups and sex.</p>
   width: 100%;
 }
 
-#dimabcrqxi .gt_spanner_row {
+#aaosytcqax .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dimabcrqxi .gt_group_heading {
+#aaosytcqax .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1111,7 +1187,7 @@ results by age groups and sex.</p>
   text-align: left;
 }
 
-#dimabcrqxi .gt_empty_group_heading {
+#aaosytcqax .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1126,15 +1202,15 @@ results by age groups and sex.</p>
   vertical-align: middle;
 }
 
-#dimabcrqxi .gt_from_md > :first-child {
+#aaosytcqax .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dimabcrqxi .gt_from_md > :last-child {
+#aaosytcqax .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dimabcrqxi .gt_row {
+#aaosytcqax .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1153,7 +1229,7 @@ results by age groups and sex.</p>
   overflow-x: hidden;
 }
 
-#dimabcrqxi .gt_stub {
+#aaosytcqax .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1166,7 +1242,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#dimabcrqxi .gt_stub_row_group {
+#aaosytcqax .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1180,15 +1256,15 @@ results by age groups and sex.</p>
   vertical-align: top;
 }
 
-#dimabcrqxi .gt_row_group_first td {
+#aaosytcqax .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dimabcrqxi .gt_row_group_first th {
+#aaosytcqax .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dimabcrqxi .gt_summary_row {
+#aaosytcqax .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1198,16 +1274,16 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#dimabcrqxi .gt_first_summary_row {
+#aaosytcqax .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_first_summary_row.thick {
+#aaosytcqax .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dimabcrqxi .gt_last_summary_row {
+#aaosytcqax .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1217,7 +1293,7 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_grand_summary_row {
+#aaosytcqax .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1227,7 +1303,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#dimabcrqxi .gt_first_grand_summary_row {
+#aaosytcqax .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1237,7 +1313,7 @@ results by age groups and sex.</p>
   border-top-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_last_grand_summary_row_top {
+#aaosytcqax .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1247,11 +1323,11 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_striped {
+#aaosytcqax .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dimabcrqxi .gt_table_body {
+#aaosytcqax .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1260,7 +1336,7 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_footnotes {
+#aaosytcqax .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1274,7 +1350,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_footnote {
+#aaosytcqax .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1283,7 +1359,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#dimabcrqxi .gt_sourcenotes {
+#aaosytcqax .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1297,7 +1373,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#dimabcrqxi .gt_sourcenote {
+#aaosytcqax .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1305,79 +1381,79 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#dimabcrqxi .gt_left {
+#aaosytcqax .gt_left {
   text-align: left;
 }
 
-#dimabcrqxi .gt_center {
+#aaosytcqax .gt_center {
   text-align: center;
 }
 
-#dimabcrqxi .gt_right {
+#aaosytcqax .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dimabcrqxi .gt_font_normal {
+#aaosytcqax .gt_font_normal {
   font-weight: normal;
 }
 
-#dimabcrqxi .gt_font_bold {
+#aaosytcqax .gt_font_bold {
   font-weight: bold;
 }
 
-#dimabcrqxi .gt_font_italic {
+#aaosytcqax .gt_font_italic {
   font-style: italic;
 }
 
-#dimabcrqxi .gt_super {
+#aaosytcqax .gt_super {
   font-size: 65%;
 }
 
-#dimabcrqxi .gt_footnote_marks {
+#aaosytcqax .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dimabcrqxi .gt_asterisk {
+#aaosytcqax .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dimabcrqxi .gt_indent_1 {
+#aaosytcqax .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dimabcrqxi .gt_indent_2 {
+#aaosytcqax .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dimabcrqxi .gt_indent_3 {
+#aaosytcqax .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dimabcrqxi .gt_indent_4 {
+#aaosytcqax .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dimabcrqxi .gt_indent_5 {
+#aaosytcqax .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dimabcrqxi .katex-display {
+#aaosytcqax .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dimabcrqxi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aaosytcqax div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]cdm_name
 [header_level]Synthea synthetic health database
 [header_name]cohort_name
@@ -1390,7 +1466,7 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]Synthea synthetic health database
 [header_name]cohort_name
 [header_level]acetaminophen
@@ -1402,7 +1478,7 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1413,7 +1489,7 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]acetaminophen
 [header_name]age_group
 [header_level]overall
@@ -1423,7 +1499,7 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]age_group
 [header_level]overall
 [header_name]sex
@@ -1432,7 +1508,7 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]overall
 [header_name]sex
 [header_level]overall">
@@ -1455,7 +1531,11 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="censor_date">censor_date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="cohort_table_name">cohort_table_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="index_date">index_date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="indication_cohort_name">indication_cohort_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="estimate_name">estimate_name</th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]sex
 [header_level]overall">
@@ -1472,9 +1552,13 @@ results by age groups and sex.</p>
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row">
-<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication on index date">Indication on index date</th>
+<th colspan="11" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication on index date">Indication on index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1519,6 +1603,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">1,234 (17.9 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1563,6 +1651,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">1 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1607,6 +1699,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1651,6 +1747,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">5,592 (81.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1695,6 +1795,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">68 (1.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication on index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication on index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication on index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication on index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
@@ -1739,9 +1843,13 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
+<th colspan="11" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -1786,6 +1894,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">1,236 (17.9 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -1830,6 +1942,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -1874,6 +1990,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">2 (0.0 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -1918,6 +2038,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">5,643 (81.8 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -1962,6 +2086,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 30 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 30 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 30 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 30 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
@@ -2006,9 +2134,13 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
+<th colspan="11" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -2053,6 +2185,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">1,262 (18.3 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -2097,6 +2233,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">103 (1.5 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -2141,6 +2281,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">62 (0.9 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -2185,6 +2329,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">5,464 (79.2 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
@@ -2229,6 +2377,10 @@ results by age groups and sex.</p>
 [header_level]Male" class="gt_row gt_right" style="text-align: right;">4 (0.1 %)</td>
 </tr>
 <tr>
+<td headers="Indication from 365 days before to the index date  censor_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">NA</td>
+<td headers="Indication from 365 days before to the index date  cohort_table_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">temp</td>
+<td headers="Indication from 365 days before to the index date  index_date" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">cohort_start_date</td>
+<td headers="Indication from 365 days before to the index date  indication_cohort_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">indications_cohort</td>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
