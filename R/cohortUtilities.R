@@ -188,8 +188,9 @@ erafy <- function(x,
     dplyr::group_by(dplyr::across(dplyr::all_of(group))) |>
     dplyr::arrange(.data$date_event, .data$date_id) |>
     dplyr::mutate(era_id = dplyr::if_else(
-      cumsum(.data$date_id) == -1 && .data$date_id == -1, 1L, 0L
+      cumsum(.data$date_id) == -1 && .data$date_id == -1, -1L, 0L
     )) |>
+    dplyr::arrange(.data$date_event, .data$date_id, .data$era_id) |>
     dplyr::mutate(era_id = cumsum(.data$era_id)) |>
     dplyr::group_by(.data$era_id, .add = TRUE) |>
     dplyr::summarise(
