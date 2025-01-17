@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Identify and summarise indications among a drug cohort</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v0.8.1/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
       <div class="d-none name"><code>indication.Rmd</code></div>
     </div>
 
@@ -93,7 +93,7 @@ the DBI and CDMConnector packages.</p>
 <span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb.html" class="external-link">duckdb</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu">CDMConnector</span><span class="fu">::</span><span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/eunomiaDir.html" class="external-link">eunomiaDir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">CDMConnector</span><span class="fu">::</span><span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdm_from_con.html" class="external-link">cdm_from_con</a></span><span class="op">(</span></span>
+<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">CDMConnector</span><span class="fu">::</span><span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html" class="external-link">cdm_from_con</a></span><span class="op">(</span></span>
 <span>  con <span class="op">=</span> <span class="va">con</span>,</span>
 <span>  cdm_schema <span class="op">=</span> <span class="st">"main"</span>,</span>
 <span>  write_schema <span class="op">=</span> <span class="st">"main"</span></span>
@@ -157,11 +157,11 @@ with the label of the indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
-<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 236, 670, 700, 1135, 1468, 2016, 3598, 3814, 3900…</span></span>
-<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1978-01-01, 1977-09-15, 2003-05-06, 1981-01-01, …</span></span>
-<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1978-01-08, 1977-09-22, 2003-05-13, 1981-01-15, …</span></span>
+<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3756, 3899, 4142, 4375, 3221, 3298, 4121, 276, 97…</span></span>
+<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1943-11-07, 1991-10-29, 2000-07-05, 1933-06-09, …</span></span>
+<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1943-11-21, 1991-11-12, 2000-07-12, 1933-06-16, …</span></span>
 <span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bronchitis", "bronchitis", "bronchitis", "bronch…</span></span></code></pre></div>
 <p>We can see that individuals are classified as having sinusistis
 (without bronchitis), bronchitis (without sinusitis), sinusitis and
@@ -171,13 +171,13 @@ bronchitis, or no observed indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> sinusitis                   18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none                     <span style="text-decoration: underline;">11</span>351</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis                   18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                     <span style="text-decoration: underline;">11</span>351</span></span></code></pre></div>
 <p>As well as the indication cohort table, we can also use the clinical
 tables in the OMOP CDM to identify other, unknown, indications. Here we
 consider anyone who is not in an indication cohort but has a record in
@@ -197,11 +197,11 @@ initiation.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis                   18</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                         7</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span></code></pre></div>
@@ -220,7 +220,7 @@ likely increase our risk of false positives).</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_0_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_0_to_0     n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis         <span style="text-decoration: underline;">2</span>524</span></span>
@@ -231,26 +231,26 @@ likely increase our risk of false positives).</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis                   18</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         7</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m365_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/Rtmp6O7aV9/file24031d993cb1.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2//tmp/RtmpmHj18Y/file24eb1f72852.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m365_to_0         n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>615</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> bronchitis and sinusitis   101</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> unknown                  <span style="text-decoration: underline;">10</span>968</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis                  211</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         4</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis   101</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">10</span>968</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis                  211</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                         4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis                <span style="text-decoration: underline;">2</span>615</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="summarise-indications-with-summariseindication">Summarise indications with summariseIndication()<a class="anchor" aria-label="anchor" href="#summarise-indications-with-summariseindication"></a>
 </h3>
@@ -724,7 +724,7 @@ indication.</p>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen">
         <div class="gt_column_spanner">cdm_name</div>
@@ -732,10 +732,10 @@ indication.</p>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Synthea synthetic health database
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen">
-        <div class="gt_column_spanner">Synthea synthetic health database</div>
+        <div class="gt_column_spanner">An OMOP CDM database</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
@@ -751,7 +751,7 @@ indication.</p>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen">acetaminophen</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen">acetaminophen</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -766,7 +766,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,524 (18.2 %)</td>
 </tr>
@@ -778,7 +778,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">1 (0.0 %)</td>
 </tr>
@@ -790,7 +790,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
@@ -802,7 +802,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,211 (80.7 %)</td>
 </tr>
@@ -814,7 +814,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">163 (1.2 %)</td>
 </tr>
@@ -826,7 +826,7 @@ indication.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
@@ -841,7 +841,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,527 (18.2 %)</td>
 </tr>
@@ -853,7 +853,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">18 (0.1 %)</td>
 </tr>
@@ -865,7 +865,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">3 (0.0 %)</td>
 </tr>
@@ -877,7 +877,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,344 (81.6 %)</td>
 </tr>
@@ -889,7 +889,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
 </tr>
@@ -901,7 +901,7 @@ indication.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
@@ -916,7 +916,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,615 (18.8 %)</td>
 </tr>
@@ -928,7 +928,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">211 (1.5 %)</td>
 </tr>
@@ -940,7 +940,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">101 (0.7 %)</td>
 </tr>
@@ -952,7 +952,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">10,968 (78.9 %)</td>
 </tr>
@@ -964,7 +964,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">4 (0.0 %)</td>
 </tr>
@@ -976,7 +976,7 @@ indication.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
 </tr>
@@ -1455,7 +1455,7 @@ results by age groups and sex.</p>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1467,14 +1467,14 @@ results by age groups and sex.</p>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="6" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]Synthea synthetic health database
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
 [header_level]overall
 [header_name]sex
 [header_level]overall">
-        <div class="gt_column_spanner">Synthea synthetic health database</div>
+        <div class="gt_column_spanner">An OMOP CDM database</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
@@ -1543,11 +1543,11 @@ results by age groups and sex.</p>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]0-to-19-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]20-to-150-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Female">Female</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-synthetic-health-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Male">Male</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]0-to-19-[header_name]sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]20-to-150-[header_name]sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Female">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]An-OMOP-CDM-database-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Male">Male</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -1562,7 +1562,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1570,7 +1570,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,524 (18.2 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1578,7 +1578,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,823 (29.9 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1586,7 +1586,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (9.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1594,7 +1594,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,290 (18.4 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1610,7 +1610,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1618,7 +1618,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1626,7 +1626,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1634,7 +1634,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1642,7 +1642,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1658,7 +1658,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1666,7 +1666,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1674,7 +1674,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1682,7 +1682,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1690,7 +1690,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1706,7 +1706,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1714,7 +1714,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,211 (80.7 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1722,7 +1722,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,242 (69.6 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1730,7 +1730,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">6,969 (89.3 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1738,7 +1738,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,619 (80.2 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1754,7 +1754,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1762,7 +1762,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">163 (1.2 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1770,7 +1770,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">30 (0.5 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1778,7 +1778,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">133 (1.7 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1786,7 +1786,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">95 (1.4 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1802,7 +1802,7 @@ results by age groups and sex.</p>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1810,7 +1810,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1818,7 +1818,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1826,7 +1826,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1834,7 +1834,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication on index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1853,7 +1853,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1861,7 +1861,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,527 (18.2 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1869,7 +1869,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,826 (30.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1877,7 +1877,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (9.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1885,7 +1885,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,291 (18.4 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1901,7 +1901,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1909,7 +1909,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18 (0.1 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1917,7 +1917,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">15 (0.2 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1925,7 +1925,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1933,7 +1933,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11 (0.2 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1949,7 +1949,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1957,7 +1957,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1965,7 +1965,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1973,7 +1973,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1981,7 +1981,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -1997,7 +1997,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2005,7 +2005,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,344 (81.6 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2013,7 +2013,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,253 (69.8 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2021,7 +2021,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,091 (90.9 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2029,7 +2029,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,701 (81.4 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2045,7 +2045,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2053,7 +2053,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.1 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2061,7 +2061,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2069,7 +2069,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.1 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2077,7 +2077,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2093,7 +2093,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2101,7 +2101,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2109,7 +2109,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2117,7 +2117,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2125,7 +2125,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 30 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2144,7 +2144,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2152,7 +2152,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,615 (18.8 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2160,7 +2160,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,883 (30.9 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2168,7 +2168,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">732 (9.4 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2176,7 +2176,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,353 (19.3 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2192,7 +2192,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2200,7 +2200,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">211 (1.5 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2208,7 +2208,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">191 (3.1 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2216,7 +2216,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">20 (0.3 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2224,7 +2224,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">108 (1.5 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2240,7 +2240,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2248,7 +2248,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">101 (0.7 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2256,7 +2256,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">96 (1.6 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2264,7 +2264,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5 (0.1 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2272,7 +2272,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">39 (0.6 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2288,7 +2288,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2296,7 +2296,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">10,968 (78.9 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2304,7 +2304,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3,926 (64.4 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2312,7 +2312,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,042 (90.2 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2320,7 +2320,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,504 (78.6 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2336,7 +2336,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2344,7 +2344,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2352,7 +2352,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2360,7 +2360,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.1 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2368,7 +2368,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2384,7 +2384,7 @@ results by age groups and sex.</p>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
 <td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2392,7 +2392,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2400,7 +2400,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2408,7 +2408,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
@@ -2416,7 +2416,7 @@ results by age groups and sex.</p>
 [header_name]sex
 [header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
 <td headers="Indication from 365 days before to the index date  [header_name]cdm_name
-[header_level]Synthea synthetic health database
+[header_level]An OMOP CDM database
 [header_name]cohort_name
 [header_level]acetaminophen
 [header_name]age_group
