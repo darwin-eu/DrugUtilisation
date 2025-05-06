@@ -31,8 +31,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm

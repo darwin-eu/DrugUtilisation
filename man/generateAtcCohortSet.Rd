@@ -13,13 +13,7 @@ generateAtcCohortSet(
   subsetCohortId = NULL,
   numberExposures = FALSE,
   daysPrescribed = FALSE,
-  ...,
-  durationRange = lifecycle::deprecated(),
-  imputeDuration = lifecycle::deprecated(),
-  priorUseWashout = lifecycle::deprecated(),
-  priorObservation = lifecycle::deprecated(),
-  cohortDateRange = lifecycle::deprecated(),
-  limit = lifecycle::deprecated()
+  ...
 )
 }
 \arguments{
@@ -45,18 +39,6 @@ exposure records between indexDate and censorDate).}
 prescribed used to create each era).}
 
 \item{...}{Arguments to be passed to \code{CodelistGenerator::getATCCodes()}.}
-
-\item{durationRange}{Deprecated.}
-
-\item{imputeDuration}{Deprecated.}
-
-\item{priorUseWashout}{Deprecated}
-
-\item{priorObservation}{Deprecated.}
-
-\item{cohortDateRange}{Deprecated.}
-
-\item{limit}{Deprecated.}
 }
 \value{
 The function returns the cdm reference provided with the addition of
@@ -72,9 +54,6 @@ cohort entry.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 cdm <- generateAtcCohortSet(
@@ -84,6 +63,6 @@ cdm <- generateAtcCohortSet(
 )
 
 cdm$drugs |>
-  glimpse()
+  dplyr::glimpse()
 }
 }

@@ -88,3 +88,175 @@ test_that("plotDrugRestart works", {
 
   mockDisconnect(cdm = cdm)
 })
+
+test_that("plotIndication works", {
+  skip_on_cran()
+  targetCohortName <- dplyr::tibble(
+    cohort_definition_id = c(1, 1, 1, 2),
+    subject_id = c(1, 1, 2, 3),
+    cohort_start_date = as.Date(c(
+      "2020-01-01", "2020-06-01", "2020-01-02", "2020-01-01"
+    )),
+    cohort_end_date = as.Date(c(
+      "2020-04-01", "2020-08-01", "2020-02-02", "2020-03-01"
+    ))
+  )
+  indicationCohortName <- dplyr::tibble(
+    cohort_definition_id = c(1, 1, 2, 1),
+    subject_id = c(1, 3, 1, 1),
+    cohort_start_date = as.Date(c(
+      "2019-12-30", "2020-01-01", "2020-05-25", "2020-05-25"
+    )),
+    cohort_end_date = as.Date(c(
+      "2019-12-30", "2020-01-01", "2020-05-25", "2020-05-25"
+    ))
+  )
+  attr(indicationCohortName, "cohort_set") <- dplyr::tibble(
+    cohort_definition_id = c(1, 2),
+    cohort_name = c("asthma", "covid")
+  )
+  condition_occurrence <- dplyr::tibble(
+    person_id = 1,
+    condition_start_date = as.Date("2020-05-31"),
+    condition_end_date = as.Date("2020-05-31"),
+    condition_occurrence_id = 1,
+    condition_concept_id = 0,
+    condition_type_concept_id = 0
+  )
+  observationPeriod <- dplyr::tibble(
+    observation_period_id = c(1, 2, 3),
+    person_id = c(1, 2, 3),
+    observation_period_start_date = as.Date(c(
+      "2015-01-01", "2016-05-15", "2012-12-30"
+    )),
+    observation_period_end_date = as.Date("2024-01-01"),
+    period_type_concept_id = 44814724
+  )
+  cdm <- mockDrugUtilisation(
+    con = connection(),
+    writeSchema = schema(),
+    cohort1 = targetCohortName,
+    cohort2 = indicationCohortName,
+    condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
+  )
+
+  result <- cdm$cohort1 |>
+    summariseIndication(
+      indicationCohortName = "cohort2",
+      indicationWindow = list(c(0, 0), c(-7, 0), c(-30, 0), c(-Inf, 0)),
+      unknownIndicationTable = "condition_occurrence"
+    )
+
+  expect_no_error(p <- plotIndication(result))
+
+  mockDisconnect(cdm = cdm)
+})
+
+test_that("plotDrugUtilisation", {
+  skip_on_cran()
+  nExposures <- 10000
+  nPersons <- 1000
+  cdm <- mockDrugUtilisation(
+    con = connection(),
+    writeSchema = schema(),
+    drug_exposure = dplyr::tibble(
+      drug_exposure_id = seq_len(nExposures),
+      person_id = sample(seq_len(nPersons), size = nExposures, replace = TRUE),
+      drug_concept_id = 1125315L,
+      drug_type_concept_id = 0,
+      quantity = 0L
+    ) |>
+      dplyr::mutate(
+        rand1 = runif(n = nExposures),
+        rand2 = runif(n = nExposures),
+        rand3 = runif(n = nExposures),
+        total_rand = .data$rand1 + .data$rand2 + .data$rand3,
+        drug_exposure_start_date = as.Date("2000-01-01") +
+          as.integer(8788 * .data$rand1 / .data$total_rand),
+        drug_exposure_end_date = as.Date("2000-01-01") +
+          as.integer(8788 * (.data$rand1 + .data$rand2) / .data$total_rand)
+      ) |>
+      dplyr::select(!c("rand1", "rand2", "rand3", "total_rand")),
+    observation_period = dplyr::tibble(
+      observation_period_id = seq_len(nPersons),
+      person_id = observation_period_id,
+      observation_period_start_date = as.Date("2000-01-01"),
+      observation_period_end_date = as.Date("2024-01-01"),
+      period_type_concept_id = 0
+    ),
+    person = dplyr::tibble(
+      person_id = seq_len(nPersons),
+      gender_concept_id = sample(c(8507L, 8532L), size = nPersons, replace = TRUE),
+      year_of_birth = 1990L,
+      day_of_birth = 1L,
+      month_of_birth = 1L,
+      birth_datetime = as.Date("1990-01-01"),
+      race_concept_id = 0L,
+      ethnicity_concept_id = 0L,
+      location_id = 0L,
+      provider_id = 0L,
+      care_site_id = 0L
+    )
+  )
+
+  cdm <- generateDrugUtilisationCohortSet(
+    cdm = cdm, name = "dus_cohort", conceptSet = list(acetaminophen = 1125315L)
+  )
+
+  result <- cdm$dus_cohort |>
+    PatientProfiles::addSex(name = "dus_cohort") |>
+    summariseDrugUtilisation(
+      ingredientConceptId = 1125315L,
+      strata = list("sex"),
+      estimates = c("density", "min", "q25", "median", "q75", "max")
+    )
+
+  expect_no_error(
+    p1 <- result |>
+      dplyr::filter(
+        .data$variable_name == "number exposures",
+        .data$estimate_name == "median"
+      ) |>
+      plotDrugUtilisation(
+        facet = . ~ concept_set,
+        colour = "sex",
+        plotType = "barplot"
+      )
+  )
+
+  expect_no_error(
+    p2 <- result |>
+      dplyr::filter(
+        .data$variable_name == "number exposures",
+        .data$estimate_name == "median"
+      ) |>
+      plotDrugUtilisation(
+        facet = . ~ concept_set,
+        colour = "sex",
+        plotType = "scatterplot"
+      )
+  )
+
+  expect_no_error(
+    p3 <- result |>
+      dplyr::filter(.data$variable_name == "number exposures") |>
+      plotDrugUtilisation(
+        facet = . ~ concept_set,
+        colour = "sex",
+        plotType = "densityplot"
+      )
+  )
+
+  expect_no_error(
+    p4 <- result |>
+      dplyr::filter(.data$variable_name == "number exposures") |>
+      plotDrugUtilisation(
+        facet = . ~ concept_set,
+        colour = "sex",
+        plotType = "boxplot"
+      )
+  )
+
+  mockDisconnect(cdm = cdm)
+})

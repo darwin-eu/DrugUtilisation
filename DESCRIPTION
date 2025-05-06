@@ -1,7 +1,7 @@
 Package: DrugUtilisation
 Title: Summarise Patient-Level Drug Utilisation in Data Mapped to the OMOP 
     Common Data Model 
-Version: 0.8.3
+Version: 1.0.0
 Authors@R: c(
     person(
         "Martí", "Català", email = "marti.catalasabate@ndorms.ox.ac.uk", 
@@ -51,39 +51,38 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
-    covr,
-    testthat (>= 3.1.5),
-    odbc,
-    CohortSurvival,
-    here,
-    RPostgres,
-    duckdb,
-    knitr,
-    rmarkdown,
-    ggplot2,
-    tibble,
-    gt,
-    flextable,
-    ggtext,
-    scales,
-    DBI,
     bit64,
-    visOmopResults (>= 0.5.0)
+    CohortSurvival,
+    covr,
+    DBI,
+    duckdb,
+    flextable,
+    ggplot2,
+    ggtext,
+    gt,
+    here,
+    knitr,
+    odbc,
+    rmarkdown,
+    RPostgres,
+    scales,
+    testthat (>= 3.1.5),
+    tibble,
+    visOmopResults (>= 1.0.0)
 Config/testthat/edition: 3
 Imports: 
     CDMConnector (>= 1.4.0),
+    cli,
+    clock,
     CodelistGenerator (>= 3.1.0),
     dplyr,
     glue,
-    clock,
-    tidyr,
-    rlang,
-    cli,
+    omopgenerics (>= 1.0.0),
     PatientProfiles (>= 1.0.0),
     purrr,
-    omopgenerics (>= 0.4.0),
-    lifecycle,
-    stringr
+    rlang,
+    stringr,
+    tidyr
 Depends: 
     R (>= 4.1)
 LazyData: true

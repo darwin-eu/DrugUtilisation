@@ -38,15 +38,13 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requirePriorDrugWashout(days = 90)
 #'
-#' attrition(cdm$cohort1) |> glimpse()
+#' attrition(cdm$cohort1) |>
+#'   dplyr::glimpse()
 #' }
 #'
 requirePriorDrugWashout <- function(cohort,
@@ -86,7 +84,7 @@ requirePriorDrugWashout <- function(cohort,
           dplyr::mutate(prior_time = !!CDMConnector::datediff(
             "prior_end_date", "cohort_start_date"
           )) |>
-          dplyr::filter(.data$prior_time < .env$days) |>
+          dplyr::filter(.data$prior_time <= .env$days) |>
           dplyr::select("cohort_definition_id", "subject_id", "cohort_start_date"),
         by = c("cohort_definition_id", "subject_id", "cohort_start_date")
       )
@@ -120,15 +118,13 @@ requirePriorDrugWashout <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requireIsFirstDrugEntry()
 #'
-#' attrition(cdm$cohort1) |> glimpse()
+#' attrition(cdm$cohort1) |>
+#'   dplyr::glimpse()
 #' }
 #'
 requireIsFirstDrugEntry <- function(cohort,
@@ -186,15 +182,13 @@ requireIsFirstDrugEntry <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requireObservationBeforeDrug(days = 365)
 #'
-#' attrition(cdm$cohort1) |> glimpse()
+#' attrition(cdm$cohort1) |>
+#'   dplyr::glimpse()
 #' }
 #'
 requireObservationBeforeDrug <- function(cohort,
@@ -261,9 +255,6 @@ requireObservationBeforeDrug <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
@@ -271,7 +262,8 @@ requireObservationBeforeDrug <- function(cohort,
 #'     dateRange = as.Date(c("2020-01-01", NA))
 #'   )
 #'
-#' attrition(cdm$cohort1) |> glimpse()
+#' attrition(cdm$cohort1) |>
+#'   dplyr::glimpse()
 #' }
 #'
 requireDrugInDateRange <- function(cohort,

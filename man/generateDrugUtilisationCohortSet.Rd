@@ -12,13 +12,7 @@ generateDrugUtilisationCohortSet(
   subsetCohort = NULL,
   subsetCohortId = NULL,
   numberExposures = FALSE,
-  daysPrescribed = FALSE,
-  durationRange = lifecycle::deprecated(),
-  imputeDuration = lifecycle::deprecated(),
-  priorUseWashout = lifecycle::deprecated(),
-  priorObservation = lifecycle::deprecated(),
-  cohortDateRange = lifecycle::deprecated(),
-  limit = lifecycle::deprecated()
+  daysPrescribed = FALSE
 )
 }
 \arguments{
@@ -41,18 +35,6 @@ exposure records between indexDate and censorDate).}
 
 \item{daysPrescribed}{Whether to include 'days_prescribed' (number of days
 prescribed used to create each era).}
-
-\item{durationRange}{Deprecated.}
-
-\item{imputeDuration}{Deprecated.}
-
-\item{priorUseWashout}{Deprecated.}
-
-\item{priorObservation}{Deprecated.}
-
-\item{cohortDateRange}{Deprecated.}
-
-\item{limit}{Deprecated.}
 }
 \value{
 The function returns the cdm reference provided with the addition of
@@ -67,10 +49,6 @@ concatenated into a single cohort entry.
 }
 \examples{
 \donttest{
-library(CDMConnector)
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 druglist <- CodelistGenerator::getDrugIngredientCodes(
@@ -87,7 +65,7 @@ cdm <- generateDrugUtilisationCohortSet(
 )
 
 cdm$drug_cohorts |>
-  glimpse()
+  dplyr::glimpse()
 }
 
 }

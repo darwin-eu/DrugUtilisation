@@ -58,14 +58,10 @@ considered as having no observed indication.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CDMConnector)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 indications <- list("headache" = 378253, "asthma" = 317009)
-cdm <- generateConceptCohortSet(
+cdm <- CDMConnector::generateConceptCohortSet(
   cdm = cdm, conceptSet = indications, name = "indication_cohorts"
 )
 
@@ -80,7 +76,7 @@ cdm$drug_cohort |>
     indicationWindow = list(c(0, 0)),
     unknownIndicationTable = "condition_occurrence"
   ) |>
-  glimpse()
+  dplyr::glimpse()
 }
 
 }

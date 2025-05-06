@@ -33,8 +33,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -64,17 +62,7 @@ addDrugUtilisation <- function(cohort,
                                initialDailyDose = TRUE,
                                cumulativeDose = TRUE,
                                nameStyle = "{value}_{concept_name}_{ingredient}",
-                               name = NULL,
-                               exposedTime = lifecycle::deprecated()) {
-  if (lifecycle::is_present(exposedTime)) {
-    lifecycle::deprecate_warn(
-      when = "0.8.0", what = "addDrugUtilisation(exposedTime= )",
-      with = "addDrugUtilisation(daysExposed= )"
-    )
-    if (missing(daysExposed)) {
-      daysExposed <- exposedTime
-    }
-  }
+                               name = NULL) {
   cohort |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -115,8 +103,6 @@ addDrugUtilisation <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -178,8 +164,6 @@ addNumberExposures <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -242,8 +226,6 @@ addDaysPrescribed <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 |>
@@ -299,8 +281,6 @@ addCumulativeDose <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 |>
@@ -355,8 +335,6 @@ addInitialDailyDose <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -418,8 +396,6 @@ addCumulativeQuantity <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -481,8 +457,6 @@ addInitialQuantity <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -545,8 +519,6 @@ addTimeToExposure <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -592,45 +564,6 @@ addDaysExposed <- function(cohort,
     )
 }
 
-#' To add a new column with the exposed time. To add multiple columns use
-#' `addDrugUtilisation()` for efficiency.
-#'
-#' @inheritParams cohortDoc
-#' @inheritParams conceptSetDoc
-#' @inheritParams gapEraDoc
-#' @inheritParams indexDateDoc
-#' @inheritParams censorDateDoc
-#' @inheritParams restrictIncidentDoc
-#' @inheritParams nameStyleDoc
-#' @inheritParams compNameDoc
-#'
-#' @return The same cohort with the added column.
-#'
-#' @export
-#'
-addExposedTime <- function(cohort,
-                           conceptSet,
-                           gapEra,
-                           indexDate = "cohort_start_date",
-                           censorDate = "cohort_end_date",
-                           restrictIncident = TRUE,
-                           nameStyle = "days_exposed_{concept_name}",
-                           name = NULL) {
-  lifecycle::deprecate_warn(
-    when = "0.8.0", what = "addExposedTime()", with = "addDaysExposed()"
-  )
-  cohort |>
-    addDaysExposed(
-      conceptSet = conceptSet,
-      gapEra = gapEra,
-      indexDate = indexDate,
-      censorDate = censorDate,
-      restrictIncident = restrictIncident,
-      nameStyle = nameStyle,
-      name = name
-    )
-}
-
 #' To add a new column with the duratio of the first exposure.
 #' To add multiple columns use `addDrugUtilisation()` for efficiency.
 #'
@@ -648,8 +581,6 @@ addExposedTime <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -712,8 +643,6 @@ addInitialExposureDuration <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(
 #'   cdm,
@@ -1143,7 +1072,7 @@ addDrugUseInternal <- function(x,
           )) |>
           compute2(name)
       }
-      omopgenerics::dropTable(cdm = cdm, name = nm)
+      omopgenerics::dropSourceTable(cdm = cdm, name = nm)
     }
   }
 
@@ -1156,7 +1085,7 @@ addDrugUseInternal <- function(x,
       dplyr::select(!dplyr::all_of(cols))
   }
 
-  omopgenerics::dropTable(cdm = cdm, name = dplyr::starts_with(tablePrefix))
+  omopgenerics::dropSourceTable(cdm = cdm, name = dplyr::starts_with(tablePrefix))
 
   return(x)
 }

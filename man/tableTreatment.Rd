@@ -9,7 +9,8 @@ tableTreatment(
   header = c("cdm_name", "cohort_name"),
   groupColumn = "variable_name",
   type = "gt",
-  hide = c("window_name", "mutually_exclusive")
+  hide = c("window_name", "mutually_exclusive", "censor_date", "cohort_table_name",
+    "index_date", "treatment_cohort_name")
 )
 }
 \arguments{
@@ -31,12 +32,10 @@ tableTreatment(
 A table with a formatted version of summariseTreatment() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Format a summarised_treatment result into a visual table.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 result <- cdm$cohort1 |>

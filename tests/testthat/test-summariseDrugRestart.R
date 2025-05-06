@@ -310,4 +310,5 @@ test_that("test addDrugRestart", {
   )
   expect_true("test" %in% colnames(x7))
 
+  mockDisconnect(cdm = cdm)
 })

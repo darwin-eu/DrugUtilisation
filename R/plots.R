@@ -26,8 +26,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' result <- cdm$cohort1 |>
 #'   summariseTreatment(
@@ -62,8 +60,6 @@ plotTreatment <- function(result,
 #'
 #' @examples
 #' \dontrun{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -104,14 +100,10 @@ plotDrugRestart <- function(result,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(CDMConnector)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' indications <- list("headache" = 378253, "asthma" = 317009)
-#' cdm <- generateConceptCohortSet(cdm, indications, "indication_cohorts")
+#' cdm <- CDMConnector::generateConceptCohortSet(cdm, indications, "indication_cohorts")
 #'
 #' cdm <- generateIngredientCohortSet(
 #'   cdm = cdm, name = "drug_cohort", ingredient = "acetaminophen"
@@ -341,8 +333,6 @@ correctX <- function(x) { # issue in visOmopResults
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm <- generateDrugUtilisationCohortSet(
@@ -355,8 +345,6 @@ correctX <- function(x) { # issue in visOmopResults
 #'   summariseProportionOfPatientsCovered(followUpDays = 365)
 #'
 #' plotProportionOfPatientsCovered(result)
-#'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 #'
 plotProportionOfPatientsCovered <- function(result,
@@ -419,7 +407,10 @@ plotProportionOfPatientsCovered <- function(result,
     ) +
     ggplot2::theme_bw() +
     ggplot2::theme(legend.position = "top") +
-    ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 0.1))
+    ggplot2::scale_y_continuous(
+      labels = scales::percent_format(accuracy = 0.1),
+      limits = c(0, 1)
+    )
 
   if (rlang::is_bare_formula(facet)) {
     notPresent <- facet |>
@@ -499,6 +490,23 @@ barPlotInternal <- function(result,
     purrr::map(unique) |>
     purrr::keep(\(x) length(x) > 1) |>
     names()
+
+  if ("window_name" %in% colnames(result)) {
+    windows <- unique(result$window_name) |>
+      rlang::set_names() |>
+      purrr::map(\(x) {
+        x <- stringr::str_split(string = x, pattern = " to ") |>
+          unlist() |>
+          as.numeric() |>
+          suppressWarnings()
+        dplyr::tibble(min = x[1], max = x[2])
+      }) |>
+      dplyr::bind_rows(.id = "window_name") |>
+      dplyr::arrange(.data$min, .data$max) |>
+      dplyr::pull("window_name")
+    result <- result |>
+      dplyr::mutate(window_name = factor(.data$window_name, levels = windows))
+  }
 
   visOmopResults::barPlot(
     result = result,

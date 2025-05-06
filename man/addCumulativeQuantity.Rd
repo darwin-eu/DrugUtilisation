@@ -44,8 +44,6 @@ To add a new column with the cumulative quantity. To add multiple columns use
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(
   cdm,

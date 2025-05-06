@@ -44,8 +44,6 @@ To add a new column with the time to exposure. To add multiple columns use
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(
   cdm,

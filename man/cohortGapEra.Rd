@@ -20,10 +20,6 @@ Get the gapEra used to create a cohort
 }
 \examples{
 \donttest{
-library(CDMConnector)
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 druglist <- CodelistGenerator::getDrugIngredientCodes(

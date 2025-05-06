@@ -48,8 +48,6 @@ To add a new column with the initial daily dose. To add multiple columns use
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 cdm$cohort1 |>

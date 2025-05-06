@@ -31,12 +31,10 @@ tableDoseCoverage(
 A table with a formatted version of summariseDrugCoverage() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Format a dose_coverage object into a visual table.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 result <- summariseDoseCoverage(cdm, 1125315)

@@ -35,12 +35,6 @@
 #' @inheritParams numberExposuresDoc
 #' @inheritParams daysPrescribedDoc
 #' @param ... Arguments to be passed to `CodelistGenerator::getATCCodes()`.
-#' @param durationRange Deprecated.
-#' @param imputeDuration Deprecated.
-#' @param priorUseWashout Deprecated
-#' @param priorObservation Deprecated.
-#' @param cohortDateRange Deprecated.
-#' @param limit Deprecated.
 #'
 #' @return The function returns the cdm reference provided with the addition of
 #' the new cohort table.
@@ -49,9 +43,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm <- generateAtcCohortSet(
@@ -61,7 +52,7 @@
 #' )
 #'
 #' cdm$drugs |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 generateAtcCohortSet <- function(cdm,
                                  name,
@@ -71,13 +62,7 @@ generateAtcCohortSet <- function(cdm,
                                  subsetCohortId = NULL,
                                  numberExposures = FALSE,
                                  daysPrescribed = FALSE,
-                                 ...,
-                                 durationRange = lifecycle::deprecated(),
-                                 imputeDuration = lifecycle::deprecated(),
-                                 priorUseWashout = lifecycle::deprecated(),
-                                 priorObservation = lifecycle::deprecated(),
-                                 cohortDateRange = lifecycle::deprecated(),
-                                 limit = lifecycle::deprecated()) {
+                                 ...) {
   generateSubFunctions(
     type = "atc",
     cdm = cdm,
@@ -88,12 +73,6 @@ generateAtcCohortSet <- function(cdm,
     subsetCohortId = subsetCohortId,
     numberExposures = numberExposures,
     daysPrescribed = daysPrescribed,
-    ...,
-    durationRange = durationRange,
-    imputeDuration = imputeDuration,
-    priorUseWashout = priorUseWashout,
-    priorObservation = priorObservation,
-    cohortDateRange = cohortDateRange,
-    limit = limit
+    ...
   )
 }

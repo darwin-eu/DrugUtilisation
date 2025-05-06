@@ -59,7 +59,7 @@ validateNameStyle <- function(nameStyle, ingredientConceptId, conceptSet, nv, ca
   if (nv > 1 && !grepl("\\{value\\}", nameStyle)) {
     msg <- c(msg, "*" = "{{value}} must be part of nameStyle")
   }
-  if (length(msg) > 1) {
+  if (length(msg) > 0) {
     cli::cli_abort(message = c("!" = "Incorrect nameStyle:", msg), call = call)
   }
   return(invisible(nameStyle))

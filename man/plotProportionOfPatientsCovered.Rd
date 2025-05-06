@@ -31,8 +31,6 @@ Plot proportion of patients covered
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 cdm <- generateDrugUtilisationCohortSet(
@@ -45,8 +43,6 @@ result <- cdm$my_cohort |>
   summariseProportionOfPatientsCovered(followUpDays = 365)
 
 plotProportionOfPatientsCovered(result)
-
-CDMConnector::cdmDisconnect(cdm = cdm)
 }
 
 }

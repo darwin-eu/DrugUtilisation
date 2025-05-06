@@ -26,8 +26,7 @@ summariseDrugUtilisation(
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
   initialDailyDose = TRUE,
-  cumulativeDose = TRUE,
-  exposedTime = lifecycle::deprecated()
+  cumulativeDose = TRUE
 )
 }
 \arguments{
@@ -90,8 +89,6 @@ the quantity of the different exposures considered in the analysis).}
 
 \item{cumulativeDose}{Whether to include 'cumulative_dose_\{unit\}' (sum of
 the cumulative dose of the analysed drug exposure records).}
-
-\item{exposedTime}{deprecated.}
 }
 \value{
 A summary of drug utilisation stratified by cohort_name and strata_name
@@ -102,9 +99,6 @@ cohorts.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CodelistGenerator)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 cdm <- generateDrugUtilisationCohortSet(

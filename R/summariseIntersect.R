@@ -46,14 +46,10 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(CDMConnector)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' indications <- list("headache" = 378253, "asthma" = 317009)
-#' cdm <- generateConceptCohortSet(cdm, indications, "indication_cohorts")
+#' cdm <- CDMConnector::generateConceptCohortSet(cdm, indications, "indication_cohorts")
 #'
 #' cdm <- generateIngredientCohortSet(
 #'   cdm = cdm, name = "drug_cohort",
@@ -66,7 +62,7 @@
 #'     unknownIndicationTable = "condition_occurrence",
 #'     indicationWindow = list(c(-Inf, 0))
 #'   ) |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 #'
 summariseIndication <- function(cohort,
@@ -127,7 +123,6 @@ summariseIndication <- function(cohort,
 #' @inheritParams censorDateDoc
 #' @param mutuallyExclusive Whether to include mutually exclusive treatments or
 #' not.
-#' @param minCellCount defunct.
 #'
 #' @return A summary of treatments stratified by cohort_name and strata_name
 #'
@@ -135,8 +130,6 @@ summariseIndication <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #' cdm$cohort1 |>
 #'   summariseTreatment(
@@ -153,11 +146,7 @@ summariseTreatment <- function(cohort,
                                strata = list(),
                                indexDate = "cohort_start_date",
                                censorDate = NULL,
-                               mutuallyExclusive = FALSE,
-                               minCellCount = lifecycle::deprecated()) {
-  if (lifecycle::is_present(minCellCount)) {
-    lifecycle::deprecate_stop("0.7.0", "summariseTreatment(minCellCount= )")
-  }
+                               mutuallyExclusive = FALSE) {
   res <- .summariseIntersect(
     cohort = cohort,
     cohortId = {{cohortId}},
@@ -415,77 +404,4 @@ formatOutput <- function(result, mutuallyExclusive, labels, extraLabs, vars, set
     dplyr::select(!c("order_id", "variable_name")) |>
     dplyr::rename(variable_name = "new_variable_name") |>
     dplyr::mutate(estimate_value = dplyr::coalesce(.data$estimate_value, "0"))
-}
-
-indicationCombinations <- function(result, set, indicationCohortId, unknownIndicationTable) {
-  vars <- result$variable_name |> unique()
-  vars <- vars[startsWith(vars, "Indication")]
-  if (!is.null(indicationCohortId)) {
-    set <- set |>
-      dplyr::filter(.data$cohort_definition_id %in% .env$indicationCohortId)
-  }
-  indications <- set$cohort_name |>
-    sort() |>
-    rev()
-  indications <- c(getCombinations(set$cohort_name), ifelse(length(unknownIndicationTable) > 0, "unknown", character()), "none")
-  allcombs <- dplyr::tibble(
-    "variable_name" = c("number records", "number subjects"),
-    "variable_level" = NA_character_
-  ) |>
-    dplyr::union_all(tidyr::expand_grid(
-      "variable_name" = vars, "variable_level" = indications
-    ))
-  order <- result |>
-    dplyr::select(
-      "result_id", "cdm_name", "group_name", "group_level", "strata_name",
-      "strata_level", "additional_name", "additional_level"
-    ) |>
-    dplyr::distinct() |>
-    dplyr::cross_join(allcombs) |>
-    dplyr::mutate("order_id" = dplyr::row_number())
-  cols <- colnames(result)
-  cols <- cols[!cols %in% c("estimate_name", "estimate_type", "estimate_value")]
-  toAdd <- order |>
-    dplyr::mutate(
-      "estimate_value" = "0",
-      "estimate_name" = "count",
-      "estimate_type" = "integer"
-    ) |>
-    dplyr::union_all(
-      order |>
-        dplyr::mutate(
-          "estimate_value" = "0",
-          "estimate_name" = "percentage",
-          "estimate_type" = "percentage"
-        )
-    ) |>
-    dplyr::select(-"order_id") |>
-    dplyr::anti_join(result, by = cols)
-  result <- result |>
-    dplyr::union_all(toAdd) |>
-    dplyr::left_join(order, by = cols) |>
-    dplyr::arrange(.data$order_id, .data$estimate_name) |>
-    dplyr::select(-"order_id")
-  return(result)
-}
-getCombinations <- function(indications) {
-  indications <- sort(indications)
-  combs <- rep(list(c(1, 0)), length(indications))
-  names(combs) <- indications
-  sumOp <- paste0('.data[["', indications, '"]]', collapse = "+") |>
-    rlang::parse_exprs() |>
-    rlang::set_names("sum")
-  combs <- tidyr::expand_grid(!!!combs) |>
-    dplyr::mutate(!!!sumOp) |>
-    dplyr::arrange(dplyr::pick(dplyr::all_of(c("sum", rev(indications))))) |>
-    dplyr::select(-"sum")
-  indications <- character()
-  for (k in 2:nrow(combs)) {
-    cols <- combs[k, ] |>
-      as.list() |>
-      unlist()
-    nms <- names(cols)[cols == 1]
-    indications <- c(indications, paste0(nms, collapse = " and "))
-  }
-  return(indications)
 }

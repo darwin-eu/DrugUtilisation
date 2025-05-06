@@ -51,10 +51,6 @@ cohort in a specified time window.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CDMConnector)
-library(dplyr)
-
 cdm <- mockDrugUtilisation(numberIndividuals = 50)
 
 
@@ -68,7 +64,7 @@ cdm <- generateIngredientCohortSet(
 
 cdm$drug_cohort |>
   addTreatment("treatments", window = list(c(0, 0), c(1, 30), c(31, 60))) |>
-  glimpse()
+  dplyr::glimpse()
 }
 
 }

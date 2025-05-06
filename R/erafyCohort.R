@@ -54,7 +54,9 @@ erafyCohort <- function(cohort,
 
   # erafied cohorts
   name2 <- omopgenerics::uniqueTableName(prefix)
-  toErafy <- cohortSubset(cohort, cohortId, name2)
+  toErafy <- cohortSubset(cohort, cohortId, name2) |>
+    PatientProfiles::addObservationPeriodId(name = name2)
+
   erafied <- purrr::map(gapEra, \(x) {
     if (x > 0) {
       res <- erafy(toErafy, x)
@@ -62,6 +64,7 @@ erafyCohort <- function(cohort,
       res <- toErafy
     }
     res |>
+      dplyr::select(!"observation_period_id") |>
       dplyr::compute(
         name = omopgenerics::uniqueTableName(prefix), temporary = FALSE
       ) |>

@@ -14,43 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' add daily dose information to a drug_exposure table
-#'
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @param drugExposure drugExposure it must contain drug_concept_id, quantity,
-#' drug_exposure_start_date and drug_exposure_end_date as columns
-#' @param ingredientConceptId ingredientConceptId for which to filter the
-#' drugs of interest
-#' @param name Name of the computed table, if NULL a temporary table will be
-#' generated.
-#'
-#' @return same input table
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
-#' cdm <- mockDrugUtilisation()
-#'
-#' cdm[["drug_exposure"]] |>
-#'   filter(drug_concept_id == 2905077) |>
-#'   addDailyDose(ingredientConceptId = 1125315)
-#' }
-#'
-addDailyDose <- function(drugExposure,
-                         ingredientConceptId,
-                         name = NULL) {
-  lifecycle::deprecate_warn(when = "0.7.0", what = "addDailyDose()")
-  .addDailyDose(
-    drugExposure = drugExposure,
-    ingredientConceptId = ingredientConceptId,
-    name = name
-  )
-}
-
 .addDailyDose <- function(drugExposure,
                           ingredientConceptId,
                           name = NULL) {
@@ -92,7 +55,7 @@ addDailyDose <- function(drugExposure,
 
   drugExposure <- drugExposure |> compute2(name)
 
-  cdm <- omopgenerics::dropTable(cdm = cdm, name = nm)
+  cdm <- omopgenerics::dropSourceTable(cdm = cdm, name = nm)
 
   return(drugExposure)
 }
@@ -113,8 +76,6 @@ addDailyDose <- function(drugExposure,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' summariseDoseCoverage(cdm, 1125315)
@@ -214,34 +175,6 @@ summariseDoseCoverage <- function(cdm,
     ))
 
   return(dailyDoseSummary)
-}
-
-#' Check coverage of daily dose computation in a sample of the cdm for selected
-#' concept sets and ingredient
-#'
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @inheritParams cdmDoc
-#' @inheritParams ingredientConceptIdDoc
-#'
-#' @return The function returns information of the coverage of computeDailyDose.R
-#' for the selected ingredients and concept sets
-#' @export
-#'
-dailyDoseCoverage <- function(cdm,
-                              ingredientConceptId) {
-  lifecycle::deprecate_stop(
-    when = "0.7.0",
-    what = "dailyDoseCoverage()",
-    with = "summariseDoseCoverage()")
-  summariseDoseCoverage(
-    cdm = cdm,
-    ingredientConceptId = ingredientConceptId,
-    estimates = c(
-      "count_missing", "percentage_missing", "mean", "sd", "min", "q05",
-      "q25", "median", "q75", "q95", "max"
-    )
-  )
 }
 
 standardUnits <- function(drugExposure) {

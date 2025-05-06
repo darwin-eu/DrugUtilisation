@@ -8,7 +8,8 @@ tableIndication(
   result,
   header = c("cdm_name", "cohort_name", strataColumns(result)),
   groupColumn = "variable_name",
-  hide = c("window_name", "mutually_exclusive", "unknown_indication_table"),
+  hide = c("window_name", "mutually_exclusive", "unknown_indication_table",
+    "censor_date", "cohort_table_name", "index_date", "indication_cohort_name"),
   type = "gt"
 )
 }
@@ -31,13 +32,10 @@ tableIndication(
 A table with a formatted version of summariseIndication() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Create a table showing indication results
 }
 \examples{
 \donttest{
-
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 result <- cdm$cohort1 |>

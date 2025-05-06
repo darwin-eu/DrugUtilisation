@@ -1,3 +1,15 @@
+# DrugUtilisation 1.0.0
+
+* Stable release.
+* plotPPC between 0 and 100% by @catalamarti
+* add observation_period_id in erafy by @catalamarti
+* use window_name as factor in plotTreatment/Indication by @catalamarti
+* remove lifecycle tags 1.0.0 by @catalamarti
+* use mockDisconnect in all tests by @catalamarti
+* Change default of tables to hide all settings by @catalamarti
+* Test validateNameStyle by @catalamarti
+* update requirePriorDrugWashout to <= to align with IncidencePrevalence by @catalamarti
+
 # DrugUtilisation 0.8.3
 
 * Add +1L to initialExposureDuration to calculate duration as `end - start + 1` by @catalamarti

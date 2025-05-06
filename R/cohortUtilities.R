@@ -61,84 +61,99 @@ subsetTables <- function(cdm, conceptSet, name, subsetCohort, subsetCohortId) {
 
   # exclude records
   cli::cli_inform(c("i" = "Checking whether any record needs to be dropped."))
-  exclude <- cohort |>
-    dplyr::summarise(
-      na_start = sum(as.integer(is.na(.data$cohort_start_date)), na.rm = TRUE),
-      na_end = sum(as.integer(is.na(.data$cohort_end_date) & !is.na(.data$cohort_start_date)), na.rm = TRUE),
-      start_before_end = sum(as.integer(.data$cohort_start_date > .data$cohort_end_date), na.rm = TRUE)
-    ) |>
-    dplyr::collect()
   n0 <- numberRecords(cohort)
-  cohort <- cohort |>
-    dplyr::filter(!is.na(.data$cohort_start_date) & !is.na(.data$cohort_end_date)) |>
-    dplyr::filter(.data$cohort_start_date <= .data$cohort_end_date) |>
-    dplyr::inner_join(
-      cdm$observation_period |>
-        dplyr::select(
-          subject_id = "person_id",
-          "observation_period_start_date",
-          "observation_period_end_date"
-        ),
-      by = "subject_id"
-    ) |>
-    dplyr::filter(
-      .data$cohort_start_date <= .data$observation_period_end_date,
-      .data$cohort_end_date >= .data$observation_period_start_date
-    ) |>
-    dplyr::mutate(
-      "cohort_start_date" = dplyr::if_else(
-        .data$cohort_start_date < .data$observation_period_start_date,
-        .data$observation_period_start_date,
-        .data$cohort_start_date
-      ),
-      "cohort_end_date" = dplyr::if_else(
-        .data$cohort_end_date > .data$observation_period_end_date,
-        .data$observation_period_end_date,
-        .data$cohort_end_date
-      )
-    ) |>
-    dplyr::select(
-      "cohort_definition_id", "subject_id", "cohort_start_date",
-      "cohort_end_date"
-    ) |>
-
-    dplyr::compute(temporary = FALSE, name = name)
-  nF <- numberRecords(cohort)
-  reportDroppedRecords(n0, nF, exclude)
-
-  # erafy
-  cli::cli_inform(c("i" = "Collapsing overlaping records."))
-  if (numberRecords(cohort) > 0) {
-    cohort <- cohort %>%
-      dplyr::mutate(
-        number_exposures = 1L,
-        days_prescribed = as.integer(!!CDMConnector::datediff(
-          "cohort_start_date", "cohort_end_date"
-        )) + 1L
+  if (n0 > 0) {
+    exclude <- cohort |>
+      dplyr::summarise(
+        na_start = sum(as.integer(is.na(.data$cohort_start_date)), na.rm = TRUE),
+        na_end = sum(as.integer(is.na(.data$cohort_end_date) & !is.na(.data$cohort_start_date)), na.rm = TRUE),
+        start_before_end = sum(as.integer(.data$cohort_start_date > .data$cohort_end_date), na.rm = TRUE)
       ) |>
-      erafy(gap = 0, toSummarise = c("number_exposures", "days_prescribed")) |>
-      dplyr::compute(name = name, temporary = FALSE)
+      dplyr::collect()
+    n0 <- numberRecords(cohort)
+    cohort <- cohort |>
+      dplyr::mutate(cohort_end_date = dplyr::coalesce(.data$cohort_end_date, .data$cohort_start_date)) |>
+      dplyr::filter(!is.na(.data$cohort_start_date)) |>
+      dplyr::filter(.data$cohort_start_date <= .data$cohort_end_date) |>
+      dplyr::inner_join(
+        cdm$observation_period |>
+          dplyr::select(
+            subject_id = "person_id",
+            "observation_period_id",
+            "observation_period_start_date",
+            "observation_period_end_date"
+          ),
+        by = "subject_id"
+      ) |>
+      dplyr::filter(
+        .data$cohort_start_date <= .data$observation_period_end_date,
+        .data$cohort_end_date >= .data$observation_period_start_date
+      ) |>
+      dplyr::mutate(
+        "cohort_start_date" = dplyr::if_else(
+          .data$cohort_start_date < .data$observation_period_start_date,
+          .data$observation_period_start_date,
+          .data$cohort_start_date
+        ),
+        "cohort_end_date" = dplyr::if_else(
+          .data$cohort_end_date > .data$observation_period_end_date,
+          .data$observation_period_end_date,
+          .data$cohort_end_date
+        )
+      ) |>
+      dplyr::select(
+        "cohort_definition_id", "subject_id", "cohort_start_date",
+        "cohort_end_date", "observation_period_id"
+      ) |>
+      dplyr::compute(temporary = FALSE, name = name)
+    nF <- numberRecords(cohort)
+    reportDroppedRecords(n0, nF, exclude)
+
+    # erafy
+    cli::cli_inform(c("i" = "Collapsing overlaping records."))
+    if (numberRecords(cohort) > 0) {
+      cohort <- cohort %>%
+        dplyr::mutate(
+          number_exposures = 1L,
+          days_prescribed = as.integer(!!CDMConnector::datediff(
+            "cohort_start_date", "cohort_end_date"
+          )) + 1L
+        ) |>
+        erafy(
+          gap = 0L,
+          toSummarise = c("number_exposures", "days_prescribed")
+        )
+    } else {
+      cohort <- cohort |>
+        dplyr::mutate(number_exposures = 0L, days_prescribed = 0L)
+    }
   } else {
     cohort <- cohort |>
-      dplyr::mutate(number_exposures = 0L, days_prescribed = 0L)
+      dplyr::select(
+        "cohort_definition_id", "subject_id", "cohort_start_date",
+        "cohort_end_date"
+      ) |>
+      dplyr::mutate(
+        observation_period_id = 0L,
+        number_exposures = 0L,
+        days_prescribed = 0L
+      )
   }
 
-  return(cohort)
+  cohort |>
+    dplyr::compute(name = name, temporary = FALSE)
 }
 
 reportDroppedRecords <- function(n0, nF, exclude) {
+  mes <- character()
   if (nF < n0) {
     total <- n0 - nF
     naStart <- exclude$na_start
-    naEnd <- exclude$na_end
     startBeforeEnd <- exclude$start_before_end
-    notObservation <- total - naStart - naEnd - startBeforeEnd
-    mes <- c("!" = "{total} record{?s} dropped:")
+    notObservation <- total - naStart - startBeforeEnd
+    mes <- c(mes, "!" = "{total} record{?s} dropped:")
     if (naStart > 0) {
       mes <- c(mes, "*" = "{naStart} record{?s} dropped because drug_exposure_start_date is missing.")
-    }
-    if (naEnd > 0) {
-      mes <- c(mes, "*" = "{naEnd} record{?s} dropped because drug_exposure_end_date is missing.")
     }
     if (startBeforeEnd > 0) {
       mes <- c(mes, "*" = "{startBeforeEnd} record{?s} dropped because drug_exposure_end_date < drug_exposure_start_date.")
@@ -146,7 +161,13 @@ reportDroppedRecords <- function(n0, nF, exclude) {
     if (notObservation > 0) {
       mes <- c(mes, "*" = "{notObservation} record{?s} dropped because {?it/they} {?is/are} not in observation.")
     }
-    cli::cli_inform(mes)
+  }
+  naEnd <- exclude$na_end
+  if (naEnd > 0) {
+    mes <- c(mes, "!" = "{naEnd} record{?s} with missing `drug_exposure_end_date`; using `drug_exposure_start_date` as end date.")
+  }
+  if (length(mes) > 0) {
+    cli::cli_inform(message = mes)
   }
   invisible()
 }
@@ -163,7 +184,7 @@ erafy <- function(x,
                   gap = 0,
                   start = "cohort_start_date",
                   end = "cohort_end_date",
-                  group = c("cohort_definition_id", "subject_id"),
+                  group = c("cohort_definition_id", "subject_id", "observation_period_id"),
                   toSummarise = character()) {
   if (numberRecords(x) == 0) {
     return(x)

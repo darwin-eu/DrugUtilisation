@@ -41,12 +41,6 @@
 #' @inheritParams daysPrescribedDoc
 #' @param ... Arguments to be passed to
 #' `CodelistGenerator::getDrugIngredientCodes()`.
-#' @param durationRange Deprecated.
-#' @param imputeDuration Deprecated.
-#' @param priorUseWashout Deprecated
-#' @param priorObservation Deprecated.
-#' @param cohortDateRange Deprecated.
-#' @param limit Deprecated.
 #'
 #' @return The function returns the cdm reference provided with the addition of
 #' the new cohort table.
@@ -55,9 +49,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm <- generateIngredientCohortSet(
@@ -67,7 +58,7 @@
 #' )
 #'
 #' cdm$acetaminophen |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 #'
 generateIngredientCohortSet <- function(cdm,
@@ -78,13 +69,7 @@ generateIngredientCohortSet <- function(cdm,
                                         subsetCohortId = NULL,
                                         numberExposures = FALSE,
                                         daysPrescribed = FALSE,
-                                        ...,
-                                        durationRange = lifecycle::deprecated(),
-                                        imputeDuration = lifecycle::deprecated(),
-                                        priorUseWashout = lifecycle::deprecated(),
-                                        priorObservation = lifecycle::deprecated(),
-                                        cohortDateRange = lifecycle::deprecated(),
-                                        limit = lifecycle::deprecated()) {
+                                        ...) {
   generateSubFunctions(
     type = "ingredient",
     cdm = cdm,
@@ -95,13 +80,7 @@ generateIngredientCohortSet <- function(cdm,
     subsetCohortId = subsetCohortId,
     numberExposures = numberExposures,
     daysPrescribed = daysPrescribed,
-    ...,
-    durationRange = durationRange,
-    imputeDuration = imputeDuration,
-    priorUseWashout = priorUseWashout,
-    priorObservation = priorObservation,
-    cohortDateRange = cohortDateRange,
-    limit = limit
+    ...
   )
 }
 
@@ -138,59 +117,13 @@ generateSubFunctions <- function(type,
                                  subsetCohortId,
                                  numberExposures,
                                  daysPrescribed,
-                                 ...,
-                                 durationRange,
-                                 imputeDuration,
-                                 priorUseWashout,
-                                 priorObservation,
-                                 cohortDateRange,
-                                 limit) {
+                                 ...) {
   if (type == "ingredient") {
     codesFunction <- "CodelistGenerator::getDrugIngredientCodes"
     reportFunction <- "DrugUtilisation::generateIngredientCohortSet"
   } else if (type == "atc") {
     codesFunction = "CodelistGenerator::getATCCodes"
     reportFunction = "DrugUtilisation::generateIngredientCohortSet"
-  }
-
-  if (lifecycle::is_present(durationRange)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = paste0(reportFunction, "(durationRange = )")
-    )
-  }
-  if (lifecycle::is_present(imputeDuration)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0", what = paste0(reportFunction, "(imputeDuration = )")
-    )
-  }
-  if (lifecycle::is_present(priorUseWashout)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = paste0(reportFunction, "(priorUseWashout = )"),
-      with = "requirePriorDrugWashout()"
-    )
-  }
-  if (lifecycle::is_present(priorObservation)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = paste0(reportFunction, "(priorObservation = )"),
-      with = "requireObservationBeforeDrug()"
-    )
-  }
-  if (lifecycle::is_present(cohortDateRange)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = paste0(reportFunction, "(cohortDateRange = )"),
-      with = "requireDrugInDateRange()"
-    )
-  }
-  if (lifecycle::is_present(limit)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = paste0(reportFunction, "(limit = )"),
-      with = "requireIsFirstDrugEntry()"
-    )
   }
 
   if (!is.null(nam)) {
