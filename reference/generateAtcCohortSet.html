@@ -17,7 +17,7 @@ cohort entry."><meta property="og:image" content="https://darwin-eu.github.io/Dr
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@ cohort entry."><meta property="og:image" content="https://darwin-eu.github.io/Dr
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Generate a set of drug cohorts based on ATC classification</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v0.8.3/R/generateAtcCohortSet.R" class="external-link"><code>R/generateAtcCohortSet.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/generateAtcCohortSet.R" class="external-link"><code>R/generateAtcCohortSet.R</code></a></small>
       <div class="d-none name"><code>generateAtcCohortSet.Rd</code></div>
     </div>
 
@@ -75,13 +75,7 @@ cohort entry.</p>
 <span>  subsetCohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  numberExposures <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  daysPrescribed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">...</span>,</span>
-<span>  durationRange <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  imputeDuration <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  priorUseWashout <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  priorObservation <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  cohortDateRange <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  limit <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -129,30 +123,6 @@ prescribed used to create each era).</p></dd>
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments to be passed to <code><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getATCCodes.html" class="external-link">CodelistGenerator::getATCCodes()</a></code>.</p></dd>
 
-
-<dt id="arg-durationrange">durationRange<a class="anchor" aria-label="anchor" href="#arg-durationrange"></a></dt>
-<dd><p>Deprecated.</p></dd>
-
-
-<dt id="arg-imputeduration">imputeDuration<a class="anchor" aria-label="anchor" href="#arg-imputeduration"></a></dt>
-<dd><p>Deprecated.</p></dd>
-
-
-<dt id="arg-priorusewashout">priorUseWashout<a class="anchor" aria-label="anchor" href="#arg-priorusewashout"></a></dt>
-<dd><p>Deprecated</p></dd>
-
-
-<dt id="arg-priorobservation">priorObservation<a class="anchor" aria-label="anchor" href="#arg-priorobservation"></a></dt>
-<dd><p>Deprecated.</p></dd>
-
-
-<dt id="arg-cohortdaterange">cohortDateRange<a class="anchor" aria-label="anchor" href="#arg-cohortdaterange"></a></dt>
-<dd><p>Deprecated.</p></dd>
-
-
-<dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>Deprecated.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -163,9 +133,6 @@ the new cohort table.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="mockDrugUtilisation.html">mockDrugUtilisation</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">generateAtcCohortSet</span><span class="op">(</span></span></span>
@@ -175,17 +142,16 @@ the new cohort table.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Subsetting <span style="color: #0000BB;">drug_exposure</span> table</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Checking whether any record needs to be dropped.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Collapsing overlaping records.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cohort_name must be snake case and have less than 100 characters, the following</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> cohorts will be renamed:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> alimentary tract and metabolism -&gt; alimentary_tract_and_metabolism</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Collapsing records with gapEra = 1 days.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drugs</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: ??</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0/:memory:]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> </span>

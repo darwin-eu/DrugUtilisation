@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Daily dose calculation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v0.8.3/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
       <div class="d-none name"><code>daily_dose_calculation.Rmd</code></div>
     </div>
 
@@ -100,7 +100,7 @@ through the <em>drug strength</em> table:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0/:memory:]</span></span>
 <span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125360<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503327<span style="color: #949494;">, </span>150332…</span></span>
 <span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125315<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>150329…</span></span>
 <span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1.0e+03<span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
@@ -151,44 +151,44 @@ into 4 different formulas:</p>
 <p>This formula was applied for the following 3 patterns that cover
 8,044 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-96abc60a{}.cl-96a4da52{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-96a7cf3c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96a7cf46{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96a7eef4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96a7eefe{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96a7eeff{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96a7ef26{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96a7ef30{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96a7ef3a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-96abc60a">
+<style>.cl-87b93b3e{}.cl-87b15eaa{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-87b4649c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87b464c4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87b48486{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87b4849a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87b4849b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87b4849c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87b484a4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87b484a5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-87b93b3e">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-96a7eef4"><p class="cl-96a7cf3c"><span class="cl-96a4da52">pattern_id</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">amount</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">amount_unit</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">numerator</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">numerator_unit</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">denominator</span></p></th>
-<th class="cl-96a7eefe"><p class="cl-96a7cf46"><span class="cl-96a4da52">denominator_unit</span></p></th>
+<th class="cl-87b48486"><p class="cl-87b4649c"><span class="cl-87b15eaa">pattern_id</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">amount</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">amount_unit</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">numerator</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">numerator_unit</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">denominator</span></p></th>
+<th class="cl-87b4849a"><p class="cl-87b464c4"><span class="cl-87b15eaa">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96a7eeff"><p class="cl-96a7cf3c"><span class="cl-96a4da52">1</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">microgram</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">hour</span></p></td>
+<td class="cl-87b4849b"><p class="cl-87b4649c"><span class="cl-87b15eaa">1</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">microgram</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96a7eeff"><p class="cl-96a7cf3c"><span class="cl-96a4da52">2</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">milligram</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef26"><p class="cl-96a7cf46"><span class="cl-96a4da52">hour</span></p></td>
+<td class="cl-87b4849b"><p class="cl-87b4649c"><span class="cl-87b15eaa">2</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">milligram</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b4849c"><p class="cl-87b464c4"><span class="cl-87b15eaa">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96a7ef30"><p class="cl-96a7cf3c"><span class="cl-96a4da52">3</span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52"></span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52">unit</span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52">number</span></p></td>
-<td class="cl-96a7ef3a"><p class="cl-96a7cf46"><span class="cl-96a4da52">hour</span></p></td>
+<td class="cl-87b484a4"><p class="cl-87b4649c"><span class="cl-87b15eaa">3</span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa"></span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa">unit</span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa">number</span></p></td>
+<td class="cl-87b484a5"><p class="cl-87b464c4"><span class="cl-87b15eaa">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -207,35 +207,35 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 2 patterns that cover
 5,611 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-96c76a2c{}.cl-96c150ce{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-96c3e230{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96c3e23a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96c3ff18{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96c3ff19{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96c3ff22{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96c3ff23{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96c3ff2c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96c3ff2d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-96c76a2c">
+<style>.cl-87d459e6{}.cl-87cda394{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-87d0f13e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87d0f148{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87d10b38{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87d10b39{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87d10b42{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87d10b43{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87d10b44{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87d10b4c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-87d459e6">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-96c3ff18"><p class="cl-96c3e230"><span class="cl-96c150ce">pattern_id</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">amount</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">amount_unit</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">numerator</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">numerator_unit</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">denominator</span></p></th>
-<th class="cl-96c3ff19"><p class="cl-96c3e23a"><span class="cl-96c150ce">denominator_unit</span></p></th>
+<th class="cl-87d10b38"><p class="cl-87d0f13e"><span class="cl-87cda394">pattern_id</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">amount</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">amount_unit</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">numerator</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">numerator_unit</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">denominator</span></p></th>
+<th class="cl-87d10b39"><p class="cl-87d0f148"><span class="cl-87cda394">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96c3ff22"><p class="cl-96c3e230"><span class="cl-96c150ce">4</span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce">number</span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce">microgram</span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff23"><p class="cl-96c3e23a"><span class="cl-96c150ce">hour</span></p></td>
+<td class="cl-87d10b42"><p class="cl-87d0f13e"><span class="cl-87cda394">4</span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394">number</span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394">microgram</span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b43"><p class="cl-87d0f148"><span class="cl-87cda394">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96c3ff2c"><p class="cl-96c3e230"><span class="cl-96c150ce">5</span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce">number</span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce">milligram</span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce"></span></p></td>
-<td class="cl-96c3ff2d"><p class="cl-96c3e23a"><span class="cl-96c150ce">hour</span></p></td>
+<td class="cl-87d10b44"><p class="cl-87d0f13e"><span class="cl-87cda394">5</span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394">number</span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394">milligram</span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394"></span></p></td>
+<td class="cl-87d10b4c"><p class="cl-87d0f148"><span class="cl-87cda394">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -252,71 +252,71 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:</p>
 <div class="tabwid">
-<style>.cl-96e3e418{}.cl-96dd1192{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-96dfa2b8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96dfa2d6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96e06a0e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96e06a18{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96e06a19{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96e06a22{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96e06a23{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-96e06a24{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-96e3e418">
+<style>.cl-87f04a70{}.cl-87e9f260{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-87ec8034{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87ec803e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-87ec9c40{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87ec9c4a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87ec9c54{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87ec9c55{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87ec9c56{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-87ec9c5e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-87f04a70">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-96e06a0e"><p class="cl-96dfa2b8"><span class="cl-96dd1192">pattern_id</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">amount</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">amount_unit</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">numerator</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">numerator_unit</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">denominator</span></p></th>
-<th class="cl-96e06a18"><p class="cl-96dfa2d6"><span class="cl-96dd1192">denominator_unit</span></p></th>
+<th class="cl-87ec9c40"><p class="cl-87ec8034"><span class="cl-87e9f260">pattern_id</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">amount</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">amount_unit</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">numerator</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">numerator_unit</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">denominator</span></p></th>
+<th class="cl-87ec9c4a"><p class="cl-87ec803e"><span class="cl-87e9f260">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a19"><p class="cl-96dfa2b8"><span class="cl-96dd1192">6</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">international unit</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c54"><p class="cl-87ec8034"><span class="cl-87e9f260">6</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">international unit</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a19"><p class="cl-96dfa2b8"><span class="cl-96dd1192">7</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">microgram</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c54"><p class="cl-87ec8034"><span class="cl-87e9f260">7</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">microgram</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a19"><p class="cl-96dfa2b8"><span class="cl-96dd1192">8</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">milliequivalent</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c54"><p class="cl-87ec8034"><span class="cl-87e9f260">8</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">milliequivalent</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a19"><p class="cl-96dfa2b8"><span class="cl-96dd1192">9</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">milligram</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c54"><p class="cl-87ec8034"><span class="cl-87e9f260">9</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">milligram</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a19"><p class="cl-96dfa2b8"><span class="cl-96dd1192">10</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192">milliliter</span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a22"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c54"><p class="cl-87ec8034"><span class="cl-87e9f260">10</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260">milliliter</span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c55"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-96e06a23"><p class="cl-96dfa2b8"><span class="cl-96dd1192">11</span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192">number</span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192">unit</span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
-<td class="cl-96e06a24"><p class="cl-96dfa2d6"><span class="cl-96dd1192"></span></p></td>
+<td class="cl-87ec9c56"><p class="cl-87ec8034"><span class="cl-87e9f260">11</span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260">number</span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260">unit</span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
+<td class="cl-87ec9c5e"><p class="cl-87ec803e"><span class="cl-87e9f260"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -333,287 +333,287 @@ field.</p>
 <p>This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:</p>
 <div class="tabwid">
-<style>.cl-97093330{}.cl-9700d370{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-97048768{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-97048772{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9704ad9c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9704ada6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9704ada7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9704ada8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9704adb0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9704adb1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-97093330">
+<style>.cl-88152098{}.cl-880d9d14{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-88108a24{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-88108a2e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-8810a8e2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8810a8ec{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8810a8f6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8810a8f7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8810a8f8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8810a900{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-88152098">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-9704ad9c"><p class="cl-97048768"><span class="cl-9700d370">pattern_id</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">amount</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">amount_unit</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">numerator</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">numerator_unit</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">denominator</span></p></th>
-<th class="cl-9704ada6"><p class="cl-97048772"><span class="cl-9700d370">denominator_unit</span></p></th>
+<th class="cl-8810a8e2"><p class="cl-88108a24"><span class="cl-880d9d14">pattern_id</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">amount</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">amount_unit</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">numerator</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">numerator_unit</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">denominator</span></p></th>
+<th class="cl-8810a8ec"><p class="cl-88108a2e"><span class="cl-880d9d14">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">12</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">international unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">12</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">international unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">13</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">international unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">13</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">international unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">14</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliequivalent</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">14</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliequivalent</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">15</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">Actuation</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">15</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">16</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">liter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">16</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">17</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">17</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">18</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">18</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">19</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">square centimeter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">19</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">20</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">20</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">21</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">21</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">22</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">Actuation</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">22</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">23</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">23</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">24</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">24</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">25</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">square centimeter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">25</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">26</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">international unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">26</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">international unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">27</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">international unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">27</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">international unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">28</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">mega-international unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">28</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">mega-international unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">29</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliequivalent</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">29</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliequivalent</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">30</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliequivalent</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">30</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliequivalent</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">31</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">Actuation</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">31</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">32</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">liter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">32</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">33</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">33</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">34</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">34</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">35</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">square centimeter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">35</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">36</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">36</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">37</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">37</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">38</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">Actuation</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">38</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">39</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milligram</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">39</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704ada7"><p class="cl-97048768"><span class="cl-9700d370">40</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704ada8"><p class="cl-97048772"><span class="cl-9700d370">milliliter</span></p></td>
+<td class="cl-8810a8f6"><p class="cl-88108a24"><span class="cl-880d9d14">40</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a8f7"><p class="cl-88108a2e"><span class="cl-880d9d14">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-9704adb0"><p class="cl-97048768"><span class="cl-9700d370">41</span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370">number</span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370">unit</span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370"></span></p></td>
-<td class="cl-9704adb1"><p class="cl-97048772"><span class="cl-9700d370">square centimeter</span></p></td>
+<td class="cl-8810a8f8"><p class="cl-88108a24"><span class="cl-880d9d14">41</span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14">number</span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14">unit</span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14"></span></p></td>
+<td class="cl-8810a900"><p class="cl-88108a2e"><span class="cl-880d9d14">square centimeter</span></p></td>
 </tr>
 </tbody>
 </table>
