@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Identify and summarise indications among a drug cohort</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.0/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
       <div class="d-none name"><code>indication.Rmd</code></div>
     </div>
 
@@ -156,11 +156,11 @@ with the label of the indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1…</span></span>
-<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3230<span style="color: #949494;">, </span>4246<span style="color: #949494;">, </span>4691<span style="color: #949494;">, </span>3661<span style="color: #949494;">, </span>4105<span style="color: #949494;">, </span>129<span style="color: #949494;">, </span>246<span style="color: #949494;">, </span>292<span style="color: #949494;">, </span>410<span style="color: #949494;">,</span>…</span></span>
-<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1987-11-05<span style="color: #949494;">, </span>1969-10-14<span style="color: #949494;">, </span>2006-03-09<span style="color: #949494;">, </span>1980-08-02<span style="color: #949494;">, </span>…</span></span>
-<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1987-11-12<span style="color: #949494;">, </span>1969-10-28<span style="color: #949494;">, </span>2006-03-16<span style="color: #949494;">, </span>1980-08-16<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3183<span style="color: #949494;">, </span>4018<span style="color: #949494;">, </span>86<span style="color: #949494;">, </span>2235<span style="color: #949494;">, </span>404<span style="color: #949494;">, </span>596<span style="color: #949494;">, </span>1097<span style="color: #949494;">, </span>1356<span style="color: #949494;">, </span>1577<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1982-05-06<span style="color: #949494;">, </span>1967-08-08<span style="color: #949494;">, </span>1952-07-05<span style="color: #949494;">, </span>2002-09-09<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1982-05-13<span style="color: #949494;">, </span>1967-08-15<span style="color: #949494;">, </span>1952-07-19<span style="color: #949494;">, </span>2002-09-16<span style="color: #949494;">, </span>…</span></span>
 <span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bronchitis"<span style="color: #949494;">, </span>"bronchitis"<span style="color: #949494;">, </span>"bronchitis"<span style="color: #949494;">, </span>"bronch…</span></span></code></pre></div>
 <p>We can see that individuals are classified as having sinusistis
 (without bronchitis), bronchitis (without sinusitis), sinusitis and
@@ -170,7 +170,7 @@ bronchitis, or no observed indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
@@ -196,7 +196,7 @@ initiation.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
@@ -219,30 +219,30 @@ likely increase our risk of false positives).</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_0_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_0_to_0     n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> unknown           <span style="text-decoration: underline;">11</span>211</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none                163</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> bronchitis         <span style="text-decoration: underline;">2</span>524</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis         <span style="text-decoration: underline;">2</span>524</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown           <span style="text-decoration: underline;">11</span>211</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none                163</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis             1</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> sinusitis                   18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none                         7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis and sinusitis     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis                   18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         7</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m365_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/Rtmpvi5mSa/file23883efd1c61.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1012-azure:R 4.5.0//tmp/RtmpDnsmmK/file23705c0f8be.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m365_to_0         n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>615</span></span>
@@ -722,31 +722,31 @@ indication.</p>
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]cdm_name
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen">
-        <div class="gt_column_spanner">cdm_name</div>
+        <div class="gt_column_spanner">CDM name</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen">
         <div class="gt_column_spanner">Synthea</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="estimate_name">estimate_name</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]cohort_name
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Estimate-name">Estimate name</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_name]Cohort name
 [header_level]acetaminophen">
-        <div class="gt_column_spanner">cohort_name</div>
+        <div class="gt_column_spanner">Cohort name</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen">acetaminophen</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen">acetaminophen</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -755,153 +755,153 @@ indication.</p>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,524 (18.2 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,524 (18.16 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">1 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">1 (0.01 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,211 (80.7 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,211 (80.66 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">163 (1.2 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">163 (1.17 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
 <th colspan="3" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,527 (18.2 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,527 (18.18 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">18 (0.1 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">18 (0.13 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">3 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">3 (0.02 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,344 (81.6 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">11,344 (81.62 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">7 (0.05 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
 <th colspan="3" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,615 (18.8 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">2,615 (18.81 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">211 (1.5 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">211 (1.52 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">101 (0.7 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">101 (0.73 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">10,968 (78.9 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">10,968 (78.91 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">4 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">4 (0.03 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
-[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Cohort name
+[header_level]acetaminophen" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 </tbody>
 </table>
@@ -1377,96 +1377,96 @@ results by age groups and sex.</p>
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]cdm_name
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
-        <div class="gt_column_spanner">cdm_name</div>
+        <div class="gt_column_spanner">CDM name</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
         <div class="gt_column_spanner">Synthea</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]cohort_name
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
-        <div class="gt_column_spanner">cohort_name</div>
+        <div class="gt_column_spanner">Cohort name</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
         <div class="gt_column_spanner">acetaminophen</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]age_group
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Age group
 [header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
-        <div class="gt_column_spanner">age_group</div>
+        <div class="gt_column_spanner">Age group</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
         <div class="gt_column_spanner">overall</div>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]0 to 19
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
         <div class="gt_column_spanner">0 to 19</div>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]20 to 150
-[header_name]sex
+[header_name]Sex
 [header_level]overall">
         <div class="gt_column_spanner">20 to 150</div>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]overall
-[header_name]sex
+[header_name]Sex
 [header_level]Female">
         <div class="gt_column_spanner">overall</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Indication">Indication</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="estimate_name">estimate_name</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]sex
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Estimate-name">Estimate name</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Sex
 [header_level]overall">
-        <div class="gt_column_spanner">sex</div>
+        <div class="gt_column_spanner">Sex</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]0-to-19-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]20-to-150-[header_name]sex-[header_level]overall">overall</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Female">Female</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]cdm_name-[header_level]Synthea-[header_name]cohort_name-[header_level]acetaminophen-[header_name]age_group-[header_level]overall-[header_name]sex-[header_level]Male">Male</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen-[header_name]Age-group-[header_level]overall-[header_name]Sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen-[header_name]Age-group-[header_level]0-to-19-[header_name]Sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen-[header_name]Age-group-[header_level]20-to-150-[header_name]Sex-[header_level]overall">overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen-[header_name]Age-group-[header_level]overall-[header_name]Sex-[header_level]Female">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]CDM-name-[header_level]Synthea-[header_name]Cohort-name-[header_level]acetaminophen-[header_name]Age-group-[header_level]overall-[header_name]Sex-[header_level]Male">Male</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -1475,801 +1475,801 @@ results by age groups and sex.</p>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,524 (18.2 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,524 (18.16 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,823 (29.9 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,823 (29.90 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (9.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (8.98 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,290 (18.4 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,290 (18.42 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,234 (17.9 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,234 (17.90 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.01 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.02 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">1 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">1 (0.01 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,211 (80.7 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,211 (80.66 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,242 (69.6 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,242 (69.59 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">6,969 (89.3 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">6,969 (89.31 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,619 (80.2 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,619 (80.23 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,592 (81.1 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,592 (81.10 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">163 (1.2 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">163 (1.17 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">30 (0.5 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">30 (0.49 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">133 (1.7 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">133 (1.70 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">95 (1.4 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">95 (1.36 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">68 (1.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">68 (0.99 %)</td>
 </tr>
 <tr>
 <td headers="Indication on index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication on index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+<td headers="Indication on index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication on index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication on index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
 <th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 30 days before to the index date">Indication from 30 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,527 (18.2 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,527 (18.18 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,826 (30.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,826 (29.95 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (9.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">701 (8.98 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,291 (18.4 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,291 (18.43 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,236 (17.9 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,236 (17.93 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18 (0.1 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">18 (0.13 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">15 (0.2 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">15 (0.25 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.04 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11 (0.2 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11 (0.16 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.10 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3 (0.02 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2 (0.03 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.01 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1 (0.01 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">2 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">2 (0.03 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,344 (81.6 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">11,344 (81.62 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,253 (69.8 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4,253 (69.77 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,091 (90.9 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,091 (90.88 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,701 (81.4 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,701 (81.40 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,643 (81.8 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,643 (81.84 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.1 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.05 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.1 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7 (0.09 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.1 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">7 (0.10 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 30 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication from 30 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 30 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 30 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 30 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 <tr class="gt_group_heading_row">
 <th colspan="7" class="gt_group_heading" style="background-color: #E9E9E9; font-weight: bold;" scope="colgroup" id="Indication from 365 days before to the index date">Indication from 365 days before to the index date</th>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,615 (18.8 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">2,615 (18.81 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,883 (30.9 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,883 (30.89 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">732 (9.4 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">732 (9.38 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,353 (19.3 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">1,353 (19.32 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,262 (18.3 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">1,262 (18.30 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">sinusitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">211 (1.5 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">211 (1.52 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">191 (3.1 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">191 (3.13 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">20 (0.3 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">20 (0.26 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">108 (1.5 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">108 (1.54 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">103 (1.5 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">103 (1.49 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">bronchitis and sinusitis</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">101 (0.7 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">101 (0.73 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">96 (1.6 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">96 (1.57 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5 (0.1 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5 (0.06 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">39 (0.6 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">39 (0.56 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">62 (0.9 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">62 (0.90 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">unknown</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">10,968 (78.9 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">10,968 (78.91 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3,926 (64.4 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">3,926 (64.40 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,042 (90.2 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">7,042 (90.25 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,504 (78.6 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">5,504 (78.58 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,464 (79.2 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">5,464 (79.25 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">none</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.03 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.1 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">4 (0.05 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">4 (0.1 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">4 (0.06 %)</td>
 </tr>
 <tr>
 <td headers="Indication from 365 days before to the index date  Indication" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">not in observation</td>
-<td headers="Indication from 365 days before to the index date  estimate_name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+<td headers="Indication from 365 days before to the index date  Estimate name" class="gt_row gt_left" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">N (%)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]0 to 19
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]20 to 150
-[header_name]sex
-[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]overall" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.0 %)</td>
-<td headers="Indication from 365 days before to the index date  [header_name]cdm_name
+[header_name]Sex
+[header_level]Female" class="gt_row gt_right" style="text-align: right; border-left-width: 1px; border-left-style: solid; border-left-color: #D3D3D3; border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3; border-top-width: 1px; border-top-style: solid; border-top-color: #D3D3D3; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #D3D3D3;">0 (0.00 %)</td>
+<td headers="Indication from 365 days before to the index date  [header_name]CDM name
 [header_level]Synthea
-[header_name]cohort_name
+[header_name]Cohort name
 [header_level]acetaminophen
-[header_name]age_group
+[header_name]Age group
 [header_level]overall
-[header_name]sex
-[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.0 %)</td>
+[header_name]Sex
+[header_level]Male" class="gt_row gt_right" style="text-align: right;">0 (0.00 %)</td>
 </tr>
 </tbody>
 </table>
