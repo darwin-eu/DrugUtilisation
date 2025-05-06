@@ -947,7 +947,7 @@ addDrugUseInternal <- function(x,
       "as.numeric(sum(.data$quantity, na.rm = TRUE))",
       "max(as.integer(local(CDMConnector::datediff(
         start = 'drug_exposure_start_date', end = 'drug_exposure_end_date'
-      ))), na.rm = TRUE)"
+      ))) + 1L, na.rm = TRUE)"
     ) |>
       rlang::parse_exprs() |>
       rlang::set_names(c("initial_quantity", "initial_exposure_duration"))
