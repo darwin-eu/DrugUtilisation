@@ -54,10 +54,10 @@ stem_table <- "..."
 
 
 # cretae cdm object
-cdm <- CDMConnector::cdm_from_con(
+cdm <- CDMConnector::cdmFromCon(
   con = db,
-  cdm_schema = cdm_database_schema,
-  write_schema = results_database_schema
+  cdmSchema = cdm_database_schema,
+  writeSchema = results_database_schema
 )
 
 ```

@@ -14,9 +14,7 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-if (Sys.getenv("EUNOMIA_DATA_FOLDER") == "") Sys.setenv("EUNOMIA_DATA_FOLDER" = tempdir())
-if (!dir.exists(Sys.getenv("EUNOMIA_DATA_FOLDER"))) dir.create(Sys.getenv("EUNOMIA_DATA_FOLDER"))
-if (!CDMConnector::eunomia_is_available()) CDMConnector::downloadEunomiaData()
+CDMConnector::requireEunomia()
 knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
@@ -36,10 +34,10 @@ library(DrugUtilisation)
 
 con <- DBI::dbConnect(duckdb::duckdb(), CDMConnector::eunomiaDir())
 
-cdm <- CDMConnector::cdm_from_con(
+cdm <- CDMConnector::cdmFromCon(
   con = con,
-  cdm_schema = "main",
-  write_schema = "main"
+  cdmSchema = "main",
+  writeSchema = "main"
 )
 ```
 

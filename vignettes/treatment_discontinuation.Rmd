@@ -12,9 +12,7 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-if (Sys.getenv("EUNOMIA_DATA_FOLDER") == "") Sys.setenv("EUNOMIA_DATA_FOLDER" = tempdir())
-if (!dir.exists(Sys.getenv("EUNOMIA_DATA_FOLDER"))) dir.create(Sys.getenv("EUNOMIA_DATA_FOLDER"))
-if (!CDMConnector::eunomia_is_available()) CDMConnector::downloadEunomiaData()
+CDMConnector::requireEunomia()
 knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
@@ -33,14 +31,12 @@ For example, let's say we would like to study adherence among new users of amoxi
 ```{r}
 library(DrugUtilisation)
 
-db <- DBI::dbConnect(duckdb::duckdb(),
-  dbdir = CDMConnector::eunomia_dir()
-)
-cdm <- CDMConnector::cdm_from_con(
+db <- DBI::dbConnect(duckdb::duckdb(), dbdir = CDMConnector::eunomiaDir())
+cdm <- CDMConnector::cdmFromCon(
   con = db,
-  cdm_schema = "main",
-  write_schema = "main",
-  cdm_name = "Eunomia"
+  cdmSchema = "main",
+  writeSchema = "main",
+  cdmName = "Eunomia"
 )
 
 cdm <- generateIngredientCohortSet(

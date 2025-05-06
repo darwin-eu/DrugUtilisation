@@ -87,10 +87,10 @@ summariseDrugUtilisation <- function(cohort,
   strata <- validateStrata(strata, cohort)
   omopgenerics::assertChoice(estimates, PatientProfiles::availableEstimates(variableType = "numeric", fullQuantiles = TRUE)$estimate_name)
   cdm <- omopgenerics::cdmReference(cohort)
-  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE, null = TRUE, call = call)
+  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE, null = TRUE)
   if (is.null(conceptSet)) {
     if (is.null(ingredientConceptId)) {
-      cli::cli_abort("`ingredientConceptId` or `conceptSet` must be provided.", call = call)
+      cli::cli_abort("`ingredientConceptId` or `conceptSet` must be provided.")
     } else {
       # https://github.com/darwin-eu-dev/omopgenerics/issues/618
       # conceptSet <- purrr::map(ingredientConceptId, \(x) {
@@ -107,7 +107,7 @@ summariseDrugUtilisation <- function(cohort,
         omopgenerics::newCodelist()
     }
   }
-  conceptSet <- validateConceptSet(conceptSet, call = call)
+  conceptSet <- validateConceptSet(conceptSet)
 
   cohortTableName <- omopgenerics::tableName(cohort)
   cohortTableName[is.na(cohortTableName)] <- "temp"

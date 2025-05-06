@@ -1,3 +1,7 @@
+# DrugUtilisation 0.8.3
+
+* Add +1L to initialExposureDuration to calculate duration as `end - start + 1` by @catalamarti
+
 # DrugUtilisation 0.8.2
 
 * Fix snowflake edge case with duplicated prescriptions by @catalamarti
