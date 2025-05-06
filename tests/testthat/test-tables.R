@@ -80,6 +80,16 @@ test_that("tableIndication works", {
   fx <- tableIndication(result, type = "flextable", header = "group")
   expect_true(inherits(fx, "flextable"))
 
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    result, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  results <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  fx2 <- tableIndication(results, type = "flextable", header = "group")
+  expect_identical(fx, fx2)
+
   mockDisconnect(cdm = cdm)
 })
 
@@ -190,10 +200,20 @@ test_that("tableDoseCoverage", {
   expect_true(inherits(default, "gt_tbl"))
 
   # other options working
-  fx1 <- tableDoseCoverage(coverage, header = c("cdm_name", "group"), groupColumn = "variable_name", type = "flextable")
+  fx1 <- tableDoseCoverage(coverage, header = c("cdm_name", "ingredient_name"), groupColumn = "variable_name", type = "flextable")
   expect_true(inherits(fx1, "flextable"))
 
-  expect_no_error(gt1 <- tableDoseCoverage(coverage, header = c("group")))
+  expect_no_error(gt1 <- tableDoseCoverage(coverage))
+
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    coverage, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  results <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  expect_no_error(gt2 <- tableDoseCoverage(results))
+  expect_identical(gt1, gt2)
 
   mockDisconnect(cdm = cdm)
 })
@@ -268,6 +288,16 @@ test_that("tableDrugUtilisation", {
   expect_no_error(default <- tableDrugUtilisation(result))
   expect_true(inherits(default, "gt_tbl"))
   expect_true("gt_tbl" %in% class(default))
+
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    result, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  results <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  expect_no_error(default2 <- tableDrugUtilisation(results))
+  expect_identical(default, default2)
 
   mockDisconnect(cdm = cdm)
 })
@@ -351,6 +381,16 @@ test_that("tableDrugRestart", {
   expect_no_error(gt1 <- tableDrugRestart(results))
   expect_true(inherits(gt1, "gt_tbl"))
 
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    results, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  result <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  expect_no_error(gt2 <- tableDrugRestart(result))
+  expect_identical(gt1, gt2)
+
   mockDisconnect(cdm = cdm)
 })
 
@@ -398,7 +438,17 @@ test_that("tableProportionOfPatientsCovered works", {
 
   # after suppression
   ppc_suppressed <- omopgenerics::suppress(ppc, 4)
-  expect_no_error(tableProportionOfPatientsCovered(ppc_suppressed))
+  expect_no_error(tb1 <- tableProportionOfPatientsCovered(ppc_suppressed))
+
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    ppc_suppressed, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  result <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  expect_no_error(tb2 <- tableProportionOfPatientsCovered(result))
+  expect_identical(tb1, tb2)
 
   mockDisconnect(cdm = cdm)
 })
@@ -412,4 +462,16 @@ test_that("tableTreatment", {
     )
 
   expect_no_error(x <- tableTreatment(result))
+
+  outputFolder <- tempdir()
+  omopgenerics::exportSummarisedResult(
+    result, minCellCount = 0, fileName = "results.csv", path = outputFolder
+  )
+  results <- omopgenerics::importSummarisedResult(
+    path = file.path(outputFolder, "results.csv")
+  )
+  expect_no_error(x2 <- tableTreatment(results))
+  expect_identical(x, x2)
+
+  omopgenerics::cdmDisconnect(cdm = cdm)
 })

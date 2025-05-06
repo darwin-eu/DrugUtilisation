@@ -193,7 +193,7 @@ summariseDrugUtilisation <- function(cohort,
       package_version = pkgVersion(),
       cohort_table_name = cohortTableName,
       index_date = indexDate,
-      censor_date = as.character(censorDate %||% "NA"),
+      censor_date = as.character(censorDate %||% "observation_period_end_date"),
       restrict_incident = as.character(restrictIncident),
       gap_era = as.character(gapEra)
     ))

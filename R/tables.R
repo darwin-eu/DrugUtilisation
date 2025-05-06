@@ -46,7 +46,8 @@ tableIndication <- function(result,
                               "cohort_table_name", "index_date",
                               "indication_cohort_name"
                             ),
-                            type = "gt") {
+                            type = "gt",
+                            .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_indication",
@@ -59,7 +60,8 @@ tableIndication <- function(result,
         dplyr::filter(!grepl("number", .data$variable_name))
     },
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
-    type = type
+    type = type,
+    .options = .options,
   )
 }
 
@@ -85,7 +87,8 @@ tableDoseCoverage <- function(result,
                               header = c("variable_name", "estimate_name"),
                               groupColumn = c("cdm_name", "ingredient_name"),
                               type = "gt",
-                              hide = c("variable_level", "sample_size")) {
+                              hide = c("variable_level", "sample_size"),
+                              .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_dose_coverage",
@@ -100,7 +103,8 @@ tableDoseCoverage <- function(result,
       "Mean (SD)" = "<mean> (<sd>)",
       "Median (Q25 - Q75)" = "<median> (<q25> - <q75>)"
     ),
-    type = type
+    type = type,
+    .options = .options
   )
 }
 
@@ -133,7 +137,8 @@ tableDrugUtilisation <- function(result,
                                    "variable_level", "censor_date",
                                    "cohort_table_name", "gap_era", "index_date",
                                    "restrict_incident"
-                                 )) {
+                                 ),
+                                 .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_drug_utilisation",
@@ -148,7 +153,8 @@ tableDrugUtilisation <- function(result,
       "Mean (SD)" = "<mean> (<sd>)",
       "Median (Q25 - Q75)" = "<median> (<q25> - <q75>)"
     ),
-    type = type
+    type = type,
+    .options = .options
   )
 }
 
@@ -182,7 +188,8 @@ tableTreatment <- function(result,
                              "window_name", "mutually_exclusive", "censor_date",
                              "cohort_table_name", "index_date",
                              "treatment_cohort_name"
-                           )) {
+                           ),
+                           .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_treatment",
@@ -192,7 +199,8 @@ tableTreatment <- function(result,
     rename = c("Treatment" = "variable_level"),
     modifyResults = NULL,
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
-    type = type
+    type = type,
+    .options = .options
   )
 }
 
@@ -231,7 +239,8 @@ tableDrugRestart <- function(result,
                                "restrict_to_first_discontinuation",
                                "follow_up_days", "cohort_table_name",
                                "incident", "switch_cohort_table"
-                             )) {
+                             ),
+                             .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_drug_restart",
@@ -241,7 +250,8 @@ tableDrugRestart <- function(result,
     rename = c("Treatment" = "variable_level"),
     modifyResults = NULL,
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
-    type = type
+    type = type,
+    .options = .options
   )
 }
 
@@ -273,7 +283,8 @@ tableProportionOfPatientsCovered <- function(result,
                                              header = c("cohort_name", strataColumns(result)),
                                              groupColumn = "cdm_name",
                                              type = "gt",
-                                             hide = c("variable_name", "variable_level", "cohort_table_name")) {
+                                             hide = c("variable_name", "variable_level", "cohort_table_name"),
+                                             .options = list()) {
   dusTable(
     result = result,
     resultType = "summarise_proportion_of_patients_covered",
@@ -291,7 +302,8 @@ tableProportionOfPatientsCovered <- function(result,
       "PPC lower" = "<ppc_lower>%",
       "PPC upper" = "<ppc_upper>%"
     ),
-    type = type
+    type = type,
+    .options = .options
   )
 }
 
@@ -354,16 +366,18 @@ dusTable <- function(result,
   # TODO
   # use rename in header, group and hide
 
-  result |>
-    omopgenerics::splitAll() |>
-    omopgenerics::addSettings(settingsColumn = setColumns) |>
-    visOmopResults::formatEstimateValue() |>
-    visOmopResults::formatEstimateName(estimateName = estimateName) |>
-    dplyr::select(dplyr::all_of(cols)) |>
-    dplyr::rename(dplyr::all_of(rename)) |>
-    dplyr::select(!dplyr::all_of(hide)) |>
-    visOmopResults::formatHeader(header = header) |>
-    visOmopResults::formatTable(type = type, groupColumn = groupColumn)
+  visOmopResults::visOmopTable(
+    result = result,
+    estimateName = estimateName,
+    header = header,
+    groupColumn = groupColumn,
+    hide = hide,
+    rename = rename,
+    settingsColumn = setColumns,
+    type = type,
+    columnOrder = cols[!cols %in% c(hide, groupColumn, header)],
+    .options = .options
+  )
 }
 
 emptyTable <- function(type) {

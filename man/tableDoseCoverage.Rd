@@ -9,7 +9,8 @@ tableDoseCoverage(
   header = c("variable_name", "estimate_name"),
   groupColumn = c("cdm_name", "ingredient_name"),
   type = "gt",
-  hide = c("variable_level", "sample_size")
+  hide = c("variable_level", "sample_size"),
+  .options = list()
 )
 }
 \arguments{
@@ -26,6 +27,10 @@ tableDoseCoverage(
 
 \item{hide}{Columns to hide from the visualisation. See options with
 \code{availableTableColumns(result)}.}
+
+\item{.options}{A named list with additional formatting options.
+\code{visOmopResults::tableOptions()} shows allowed arguments and their default
+values.}
 }
 \value{
 A table with a formatted version of summariseDrugCoverage() results.

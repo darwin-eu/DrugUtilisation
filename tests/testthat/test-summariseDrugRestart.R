@@ -75,7 +75,7 @@ test_that("summarise drug restart", {
   expect_equal(uniqueVars$variable_name, uniqueVarsRes$variable_name)
   expect_equal(uniqueVars$variable_level, uniqueVarsRes$variable_level)
   expect_true(settings(resultsCohort)$result_type == "summarise_drug_restart")
-  expect_true(settings(resultsCohort)$censor_date == "NA")
+  expect_true(settings(resultsCohort)$censor_date == "observation_period_end_date")
   expect_equal(
     resultsCohort |>
       dplyr::filter(estimate_name == "count") |>

@@ -10,7 +10,8 @@ tableIndication(
   groupColumn = "variable_name",
   hide = c("window_name", "mutually_exclusive", "unknown_indication_table",
     "censor_date", "cohort_table_name", "index_date", "indication_cohort_name"),
-  type = "gt"
+  type = "gt",
+  .options = list()
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ tableIndication(
 
 \item{type}{Type of table. Check supported types with
 \code{visOmopResults::tableType()}.}
+
+\item{.options}{A named list with additional formatting options.
+\code{visOmopResults::tableOptions()} shows allowed arguments and their default
+values.}
 }
 \value{
 A table with a formatted version of summariseIndication() results.
