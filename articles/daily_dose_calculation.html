@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Daily dose calculation • DrugUtilisation</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Daily dose calculation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v0.8.2/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
       <div class="d-none name"><code>daily_dose_calculation.Rmd</code></div>
     </div>
 
@@ -101,19 +100,19 @@ through the <em>drug strength</em> table:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.1.3 [unknown@Linux 6.8.0-1017-azure:R 4.4.2/:memory:]</span></span>
-<span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315, 1125360, 1503297, 1503327, 150332…</span></span>
-<span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315, 1125315, 1503297, 1503297, 150329…</span></span>
-<span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, 5.0e+02, <span style="color: #BB0000;">NA</span>, 1.0e+03, 5.0e+02, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
-<span><span class="co">#&gt; $ amount_unit_concept_id      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8576, 8576, 8576, 8576, 8576, 8510, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span>
-<span><span class="co">#&gt; $ numerator_value             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 100, 300, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, …</span></span>
-<span><span class="co">#&gt; $ numerator_unit_concept_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 8510, 8510, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span>
-<span><span class="co">#&gt; $ denominator_value           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 3, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
-<span><span class="co">#&gt; $ denominator_unit_concept_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 8587, 8587, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span>
-<span><span class="co">#&gt; $ box_size                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span>
-<span><span class="co">#&gt; $ valid_start_date            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1-01-19, 1-01-19, 1-01-19, 1-01-19, 1-01-…</span></span>
-<span><span class="co">#&gt; $ valid_end_date              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 31-12-20, 31-12-20, 31-12-20, 31-12-20, 3…</span></span>
-<span><span class="co">#&gt; $ invalid_reason              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span></code></pre></div>
+<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span>
+<span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125360<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503327<span style="color: #949494;">, </span>150332…</span></span>
+<span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125315<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>150329…</span></span>
+<span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1.0e+03<span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ amount_unit_concept_id      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8576<span style="color: #949494;">, </span>8576<span style="color: #949494;">, </span>8576<span style="color: #949494;">, </span>8576<span style="color: #949494;">, </span>8576<span style="color: #949494;">, </span>8510<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span>…</span></span>
+<span><span class="co">#&gt; $ numerator_value             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>100<span style="color: #949494;">, </span>300<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ numerator_unit_concept_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>8510<span style="color: #949494;">, </span>8510<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span>…</span></span>
+<span><span class="co">#&gt; $ denominator_value           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>3<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ denominator_unit_concept_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>8587<span style="color: #949494;">, </span>8587<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span>…</span></span>
+<span><span class="co">#&gt; $ box_size                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span>…</span></span>
+<span><span class="co">#&gt; $ valid_start_date            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1-01-19<span style="color: #949494;">, </span>1-01-19<span style="color: #949494;">, </span>1-01-19<span style="color: #949494;">, </span>1-01-19<span style="color: #949494;">, </span>1-01-…</span></span>
+<span><span class="co">#&gt; $ valid_end_date              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 31-12-20<span style="color: #949494;">, </span>31-12-20<span style="color: #949494;">, </span>31-12-20<span style="color: #949494;">, </span>31-12-20<span style="color: #949494;">, </span>3…</span></span>
+<span><span class="co">#&gt; $ invalid_reason              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span>…</span></span></code></pre></div>
 <p>You can read the documentation of the <em>drug strength</em> table
 and description of the different fields here: <a href="https://www.ohdsi.org/web/wiki/doku.php?id=documentation:cdm:drug_strength" class="external-link uri">https://www.ohdsi.org/web/wiki/doku.php?id=documentation:cdm:drug_strength</a>.</p>
 <p>Not all drug concept ids and ingredient concept ids can be related,
@@ -152,44 +151,44 @@ into 4 different formulas:</p>
 <p>This formula was applied for the following 3 patterns that cover
 8,044 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-5c068c66{}.cl-5c007ca4{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5c02f524{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c02f525{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c03105e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c031068{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c031069{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c03106a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c031072{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c031073{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-5c068c66">
+<style>.cl-5e697488{}.cl-5e62a914{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e658e90{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e658e9a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e65adbc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e65adbd{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e65adc6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e65adee{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e65adef{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e65adf8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-5e697488">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-5c03105e"><p class="cl-5c02f524"><span class="cl-5c007ca4">pattern_id</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">amount</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">amount_unit</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">numerator</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">numerator_unit</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">denominator</span></p></th>
-<th class="cl-5c031068"><p class="cl-5c02f525"><span class="cl-5c007ca4">denominator_unit</span></p></th>
+<th class="cl-5e65adbc"><p class="cl-5e658e90"><span class="cl-5e62a914">pattern_id</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">amount</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">amount_unit</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">numerator</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">numerator_unit</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">denominator</span></p></th>
+<th class="cl-5e65adbd"><p class="cl-5e658e9a"><span class="cl-5e62a914">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c031069"><p class="cl-5c02f524"><span class="cl-5c007ca4">1</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">microgram</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">hour</span></p></td>
+<td class="cl-5e65adc6"><p class="cl-5e658e90"><span class="cl-5e62a914">1</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">microgram</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c031069"><p class="cl-5c02f524"><span class="cl-5c007ca4">2</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">milligram</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c03106a"><p class="cl-5c02f525"><span class="cl-5c007ca4">hour</span></p></td>
+<td class="cl-5e65adc6"><p class="cl-5e658e90"><span class="cl-5e62a914">2</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">milligram</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adee"><p class="cl-5e658e9a"><span class="cl-5e62a914">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c031072"><p class="cl-5c02f524"><span class="cl-5c007ca4">3</span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4"></span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4">unit</span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4">number</span></p></td>
-<td class="cl-5c031073"><p class="cl-5c02f525"><span class="cl-5c007ca4">hour</span></p></td>
+<td class="cl-5e65adef"><p class="cl-5e658e90"><span class="cl-5e62a914">3</span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914"></span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914">unit</span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914">number</span></p></td>
+<td class="cl-5e65adf8"><p class="cl-5e658e9a"><span class="cl-5e62a914">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -208,35 +207,35 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 2 patterns that cover
 5,611 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-5c208882{}.cl-5c1afc8c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5c1d4c1c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c1d4c30{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c1d6864{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c1d686e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c1d686f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c1d6870{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c1d6878{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c1d6879{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-5c208882">
+<style>.cl-5e8469b4{}.cl-5e7e752c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e80f54a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e80f554{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e81117e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e811188{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e811189{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e811192{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e811193{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e81119c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-5e8469b4">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-5c1d6864"><p class="cl-5c1d4c1c"><span class="cl-5c1afc8c">pattern_id</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">amount</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">amount_unit</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">numerator</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">numerator_unit</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">denominator</span></p></th>
-<th class="cl-5c1d686e"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">denominator_unit</span></p></th>
+<th class="cl-5e81117e"><p class="cl-5e80f54a"><span class="cl-5e7e752c">pattern_id</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">amount</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">amount_unit</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">numerator</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">numerator_unit</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">denominator</span></p></th>
+<th class="cl-5e811188"><p class="cl-5e80f554"><span class="cl-5e7e752c">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c1d686f"><p class="cl-5c1d4c1c"><span class="cl-5c1afc8c">4</span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">number</span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">microgram</span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6870"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">hour</span></p></td>
+<td class="cl-5e811189"><p class="cl-5e80f54a"><span class="cl-5e7e752c">4</span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c">number</span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c">microgram</span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e811192"><p class="cl-5e80f554"><span class="cl-5e7e752c">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c1d6878"><p class="cl-5c1d4c1c"><span class="cl-5c1afc8c">5</span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">number</span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">milligram</span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c"></span></p></td>
-<td class="cl-5c1d6879"><p class="cl-5c1d4c30"><span class="cl-5c1afc8c">hour</span></p></td>
+<td class="cl-5e811193"><p class="cl-5e80f54a"><span class="cl-5e7e752c">5</span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c">number</span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c">milligram</span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c"></span></p></td>
+<td class="cl-5e81119c"><p class="cl-5e80f554"><span class="cl-5e7e752c">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -253,71 +252,71 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:</p>
 <div class="tabwid">
-<style>.cl-5c3ab504{}.cl-5c35139c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5c37522e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c375238{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c376d36{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c376d40{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c376d4a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c376d4b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c376d4c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c376d54{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-5c3ab504">
+<style>.cl-5ea02924{}.cl-5e998de4{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e9c112c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e9c1136{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e9cc7ca{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e9cc7d4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e9cc7d5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e9cc7de{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e9cc7df{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e9cc7e0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-5ea02924">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-5c376d36"><p class="cl-5c37522e"><span class="cl-5c35139c">pattern_id</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">amount</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">amount_unit</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">numerator</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">numerator_unit</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">denominator</span></p></th>
-<th class="cl-5c376d40"><p class="cl-5c375238"><span class="cl-5c35139c">denominator_unit</span></p></th>
+<th class="cl-5e9cc7ca"><p class="cl-5e9c112c"><span class="cl-5e998de4">pattern_id</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">amount</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">amount_unit</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">numerator</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">numerator_unit</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">denominator</span></p></th>
+<th class="cl-5e9cc7d4"><p class="cl-5e9c1136"><span class="cl-5e998de4">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4a"><p class="cl-5c37522e"><span class="cl-5c35139c">6</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">international unit</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7d5"><p class="cl-5e9c112c"><span class="cl-5e998de4">6</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">international unit</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4a"><p class="cl-5c37522e"><span class="cl-5c35139c">7</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">microgram</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7d5"><p class="cl-5e9c112c"><span class="cl-5e998de4">7</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">microgram</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4a"><p class="cl-5c37522e"><span class="cl-5c35139c">8</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">milliequivalent</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7d5"><p class="cl-5e9c112c"><span class="cl-5e998de4">8</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">milliequivalent</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4a"><p class="cl-5c37522e"><span class="cl-5c35139c">9</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">milligram</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7d5"><p class="cl-5e9c112c"><span class="cl-5e998de4">9</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">milligram</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4a"><p class="cl-5c37522e"><span class="cl-5c35139c">10</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c">milliliter</span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d4b"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7d5"><p class="cl-5e9c112c"><span class="cl-5e998de4">10</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4">milliliter</span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7de"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c376d4c"><p class="cl-5c37522e"><span class="cl-5c35139c">11</span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c">number</span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c">unit</span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
-<td class="cl-5c376d54"><p class="cl-5c375238"><span class="cl-5c35139c"></span></p></td>
+<td class="cl-5e9cc7df"><p class="cl-5e9c112c"><span class="cl-5e998de4">11</span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4">number</span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4">unit</span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
+<td class="cl-5e9cc7e0"><p class="cl-5e9c1136"><span class="cl-5e998de4"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -334,287 +333,287 @@ field.</p>
 <p>This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:</p>
 <div class="tabwid">
-<style>.cl-5c5da3f2{}.cl-5c56affc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5c595fea{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c595ff4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c597c46{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c597c50{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c597c51{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c597c5a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c597c5b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c597c64{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-5c5da3f2">
+<style>.cl-5ec45722{}.cl-5ebc6030{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5ebfe73c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5ebfe746{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5ec009a6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5ec009b0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5ec009b1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5ec009b2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5ec009b3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5ec009b4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-5ec45722">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-5c597c46"><p class="cl-5c595fea"><span class="cl-5c56affc">pattern_id</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">amount</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">amount_unit</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">numerator</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">numerator_unit</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">denominator</span></p></th>
-<th class="cl-5c597c50"><p class="cl-5c595ff4"><span class="cl-5c56affc">denominator_unit</span></p></th>
+<th class="cl-5ec009a6"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">pattern_id</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">amount</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">amount_unit</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">numerator</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">numerator_unit</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">denominator</span></p></th>
+<th class="cl-5ec009b0"><p class="cl-5ebfe746"><span class="cl-5ebc6030">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">12</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">international unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">12</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">international unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">13</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">international unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">13</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">international unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">14</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliequivalent</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">14</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliequivalent</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">15</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">Actuation</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">15</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">16</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">liter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">16</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">17</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">17</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">18</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">18</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">19</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">square centimeter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">19</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">20</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">20</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">21</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">21</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">22</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">Actuation</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">22</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">23</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">23</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">24</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">24</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">25</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">square centimeter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">25</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">26</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">international unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">26</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">international unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">27</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">international unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">27</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">international unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">28</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">mega-international unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">28</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">mega-international unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">29</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliequivalent</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">29</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliequivalent</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">30</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliequivalent</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">30</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliequivalent</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">31</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">Actuation</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">31</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">32</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">liter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">32</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">33</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">33</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">34</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">34</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">35</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">square centimeter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">35</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">36</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">36</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">37</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">37</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">38</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">Actuation</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">38</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">39</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milligram</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">39</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c51"><p class="cl-5c595fea"><span class="cl-5c56affc">40</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c5a"><p class="cl-5c595ff4"><span class="cl-5c56affc">milliliter</span></p></td>
+<td class="cl-5ec009b1"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">40</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b2"><p class="cl-5ebfe746"><span class="cl-5ebc6030">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c597c5b"><p class="cl-5c595fea"><span class="cl-5c56affc">41</span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc">number</span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc">unit</span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc"></span></p></td>
-<td class="cl-5c597c64"><p class="cl-5c595ff4"><span class="cl-5c56affc">square centimeter</span></p></td>
+<td class="cl-5ec009b3"><p class="cl-5ebfe73c"><span class="cl-5ebc6030">41</span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030">number</span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030">unit</span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030"></span></p></td>
+<td class="cl-5ec009b4"><p class="cl-5ebfe746"><span class="cl-5ebc6030">square centimeter</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -637,14 +636,14 @@ time exposed is obtained as the difference in days between
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 41</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ pattern_id       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…</span></span>
-<span><span class="co">#&gt; $ amount           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, "number", "number", "number", "nu…</span></span>
-<span><span class="co">#&gt; $ amount_unit      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, "international unit", "microgram"…</span></span>
-<span><span class="co">#&gt; $ numerator        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number", "number", "number", "number", "number", <span style="color: #BB0000;">NA</span>,…</span></span>
-<span><span class="co">#&gt; $ numerator_unit   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "microgram", "milligram", "unit", "microgram", "milli…</span></span>
-<span><span class="co">#&gt; $ denominator      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number", "number", "number", <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
-<span><span class="co">#&gt; $ denominator_unit <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "hour", "hour", "hour", "hour", "hour", <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
-<span><span class="co">#&gt; $ formula_name     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "time based with denominator", "time based with denom…</span></span>
+<span><span class="co">#&gt; $ pattern_id       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>9<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>11<span style="color: #949494;">, </span>12<span style="color: #949494;">, </span>13<span style="color: #949494;">, </span>14<span style="color: #949494;">, </span>15<span style="color: #949494;">, </span>16…</span></span>
+<span><span class="co">#&gt; $ amount           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"nu…</span></span>
+<span><span class="co">#&gt; $ amount_unit      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"international unit"<span style="color: #949494;">, </span>"microgram"…</span></span>
+<span><span class="co">#&gt; $ numerator        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ numerator_unit   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "microgram"<span style="color: #949494;">, </span>"milligram"<span style="color: #949494;">, </span>"unit"<span style="color: #949494;">, </span>"microgram"<span style="color: #949494;">, </span>"milli…</span></span>
+<span><span class="co">#&gt; $ denominator      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span>"number"<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ denominator_unit <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "hour"<span style="color: #949494;">, </span>"hour"<span style="color: #949494;">, </span>"hour"<span style="color: #949494;">, </span>"hour"<span style="color: #949494;">, </span>"hour"<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">N</span>…</span></span>
+<span><span class="co">#&gt; $ formula_name     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "time based with denominator"<span style="color: #949494;">, </span>"time based with denom…</span></span>
 <span><span class="co">#&gt; $ formula          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "if (denominator&gt;24) {numerator * 24 / denominator} e…</span></span></code></pre></div>
 <p>The described formulas were validated into 5 different databases and
 the results were included in an article. Please refer to it for more
@@ -665,18 +664,18 @@ provide a platform to associate each drug in the
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 5</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; $ pattern_id                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 18, 24, 40, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ formula_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "fixed amount formulation", "concentration…</span></span>
-<span><span class="co">#&gt; $ validity                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "pattern with formula", "pattern with form…</span></span>
-<span><span class="co">#&gt; $ number_concepts             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7, 1, 1, 1, 4</span></span>
-<span><span class="co">#&gt; $ number_ingredients          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 1, 1, 1, 4</span></span>
-<span><span class="co">#&gt; $ number_records              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 169, 34, 32, 35, 25</span></span>
-<span><span class="co">#&gt; $ amount_numeric              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 0, 0, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ amount_unit_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8576, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ numerator_numeric           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 1, 1, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ numerator_unit_concept_id   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, 8576, 8510, 8510, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ denominator_numeric         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 1, 0, <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; $ denominator_unit_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, 8587, 8587, 8587, <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<span><span class="co">#&gt; $ pattern_id                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9<span style="color: #949494;">, </span>18<span style="color: #949494;">, </span>24<span style="color: #949494;">, </span>40<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ formula_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "fixed amount formulation"<span style="color: #949494;">, </span>"concentration…</span></span>
+<span><span class="co">#&gt; $ validity                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "pattern with formula"<span style="color: #949494;">, </span>"pattern with form…</span></span>
+<span><span class="co">#&gt; $ number_concepts             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>4</span></span>
+<span><span class="co">#&gt; $ number_ingredients          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>4</span></span>
+<span><span class="co">#&gt; $ number_records              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 169<span style="color: #949494;">, </span>34<span style="color: #949494;">, </span>32<span style="color: #949494;">, </span>35<span style="color: #949494;">, </span>25</span></span>
+<span><span class="co">#&gt; $ amount_numeric              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1<span style="color: #949494;">, </span>0<span style="color: #949494;">, </span>0<span style="color: #949494;">, </span>0<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ amount_unit_concept_id      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8576<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ numerator_numeric           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ numerator_unit_concept_id   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>8576<span style="color: #949494;">, </span>8510<span style="color: #949494;">, </span>8510<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ denominator_numeric         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>0<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; $ denominator_unit_concept_id <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>8587<span style="color: #949494;">, </span>8587<span style="color: #949494;">, </span>8587<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>The output has three important columns, namely
 <code>number_concepts</code>, <code>number_ingredients</code> and
 <code>number_records</code>, which corresponds to count of distinct
@@ -697,19 +696,19 @@ take <em>acetaminophen</em> as an example.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 56</span></span>
 <span><span class="co">#&gt; Columns: 13</span></span>
-<span><span class="co">#&gt; $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></span>
-<span><span class="co">#&gt; $ cdm_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …</span></span>
-<span><span class="co">#&gt; $ group_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ingredient_name", "ingredient_name", "ingredient_nam…</span></span>
-<span><span class="co">#&gt; $ group_level      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "acetaminophen", "acetaminophen", "acetaminophen", "a…</span></span>
-<span><span class="co">#&gt; $ strata_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span>
-<span><span class="co">#&gt; $ strata_level     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span>
-<span><span class="co">#&gt; $ variable_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number records", "Missing dose", "Missing dose", "da…</span></span>
-<span><span class="co">#&gt; $ variable_level   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
-<span><span class="co">#&gt; $ estimate_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "count", "count_missing", "percentage_missing", "mean…</span></span>
-<span><span class="co">#&gt; $ estimate_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "integer", "integer", "percentage", "numeric", "numer…</span></span>
-<span><span class="co">#&gt; $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "78", "0", "0", "14949.800361887", "99310.1784420234"…</span></span>
-<span><span class="co">#&gt; $ additional_name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span>
-<span><span class="co">#&gt; $ additional_level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ cdm_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS …</span></span>
+<span><span class="co">#&gt; $ group_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ingredient_name"<span style="color: #949494;">, </span>"ingredient_name"<span style="color: #949494;">, </span>"ingredient_nam…</span></span>
+<span><span class="co">#&gt; $ group_level      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "acetaminophen"<span style="color: #949494;">, </span>"acetaminophen"<span style="color: #949494;">, </span>"acetaminophen"<span style="color: #949494;">, </span>"a…</span></span>
+<span><span class="co">#&gt; $ strata_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span>
+<span><span class="co">#&gt; $ strata_level     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span>
+<span><span class="co">#&gt; $ variable_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "number records"<span style="color: #949494;">, </span>"Missing dose"<span style="color: #949494;">, </span>"Missing dose"<span style="color: #949494;">, </span>"da…</span></span>
+<span><span class="co">#&gt; $ variable_level   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">N</span>…</span></span>
+<span><span class="co">#&gt; $ estimate_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "count"<span style="color: #949494;">, </span>"count_missing"<span style="color: #949494;">, </span>"percentage_missing"<span style="color: #949494;">, </span>"mean…</span></span>
+<span><span class="co">#&gt; $ estimate_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "integer"<span style="color: #949494;">, </span>"integer"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"numeric"<span style="color: #949494;">, </span>"numer…</span></span>
+<span><span class="co">#&gt; $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "78"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"14949.800361887"<span style="color: #949494;">, </span>"99310.1784420234"…</span></span>
+<span><span class="co">#&gt; $ additional_name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span>
+<span><span class="co">#&gt; $ additional_level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span></code></pre></div>
 <p>The output will summarise the usage of <em>acetaminophen</em> in the
 database. For example, overall there are
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>78</mn><annotation encoding="application/x-tex">78</annotation></semantics></math>
@@ -730,23 +729,23 @@ so:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coverageResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summariseDoseCoverage.html">summariseDoseCoverage</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, ingredientConceptId <span class="op">=</span> <span class="fl">1125315</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/tableDoseCoverage.html">tableDoseCoverage</a></span><span class="op">(</span><span class="va">coverageResult</span><span class="op">)</span></span></code></pre></div>
-<div id="fneywcijgq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fneywcijgq table {
+<div id="obkmmdrwkb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#obkmmdrwkb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fneywcijgq thead, #fneywcijgq tbody, #fneywcijgq tfoot, #fneywcijgq tr, #fneywcijgq td, #fneywcijgq th {
+#obkmmdrwkb thead, #obkmmdrwkb tbody, #obkmmdrwkb tfoot, #obkmmdrwkb tr, #obkmmdrwkb td, #obkmmdrwkb th {
   border-style: none;
 }
 
-#fneywcijgq p {
+#obkmmdrwkb p {
   margin: 0;
   padding: 0;
 }
 
-#fneywcijgq .gt_table {
+#obkmmdrwkb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -772,12 +771,12 @@ so:</p>
   border-left-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_caption {
+#obkmmdrwkb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fneywcijgq .gt_title {
+#obkmmdrwkb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -789,7 +788,7 @@ so:</p>
   border-bottom-width: 0;
 }
 
-#fneywcijgq .gt_subtitle {
+#obkmmdrwkb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -801,7 +800,7 @@ so:</p>
   border-top-width: 0;
 }
 
-#fneywcijgq .gt_heading {
+#obkmmdrwkb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -813,13 +812,13 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_bottom_border {
+#obkmmdrwkb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_col_headings {
+#obkmmdrwkb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -834,7 +833,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_col_heading {
+#obkmmdrwkb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -854,7 +853,7 @@ so:</p>
   overflow-x: hidden;
 }
 
-#fneywcijgq .gt_column_spanner_outer {
+#obkmmdrwkb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -866,15 +865,15 @@ so:</p>
   padding-right: 4px;
 }
 
-#fneywcijgq .gt_column_spanner_outer:first-child {
+#obkmmdrwkb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fneywcijgq .gt_column_spanner_outer:last-child {
+#obkmmdrwkb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fneywcijgq .gt_column_spanner {
+#obkmmdrwkb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -886,11 +885,11 @@ so:</p>
   width: 100%;
 }
 
-#fneywcijgq .gt_spanner_row {
+#obkmmdrwkb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fneywcijgq .gt_group_heading {
+#obkmmdrwkb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -916,7 +915,7 @@ so:</p>
   text-align: left;
 }
 
-#fneywcijgq .gt_empty_group_heading {
+#obkmmdrwkb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -931,15 +930,15 @@ so:</p>
   vertical-align: middle;
 }
 
-#fneywcijgq .gt_from_md > :first-child {
+#obkmmdrwkb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fneywcijgq .gt_from_md > :last-child {
+#obkmmdrwkb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fneywcijgq .gt_row {
+#obkmmdrwkb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +957,7 @@ so:</p>
   overflow-x: hidden;
 }
 
-#fneywcijgq .gt_stub {
+#obkmmdrwkb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -971,7 +970,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#fneywcijgq .gt_stub_row_group {
+#obkmmdrwkb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -985,15 +984,15 @@ so:</p>
   vertical-align: top;
 }
 
-#fneywcijgq .gt_row_group_first td {
+#obkmmdrwkb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fneywcijgq .gt_row_group_first th {
+#obkmmdrwkb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fneywcijgq .gt_summary_row {
+#obkmmdrwkb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1003,16 +1002,16 @@ so:</p>
   padding-right: 5px;
 }
 
-#fneywcijgq .gt_first_summary_row {
+#obkmmdrwkb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_first_summary_row.thick {
+#obkmmdrwkb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fneywcijgq .gt_last_summary_row {
+#obkmmdrwkb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1022,7 +1021,7 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_grand_summary_row {
+#obkmmdrwkb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1032,7 +1031,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#fneywcijgq .gt_first_grand_summary_row {
+#obkmmdrwkb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1041,7 @@ so:</p>
   border-top-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_last_grand_summary_row_top {
+#obkmmdrwkb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1052,11 +1051,11 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_striped {
+#obkmmdrwkb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fneywcijgq .gt_table_body {
+#obkmmdrwkb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1065,7 +1064,7 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_footnotes {
+#obkmmdrwkb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1079,7 +1078,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_footnote {
+#obkmmdrwkb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1088,7 +1087,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#fneywcijgq .gt_sourcenotes {
+#obkmmdrwkb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1102,7 +1101,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#fneywcijgq .gt_sourcenote {
+#obkmmdrwkb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1110,72 +1109,72 @@ so:</p>
   padding-right: 5px;
 }
 
-#fneywcijgq .gt_left {
+#obkmmdrwkb .gt_left {
   text-align: left;
 }
 
-#fneywcijgq .gt_center {
+#obkmmdrwkb .gt_center {
   text-align: center;
 }
 
-#fneywcijgq .gt_right {
+#obkmmdrwkb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fneywcijgq .gt_font_normal {
+#obkmmdrwkb .gt_font_normal {
   font-weight: normal;
 }
 
-#fneywcijgq .gt_font_bold {
+#obkmmdrwkb .gt_font_bold {
   font-weight: bold;
 }
 
-#fneywcijgq .gt_font_italic {
+#obkmmdrwkb .gt_font_italic {
   font-style: italic;
 }
 
-#fneywcijgq .gt_super {
+#obkmmdrwkb .gt_super {
   font-size: 65%;
 }
 
-#fneywcijgq .gt_footnote_marks {
+#obkmmdrwkb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fneywcijgq .gt_asterisk {
+#obkmmdrwkb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fneywcijgq .gt_indent_1 {
+#obkmmdrwkb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fneywcijgq .gt_indent_2 {
+#obkmmdrwkb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fneywcijgq .gt_indent_3 {
+#obkmmdrwkb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fneywcijgq .gt_indent_4 {
+#obkmmdrwkb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fneywcijgq .gt_indent_5 {
+#obkmmdrwkb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fneywcijgq .katex-display {
+#obkmmdrwkb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fneywcijgq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#obkmmdrwkb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1382,23 +1381,23 @@ so:</p>
 example the following will suppress the <code>cdmName</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableDoseCoverage.html">tableDoseCoverage</a></span><span class="op">(</span><span class="va">coverageResult</span>, groupColumn <span class="op">=</span> <span class="st">"ingredient_name"</span>, hide <span class="op">=</span> <span class="st">"cdm_name"</span><span class="op">)</span></span></code></pre></div>
-<div id="kgdeulgctu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kgdeulgctu table {
+<div id="pfaxdarfhp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pfaxdarfhp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kgdeulgctu thead, #kgdeulgctu tbody, #kgdeulgctu tfoot, #kgdeulgctu tr, #kgdeulgctu td, #kgdeulgctu th {
+#pfaxdarfhp thead, #pfaxdarfhp tbody, #pfaxdarfhp tfoot, #pfaxdarfhp tr, #pfaxdarfhp td, #pfaxdarfhp th {
   border-style: none;
 }
 
-#kgdeulgctu p {
+#pfaxdarfhp p {
   margin: 0;
   padding: 0;
 }
 
-#kgdeulgctu .gt_table {
+#pfaxdarfhp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1424,12 +1423,12 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-left-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_caption {
+#pfaxdarfhp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kgdeulgctu .gt_title {
+#pfaxdarfhp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1441,7 +1440,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-width: 0;
 }
 
-#kgdeulgctu .gt_subtitle {
+#pfaxdarfhp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1453,7 +1452,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-top-width: 0;
 }
 
-#kgdeulgctu .gt_heading {
+#pfaxdarfhp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1465,13 +1464,13 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_bottom_border {
+#pfaxdarfhp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_col_headings {
+#pfaxdarfhp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1486,7 +1485,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_col_heading {
+#pfaxdarfhp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1506,7 +1505,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   overflow-x: hidden;
 }
 
-#kgdeulgctu .gt_column_spanner_outer {
+#pfaxdarfhp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1518,15 +1517,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 4px;
 }
 
-#kgdeulgctu .gt_column_spanner_outer:first-child {
+#pfaxdarfhp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kgdeulgctu .gt_column_spanner_outer:last-child {
+#pfaxdarfhp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kgdeulgctu .gt_column_spanner {
+#pfaxdarfhp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1538,11 +1537,11 @@ example the following will suppress the <code>cdmName</code>:</p>
   width: 100%;
 }
 
-#kgdeulgctu .gt_spanner_row {
+#pfaxdarfhp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kgdeulgctu .gt_group_heading {
+#pfaxdarfhp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1568,7 +1567,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   text-align: left;
 }
 
-#kgdeulgctu .gt_empty_group_heading {
+#pfaxdarfhp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1583,15 +1582,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   vertical-align: middle;
 }
 
-#kgdeulgctu .gt_from_md > :first-child {
+#pfaxdarfhp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kgdeulgctu .gt_from_md > :last-child {
+#pfaxdarfhp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kgdeulgctu .gt_row {
+#pfaxdarfhp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1610,7 +1609,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   overflow-x: hidden;
 }
 
-#kgdeulgctu .gt_stub {
+#pfaxdarfhp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1623,7 +1622,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#kgdeulgctu .gt_stub_row_group {
+#pfaxdarfhp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1637,15 +1636,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   vertical-align: top;
 }
 
-#kgdeulgctu .gt_row_group_first td {
+#pfaxdarfhp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kgdeulgctu .gt_row_group_first th {
+#pfaxdarfhp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kgdeulgctu .gt_summary_row {
+#pfaxdarfhp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1655,16 +1654,16 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#kgdeulgctu .gt_first_summary_row {
+#pfaxdarfhp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_first_summary_row.thick {
+#pfaxdarfhp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kgdeulgctu .gt_last_summary_row {
+#pfaxdarfhp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1674,7 +1673,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_grand_summary_row {
+#pfaxdarfhp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1684,7 +1683,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#kgdeulgctu .gt_first_grand_summary_row {
+#pfaxdarfhp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1694,7 +1693,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-top-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_last_grand_summary_row_top {
+#pfaxdarfhp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1704,11 +1703,11 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_striped {
+#pfaxdarfhp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kgdeulgctu .gt_table_body {
+#pfaxdarfhp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1717,7 +1716,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_footnotes {
+#pfaxdarfhp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1731,7 +1730,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_footnote {
+#pfaxdarfhp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1740,7 +1739,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#kgdeulgctu .gt_sourcenotes {
+#pfaxdarfhp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1754,7 +1753,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#kgdeulgctu .gt_sourcenote {
+#pfaxdarfhp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1762,72 +1761,72 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#kgdeulgctu .gt_left {
+#pfaxdarfhp .gt_left {
   text-align: left;
 }
 
-#kgdeulgctu .gt_center {
+#pfaxdarfhp .gt_center {
   text-align: center;
 }
 
-#kgdeulgctu .gt_right {
+#pfaxdarfhp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kgdeulgctu .gt_font_normal {
+#pfaxdarfhp .gt_font_normal {
   font-weight: normal;
 }
 
-#kgdeulgctu .gt_font_bold {
+#pfaxdarfhp .gt_font_bold {
   font-weight: bold;
 }
 
-#kgdeulgctu .gt_font_italic {
+#pfaxdarfhp .gt_font_italic {
   font-style: italic;
 }
 
-#kgdeulgctu .gt_super {
+#pfaxdarfhp .gt_super {
   font-size: 65%;
 }
 
-#kgdeulgctu .gt_footnote_marks {
+#pfaxdarfhp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kgdeulgctu .gt_asterisk {
+#pfaxdarfhp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kgdeulgctu .gt_indent_1 {
+#pfaxdarfhp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kgdeulgctu .gt_indent_2 {
+#pfaxdarfhp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kgdeulgctu .gt_indent_3 {
+#pfaxdarfhp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kgdeulgctu .gt_indent_4 {
+#pfaxdarfhp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kgdeulgctu .gt_indent_5 {
+#pfaxdarfhp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kgdeulgctu .katex-display {
+#pfaxdarfhp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kgdeulgctu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pfaxdarfhp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2059,7 +2058,7 @@ example the following will suppress the <code>cdmName</code>:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Assessing drug restart and switching after treatment • DrugUtilisation</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Assessing drug restart and switching after treatment</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v0.8.2/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
       <div class="d-none name"><code>drug_restart.Rmd</code></div>
     </div>
 
@@ -154,7 +153,7 @@ after the initial exposure to a particular drug (in blue), with
 consideration of a specific switch drug (in orange). This study examines
 what occurs within 100, 180, and 365 days following first treatment
 discontinuation in the cohort.</p>
-<p><img src="figures%2Fdrug_restart_A.png" width="80%"></p>
+<p><img src="figures/drug_restart_A.png" width="80%"></p>
 <p>Now, let’s use the function to assess metformin restart and switch to
 insulin after the first metformin treatment.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -172,19 +171,19 @@ insulin after the first metformin treatment.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 8</span></span>
 <span><span class="co">#&gt; Columns: 13</span></span>
-<span><span class="co">#&gt; $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1</span></span>
-<span><span class="co">#&gt; $ cdm_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …</span></span>
-<span><span class="co">#&gt; $ group_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "cohort_name", "cohort_name", "cohort_name", "cohort_…</span></span>
-<span><span class="co">#&gt; $ group_level      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6809_metformin", "6809_metformin", "6809_metformin",…</span></span>
-<span><span class="co">#&gt; $ strata_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span>
-<span><span class="co">#&gt; $ strata_level     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall", "overall", "overall", "overall", "overall"…</span></span>
-<span><span class="co">#&gt; $ variable_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Drug restart till end of observation", "Drug restart…</span></span>
-<span><span class="co">#&gt; $ variable_level   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "restart", "restart", "switch", "switch", "restart an…</span></span>
-<span><span class="co">#&gt; $ estimate_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "count", "percentage", "count", "percentage", "count"…</span></span>
-<span><span class="co">#&gt; $ estimate_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "integer", "percentage", "integer", "percentage", "in…</span></span>
-<span><span class="co">#&gt; $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "13", "14.1304347826087", "3", "3.26086956521739", "2…</span></span>
-<span><span class="co">#&gt; $ additional_name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "follow_up_days", "follow_up_days", "follow_up_days",…</span></span>
-<span><span class="co">#&gt; $ additional_level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "inf days", "inf days", "inf days", "inf days", "inf …</span></span></code></pre></div>
+<span><span class="co">#&gt; $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1</span></span>
+<span><span class="co">#&gt; $ cdm_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS …</span></span>
+<span><span class="co">#&gt; $ group_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "cohort_name"<span style="color: #949494;">, </span>"cohort_name"<span style="color: #949494;">, </span>"cohort_name"<span style="color: #949494;">, </span>"cohort_…</span></span>
+<span><span class="co">#&gt; $ group_level      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6809_metformin"<span style="color: #949494;">, </span>"6809_metformin"<span style="color: #949494;">, </span>"6809_metformin"<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ strata_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span>
+<span><span class="co">#&gt; $ strata_level     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"<span style="color: #949494;">, </span>"overall"…</span></span>
+<span><span class="co">#&gt; $ variable_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Drug restart till end of observation"<span style="color: #949494;">, </span>"Drug restart…</span></span>
+<span><span class="co">#&gt; $ variable_level   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "restart"<span style="color: #949494;">, </span>"restart"<span style="color: #949494;">, </span>"switch"<span style="color: #949494;">, </span>"switch"<span style="color: #949494;">, </span>"restart an…</span></span>
+<span><span class="co">#&gt; $ estimate_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "count"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"count"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"count"…</span></span>
+<span><span class="co">#&gt; $ estimate_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "integer"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"integer"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"in…</span></span>
+<span><span class="co">#&gt; $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "13"<span style="color: #949494;">, </span>"14.1304347826087"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3.26086956521739"<span style="color: #949494;">, </span>"2…</span></span>
+<span><span class="co">#&gt; $ additional_name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "follow_up_days"<span style="color: #949494;">, </span>"follow_up_days"<span style="color: #949494;">, </span>"follow_up_days"<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ additional_level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "inf days"<span style="color: #949494;">, </span>"inf days"<span style="color: #949494;">, </span>"inf days"<span style="color: #949494;">, </span>"inf days"<span style="color: #949494;">, </span>"inf …</span></span></code></pre></div>
 <p>We could be interested in getting these results in different
 follow-up periods since the first metformin exposure ended. For
 instance, next we get the results in the first 180 days, the first year,
@@ -207,7 +206,7 @@ and until the end of observation.</p>
 consider the firsts exposure of the subject. If FALSE, the analysis is
 conducted on a record level, considering all exposures in the cohort, as
 the following image illustrates:</p>
-<p><img src="figures%2Fdrug_restart_B.png" width="80%"></p>
+<p><img src="figures/drug_restart_B.png" width="80%"></p>
 <ul>
 <li><strong>censorEndDate</strong></li>
 </ul>
@@ -251,23 +250,23 @@ user preferences.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/tableDrugRestart.html">tableDrugRestart</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div id="jbjteddcwn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jbjteddcwn table {
+<div id="ajhadkrwvf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ajhadkrwvf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jbjteddcwn thead, #jbjteddcwn tbody, #jbjteddcwn tfoot, #jbjteddcwn tr, #jbjteddcwn td, #jbjteddcwn th {
+#ajhadkrwvf thead, #ajhadkrwvf tbody, #ajhadkrwvf tfoot, #ajhadkrwvf tr, #ajhadkrwvf td, #ajhadkrwvf th {
   border-style: none;
 }
 
-#jbjteddcwn p {
+#ajhadkrwvf p {
   margin: 0;
   padding: 0;
 }
 
-#jbjteddcwn .gt_table {
+#ajhadkrwvf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -293,12 +292,12 @@ user preferences.</p>
   border-left-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_caption {
+#ajhadkrwvf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jbjteddcwn .gt_title {
+#ajhadkrwvf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -310,7 +309,7 @@ user preferences.</p>
   border-bottom-width: 0;
 }
 
-#jbjteddcwn .gt_subtitle {
+#ajhadkrwvf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -322,7 +321,7 @@ user preferences.</p>
   border-top-width: 0;
 }
 
-#jbjteddcwn .gt_heading {
+#ajhadkrwvf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -334,13 +333,13 @@ user preferences.</p>
   border-right-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_bottom_border {
+#ajhadkrwvf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_col_headings {
+#ajhadkrwvf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -355,7 +354,7 @@ user preferences.</p>
   border-right-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_col_heading {
+#ajhadkrwvf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,7 +374,7 @@ user preferences.</p>
   overflow-x: hidden;
 }
 
-#jbjteddcwn .gt_column_spanner_outer {
+#ajhadkrwvf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -387,15 +386,15 @@ user preferences.</p>
   padding-right: 4px;
 }
 
-#jbjteddcwn .gt_column_spanner_outer:first-child {
+#ajhadkrwvf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jbjteddcwn .gt_column_spanner_outer:last-child {
+#ajhadkrwvf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jbjteddcwn .gt_column_spanner {
+#ajhadkrwvf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -407,11 +406,11 @@ user preferences.</p>
   width: 100%;
 }
 
-#jbjteddcwn .gt_spanner_row {
+#ajhadkrwvf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jbjteddcwn .gt_group_heading {
+#ajhadkrwvf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -437,7 +436,7 @@ user preferences.</p>
   text-align: left;
 }
 
-#jbjteddcwn .gt_empty_group_heading {
+#ajhadkrwvf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -452,15 +451,15 @@ user preferences.</p>
   vertical-align: middle;
 }
 
-#jbjteddcwn .gt_from_md > :first-child {
+#ajhadkrwvf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jbjteddcwn .gt_from_md > :last-child {
+#ajhadkrwvf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jbjteddcwn .gt_row {
+#ajhadkrwvf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -479,7 +478,7 @@ user preferences.</p>
   overflow-x: hidden;
 }
 
-#jbjteddcwn .gt_stub {
+#ajhadkrwvf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -492,7 +491,7 @@ user preferences.</p>
   padding-right: 5px;
 }
 
-#jbjteddcwn .gt_stub_row_group {
+#ajhadkrwvf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -506,15 +505,15 @@ user preferences.</p>
   vertical-align: top;
 }
 
-#jbjteddcwn .gt_row_group_first td {
+#ajhadkrwvf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jbjteddcwn .gt_row_group_first th {
+#ajhadkrwvf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jbjteddcwn .gt_summary_row {
+#ajhadkrwvf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -524,16 +523,16 @@ user preferences.</p>
   padding-right: 5px;
 }
 
-#jbjteddcwn .gt_first_summary_row {
+#ajhadkrwvf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_first_summary_row.thick {
+#ajhadkrwvf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jbjteddcwn .gt_last_summary_row {
+#ajhadkrwvf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -543,7 +542,7 @@ user preferences.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_grand_summary_row {
+#ajhadkrwvf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -553,7 +552,7 @@ user preferences.</p>
   padding-right: 5px;
 }
 
-#jbjteddcwn .gt_first_grand_summary_row {
+#ajhadkrwvf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -563,7 +562,7 @@ user preferences.</p>
   border-top-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_last_grand_summary_row_top {
+#ajhadkrwvf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,11 +572,11 @@ user preferences.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_striped {
+#ajhadkrwvf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jbjteddcwn .gt_table_body {
+#ajhadkrwvf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -586,7 +585,7 @@ user preferences.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_footnotes {
+#ajhadkrwvf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -600,7 +599,7 @@ user preferences.</p>
   border-right-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_footnote {
+#ajhadkrwvf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -609,7 +608,7 @@ user preferences.</p>
   padding-right: 5px;
 }
 
-#jbjteddcwn .gt_sourcenotes {
+#ajhadkrwvf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -623,7 +622,7 @@ user preferences.</p>
   border-right-color: #D3D3D3;
 }
 
-#jbjteddcwn .gt_sourcenote {
+#ajhadkrwvf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -631,72 +630,72 @@ user preferences.</p>
   padding-right: 5px;
 }
 
-#jbjteddcwn .gt_left {
+#ajhadkrwvf .gt_left {
   text-align: left;
 }
 
-#jbjteddcwn .gt_center {
+#ajhadkrwvf .gt_center {
   text-align: center;
 }
 
-#jbjteddcwn .gt_right {
+#ajhadkrwvf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jbjteddcwn .gt_font_normal {
+#ajhadkrwvf .gt_font_normal {
   font-weight: normal;
 }
 
-#jbjteddcwn .gt_font_bold {
+#ajhadkrwvf .gt_font_bold {
   font-weight: bold;
 }
 
-#jbjteddcwn .gt_font_italic {
+#ajhadkrwvf .gt_font_italic {
   font-style: italic;
 }
 
-#jbjteddcwn .gt_super {
+#ajhadkrwvf .gt_super {
   font-size: 65%;
 }
 
-#jbjteddcwn .gt_footnote_marks {
+#ajhadkrwvf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jbjteddcwn .gt_asterisk {
+#ajhadkrwvf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jbjteddcwn .gt_indent_1 {
+#ajhadkrwvf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jbjteddcwn .gt_indent_2 {
+#ajhadkrwvf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jbjteddcwn .gt_indent_3 {
+#ajhadkrwvf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jbjteddcwn .gt_indent_4 {
+#ajhadkrwvf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jbjteddcwn .gt_indent_5 {
+#ajhadkrwvf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jbjteddcwn .katex-display {
+#ajhadkrwvf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jbjteddcwn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ajhadkrwvf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1496,7 +1495,7 @@ colours, facetting, and handling of strata.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
