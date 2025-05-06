@@ -104,7 +104,7 @@ summariseIndication <- function(cohort,
         cohort_table_name = cohortTableName,
         indication_cohort_name = indicationCohortName,
         index_date = indexDate,
-        censor_date = as.character(censorDate %||% "NA")
+        censor_date = as.character(censorDate %||% "observation_period_end_date")
       )
     )
 }
@@ -175,7 +175,7 @@ summariseTreatment <- function(cohort,
         cohort_table_name = cohortTableName,
         treatment_cohort_name = treatmentCohortName,
         index_date = as.character(indexDate),
-        censor_date = as.character(censorDate %||% "NA")
+        censor_date = as.character(censorDate %||% "observation_period_end_date")
       )
     )
 }

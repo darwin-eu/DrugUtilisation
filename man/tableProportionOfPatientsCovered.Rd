@@ -9,7 +9,8 @@ tableProportionOfPatientsCovered(
   header = c("cohort_name", strataColumns(result)),
   groupColumn = "cdm_name",
   type = "gt",
-  hide = c("variable_name", "variable_level", "cohort_table_name")
+  hide = c("variable_name", "variable_level", "cohort_table_name"),
+  .options = list()
 )
 }
 \arguments{
@@ -26,6 +27,10 @@ tableProportionOfPatientsCovered(
 
 \item{hide}{Columns to hide from the visualisation. See options with
 \code{availableTableColumns(result)}.}
+
+\item{.options}{A named list with additional formatting options.
+\code{visOmopResults::tableOptions()} shows allowed arguments and their default
+values.}
 }
 \value{
 A table with a formatted version of summariseProportionOfPatientsCovered() results.

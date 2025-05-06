@@ -191,12 +191,6 @@ summariseDrugRestart <- function(cohort,
     dplyr::select(!"order_id")
 
   # summarised result
-  if (is.null(censorDate)) {
-    censorDate <- "NA"
-  }
-  censorDate <- as.character(censorDate)
-  censorDate[is.na(censorDate)] <- "NA"
-
   result <- result |>
     omopgenerics::newSummarisedResult(
       settings = dplyr::tibble(
@@ -208,7 +202,7 @@ summariseDrugRestart <- function(cohort,
         switch_cohort_table = switchCohortTable,
         incident = as.character(incident),
         restrict_to_first_discontinuation = as.character(restrictToFirstDiscontinuation),
-        censor_date = as.character(censorDate %||% "NA")
+        censor_date = as.character(censorDate %||% "observation_period_end_date")
       )
     )
 

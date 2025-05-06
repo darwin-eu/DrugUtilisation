@@ -137,7 +137,7 @@ summariseDoseCoverage <- function(cdm,
       dplyr::ungroup()
     sampleSize <- as.character(sampleSize)
   } else {
-    sampleSize <- "NA"
+    sampleSize <- "Inf"
   }
 
   # summarise

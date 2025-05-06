@@ -10,7 +10,8 @@ tableDrugUtilisation(
   groupColumn = c("cohort_name", strataColumns(result)),
   type = "gt",
   hide = c("variable_level", "censor_date", "cohort_table_name", "gap_era", "index_date",
-    "restrict_incident")
+    "restrict_incident"),
+  .options = list()
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ tableDrugUtilisation(
 
 \item{hide}{Columns to hide from the visualisation. See options with
 \code{availableTableColumns(result)}.}
+
+\item{.options}{A named list with additional formatting options.
+\code{visOmopResults::tableOptions()} shows allowed arguments and their default
+values.}
 }
 \value{
 A table with a formatted version of summariseIndication() results.
