@@ -49,12 +49,10 @@ A summarised_result object with the percentages of restart, switch
 and not exposed per window.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Summarise the drug restart per window.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -68,7 +66,5 @@ result <- cdm$cohort1 |>
   summariseDrugRestart(switchCohortTable = "switch_cohort")
 
 tableDrugRestart(result)
-
-CDMConnector::cdmDisconnect(cdm = cdm)
 }
 }

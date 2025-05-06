@@ -16,16 +16,11 @@
 
 #' Create a table showing indication results
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
 #' @examples
 #' \donttest{
-#'
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- cdm$cohort1 |>
@@ -45,7 +40,12 @@
 tableIndication <- function(result,
                             header = c("cdm_name", "cohort_name", strataColumns(result)),
                             groupColumn = "variable_name",
-                            hide = c("window_name", "mutually_exclusive", "unknown_indication_table"),
+                            hide = c(
+                              "window_name", "mutually_exclusive",
+                              "unknown_indication_table", "censor_date",
+                              "cohort_table_name", "index_date",
+                              "indication_cohort_name"
+                            ),
                             type = "gt") {
   dusTable(
     result = result,
@@ -65,15 +65,11 @@ tableIndication <- function(result,
 
 #' Format a dose_coverage object into a visual table.
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- summariseDoseCoverage(cdm, 1125315)
@@ -110,17 +106,11 @@ tableDoseCoverage <- function(result,
 
 #' Format a drug_utilisation object into a visual table.
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
 #' @examples
 #' \donttest{
-#'
-#' library(DrugUtilisation)
-#' library(CodelistGenerator)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 #' cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
@@ -139,7 +129,11 @@ tableDrugUtilisation <- function(result,
                                  header = c("cdm_name"),
                                  groupColumn = c("cohort_name", strataColumns(result)),
                                  type = "gt",
-                                 hide = "variable_level") {
+                                 hide = c(
+                                   "variable_level", "censor_date",
+                                   "cohort_table_name", "gap_era", "index_date",
+                                   "restrict_incident"
+                                 )) {
   dusTable(
     result = result,
     resultType = "summarise_drug_utilisation",
@@ -160,15 +154,11 @@ tableDrugUtilisation <- function(result,
 
 #' Format a summarised_treatment result into a visual table.
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- cdm$cohort1 |>
@@ -188,7 +178,11 @@ tableTreatment <- function(result,
                            header = c("cdm_name", "cohort_name"),
                            groupColumn = "variable_name",
                            type = "gt",
-                           hide = c("window_name", "mutually_exclusive")) {
+                           hide = c(
+                             "window_name", "mutually_exclusive", "censor_date",
+                             "cohort_table_name", "index_date",
+                             "treatment_cohort_name"
+                           )) {
   dusTable(
     result = result,
     resultType = "summarise_treatment",
@@ -204,15 +198,11 @@ tableTreatment <- function(result,
 
 #' Format a drug_restart object into a visual table.
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -226,8 +216,6 @@ tableTreatment <- function(result,
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
 #'
 #' tableDrugRestart(result)
-#'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 #'
 #' @return A table with a formatted version of summariseDrugRestart() results.
@@ -238,7 +226,12 @@ tableDrugRestart <- function(result,
                              header = c("cdm_name", "cohort_name"),
                              groupColumn = "variable_name",
                              type = "gt",
-                             hide = c("censor_date", "restrict_to_first_discontinuation", "follow_up_days")) {
+                             hide = c(
+                               "censor_date",
+                               "restrict_to_first_discontinuation",
+                               "follow_up_days", "cohort_table_name",
+                               "incident", "switch_cohort_table"
+                             )) {
   dusTable(
     result = result,
     resultType = "summarise_drug_restart",
@@ -254,8 +247,6 @@ tableDrugRestart <- function(result,
 
 #' Create a table with proportion of patients covered results
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams resultDoc
 #' @inheritParams tableDoc
 #'
@@ -264,8 +255,6 @@ tableDrugRestart <- function(result,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm <- generateDrugUtilisationCohortSet(
@@ -278,15 +267,13 @@ tableDrugRestart <- function(result,
 #'   summariseProportionOfPatientsCovered(followUpDays = 365)
 #'
 #' tableProportionOfPatientsCovered(result)
-#'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 #'
 tableProportionOfPatientsCovered <- function(result,
                                              header = c("cohort_name", strataColumns(result)),
                                              groupColumn = "cdm_name",
                                              type = "gt",
-                                             hide = c("variable_name", "variable_level")) {
+                                             hide = c("variable_name", "variable_level", "cohort_table_name")) {
   dusTable(
     result = result,
     resultType = "summarise_proportion_of_patients_covered",

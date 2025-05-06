@@ -23,8 +23,7 @@ addDrugUtilisation(
   initialDailyDose = TRUE,
   cumulativeDose = TRUE,
   nameStyle = "{value}_{concept_name}_{ingredient}",
-  name = NULL,
-  exposedTime = lifecycle::deprecated()
+  name = NULL
 )
 }
 \arguments{
@@ -84,8 +83,6 @@ the cumulative dose of the analysed drug exposure records).}
 
 \item{name}{Name of the new computed cohort table, if NULL a temporary table
 will be created.}
-
-\item{exposedTime}{deprecated.}
 }
 \value{
 The same cohort with the added columns.
@@ -95,8 +92,6 @@ Add new columns with drug use related information
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(
   cdm,

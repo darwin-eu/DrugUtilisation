@@ -316,16 +316,6 @@ test_that("test subfunctions", {
       dplyr::pull("time_to_exposure_acetaminophen")
   )
 
-  ## addExposedTime
-  expect_warning(expect_identical(
-    x0$days_exposed_ingredient_1125315_descendants,
-    cdm$dus_cohort |>
-      addExposedTime(conceptSet = codes, gapEra = 1) |>
-      dplyr::collect() |>
-      dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date) |>
-      dplyr::pull("days_exposed_acetaminophen")
-  ))
-
   ## addDaysExposed
   expect_identical(
     x0$days_exposed_ingredient_1125315_descendants,
@@ -344,6 +334,16 @@ test_that("test subfunctions", {
       dplyr::collect() |>
       dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date) |>
       dplyr::pull("number_eras_acetaminophen")
+  )
+
+  ## addInitialExposureDuration
+  expect_identical(
+    x0$initial_exposure_duration_ingredient_1125315_descendants,
+    cdm$dus_cohort |>
+      addInitialExposureDuration(conceptSet = codes) |>
+      dplyr::collect() |>
+      dplyr::arrange(cohort_definition_id, subject_id, cohort_start_date) |>
+      dplyr::pull("initial_exposure_duration_acetaminophen")
   )
 
   # errors: check correct call to parent frame
@@ -426,4 +426,49 @@ test_that("test addDaysPrescribed", {
   expect_identical(x, y)
 
   mockDisconnect(cdm = cdm)
+})
+
+test_that("validateNameStyle", {
+  expect_no_error(validateNameStyle(
+    nameStyle = "{concept_name}_cdwl",
+    ingredientConceptId = c(1),
+    conceptSet = c(1),
+    nv = 1L,
+    call = parent.frame()
+  ))
+  expect_no_error(validateNameStyle(
+    nameStyle = "cdwl",
+    ingredientConceptId = c(1),
+    conceptSet = c(1),
+    nv = 1L,
+    call = parent.frame()
+  ))
+  expect_error(validateNameStyle(
+    nameStyle = "cdwl",
+    ingredientConceptId = c(1, 2),
+    conceptSet = c(1),
+    nv = 1L,
+    call = parent.frame()
+  ))
+  expect_no_error(validateNameStyle(
+    nameStyle = "cdwl_{ingredient}",
+    ingredientConceptId = c(1, 2),
+    conceptSet = c(1),
+    nv = 1L,
+    call = parent.frame()
+  ))
+  expect_error(validateNameStyle(
+    nameStyle = "cdwl_{ingredient}",
+    ingredientConceptId = c(1, 2),
+    conceptSet = c(1, 1),
+    nv = 2L,
+    call = parent.frame()
+  ))
+  expect_no_error(validateNameStyle(
+    nameStyle = "{value}_cdwl_{ingredient}_{concept_name}",
+    ingredientConceptId = c(1, 2),
+    conceptSet = c(1, 1),
+    nv = 2L,
+    call = parent.frame()
+  ))
 })

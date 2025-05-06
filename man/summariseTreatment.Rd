@@ -13,8 +13,7 @@ summariseTreatment(
   strata = list(),
   indexDate = "cohort_start_date",
   censorDate = NULL,
-  mutuallyExclusive = FALSE,
-  minCellCount = lifecycle::deprecated()
+  mutuallyExclusive = FALSE
 )
 }
 \arguments{
@@ -42,8 +41,6 @@ analysis, if NULL end of individuals observation is used.}
 
 \item{mutuallyExclusive}{Whether to include mutually exclusive treatments or
 not.}
-
-\item{minCellCount}{defunct.}
 }
 \value{
 A summary of treatments stratified by cohort_name and strata_name
@@ -53,8 +50,6 @@ This function is used to summarise treatments received
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 cdm$cohort1 |>
   summariseTreatment(

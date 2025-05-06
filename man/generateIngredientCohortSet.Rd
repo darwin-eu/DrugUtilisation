@@ -13,13 +13,7 @@ generateIngredientCohortSet(
   subsetCohortId = NULL,
   numberExposures = FALSE,
   daysPrescribed = FALSE,
-  ...,
-  durationRange = lifecycle::deprecated(),
-  imputeDuration = lifecycle::deprecated(),
-  priorUseWashout = lifecycle::deprecated(),
-  priorObservation = lifecycle::deprecated(),
-  cohortDateRange = lifecycle::deprecated(),
-  limit = lifecycle::deprecated()
+  ...
 )
 }
 \arguments{
@@ -53,18 +47,6 @@ prescribed used to create each era).}
 
 \item{...}{Arguments to be passed to
 \code{CodelistGenerator::getDrugIngredientCodes()}.}
-
-\item{durationRange}{Deprecated.}
-
-\item{imputeDuration}{Deprecated.}
-
-\item{priorUseWashout}{Deprecated}
-
-\item{priorObservation}{Deprecated.}
-
-\item{cohortDateRange}{Deprecated.}
-
-\item{limit}{Deprecated.}
 }
 \value{
 The function returns the cdm reference provided with the addition of
@@ -79,9 +61,6 @@ be concatenated into a single cohort entry.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 cdm <- generateIngredientCohortSet(
@@ -91,7 +70,7 @@ cdm <- generateIngredientCohortSet(
 )
 
 cdm$acetaminophen |>
-  glimpse()
+  dplyr::glimpse()
 }
 
 }

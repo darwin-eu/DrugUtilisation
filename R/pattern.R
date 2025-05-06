@@ -15,42 +15,6 @@
 # limitations under the License.
 
 #' @noRd
-addUnit <- function(x, cdm = attr(x, "cdm_reference"), ingredientConceptId = NULL) {
-  x |>
-    dplyr::left_join(
-      drugStrengthPattern(
-        cdm = cdm, ingredientConceptId = ingredientConceptId, pattern = FALSE,
-        patternDetails = FALSE, unit = TRUE, formula = FALSE, ingredient = FALSE
-      ),
-      by = "drug_concept_id"
-    )
-}
-
-#' @noRd
-addPattern <- function(x, cdm = attr(x, "cdm_reference"), ingredientConceptId = NULL) {
-  x |>
-    dplyr::left_join(
-      drugStrengthPattern(
-        cdm = cdm, ingredientConceptId = ingredientConceptId, pattern = TRUE,
-        patternDetails = FALSE, unit = FALSE, formula = FALSE, ingredient = FALSE
-      ),
-      by = "drug_concept_id"
-    )
-}
-
-#' @noRd
-addFormula <- function(x, cdm = attr(x, "cdm_reference"), ingredientConceptId = NULL) {
-  x |>
-    dplyr::left_join(
-      drugStrengthPattern(
-        cdm = cdm, ingredientConceptId = ingredientConceptId, pattern = FALSE,
-        patternDetails = FALSE, unit = FALSE, formula = TRUE, ingredient = FALSE
-      ),
-      by = "drug_concept_id"
-    )
-}
-
-#' @noRd
 drugStrengthPattern <- function(cdm,
                                 ingredientConceptId = NULL,
                                 pattern = TRUE,
@@ -71,7 +35,7 @@ drugStrengthPattern <- function(cdm,
   nm <- omopgenerics::uniqueTableName(omopgenerics::tmpPrefix())
   cdm <- omopgenerics::insertTable(cdm = cdm, name = nm, table = patterns)
   cdm[[nm]] <- cdm[[nm]] |> dplyr::compute()
-  omopgenerics::dropTable(cdm = cdm, name = nm)
+  omopgenerics::dropSourceTable(cdm = cdm, name = nm)
 
   drugStrengthRelated <- drugStrengthRelated |>
     dplyr::mutate(
@@ -123,32 +87,6 @@ drugStrengthPattern <- function(cdm,
   return(drugStrengthRelated)
 }
 
-#' add route column to a table containing drug_exposure information
-#'
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @param drugTable Table in the cdm that must contain drug_concept_id
-#'
-#' @return It adds route to the current table
-#'
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
-#' cdm <- mockDrugUtilisation()
-#'
-#' cdm[["drug_exposure"]] |>
-#'   addRoute()
-#' }
-#'
-addRoute <- function(drugTable) {
-  lifecycle::deprecate_warn(when = "0.7.0", what = "addRoute()")
-  .addRoute(drugTable = drugTable)
-}
-
 .addRoute <- function(drugTable) {
   cdm <- omopgenerics::cdmReference(drugTable)
   drugTable |>
@@ -178,8 +116,6 @@ addRoute <- function(drugTable) {
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' patternTable(cdm)
@@ -251,69 +187,4 @@ patternTable <- function(cdm) {
     )
 
   return(pattern)
-}
-
-#' Function to stratify a conceptSet by unit
-#'
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @inheritParams conceptSetDoc
-#' @inheritParams cdmDoc
-#' @inheritParams ingredientConceptIdDoc
-#'
-#' @return The conceptSet stratified by unit
-#'
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' library(DrugUtilisation)
-#'
-#' cdm <- mockDrugUtilisation()
-#'
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
-#'
-#' codelistStratified <- stratifyByUnit(codelist, cdm, 1125315)
-#'
-#' codelistStratified
-#' }
-#'
-stratifyByUnit <- function(conceptSet, cdm, ingredientConceptId) {
-  lifecycle::deprecate_warn(
-    what = "stratifyByUnit()",
-    when = "0.7.0",
-    with = "CodelistGenerator::stratifyByDoseUnit()"
-  )
-  # check initial inputs
-  conceptSet <- validateConceptSet(conceptSet)
-  cdm <- omopgenerics::validateCdmArgument(cdm)
-  omopgenerics::assertNumeric(ingredientConceptId, length = 1, integerish = TRUE)
-
-  # add the conceptSet to a tibble
-  x <- lapply(conceptSet, function(x) {
-    x <- dplyr::tibble(drug_concept_id = x) |>
-      dplyr::inner_join(
-        drugStrengthPattern(
-          cdm = cdm, ingredientConceptId = ingredientConceptId, pattern = FALSE,
-          patternDetails = FALSE, unit = TRUE, formula = FALSE,
-          ingredient = FALSE
-        ) |>
-          dplyr::collect(),
-        by = c("drug_concept_id")
-      ) |>
-      dplyr::filter(!is.na(.data$unit))
-    split(x, x$unit) |>
-      lapply(dplyr::pull, var = "drug_concept_id")
-  })
-
-  # rename
-  result <- unlist(
-    lapply(names(x), function(nam) {
-      names(x[[nam]]) <- paste(nam, names(x[[nam]]), sep = " unit: ")
-      x[[nam]]
-    }),
-    recursive = FALSE
-  )
-
-  return(result)
 }

@@ -9,7 +9,7 @@ tableProportionOfPatientsCovered(
   header = c("cohort_name", strataColumns(result)),
   groupColumn = "cdm_name",
   type = "gt",
-  hide = c("variable_name", "variable_level")
+  hide = c("variable_name", "variable_level", "cohort_table_name")
 )
 }
 \arguments{
@@ -31,12 +31,10 @@ tableProportionOfPatientsCovered(
 A table with a formatted version of summariseProportionOfPatientsCovered() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Create a table with proportion of patients covered results
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 cdm <- generateDrugUtilisationCohortSet(
@@ -49,8 +47,6 @@ result <- cdm$my_cohort |>
   summariseProportionOfPatientsCovered(followUpDays = 365)
 
 tableProportionOfPatientsCovered(result)
-
-CDMConnector::cdmDisconnect(cdm = cdm)
 }
 
 }

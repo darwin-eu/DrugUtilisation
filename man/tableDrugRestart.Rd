@@ -9,7 +9,8 @@ tableDrugRestart(
   header = c("cdm_name", "cohort_name"),
   groupColumn = "variable_name",
   type = "gt",
-  hide = c("censor_date", "restrict_to_first_discontinuation", "follow_up_days")
+  hide = c("censor_date", "restrict_to_first_discontinuation", "follow_up_days",
+    "cohort_table_name", "incident", "switch_cohort_table")
 )
 }
 \arguments{
@@ -31,12 +32,10 @@ tableDrugRestart(
 A table with a formatted version of summariseDrugRestart() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Format a drug_restart object into a visual table.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -50,8 +49,6 @@ result <- cdm$cohort1 |>
   summariseDrugRestart(switchCohortTable = "switch_cohort")
 
 tableDrugRestart(result)
-
-CDMConnector::cdmDisconnect(cdm = cdm)
 }
 
 }

@@ -30,14 +30,10 @@ summariseIndication
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CDMConnector)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 indications <- list("headache" = 378253, "asthma" = 317009)
-cdm <- generateConceptCohortSet(cdm, indications, "indication_cohorts")
+cdm <- CDMConnector::generateConceptCohortSet(cdm, indications, "indication_cohorts")
 
 cdm <- generateIngredientCohortSet(
   cdm = cdm, name = "drug_cohort", ingredient = "acetaminophen"

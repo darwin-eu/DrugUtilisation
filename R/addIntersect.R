@@ -45,14 +45,10 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(CDMConnector)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' indications <- list("headache" = 378253, "asthma" = 317009)
-#' cdm <- generateConceptCohortSet(
+#' cdm <- CDMConnector::generateConceptCohortSet(
 #'   cdm = cdm, conceptSet = indications, name = "indication_cohorts"
 #' )
 #'
@@ -67,7 +63,7 @@
 #'     indicationWindow = list(c(0, 0)),
 #'     unknownIndicationTable = "condition_occurrence"
 #'   ) |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 #'
 addIndication <- function(cohort,
@@ -121,10 +117,6 @@ addIndication <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(CDMConnector)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation(numberIndividuals = 50)
 #'
 #'
@@ -138,7 +130,7 @@ addIndication <- function(cohort,
 #'
 #' cdm$drug_cohort |>
 #'   addTreatment("treatments", window = list(c(0, 0), c(1, 30), c(31, 60))) |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 #'
 addTreatment <- function(cohort,
@@ -311,7 +303,7 @@ addUnknownIntersect <- function(x, indexDate, censorDate, window, table, prefix)
     ) |>
     dplyr::compute(name = name, temporary = FALSE)
 
-  omopgenerics::dropTable(cdm = cdm, name = dplyr::starts_with(tablePrefix))
+  omopgenerics::dropSourceTable(cdm = cdm, name = dplyr::starts_with(tablePrefix))
 
   return(x)
 }

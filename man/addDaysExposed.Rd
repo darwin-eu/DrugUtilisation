@@ -48,8 +48,6 @@ To add a new column with the days exposed. To add multiple columns use
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(
   cdm,

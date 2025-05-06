@@ -41,6 +41,8 @@ test_that("options", {
     doseUnit = "milligram",
     name = "test_cohort_1"
   ))
+
+  mockDisconnect(cdm = cdm)
 })
 
 test_that("handle empty ingredient name gracefully", {

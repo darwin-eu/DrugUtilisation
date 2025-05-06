@@ -34,15 +34,13 @@ cohort start date.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 cdm$cohort1 <- cdm$cohort1 |>
   requireObservationBeforeDrug(days = 365)
 
-attrition(cdm$cohort1) |> glimpse()
+attrition(cdm$cohort1) |>
+  dplyr::glimpse()
 }
 
 }

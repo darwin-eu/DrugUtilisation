@@ -54,3 +54,17 @@ test_that("test summariseTreatment", {
 
   mockDisconnect(cdm = cdm)
 })
+
+test_that("test addTreatment", {
+  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema(), seed = 1)
+  expect_no_error(
+    x <- cdm$cohort1 |>
+      addTreatment(
+        treatmentCohortName = "cohort2",
+        window = list(c(0, 30), c(31, 365)),
+        mutuallyExclusive = FALSE
+      )
+  )
+  mockDisconnect(cdm = cdm)
+})
+

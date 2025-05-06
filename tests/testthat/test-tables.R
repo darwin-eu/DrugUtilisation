@@ -60,9 +60,6 @@ test_that("tableIndication works", {
   # default
   default <- tableIndication(result)
   expect_true("gt_tbl" %in% class(default))
-  expect_true(all(default$`_data`$`Database name` == c(
-    "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", "", "DUS MOCK", "", "", "", ""
-  )))
 
   tib <- tableIndication(result, header = "variable", groupColumn = "cdm_name")
 
@@ -404,4 +401,15 @@ test_that("tableProportionOfPatientsCovered works", {
   expect_no_error(tableProportionOfPatientsCovered(ppc_suppressed))
 
   mockDisconnect(cdm = cdm)
+})
+
+test_that("tableTreatment", {
+  skip_on_cran()
+  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema(), seed = 1)
+  result <- cdm$cohort1 |>
+    summariseTreatment(
+      treatmentCohortName = "cohort2", window = list(c(0, 30), c(31, 365))
+    )
+
+  expect_no_error(x <- tableTreatment(result))
 })

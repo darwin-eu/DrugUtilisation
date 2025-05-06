@@ -36,9 +36,6 @@ specified index date is within a specified date range.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 cdm$cohort1 <- cdm$cohort1 |>
@@ -46,7 +43,8 @@ cdm$cohort1 <- cdm$cohort1 |>
     dateRange = as.Date(c("2020-01-01", NA))
   )
 
-attrition(cdm$cohort1) |> glimpse()
+attrition(cdm$cohort1) |>
+  dplyr::glimpse()
 }
 
 }

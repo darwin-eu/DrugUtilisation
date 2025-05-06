@@ -44,8 +44,6 @@ To add multiple columns use \code{addDrugUtilisation()} for efficiency.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(
   cdm,

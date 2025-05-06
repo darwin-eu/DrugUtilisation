@@ -30,13 +30,9 @@ Run benchmark of drug utilisation cohort generation
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CDMConnector)
-library(duckdb)
-
-requireEunomia()
-con <- dbConnect(duckdb(), eunomiaDir())
-cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
+CDMConnector::requireEunomia()
+con <- duckdb::dbConnect(duckdb::duckdb(), CDMConnector::eunomiaDir())
+cdm <- CDMConnector::cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
 
 timings <- benchmarkDrugUtilisation(cdm)
 

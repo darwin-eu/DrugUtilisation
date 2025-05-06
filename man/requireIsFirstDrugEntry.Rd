@@ -27,15 +27,13 @@ Filter the cohort table keeping only the first cohort record per subject.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 cdm$cohort1 <- cdm$cohort1 |>
   requireIsFirstDrugEntry()
 
-attrition(cdm$cohort1) |> glimpse()
+attrition(cdm$cohort1) |>
+  dplyr::glimpse()
 }
 
 }

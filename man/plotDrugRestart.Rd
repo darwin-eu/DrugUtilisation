@@ -30,8 +30,6 @@ summariseDrugRestart() function.
 }
 \examples{
 \dontrun{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))

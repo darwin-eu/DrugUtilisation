@@ -174,6 +174,34 @@ test_that("requirePrioUseWashout example", {
 
   cdm$cohort2 <- requirePriorDrugWashout(
     cohort = cdm$cohort1,
+    days = 0,
+    name = "cohort2"
+  )
+
+  expect_equal(
+    (cdm$cohort2 |>
+       dplyr::tally() |>
+       dplyr::pull("n") |>
+       as.numeric()),
+    4
+  )
+
+  cdm$cohort2 <- requirePriorDrugWashout(
+    cohort = cdm$cohort1,
+    days = 1,
+    name = "cohort2"
+  )
+
+  expect_equal(
+    (cdm$cohort2 |>
+       dplyr::tally() |>
+       dplyr::pull("n") |>
+       as.numeric()),
+    3
+  )
+
+  cdm$cohort2 <- requirePriorDrugWashout(
+    cohort = cdm$cohort1,
     days = Inf,
     name = "cohort2"
   )

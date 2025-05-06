@@ -9,7 +9,8 @@ tableDrugUtilisation(
   header = c("cdm_name"),
   groupColumn = c("cohort_name", strataColumns(result)),
   type = "gt",
-  hide = "variable_level"
+  hide = c("variable_level", "censor_date", "cohort_table_name", "gap_era", "index_date",
+    "restrict_incident")
 )
 }
 \arguments{
@@ -31,14 +32,10 @@ tableDrugUtilisation(
 A table with a formatted version of summariseIndication() results.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Format a drug_utilisation object into a visual table.
 }
 \examples{
 \donttest{
-
-library(DrugUtilisation)
-library(CodelistGenerator)
-
 cdm <- mockDrugUtilisation()
 codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)

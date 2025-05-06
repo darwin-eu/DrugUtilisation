@@ -35,8 +35,6 @@ concept sets and ingredient
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-
 cdm <- mockDrugUtilisation()
 
 summariseDoseCoverage(cdm, 1125315)

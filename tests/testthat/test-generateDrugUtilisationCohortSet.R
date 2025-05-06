@@ -41,49 +41,50 @@ test_that("basic functionality drug_conceptId", {
   acetaminophen <- list(acetaminophen = c(1125360, 2905077, 43135274))
 
   # check gap
-  cdm1 <- generateDrugUtilisationCohortSet(
-    cdm, "dus", acetaminophen,
-    gapEra = 0
+  cdm <- generateDrugUtilisationCohortSet(
+    cdm = cdm, name = "dus", conceptSet = acetaminophen, gapEra = 0
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 4)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_identical(cohortGapEra(cdm$dus), 0L)
+  expect_identical(cohortGapEra(cdm$cohort1), NULL)
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 4)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 13
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 4)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 4)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 14
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 3)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 3)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 31
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 3)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 3)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 32
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 2)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 2)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 153
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 2)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 2)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 154
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 1)
-  cdm1 <- generateDrugUtilisationCohortSet(
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 1)
+  cdm <- generateDrugUtilisationCohortSet(
     cdm, "dus", acetaminophen,
     gapEra = 1500
   )
-  expect_true(cdm1$dus |> dplyr::tally() |> dplyr::pull() == 1)
+  expect_true(cdm$dus |> dplyr::tally() |> dplyr::pull() == 1)
 
   # check cdm reference in attributes
-  expect_true(!is.null(omopgenerics::cdmReference(cdm1$dus)))
+  expect_true(!is.null(omopgenerics::cdmReference(cdm$dus)))
 
   mockDisconnect(cdm = cdm)
 })
@@ -127,7 +128,7 @@ test_that("cohort attrition", {
 
   # check that missing end dates are dropped
   expect_true(any(grepl(
-    "2 records dropped because drug_exposure_end_date is missing.",
+    "2 records with missing `drug_exposure_end_date`; using `drug_exposure_start_date` as end date.",
     res
   )))
 
@@ -198,8 +199,8 @@ test_that("cohort attrition", {
   expect_identical(cohort1$days_prescribed, cohort3$days_prescribed)
 
   # expected values
-  expect_identical(cohort1$number_exposures, c(2L, 1L, 1L))
-  expect_identical(cohort1$days_prescribed, c(132L, 46L, 24L))
+  expect_identical(cohort1$number_exposures, c(4L, 1L, 1L))
+  expect_identical(cohort1$days_prescribed, c(134L, 46L, 24L))
 
   mockDisconnect(cdm = cdm)
 })

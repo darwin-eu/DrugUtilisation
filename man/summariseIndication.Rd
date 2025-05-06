@@ -60,14 +60,10 @@ indication.
 }
 \examples{
 \donttest{
-library(DrugUtilisation)
-library(CDMConnector)
-library(dplyr)
-
 cdm <- mockDrugUtilisation()
 
 indications <- list("headache" = 378253, "asthma" = 317009)
-cdm <- generateConceptCohortSet(cdm, indications, "indication_cohorts")
+cdm <- CDMConnector::generateConceptCohortSet(cdm, indications, "indication_cohorts")
 
 cdm <- generateIngredientCohortSet(
   cdm = cdm, name = "drug_cohort",
@@ -80,7 +76,7 @@ cdm$drug_cohort |>
     unknownIndicationTable = "condition_occurrence",
     indicationWindow = list(c(-Inf, 0))
   ) |>
-  glimpse()
+  dplyr::glimpse()
 }
 
 }

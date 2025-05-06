@@ -31,12 +31,6 @@
 #' @param subsetCohortId Cohort id to subset.
 #' @inheritParams numberExposuresDoc
 #' @inheritParams daysPrescribedDoc
-#' @param durationRange Deprecated.
-#' @param imputeDuration Deprecated.
-#' @param priorUseWashout Deprecated.
-#' @param priorObservation Deprecated.
-#' @param cohortDateRange Deprecated.
-#' @param limit Deprecated.
 #'
 #' @return The function returns the cdm reference provided with the addition of
 #' the new cohort table.
@@ -45,10 +39,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(CDMConnector)
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' druglist <- CodelistGenerator::getDrugIngredientCodes(
@@ -65,7 +55,7 @@
 #' )
 #'
 #' cdm$drug_cohorts |>
-#'   glimpse()
+#'   dplyr::glimpse()
 #' }
 #'
 generateDrugUtilisationCohortSet <- function(cdm,
@@ -75,53 +65,8 @@ generateDrugUtilisationCohortSet <- function(cdm,
                                              subsetCohort = NULL,
                                              subsetCohortId = NULL,
                                              numberExposures = FALSE,
-                                             daysPrescribed = FALSE,
-                                             durationRange = lifecycle::deprecated(),
-                                             imputeDuration = lifecycle::deprecated(),
-                                             priorUseWashout = lifecycle::deprecated(),
-                                             priorObservation = lifecycle::deprecated(),
-                                             cohortDateRange = lifecycle::deprecated(),
-                                             limit = lifecycle::deprecated()) {
-  if (lifecycle::is_present(durationRange)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = "generateDrugUtilisationCohortSet(durationRange = )"
-    )
-  }
-  if (lifecycle::is_present(imputeDuration)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0", what = "generateDrugUtilisationCohortSet(imputeDuration = )"
-    )
-  }
-  if (lifecycle::is_present(priorUseWashout)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = "generateDrugUtilisationCohortSet(priorUseWashout = )",
-      with = "requirePriorDrugWashout()"
-    )
-  }
-  if (lifecycle::is_present(priorObservation)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = "generateDrugUtilisationCohortSet(priorObservation = )",
-      with = "requireObservationBeforeDrug()"
-    )
-  }
-  if (lifecycle::is_present(cohortDateRange)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = "generateDrugUtilisationCohortSet(cohortDateRange = )",
-      with = "requireDrugInDateRange()"
-    )
-  }
-  if (lifecycle::is_present(limit)) {
-    lifecycle::deprecate_stop(
-      when = "0.7.0",
-      what = "generateDrugUtilisationCohortSet(limit = )",
-      with = "requireIsFirstDrugEntry()"
-    )
-  }
-
+                                             daysPrescribed = FALSE) {
+  # initial checks
   cdm <- omopgenerics::validateCdmArgument(cdm)
   name <- omopgenerics::validateNameArgument(name, null = TRUE, call = call, validation = "warning")
   conceptSet <- validateConceptSet(conceptSet)
@@ -166,6 +111,7 @@ generateDrugUtilisationCohortSet <- function(cdm,
     cli::cli_inform(c("i" = "Collapsing records with gapEra = {gapEra} days."))
     cdm[[name]] <- cdm[[name]] |>
       erafy(gap = gapEra, toSummarise = cols) |>
+      dplyr::select(!"observation_period_id") |>
       dplyr::compute(name = name, temporary = FALSE) |>
       omopgenerics::recordCohortAttrition(glue::glue(
         "Collapse records separated by {gapEra} or less days"
@@ -194,10 +140,6 @@ generateDrugUtilisationCohortSet <- function(cdm,
 #'
 #' @examples
 #' \donttest{
-#' library(CDMConnector)
-#' library(DrugUtilisation)
-#' library(dplyr)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' druglist <- CodelistGenerator::getDrugIngredientCodes(

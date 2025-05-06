@@ -75,4 +75,5 @@ test_that("erafyCohort", {
 
   expect_identical(omopgenerics::listSourceTables(cdm), initialTables)
 
+  mockDisconnect(cdm = cdm)
 })

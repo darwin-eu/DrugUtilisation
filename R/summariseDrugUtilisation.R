@@ -36,9 +36,6 @@
 #' @export
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#' library(CodelistGenerator)
-#'
 #' cdm <- mockDrugUtilisation()
 #' codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
 #' cdm <- generateDrugUtilisationCohortSet(
@@ -70,17 +67,7 @@ summariseDrugUtilisation <- function(cohort,
                                      initialQuantity = TRUE,
                                      cumulativeQuantity = TRUE,
                                      initialDailyDose = TRUE,
-                                     cumulativeDose = TRUE,
-                                     exposedTime = lifecycle::deprecated()) {
-  if (lifecycle::is_present(exposedTime)) {
-    lifecycle::deprecate_warn(
-      when = "0.8.0", what = "addDrugUtilisation(exposedTime= )",
-      with = "addDrugUtilisation(daysExposed= )"
-    )
-    if (missing(daysExposed)) {
-      daysExposed <- exposedTime
-    }
-  }
+                                     cumulativeDose = TRUE) {
   # checks
   cohort <- validateCohort(cohort)
   cohortId <- omopgenerics::validateCohortIdArgument({{cohortId}}, cohort)
@@ -210,14 +197,4 @@ summariseDrugUtilisation <- function(cohort,
       restrict_incident = as.character(restrictIncident),
       gap_era = as.character(gapEra)
     ))
-}
-
-variableNameExp <- function(variableNames) {
-  expr <- "dplyr::case_when("
-  for (var in variableNames) {
-    expr <- paste0(expr, "grepl('", var, "', .data$variable_name) ~ '", gsub("_", " ", substring(var, 0, nchar(var) - 1)), "',")
-  }
-  expr <- paste0(expr, ".default = .data$variable_name)") |>
-    rlang::parse_exprs() |>
-    rlang::set_names("variable_name")
 }

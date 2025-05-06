@@ -140,5 +140,14 @@ test_that("stratification", {
     ppc, facet = "cohort_name", colour = c("var1", "var2"), ribbon = FALSE
   ))
 
+  expect_no_error(
+    ppc |>
+      plotProportionOfPatientsCovered(
+        facet = cohort_name ~ var2,
+        colour = "var1",
+        ribbon = FALSE
+      )
+  )
+
   mockDisconnect(cdm = cdm)
 })

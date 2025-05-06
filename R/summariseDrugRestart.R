@@ -16,8 +16,6 @@
 
 #' Summarise the drug restart per window.
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' @inheritParams cohortDoc
 #' @inheritParams cohortIdDoc
 #' @param switchCohortTable A cohort table in the cdm that contains possible
@@ -41,8 +39,6 @@
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -56,8 +52,6 @@
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
 #'
 #' tableDrugRestart(result)
-#'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 summariseDrugRestart <- function(cohort,
                                  cohortId = NULL,
@@ -218,14 +212,12 @@ summariseDrugRestart <- function(cohort,
       )
     )
 
-  omopgenerics::dropTable(cdm = cdm, name = tmpName)
+  omopgenerics::dropSourceTable(cdm = cdm, name = tmpName)
 
   return(result)
 }
 
 #' Summarise the drug restart per window.
-#'
-#' `r lifecycle::badge("experimental")`
 #'
 #' @inheritParams cohortDoc
 #' @param switchCohortTable A cohort table in the cdm that contains possible
@@ -247,8 +239,6 @@ summariseDrugRestart <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' library(DrugUtilisation)
-#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
@@ -260,8 +250,6 @@ summariseDrugRestart <- function(cohort,
 #'
 #' cdm$cohort1 |>
 #'   addDrugRestart(switchCohortTable = "switch_cohort")
-#'
-#' CDMConnector::cdmDisconnect(cdm = cdm)
 #' }
 addDrugRestart <- function(cohort,
                            switchCohortTable,
