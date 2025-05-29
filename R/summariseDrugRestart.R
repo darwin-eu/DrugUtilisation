@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Summarise the drug restart per window.
+#' Summarise the drug restart for each follow-up period of interest.
 #'
 #' @inheritParams cohortDoc
 #' @inheritParams cohortIdDoc
@@ -33,20 +33,20 @@
 #' till after).
 #'
 #' @return A summarised_result object with the percentages of restart, switch
-#' and not exposed per window.
+#' and not exposed per follow-up period given.
 #'
 #' @export
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "switch_cohort",
-#'   conceptSet = conceptlist
-#' )
+#' conceptlist <- list(acetaminophen = 1125360, metformin = c(1503297, 1503327))
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "switch_cohort",
+#'                                         conceptSet = conceptlist)
 #'
 #' result <- cdm$cohort1 |>
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
@@ -211,7 +211,7 @@ summariseDrugRestart <- function(cohort,
   return(result)
 }
 
-#' Summarise the drug restart per window.
+#' Add drug restart information as a column per follow-up period of interest.
 #'
 #' @inheritParams cohortDoc
 #' @param switchCohortTable A cohort table in the cdm that contains possible
@@ -226,21 +226,21 @@ summariseDrugRestart <- function(cohort,
 #' till after).
 #' @inheritParams nameStyleDoc
 #'
-#' @return A summarised_result object with the percentages of restart, switch
-#' and not exposed per window.
+#' @return The cohort table given with additional columns with information on the
+#' restart, switch and not exposed per follow-up period of interest.
 #'
 #' @export
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "switch_cohort",
-#'   conceptSet = conceptlist
-#' )
+#' conceptlist <- list(acetaminophen = 1125360, metformin = c(1503297, 1503327))
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "switch_cohort",
+#'                                         conceptSet = conceptlist)
 #'
 #' cdm$cohort1 |>
 #'   addDrugRestart(switchCohortTable = "switch_cohort")

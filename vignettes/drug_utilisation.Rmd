@@ -105,12 +105,23 @@ This argument set to TRUE will add a column specifying the time in days a person
 
 The subfunction to get only this information is `addDaysExposed()`.
 
+## daysPrescribed
+
+Similarly to the previous one, this argument adds a column with the number of days the individual is prescribed with the drug of interest, if set to TRUE. This number is calculated by adding up the days for all prescriptions that contribute to the analysis. In this case, `restrictIncident` will influence the calculation as follows: if set to TRUE, drug prescriptions will only be counted if happening after index date; if FALSE, all prescriptions will contribute to the sum.
+
+The subfunction to get only this information is `addDaysPrescribed()`.
+
 ## timeToExposure
 
 If set to TRUE, a column will be added that shows the number of days until the first exposure occurring within the considered time window. Notice that the value of `restrictIncident` will be taken into account: if TRUE, the time to the first incident exposure during the time interval is measured; otherwise, exposures that start before the `indexDate` and end afterwards will be considered (in these cases, time to exposure is 0).
 
-The subfunction to get only this information is `addTimeToExposure()`
+The subfunction to get only this information is `addTimeToExposure()`.
 
+## initialExposureDuration
+
+This argument will add a column with information on the number of days of the first prescription of the drug. If `restrictIncident = TRUE`, this first drug exposure record after index date will be selected. Otherwise, the first record ever will be the one contributing this number.
+
+The subfunction to get only this information is `addInitialExposureDuration()`.
 
 ## initialQuantity and cumulativeQuantity
 
@@ -142,7 +153,9 @@ addDrugUtilisation(
   numberExposures = TRUE,
   numberEras = TRUE,
   daysExposed = TRUE,
+  daysPrescribed = TRUE,
   timeToExposure = TRUE,
+  initialExposureDuration = TRUE,
   initialQuantity = TRUE,
   cumulativeQuantity = TRUE,
   initialDailyDose = TRUE,
@@ -179,7 +192,9 @@ cdm$drug_utilisation_example <- cdm$cohort1 |>
     numberExposures = FALSE,
     numberEras = FALSE,
     daysExposed = FALSE,
+    daysPrescribed = FALSE,
     timeToExposure = FALSE,
+    initialExposureDuration = FALSE,
     initialQuantity = TRUE,
     cumulativeQuantity = TRUE,
     initialDailyDose = TRUE,
@@ -217,6 +232,7 @@ duResults <- summariseDrugUtilisation(
   numberExposures = TRUE,
   numberEras = TRUE,
   daysExposed = TRUE,
+  daysPrescribed = TRUE,
   timeToExposure = TRUE,
   initialExposureDuration = TRUE,
   initialQuantity = TRUE,
@@ -257,7 +273,9 @@ duResults <- cdm$cohort1 |>
     numberExposures = TRUE,
     numberEras = TRUE,
     daysExposed = TRUE,
+    daysPrescribed = TRUE,
     timeToExposure = TRUE,
+    initialExposureDuration = TRUE,
     initialQuantity = TRUE,
     cumulativeQuantity = TRUE,
     initialDailyDose = TRUE,

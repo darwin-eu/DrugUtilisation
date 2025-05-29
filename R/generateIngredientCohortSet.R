@@ -49,16 +49,17 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' cdm <- generateIngredientCohortSet(
-#'   cdm = cdm,
-#'   ingredient = "acetaminophen",
-#'   name = "acetaminophen"
-#' )
+#' cdm <- generateIngredientCohortSet(cdm = cdm,
+#'                                    ingredient = "acetaminophen",
+#'                                    name = "acetaminophen")
 #'
 #' cdm$acetaminophen |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 generateIngredientCohortSet <- function(cdm,

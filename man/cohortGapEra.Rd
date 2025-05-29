@@ -20,18 +20,18 @@ Get the gapEra used to create a cohort
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CodelistGenerator)
+
 cdm <- mockDrugUtilisation()
 
-druglist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm, c("acetaminophen", "metformin")
-)
+druglist <- getDrugIngredientCodes(cdm = cdm,
+                                   name = c("acetaminophen", "metformin"))
 
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "drug_cohorts",
-  conceptSet = druglist,
-  gapEra = 100
-)
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "drug_cohorts",
+                                        conceptSet = druglist,
+                                        gapEra = 100)
 
 cohortGapEra(cdm$drug_cohorts)
 }

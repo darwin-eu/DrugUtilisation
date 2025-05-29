@@ -33,3 +33,16 @@ in the cohort on any given day following their first cohort entry. This is
 known as the “proportion of patients covered” (PPC) method for assessing
 treatment persistence.
 }
+\examples{
+\donttest{
+library(DrugUtilisation)
+
+cdm <- mockDrugUtilisation(numberIndividuals = 100)
+
+result <- cdm$cohort1 |>
+  summariseProportionOfPatientsCovered(followUpDays = 365)
+
+tidy(result)
+}
+
+}

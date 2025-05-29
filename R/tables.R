@@ -21,6 +21,8 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- cdm$cohort1 |>
@@ -72,6 +74,8 @@ tableIndication <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- summariseDoseCoverage(cdm, 1125315)
@@ -115,9 +119,14 @@ tableDoseCoverage <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
-#' cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' drugUse <- cdm$dus_cohort |>
 #'   summariseDrugUtilisation(ingredientConceptId = 1125315)
@@ -165,6 +174,8 @@ tableDrugUtilisation <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' result <- cdm$cohort1 |>
@@ -211,14 +222,14 @@ tableTreatment <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "switch_cohort",
-#'   conceptSet = conceptlist
-#' )
+#' conceptlist <- list(acetaminophen = 1125360, metformin = c(1503297, 1503327))
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "switch_cohort",
+#'                                         conceptSet = conceptlist)
 #'
 #' result <- cdm$cohort1 |>
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
@@ -265,13 +276,13 @@ tableDrugRestart <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "my_cohort",
-#'   conceptSet = list(drug_of_interest = c(1503297, 1503327))
-#' )
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "my_cohort",
+#'                                         conceptSet = list(drug_of_interest = c(1503297, 1503327)))
 #'
 #' result <- cdm$my_cohort |>
 #'   summariseProportionOfPatientsCovered(followUpDays = 365)

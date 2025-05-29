@@ -36,16 +36,18 @@ Plot the results of \code{summariseDrugUtilisation}
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(PatientProfiles)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation(numberIndividuals = 100)
 codes <- list(aceta = c(1125315, 1125360, 2905077, 43135274))
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "cohort",
-  conceptSet = codes
-)
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "cohort",
+                                        conceptSet = codes)
 
 result <- cdm$cohort |>
-  PatientProfiles::addSex() |>
+  addSex() |>
   summariseDrugUtilisation(
     strata = "sex",
     ingredientConceptId = 1125315,
@@ -53,7 +55,7 @@ result <- cdm$cohort |>
   )
 
 result |>
-  dplyr::filter(estimate_name == "median") |>
+  filter(estimate_name == "median") |>
   plotDrugUtilisation(
     variable = "days prescribed",
     plotType = "barplot"

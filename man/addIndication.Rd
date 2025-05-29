@@ -58,17 +58,20 @@ considered as having no observed indication.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CDMConnector)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
 
-indications <- list("headache" = 378253, "asthma" = 317009)
-cdm <- CDMConnector::generateConceptCohortSet(
-  cdm = cdm, conceptSet = indications, name = "indication_cohorts"
-)
+indications <- list(headache = 378253, asthma = 317009)
+cdm <- generateConceptCohortSet(cdm = cdm,
+                                conceptSet = indications,
+                                name = "indication_cohorts")
 
-cdm <- generateIngredientCohortSet(
-  cdm = cdm, name = "drug_cohort",
-  ingredient = "acetaminophen"
-)
+cdm <- generateIngredientCohortSet(cdm = cdm,
+                                   name = "drug_cohort",
+                                   ingredient = "acetaminophen")
 
 cdm$drug_cohort |>
   addIndication(
@@ -76,7 +79,7 @@ cdm$drug_cohort |>
     indicationWindow = list(c(0, 0)),
     unknownIndicationTable = "condition_occurrence"
   ) |>
-  dplyr::glimpse()
+  glimpse()
 }
 
 }

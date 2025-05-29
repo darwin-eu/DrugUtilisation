@@ -118,6 +118,14 @@ knitr::include_graphics(here::here("vignettes/figures/drug_restart_B.png"))
 
 This argument allows to stop considering restart and switch events after a certain date, which must specified as a column in the cohort.
 
+- **incident**
+
+This argument is by default TRUE, which means we will only consider switch treatments starting after discontinuation. If set to FALSE, we will allow switch treatments starting before the discontinuation of the treatment and ending afterwards.
+
+- **followUpDays**
+
+The follow-up of the individuals will be set to Inf by default, i.e. we will follow them up for as long as possible. However, we can restrict the follow-up period to any other time interval as seen in the previous example.
+
 - **strata**
 
 This argument must be a list pointing to columns or combinations of columns in the cohort to use as strata. It will produce stratified estimates as well as for the overall cohort.
@@ -157,4 +165,19 @@ The `plotDrugRestart()` function creates a bar plot depicting the percentage of 
 ```{r, fig.height=8, fig.width=8}
 results |>
   plotDrugRestart(facet = cohort_name + sex ~ follow_up_days)
+```
+
+## Adding the information to an existing cohort
+
+We can directly add the drug restart information to an existing cohort as a column instead of asking for a summarising object. In this case we will use the function `addDrugRestart()`, which will add one column per follow-up window we ask for:
+
+```{r}
+cdm$metformin |>
+  addDrugRestart(
+    switchCohortTable = "insulin",
+    switchCohortId = NULL,
+    followUpDays = c(180, 365, Inf),
+    censorDate = NULL
+  ) |>
+  gt::gt()
 ```

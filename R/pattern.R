@@ -116,6 +116,8 @@ drugStrengthPattern <- function(cdm,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' patternTable(cdm)

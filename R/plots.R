@@ -26,6 +26,8 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #' result <- cdm$cohort1 |>
 #'   summariseTreatment(
@@ -60,20 +62,19 @@ plotTreatment <- function(result,
 #'
 #' @examples
 #' \dontrun{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "switch_cohort",
-#'   conceptSet = conceptlist
-#' )
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "switch_cohort",
+#'                                         conceptSet = conceptlist)
 #'
 #' result <- cdm$cohort1 |>
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
 #'
 #' plotDrugRestart(result)
-#'
 #' }
 #'
 plotDrugRestart <- function(result,
@@ -100,14 +101,19 @@ plotDrugRestart <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CDMConnector)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' indications <- list("headache" = 378253, "asthma" = 317009)
-#' cdm <- CDMConnector::generateConceptCohortSet(cdm, indications, "indication_cohorts")
+#' indications <- list(headache = 378253, asthma = 317009)
+#' cdm <- generateConceptCohortSet(cdm = cdm,
+#'                                 conceptSet = indications,
+#'                                 name = "indication_cohorts")
 #'
-#' cdm <- generateIngredientCohortSet(
-#'   cdm = cdm, name = "drug_cohort", ingredient = "acetaminophen"
-#' )
+#' cdm <- generateIngredientCohortSet(cdm = cdm,
+#'                                    name = "drug_cohort",
+#'                                    ingredient = "acetaminophen")
 #'
 #' result <- cdm$drug_cohort |>
 #'   summariseIndication(
@@ -145,16 +151,18 @@ plotIndication <- function(result,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(PatientProfiles)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation(numberIndividuals = 100)
 #' codes <- list(aceta = c(1125315, 1125360, 2905077, 43135274))
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "cohort",
-#'   conceptSet = codes
-#' )
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "cohort",
+#'                                         conceptSet = codes)
 #'
 #' result <- cdm$cohort |>
-#'   PatientProfiles::addSex() |>
+#'   addSex() |>
 #'   summariseDrugUtilisation(
 #'     strata = "sex",
 #'     ingredientConceptId = 1125315,
@@ -162,7 +170,7 @@ plotIndication <- function(result,
 #'   )
 #'
 #' result |>
-#'   dplyr::filter(estimate_name == "median") |>
+#'   filter(estimate_name == "median") |>
 #'   plotDrugUtilisation(
 #'     variable = "days prescribed",
 #'     plotType = "barplot"
@@ -333,13 +341,13 @@ correctX <- function(x) { # issue in visOmopResults
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm,
-#'   name = "my_cohort",
-#'   conceptSet = list(drug_of_interest = c(1503297, 1503327))
-#' )
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "my_cohort",
+#'                                         conceptSet = list(drug_of_interest = c(1503297, 1503327)))
 #'
 #' result <- cdm$my_cohort |>
 #'   summariseProportionOfPatientsCovered(followUpDays = 365)

@@ -41,6 +41,8 @@ Create a table showing indication results
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 result <- cdm$cohort1 |>

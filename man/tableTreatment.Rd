@@ -41,6 +41,8 @@ Format a summarised_treatment result into a visual table.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 result <- cdm$cohort1 |>

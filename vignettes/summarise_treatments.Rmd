@@ -65,12 +65,12 @@ settings(cdm$cohort2)
 The `summariseTreatment()` function produces a summary of the treatment received by our study cohorts. There are three mandatory arguments:
 
 1.  `cohort`: cohort from the cdm object.
-2.  `treatmentCohortName`: name of the treatment cohort's table.
-3.  `window`: list of the windows where to summarise the treatments.
+2.  `treatmentCohortName`: name of the treatment cohort table.
+3.  `window`: a list specifying the time windows during which treatments should be summarised.
 
 See an example of its usage below, where we use
 `summariseTreatment()` to summarise treatments defined in
-`cohort2` in the cohorts defined in `cohort1`.
+`cohort2` in the target cohorts defined in `cohort1`.
 
 ```{r, message = FALSE, warning=FALSE}
 summariseTreatment(
@@ -100,12 +100,41 @@ results <- summariseTreatment(
 ```
 
 Notice that we have also used the `treatmentCohortId` parameter to
-specify that we only want to explore `albuterol` across the cohorts defined in
-`cohort1`.
+specify that we only want to explore `albuterol` (which corresponds to the cohort
+id 1 in our cohort table) across the cohorts defined in `cohort1`.
+
+## other parameters
+
+The `summariseTreatment()` functions also has other input parameters which can be tuned:
+
+- `cohortId`: to restrict the analysis to a particular cohort definition id in the target cohort.
+- `indexDate`: what column to use as the index date to start the analysis. By default we use `cohort_start_date`, but any other date column, such as `cohort_end_date`, can be specified instead.
+- `censorDate`: whether to end the analysis at any specific date. Otherwise we will follow the individuals until end of their respective observation period.
+- `mutuallyExclusive`: by default set to FALSE, this will consider the treatments separately, so an individual can belong to different treatment groups at the same time (i.e. if they are treated with multiple drugs). Therefore, for each target cohort, we could have a sum of percentages of all treatment drugs greater than 100%. If set to TRUE, non-overlapping treatment groups will be assessed (with multiple drugs in some of those if needed), so that all individuals will belong to only one of them, and the percentages will add up to a 100.
+
+```{r}
+result_not_mutually_exc <- summariseTreatment(
+  cohort = cdm$cohort1,
+  treatmentCohortName = c("cohort2"),
+  window = list(c(0, 0))
+)
+
+result_mutually_exc <- summariseTreatment(
+  cohort = cdm$cohort1,
+  treatmentCohortName = c("cohort2"),
+  window = list(c(0, 0)),
+  mutuallyExclusive = TRUE
+)
+
+tableTreatment(result = result_not_mutually_exc)
+tableTreatment(result = result_mutually_exc)
+```
+
+In this case, as no individual was given more than one of the treatment drugs, the percentages are the same. However, we can easily see how these analyses would provide different results in other contexts.
 
 # Visualise results
 
-The package includes `table` and `plot` functions to help visualise the results from `summariseTreatment()`.
+The package includes `table` and `plot` functions to help visualise the results from `summariseTreatment()`, like we have just used to show the results above.
 
 ## Tables
 

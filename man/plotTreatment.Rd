@@ -30,6 +30,8 @@ summariseTreatment function.
 }
 \examples{
 \dontrun{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 result <- cdm$cohort1 |>
   summariseTreatment(

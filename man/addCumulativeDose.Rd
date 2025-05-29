@@ -48,10 +48,19 @@ To add a new column with the cumulative dose. To add multiple columns use
 }
 \examples{
 \donttest{
-cdm <- mockDrugUtilisation()
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
 
-cdm$cohort1 |>
-  addCumulativeDose(ingredientConceptId = 1125315)
+cdm <- mockDrugUtilisation()
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
+
+cdm$dus_cohort |>
+  addCumulativeDose(ingredientConceptId = 1125315) |>
+  glimpse()
 }
 
 }

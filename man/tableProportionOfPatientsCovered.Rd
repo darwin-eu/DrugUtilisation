@@ -40,13 +40,13 @@ Create a table with proportion of patients covered results
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "my_cohort",
-  conceptSet = list(drug_of_interest = c(1503297, 1503327))
-)
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "my_cohort",
+                                        conceptSet = list(drug_of_interest = c(1503297, 1503327)))
 
 result <- cdm$my_cohort |>
   summariseProportionOfPatientsCovered(followUpDays = 365)

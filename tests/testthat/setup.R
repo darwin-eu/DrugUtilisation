@@ -33,7 +33,8 @@ collectCohort <- function(cohort, id = NULL) {
   if (is.null(id)) id <- settings(cohort)$cohort_definition_id
   x <- cohort |>
     dplyr::filter(.data$cohort_definition_id %in% .env$id) |>
-    dplyr::collect()
+    dplyr::collect() |>
+    dplyr::as_tibble()
   x <- x |>
     dplyr::arrange(dplyr::across(dplyr::all_of(colnames(x))))
   attr(x, "cohort_set") <- NULL

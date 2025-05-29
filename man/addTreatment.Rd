@@ -51,20 +51,22 @@ cohort in a specified time window.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation(numberIndividuals = 50)
 
+cdm <- generateIngredientCohortSet(cdm = cdm,
+                                   name = "drug_cohort",
+                                   ingredient = "acetaminophen")
 
-cdm <- generateIngredientCohortSet(
-  cdm = cdm, name = "drug_cohort", ingredient = "acetaminophen"
-)
-
-cdm <- generateIngredientCohortSet(
-  cdm = cdm, name = "treatments", ingredient = c("metformin", "simvastatin")
-)
+cdm <- generateIngredientCohortSet(cdm = cdm,
+                                   name = "treatments",
+                                   ingredient = c("metformin", "simvastatin"))
 
 cdm$drug_cohort |>
   addTreatment("treatments", window = list(c(0, 0), c(1, 30), c(31, 60))) |>
-  dplyr::glimpse()
+  glimpse()
 }
 
 }
