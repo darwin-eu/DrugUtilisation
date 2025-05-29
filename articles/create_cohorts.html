@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Creating drug cohorts</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.1/vignettes/create_cohorts.Rmd" class="external-link"><code>vignettes/create_cohorts.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/create_cohorts.Rmd" class="external-link"><code>vignettes/create_cohorts.Rmd</code></a></small>
       <div class="d-none name"><code>create_cohorts.Rmd</code></div>
     </div>
 
@@ -276,7 +276,7 @@ into a single exposure as the records overlap each other:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">drug_concept_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="op">!</span><span class="op">!</span><span class="va">codes</span><span class="op">$</span><span class="va">acetaminophen</span> <span class="op">&amp;</span> <span class="va">person_id</span> <span class="op">==</span> <span class="fl">69</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 23]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;   drug_exposure_id person_id drug_concept_id drug_exposure_start_date</span></span>
 <span><span class="co">#&gt;              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>              201        69         2<span style="text-decoration: underline;">905</span>077 2002-01-29              </span></span>
@@ -294,7 +294,7 @@ into a single exposure as the records overlap each other:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">subject_id</span> <span class="op">==</span> <span class="fl">69</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1         69 2001-03-04        2004-06-02</span></span></code></pre></div>
@@ -313,7 +313,7 @@ attrition:</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">drug_concept_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="op">!</span><span class="op">!</span><span class="va">codes</span><span class="op">$</span><span class="va">acetaminophen</span> <span class="op">&amp;</span> <span class="va">person_id</span> <span class="op">==</span> <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 23]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;   drug_exposure_id person_id drug_concept_id drug_exposure_start_date</span></span>
 <span><span class="co">#&gt;              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>              143        50         1<span style="text-decoration: underline;">125</span>360 2017-04-14              </span></span>
@@ -333,7 +333,7 @@ different episodes.</p>
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">subject_id</span> <span class="op">==</span> <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1         50 2017-04-01        2017-04-23</span></span></code></pre></div>
@@ -357,6 +357,68 @@ cohort.</p>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">1 codelist</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; - acetaminophen (4 codes)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="analogous-functions">Analogous functions<a class="anchor" aria-label="anchor" href="#analogous-functions"></a>
+</h3>
+<p>The function <code><a href="../reference/generateDrugUtilisationCohortSet.html">generateDrugUtilisationCohortSet()</a></code> has two
+analogous functions:</p>
+<ul>
+<li>
+<code><a href="../reference/generateAtcCohortSet.html">generateAtcCohortSet()</a></code> to generate cohorts using ATC
+labels.</li>
+<li>
+<code><a href="../reference/generateIngredientCohortSet.html">generateIngredientCohortSet()</a></code> to generate cohorts using
+ingredients names.</li>
+</ul>
+<p>Both functions allow to create cohorts and have all the same
+arguments than <code><a href="../reference/generateDrugUtilisationCohortSet.html">generateDrugUtilisationCohortSet()</a></code> the main
+difference is that instead of the <code>conceptSet</code> argument we
+have the <code>atcName</code> argument and the <code>ingredient</code>
+argument. Also both functions have the <code>...</code> argument that is
+used by <code><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getATCCodes.html" class="external-link">CodelistGenerator::getATCCodes()</a></code> and
+<code><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html" class="external-link">CodelistGenerator::getDrugIngredientCodes()</a></code>
+respectively.</p>
+<p>Let’s see two simple examples, we can generate the ‘alimentary tract
+and metabolism’ (ATC code) cohort with:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generateAtcCohortSet.html">generateAtcCohortSet</a></span><span class="op">(</span></span>
+<span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
+<span>  atcName <span class="op">=</span> <span class="st">"alimentary tract and metabolism"</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"atc_cohort"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Subsetting <span style="color: #0000BB;">drug_exposure</span> table</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Checking whether any record needs to be dropped.</span></span>
+<span><span class="co">#&gt; Warning: cohort_name must be snake case and have less than 100 characters, the following</span></span>
+<span><span class="co">#&gt; cohorts will be renamed:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> alimentary tract and metabolism -&gt; alimentary_tract_and_metabolism</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Collapsing records with gapEra = 1 days.</span></span>
+<span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">atc_cohort</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 8</span></span></span>
+<span><span class="co">#&gt;   cohort_definition_id cohort_name             gap_era level dose_form dose_unit</span></span>
+<span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 alimentary_tract_and_m… 1       ATC … <span style="color: #949494;">""</span>        <span style="color: #949494;">""</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: route_category &lt;chr&gt;, atc_name &lt;chr&gt;</span></span></span></code></pre></div>
+<p>And the ‘simvastatin’ and ‘metformin’ cohorts, restricting to
+products with only one ingredient:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generateIngredientCohortSet.html">generateIngredientCohortSet</a></span><span class="op">(</span></span>
+<span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
+<span>  ingredient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'simvastatin'</span>, <span class="st">'metformin'</span><span class="op">)</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"ingredient_cohort"</span>,</span>
+<span>  ingredientRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Subsetting <span style="color: #0000BB;">drug_exposure</span> table</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Checking whether any record needs to be dropped.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Collapsing overlaping records.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Collapsing records with gapEra = 1 days.</span></span>
+<span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">ingredient_cohort</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 8</span></span></span>
+<span><span class="co">#&gt;   cohort_definition_id cohort_name gap_era dose_form dose_unit route_category</span></span>
+<span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 metformin   1       <span style="color: #949494;">""</span>        <span style="color: #949494;">""</span>        <span style="color: #949494;">""</span>            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>                    2 simvastatin 1       <span style="color: #949494;">""</span>        <span style="color: #949494;">""</span>        <span style="color: #949494;">""</span>            </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: ingredient_range &lt;chr&gt;, ingredient_name &lt;chr&gt;</span></span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -387,46 +449,46 @@ would usually define a time (<code>days</code>) where the individual is
 not exposed to the drug. This can be achieved using
 <code><a href="../reference/requirePriorDrugWashout.html">requirePriorDrugWashout()</a></code> function. In this example we
 would restrict to individuals with 365 days of no exposure:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/requirePriorDrugWashout.html">requirePriorDrugWashout</a></span><span class="op">(</span>days <span class="op">=</span> <span class="fl">365</span><span class="op">)</span></span></code></pre></div>
 <p>The result will be a cohort with the individuals that fulfill the
 criteria:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;acetaminophen_cohort&gt; [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;    cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         42 2002-09-15        2007-12-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         77 1966-09-15        1966-12-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         33 2021-02-12        2021-02-14     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         23 2003-10-29        2003-11-27     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1          9 2016-03-17        2016-09-02     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         23 2003-10-29        2003-11-27     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         33 2021-02-12        2021-02-14     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         77 1966-09-15        1966-12-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         42 2002-09-15        2007-12-19     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         14 1990-04-27        1990-05-12     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         47 1963-12-22        1965-09-16     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         57 2020-04-17        2020-11-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         39 2022-02-09        2022-06-11     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         39 2022-02-09        2022-06-11     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         57 2020-04-17        2020-11-19     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         98 2020-03-14        2020-08-14     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre></div>
 <p>This would also get recorded in the attrition, counts and
 settings.</p>
 <p>In the settings a new column with the specified parameter used:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id cohort_name   gap_era prior_use_washout</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 acetaminophen 30      365</span></span></code></pre></div>
 <p>The counts will be updated:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cohortCount.html" class="external-link">cohortCount</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1             66              62</span></span></code></pre></div>
 <p>And the attrition will have a new line:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 7</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects reason_id reason          </span></span>
@@ -444,7 +506,7 @@ example we will create two cohorts (metformin and simvastatin) inside a
 table named <code>my_cohort</code> and then apply the inclusion criteria
 to only one of them (simvastatin) and save the result to a table named:
 <code>my_new_cohort</code></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html" class="external-link">getDrugIngredientCodes</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"metformin"</span>, <span class="st">"simvastatin"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generateDrugUtilisationCohortSet.html">generateDrugUtilisationCohortSet</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_cohort"</span>, conceptSet <span class="op">=</span> <span class="va">codes</span>, gapEra <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Subsetting <span style="color: #0000BB;">drug_exposure</span> table</span></span>
@@ -457,7 +519,8 @@ to only one of them (simvastatin) and save the result to a table named:
 <span><span class="co">#&gt; • <span style="font-weight: bold;">omop tables:</span> person, observation_period, concept, concept_ancestor,</span></span>
 <span><span class="co">#&gt; drug_strength, concept_relationship, drug_exposure, condition_occurrence,</span></span>
 <span><span class="co">#&gt; observation, visit_occurrence</span></span>
-<span><span class="co">#&gt; • <span style="font-weight: bold;">cohort tables:</span> cohort1, cohort2, acetaminophen_cohort, my_cohort</span></span>
+<span><span class="co">#&gt; • <span style="font-weight: bold;">cohort tables:</span> cohort1, cohort2, acetaminophen_cohort, atc_cohort,</span></span>
+<span><span class="co">#&gt; ingredient_cohort, my_cohort</span></span>
 <span><span class="co">#&gt; • <span style="font-weight: bold;">achilles tables:</span> -</span></span>
 <span><span class="co">#&gt; • <span style="font-weight: bold;">other tables:</span> -</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span><span class="op">)</span></span>
@@ -474,8 +537,8 @@ to only one of them (simvastatin) and save the result to a table named:
 <span><span class="co">#&gt; • <span style="font-weight: bold;">omop tables:</span> person, observation_period, concept, concept_ancestor,</span></span>
 <span><span class="co">#&gt; drug_strength, concept_relationship, drug_exposure, condition_occurrence,</span></span>
 <span><span class="co">#&gt; observation, visit_occurrence</span></span>
-<span><span class="co">#&gt; • <span style="font-weight: bold;">cohort tables:</span> cohort1, cohort2, acetaminophen_cohort, my_cohort,</span></span>
-<span><span class="co">#&gt; my_new_cohort</span></span>
+<span><span class="co">#&gt; • <span style="font-weight: bold;">cohort tables:</span> cohort1, cohort2, acetaminophen_cohort, atc_cohort,</span></span>
+<span><span class="co">#&gt; ingredient_cohort, my_cohort, my_new_cohort</span></span>
 <span><span class="co">#&gt; • <span style="font-weight: bold;">achilles tables:</span> -</span></span>
 <span><span class="co">#&gt; • <span style="font-weight: bold;">other tables:</span> -</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">my_new_cohort</span><span class="op">)</span></span>
@@ -496,46 +559,46 @@ to only one of them (simvastatin) and save the result to a table named:
 <p>To require that the cohort entry (drug episodes) is the first one of
 the available ones we can use the <code><a href="../reference/requireIsFirstDrugEntry.html">requireIsFirstDrugEntry()</a></code>
 function. See example:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/requireIsFirstDrugEntry.html">requireIsFirstDrugEntry</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The result will be a cohort with the individuals that fulfill the
 criteria:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;acetaminophen_cohort&gt; [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;    cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         40 2018-11-15        2020-03-07     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         54 2020-12-09        2021-01-31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         19 2021-08-28        2022-08-26     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         27 2019-05-22        2020-02-05     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         84 2008-10-08        2016-01-31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         26 2015-07-22        2020-07-18     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         59 2020-11-09        2021-03-05     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         61 2017-09-27        2020-04-16     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         63 2001-01-06        2001-01-24     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         91 2022-09-15        2022-11-17     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1          7 1969-09-09        1970-02-14     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         35 2005-11-10        2006-09-09     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         58 1995-08-29        2002-06-12     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         62 2005-01-24        2006-12-05     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         72 2009-12-10        2010-03-30     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         77 1966-09-15        1966-12-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         80 2022-08-25        2022-09-06     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         39 2022-02-09        2022-06-11     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         45 2017-07-03        2018-07-06     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         75 2010-06-16        2011-09-20     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre></div>
 <p>This would also get recorded in the attrition, counts and settings on
 top of the already exiting ones.</p>
 <p>In the settings a new column with the specified parameter used:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id cohort_name   gap_era prior_use_washout limit      </span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 acetaminophen 30      365               first_entry</span></span></code></pre></div>
 <p>The counts will be updated:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cohortCount.html" class="external-link">cohortCount</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1             62              62</span></span></code></pre></div>
 <p>And the attrition will have a new line:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 7</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects reason_id reason          </span></span>
@@ -553,32 +616,32 @@ top of the already exiting ones.</p>
 <p>To require that a cohort entry (drug episodes) has a certain time of
 prior observation we can use the
 <code><a href="../reference/requireObservationBeforeDrug.html">requireObservationBeforeDrug()</a></code> function. See example:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/requireObservationBeforeDrug.html">requireObservationBeforeDrug</a></span><span class="op">(</span>days <span class="op">=</span> <span class="fl">365</span><span class="op">)</span></span></code></pre></div>
 <p>The result will be a cohort with the individuals that fulfill the
 criteria:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;acetaminophen_cohort&gt; [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;    cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         40 2018-11-15        2020-03-07     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         54 2020-12-09        2021-01-31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         26 2015-07-22        2020-07-18     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         96 2011-05-25        2013-01-23     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         42 2002-09-15        2007-12-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1          3 1996-09-13        2008-07-15     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         47 1963-12-22        1965-09-16     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         51 2017-09-04        2017-09-17     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         73 2011-04-02        2011-06-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         29 2020-12-08        2021-01-09     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1          7 1969-09-09        1970-02-14     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         35 2005-11-10        2006-09-09     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         58 1995-08-29        2002-06-12     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         62 2005-01-24        2006-12-05     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         45 2017-07-03        2018-07-06     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         75 2010-06-16        2011-09-20     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         14 1990-04-27        1990-05-12     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         23 2003-10-29        2003-11-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         48 1972-04-14        1972-12-18     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         81 1995-09-13        1997-11-17     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre></div>
 <p>This would also get recorded in the attrition, counts and settings on
 top of the already exiting ones.</p>
 <p>In the settings a new column with the specified parameter used:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 6</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id cohort_name   gap_era prior_use_washout limit      </span></span>
@@ -586,14 +649,14 @@ top of the already exiting ones.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 acetaminophen 30      365               first_entry</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: prior_drug_observation &lt;chr&gt;</span></span></span></code></pre></div>
 <p>The counts will be updated:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cohortCount.html" class="external-link">cohortCount</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1             33              33</span></span></code></pre></div>
 <p>And the attrition will have a new line:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects reason_id reason          </span></span>
@@ -615,7 +678,7 @@ within an specific range we can use the
 like to apply this restriction to the incident date (cohort_start_date),
 but the function is flexible and you can use it to restrict to any other
 date. See example:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/requireDrugInDateRange.html">requireDrugInDateRange</a></span><span class="op">(</span></span>
 <span>    indexDate <span class="op">=</span> <span class="st">"cohort_start_date"</span>,</span>
@@ -623,27 +686,27 @@ date. See example:</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>The result will be a cohort with the individuals that fulfill the
 criteria:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;acetaminophen_cohort&gt; [?? x 4]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span></span>
 <span><span class="co">#&gt;    cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         40 2018-11-15        2020-03-07     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         54 2020-12-09        2021-01-31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         26 2015-07-22        2020-07-18     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         96 2011-05-25        2013-01-23     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         42 2002-09-15        2007-12-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         51 2017-09-04        2017-09-17     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         73 2011-04-02        2011-06-19     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         29 2020-12-08        2021-01-09     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         35 2005-11-10        2006-09-09     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         62 2005-01-24        2006-12-05     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1         35 2005-11-10        2006-09-09     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         62 2005-01-24        2006-12-05     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1         45 2017-07-03        2018-07-06     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1         75 2010-06-16        2011-09-20     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         23 2003-10-29        2003-11-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         93 2014-01-09        2016-06-21     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1         96 2011-05-25        2013-01-23     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         40 2018-11-15        2020-03-07     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1         54 2020-12-09        2021-01-31     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1         44 2017-01-01        2018-03-30     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre></div>
 <p>This would also get recorded in the attrition, counts and settings on
 top of the already exiting ones.</p>
 <p>In the settings a new column with the specified parameter used:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html" class="external-link">settings</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 6</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id cohort_name   gap_era prior_use_washout limit      </span></span>
@@ -651,14 +714,14 @@ top of the already exiting ones.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1 acetaminophen 30      365               first_entry</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: prior_drug_observation &lt;chr&gt;</span></span></span></code></pre></div>
 <p>The counts will be updated:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cohortCount.html" class="external-link">cohortCount</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects</span></span>
 <span><span class="co">#&gt;                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>                    1             24              24</span></span></code></pre></div>
 <p>And the attrition will have a new line:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">acetaminophen_cohort</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
 <span><span class="co">#&gt;   cohort_definition_id number_records number_subjects reason_id reason          </span></span>
@@ -673,7 +736,7 @@ top of the already exiting ones.</p>
 <p>If you just want to restrict on the lower or upper bound you can just
 leave the other element as NA and then no condition will be applied, see
 for example:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_new_cohort</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">my_new_cohort</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/requireDrugInDateRange.html">requireDrugInDateRange</a></span><span class="op">(</span>dateRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"2010-12-31"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/attrition.html" class="external-link">attrition</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">my_new_cohort</span><span class="op">)</span></span>
@@ -697,7 +760,7 @@ for example:</p>
 commutable operations and that different order can lead to different
 results. Let’s see the following example where we have an individual
 with 4 cohort entries:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-42-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-44-1.png" width="672"></p>
 <p>In this case we will see the result of combining in different ways 4
 inclusion criteria:</p>
 <ul>
@@ -723,11 +786,11 @@ inclusion criteria:</p>
 <p>If we would apply the initially the <strong>first</strong>
 requirement and then the <strong>washout</strong> one we would end with
 only the first record:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-43-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-45-1.png" width="672"></p>
 <p>Whereas if we would apply initially the <strong>washout</strong>
 criteria and then the <strong>first</strong> one the resulting exposure
 would be the fourth one:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-44-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-46-1.png" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="first-and-minobs">first and minObs<a class="anchor" aria-label="anchor" href="#first-and-minobs"></a>
@@ -735,11 +798,11 @@ would be the fourth one:</p>
 <p>If we would apply the initially the <strong>first</strong>
 requirement and then the <strong>minObs</strong> one we would end with
 no record in the cohort:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-45-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-47-1.png" width="672"></p>
 <p>Whereas if we would apply initially the <strong>minObs</strong>
 criteria and then the <strong>first</strong> one there would be an
 exposure selected, the second one:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-46-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-48-1.png" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="first-and-2011-2012">first and 2011-2012<a class="anchor" aria-label="anchor" href="#first-and-2011-2012"></a>
@@ -747,11 +810,11 @@ exposure selected, the second one:</p>
 <p>If we would apply the initially the <strong>first</strong>
 requirement and then the <strong>2011-2012</strong> one we would end
 with no record in the cohort:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-47-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-49-1.png" width="672"></p>
 <p>Whereas if we would apply initially the <strong>2011-2012</strong>
 criteria and then the <strong>first</strong> one there would be an
 exposure selected, the second one:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-48-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-50-1.png" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="washout-and-minobs">washout and minObs<a class="anchor" aria-label="anchor" href="#washout-and-minobs"></a>
@@ -759,11 +822,11 @@ exposure selected, the second one:</p>
 <p>If we would apply the initially the <strong>washout</strong>
 requirement and then the <strong>minObs</strong> one we would end with
 only the last record selected:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-49-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-51-1.png" width="672"></p>
 <p>Whereas if we would apply initially the <strong>minObs</strong>
 criteria and then the <strong>washout</strong> one the second and the
 fourth exposures are the ones that would be selected:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-50-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-52-1.png" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="washout-and-2011-2012">washout and 2011-2012<a class="anchor" aria-label="anchor" href="#washout-and-2011-2012"></a>
@@ -771,11 +834,11 @@ fourth exposures are the ones that would be selected:</p>
 <p>If we would apply initially the <strong>washout</strong> requirement
 and then the <strong>2011-2012</strong> one no record would be
 selected:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-51-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-53-1.png" width="672"></p>
 <p>Whereas if we would apply initially the <strong>2011-2012</strong>
 criteria and then the <strong>washout</strong> one the second record
 would be included:</p>
-<p><img src="create_cohorts_files/figure-html/unnamed-chunk-52-1.png" width="672"></p>
+<p><img src="create_cohorts_files/figure-html/unnamed-chunk-54-1.png" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="minobs-and-2011-2012">minObs and 2011-2012<a class="anchor" aria-label="anchor" href="#minobs-and-2011-2012"></a>
@@ -812,7 +875,7 @@ require first drug entry at the end.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

@@ -9,7 +9,7 @@ addDrugUtilisation() for efficiency."><meta property="og:image" content="https:/
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ addDrugUtilisation() for efficiency."><meta property="og:image" content="https:/
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>To add a new column with the days prescribed. To add multiple columns use <code>addDrugUtilisation()</code> for efficiency.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.1/R/addDrugUtilisation.R" class="external-link"><code>R/addDrugUtilisation.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/addDrugUtilisation.R" class="external-link"><code>R/addDrugUtilisation.R</code></a></small>
       <div class="d-none name"><code>addDaysPrescribed.Rd</code></div>
     </div>
 
@@ -110,32 +110,31 @@ will be created.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/DrugUtilisation/">DrugUtilisation</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CodelistGenerator/" class="external-link">CodelistGenerator</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="mockDrugUtilisation.html">mockDrugUtilisation</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">CodelistGenerator</span><span class="fu">::</span><span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html" class="external-link">getDrugIngredientCodes</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">cdm</span>,</span></span>
-<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"acetaminophen"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="generateDrugUtilisationCohortSet.html">generateDrugUtilisationCohortSet</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"dus_cohort"</span>, conceptSet <span class="op">=</span> <span class="va">codelist</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html" class="external-link">getDrugIngredientCodes</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"acetaminophen"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="generateDrugUtilisationCohortSet.html">generateDrugUtilisationCohortSet</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>,</span></span>
+<span class="r-in"><span>                                        name <span class="op">=</span> <span class="st">"dus_cohort"</span>,</span></span>
+<span class="r-in"><span>                                        conceptSet <span class="op">=</span> <span class="va">codelist</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Subsetting <span style="color: #0000BB;">drug_exposure</span> table</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Checking whether any record needs to be dropped.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Collapsing overlaping records.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Collapsing records with gapEra = 1 days.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cdm</span><span class="op">$</span><span class="va">dus_cohort</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">addDaysPrescribed</span><span class="op">(</span>conceptSet <span class="op">=</span> <span class="va">codelist</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Source:   table&lt;og_034_1746553353&gt; [?? x 5]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   cohort_definition_id subject_id cohort_start_date cohort_end_date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>                    1          8 2013-08-31        2013-09-30     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>                    1          9 1999-09-16        2006-06-10     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>                    1          9 2012-04-20        2012-12-10     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>                    1         10 2014-10-01        2014-10-26     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>                    1          5 2014-02-09        2016-02-02     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>                    1          7 2000-08-05        2011-11-10     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: days_prescribed_161_acetaminophen &lt;int&gt;</span></span>
+<span class="r-in"><span>  <span class="fu">addDaysPrescribed</span><span class="op">(</span>conceptSet <span class="op">=</span> <span class="va">codelist</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: ??</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_definition_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject_id                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>9<span style="color: #949494;">, </span>9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_start_date                 <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2017-09-01<span style="color: #949494;">, </span>2017-02-11<span style="color: #949494;">, </span>2006-11-07<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_end_date                   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2017-09-23<span style="color: #949494;">, </span>2017-04-09<span style="color: #949494;">, </span>2012-01-04<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ days_prescribed_161_acetaminophen <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 23<span style="color: #949494;">, </span>58<span style="color: #949494;">, </span>1885<span style="color: #949494;">, </span>6314<span style="color: #949494;">, </span>112<span style="color: #949494;">, </span>20</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -149,7 +148,7 @@ will be created.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

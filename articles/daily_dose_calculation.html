@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Daily dose calculation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.1/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
       <div class="d-none name"><code>daily_dose_calculation.Rmd</code></div>
     </div>
 
@@ -100,7 +100,7 @@ through the <em>drug strength</em> table:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1013-azure:R 4.5.0/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span></span>
 <span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125360<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503327<span style="color: #949494;">, </span>150332…</span></span>
 <span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125315<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>150329…</span></span>
 <span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1.0e+03<span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
@@ -151,54 +151,55 @@ into 4 different formulas:</p>
 <p>This formula was applied for the following 3 patterns that cover
 8,044 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-6052faac{}.cl-604b5a68{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-604e958e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-604e9598{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-604eb884{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-604eb88e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-604eb88f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-604eb898{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-604eb8a2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-604eb8a3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-6052faac">
+<style>.cl-2fc6fe34{}.cl-2fbfa314{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2fc35ac2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fc35acc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fc37868{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc37872{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc37873{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc3787c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc3787d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc3787e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-2fc6fe34">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-604eb884"><p class="cl-604e958e"><span class="cl-604b5a68">pattern_id</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">amount</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">amount_unit</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">numerator</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">numerator_unit</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">denominator</span></p></th>
-<th class="cl-604eb88e"><p class="cl-604e9598"><span class="cl-604b5a68">denominator_unit</span></p></th>
+<th class="cl-2fc37868"><p class="cl-2fc35ac2"><span class="cl-2fbfa314">pattern_id</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">amount</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">amount_unit</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">numerator</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">numerator_unit</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">denominator</span></p></th>
+<th class="cl-2fc37872"><p class="cl-2fc35acc"><span class="cl-2fbfa314">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-604eb88f"><p class="cl-604e958e"><span class="cl-604b5a68">1</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">microgram</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">hour</span></p></td>
+<td class="cl-2fc37873"><p class="cl-2fc35ac2"><span class="cl-2fbfa314">1</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">microgram</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-604eb88f"><p class="cl-604e958e"><span class="cl-604b5a68">2</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">milligram</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb898"><p class="cl-604e9598"><span class="cl-604b5a68">hour</span></p></td>
+<td class="cl-2fc37873"><p class="cl-2fc35ac2"><span class="cl-2fbfa314">2</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">milligram</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787c"><p class="cl-2fc35acc"><span class="cl-2fbfa314">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-604eb8a2"><p class="cl-604e958e"><span class="cl-604b5a68">3</span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68"></span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68">unit</span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68">number</span></p></td>
-<td class="cl-604eb8a3"><p class="cl-604e9598"><span class="cl-604b5a68">hour</span></p></td>
+<td class="cl-2fc3787d"><p class="cl-2fc35ac2"><span class="cl-2fbfa314">3</span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314"></span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314">unit</span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314">number</span></p></td>
+<td class="cl-2fc3787e"><p class="cl-2fc35acc"><span class="cl-2fbfa314">hour</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>The formula in this case will be as follows:</p>
-<p><span class="math display">$$\begin{equation}
-if (denominator &gt; 24) \rightarrow \textrm{daily dose} = 24 \cdot
-\frac{numerator}{denominator} \\
-if (denominator \leq 24) \rightarrow \textrm{daily dose} = numerator
-\end{equation}$$</span></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">if (denominator &gt; 24)</mtext></mtd><mtd columnalign="left" style="text-align: left"><mo>→</mo><mtext mathvariant="normal">daily dose</mtext><mo>=</mo><mn>24</mn><mo>⋅</mo><mfrac><mtext mathvariant="normal">numerator</mtext><mtext mathvariant="normal">denominator</mtext></mfrac></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">if (denominator</mtext><mo>≤</mo><mn>24</mn><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>→</mo><mtext mathvariant="normal">daily dose</mtext><mo>=</mo><mtext mathvariant="normal">numerator</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+\text{if (denominator &gt; 24)} &amp;\rightarrow \text{daily dose} = 24 \cdot \frac{\text{numerator}}{\text{denominator}} \\
+\text{if (denominator} \leq 24) &amp;\rightarrow \text{daily dose} = \text{numerator}
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Note that daily dose has always unit associated in this case it will
 be determined by the <code>numerator_unit</code> field.</p>
 <ol start="2" style="list-style-type: decimal">
@@ -207,35 +208,35 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 2 patterns that cover
 5,611 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-607289bc{}.cl-606b0052{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-606ea5cc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-606ea5d6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-606ed01a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-606ed024{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-606ed02e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-606ed02f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-606ed030{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-606ed038{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-607289bc">
+<style>.cl-2fe1b56c{}.cl-2fdbb18a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2fde3b94{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fde3b9e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fde582c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fde5836{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fde5837{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fde5840{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fde5841{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fde584a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-2fe1b56c">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-606ed01a"><p class="cl-606ea5cc"><span class="cl-606b0052">pattern_id</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">amount</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">amount_unit</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">numerator</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">numerator_unit</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">denominator</span></p></th>
-<th class="cl-606ed024"><p class="cl-606ea5d6"><span class="cl-606b0052">denominator_unit</span></p></th>
+<th class="cl-2fde582c"><p class="cl-2fde3b94"><span class="cl-2fdbb18a">pattern_id</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">amount</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">amount_unit</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">numerator</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">numerator_unit</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">denominator</span></p></th>
+<th class="cl-2fde5836"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-606ed02e"><p class="cl-606ea5cc"><span class="cl-606b0052">4</span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052">number</span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052">microgram</span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed02f"><p class="cl-606ea5d6"><span class="cl-606b0052">hour</span></p></td>
+<td class="cl-2fde5837"><p class="cl-2fde3b94"><span class="cl-2fdbb18a">4</span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">number</span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">microgram</span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde5840"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-606ed030"><p class="cl-606ea5cc"><span class="cl-606b0052">5</span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052">number</span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052">milligram</span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052"></span></p></td>
-<td class="cl-606ed038"><p class="cl-606ea5d6"><span class="cl-606b0052">hour</span></p></td>
+<td class="cl-2fde5841"><p class="cl-2fde3b94"><span class="cl-2fdbb18a">5</span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">number</span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">milligram</span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a"></span></p></td>
+<td class="cl-2fde584a"><p class="cl-2fde3b9e"><span class="cl-2fdbb18a">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -252,71 +253,71 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:</p>
 <div class="tabwid">
-<style>.cl-6091dff6{}.cl-608ac1bc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-608dba0c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-608dba16{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-608ddb7c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-608ddb86{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-608ddb87{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-608ddb90{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-608ddb91{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-608ddb92{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-6091dff6">
+<style>.cl-2ffcdec8{}.cl-2ff6ba52{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ff94204{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ff9420e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ff95d8e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff95d98{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff95d99{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff95da2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff95da3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff95dac{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-2ffcdec8">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-608ddb7c"><p class="cl-608dba0c"><span class="cl-608ac1bc">pattern_id</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">amount</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">amount_unit</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">numerator</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">numerator_unit</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">denominator</span></p></th>
-<th class="cl-608ddb86"><p class="cl-608dba16"><span class="cl-608ac1bc">denominator_unit</span></p></th>
+<th class="cl-2ff95d8e"><p class="cl-2ff94204"><span class="cl-2ff6ba52">pattern_id</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">amount</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">amount_unit</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">numerator</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">numerator_unit</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">denominator</span></p></th>
+<th class="cl-2ff95d98"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb87"><p class="cl-608dba0c"><span class="cl-608ac1bc">6</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">international unit</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95d99"><p class="cl-2ff94204"><span class="cl-2ff6ba52">6</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">international unit</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb87"><p class="cl-608dba0c"><span class="cl-608ac1bc">7</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">microgram</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95d99"><p class="cl-2ff94204"><span class="cl-2ff6ba52">7</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">microgram</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb87"><p class="cl-608dba0c"><span class="cl-608ac1bc">8</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">milliequivalent</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95d99"><p class="cl-2ff94204"><span class="cl-2ff6ba52">8</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">milliequivalent</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb87"><p class="cl-608dba0c"><span class="cl-608ac1bc">9</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">milligram</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95d99"><p class="cl-2ff94204"><span class="cl-2ff6ba52">9</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">milligram</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb87"><p class="cl-608dba0c"><span class="cl-608ac1bc">10</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc">milliliter</span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb90"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95d99"><p class="cl-2ff94204"><span class="cl-2ff6ba52">10</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">milliliter</span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95da2"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-608ddb91"><p class="cl-608dba0c"><span class="cl-608ac1bc">11</span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc">number</span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc">unit</span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
-<td class="cl-608ddb92"><p class="cl-608dba16"><span class="cl-608ac1bc"></span></p></td>
+<td class="cl-2ff95da3"><p class="cl-2ff94204"><span class="cl-2ff6ba52">11</span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">number</span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52">unit</span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
+<td class="cl-2ff95dac"><p class="cl-2ff9420e"><span class="cl-2ff6ba52"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -333,287 +334,287 @@ field.</p>
 <p>This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:</p>
 <div class="tabwid">
-<style>.cl-60bb468e{}.cl-60b2ca36{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-60b62690{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-60b6269a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-60b6494a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60b64954{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60b6495e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60b6495f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60b64968{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60b64969{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-60bb468e">
+<style>.cl-30215668{}.cl-301973b2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-301c48e4{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-301c48ee{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-301c6a54{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-301c6a5e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-301c6a68{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-301c6a69{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-301c6a6a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-301c6a72{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-30215668">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-60b6494a"><p class="cl-60b62690"><span class="cl-60b2ca36">pattern_id</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">amount</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">amount_unit</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">numerator</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">numerator_unit</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">denominator</span></p></th>
-<th class="cl-60b64954"><p class="cl-60b6269a"><span class="cl-60b2ca36">denominator_unit</span></p></th>
+<th class="cl-301c6a54"><p class="cl-301c48e4"><span class="cl-301973b2">pattern_id</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">amount</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">amount_unit</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">numerator</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">numerator_unit</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">denominator</span></p></th>
+<th class="cl-301c6a5e"><p class="cl-301c48ee"><span class="cl-301973b2">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">12</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">international unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">12</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">international unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">13</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">international unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">13</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">international unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">14</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliequivalent</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">14</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliequivalent</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">15</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">Actuation</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">15</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">16</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">liter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">16</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">17</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">17</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">18</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">18</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">19</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">square centimeter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">19</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">20</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">20</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">21</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">21</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">22</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">Actuation</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">22</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">23</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">23</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">24</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">24</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">25</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">square centimeter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">25</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">26</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">international unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">26</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">international unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">27</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">international unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">27</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">international unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">28</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">mega-international unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">28</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">mega-international unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">29</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliequivalent</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">29</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliequivalent</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">30</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliequivalent</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">30</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliequivalent</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">31</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">Actuation</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">31</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">32</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">liter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">32</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">33</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">33</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">34</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">34</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">35</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">square centimeter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">35</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">36</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">36</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">37</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">37</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">38</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">Actuation</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">38</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">39</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milligram</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">39</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b6495e"><p class="cl-60b62690"><span class="cl-60b2ca36">40</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b6495f"><p class="cl-60b6269a"><span class="cl-60b2ca36">milliliter</span></p></td>
+<td class="cl-301c6a68"><p class="cl-301c48e4"><span class="cl-301973b2">40</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a69"><p class="cl-301c48ee"><span class="cl-301973b2">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-60b64968"><p class="cl-60b62690"><span class="cl-60b2ca36">41</span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36">number</span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36">unit</span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36"></span></p></td>
-<td class="cl-60b64969"><p class="cl-60b6269a"><span class="cl-60b2ca36">square centimeter</span></p></td>
+<td class="cl-301c6a6a"><p class="cl-301c48e4"><span class="cl-301973b2">41</span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2">number</span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2">unit</span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2"></span></p></td>
+<td class="cl-301c6a72"><p class="cl-301c48ee"><span class="cl-301973b2">square centimeter</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -758,17 +759,17 @@ so:</p>
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
+  border-top-width: 3px;
+  border-top-color: #D9D9D9;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: #D9D9D9;
   border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
+  border-bottom-width: 3px;
+  border-bottom-color: #D9D9D9;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-left-color: #D9D9D9;
 }
 
 #obkmmdrwkb .gt_caption {
@@ -1057,8 +1058,8 @@ so:</p>
 
 #obkmmdrwkb .gt_table_body {
   border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-top-width: 3px;
+  border-top-color: #D9D9D9;
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1181,8 +1182,8 @@ so:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Variable name
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_name]Variable name
 [header_level]number records
 [header_name]Estimate name
 [header_level]N">
@@ -1190,37 +1191,37 @@ so:</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]number records
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="spanner-[header_level]number records
 [header_name]Estimate name
 [header_level]N">
         <div class="gt_column_spanner">number records</div>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Missing dose
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="spanner-[header_level]Missing dose
 [header_name]Estimate name
 [header_level]N (%)">
         <div class="gt_column_spanner">Missing dose</div>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]daily_dose
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_level]daily_dose
 [header_name]Estimate name
 [header_level]Mean (SD)">
         <div class="gt_column_spanner">daily_dose</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Unit">Unit</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Route">Route</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern-id">Pattern id</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Estimate name
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Unit">Unit</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Route">Route</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Pattern-id">Pattern id</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_name]Estimate name
 [header_level]N">
         <div class="gt_column_spanner">Estimate name</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -1410,17 +1411,17 @@ example the following will suppress the <code>cdmName</code>:</p>
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
+  border-top-width: 3px;
+  border-top-color: #D9D9D9;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: #D9D9D9;
   border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
+  border-bottom-width: 3px;
+  border-bottom-color: #D9D9D9;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-left-color: #D9D9D9;
 }
 
 #pfaxdarfhp .gt_caption {
@@ -1709,8 +1710,8 @@ example the following will suppress the <code>cdmName</code>:</p>
 
 #pfaxdarfhp .gt_table_body {
   border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-top-width: 3px;
+  border-top-color: #D9D9D9;
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1833,8 +1834,8 @@ example the following will suppress the <code>cdmName</code>:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Variable name
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_name]Variable name
 [header_level]number records
 [header_name]Estimate name
 [header_level]N">
@@ -1842,39 +1843,39 @@ example the following will suppress the <code>cdmName</code>:</p>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup"></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]number records
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="spanner-[header_level]number records
 [header_name]Estimate name
 [header_level]N">
         <div class="gt_column_spanner">number records</div>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="spanner-[header_level]Missing dose
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="spanner-[header_level]Missing dose
 [header_name]Estimate name
 [header_level]N (%)">
         <div class="gt_column_spanner">Missing dose</div>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold; background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_level]daily_dose
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White; background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_level]daily_dose
 [header_name]Estimate name
 [header_level]Mean (SD)">
         <div class="gt_column_spanner">daily_dose</div>
       </th>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Sample-size">Sample size</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Unit">Unit</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Route">Route</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Pattern-id">Pattern id</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" style="text-align: center; font-weight: bold;" scope="col" id="Variable-level">Variable level</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold;" scope="colgroup" id="spanner-[header_name]Estimate name
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Sample-size">Sample size</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Unit">Unit</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Route">Route</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Pattern-id">Pattern id</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" style="text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="Variable-level">Variable level</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" style="background-color: #D9D9D9; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="colgroup" id="spanner-[header_name]Estimate name
 [header_level]N">
         <div class="gt_column_spanner">Estimate name</div>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]number-records-[header_name]Estimate-name-[header_level]N">N</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]Missing-dose-[header_name]Estimate-name-[header_level]N-(%)">N (%)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Mean-(SD)">Mean (SD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="background-color: #E1E1E1; text-align: center; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: White; border-right-width: 1px; border-right-style: solid; border-right-color: White; border-top-width: 1px; border-top-style: solid; border-top-color: White; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: White;" scope="col" id="[header_name]Variable-name-[header_level]daily_dose-[header_name]Estimate-name-[header_level]Median-(Q25---Q75)">Median (Q25 - Q75)</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -2058,7 +2059,7 @@ example the following will suppress the <code>cdmName</code>:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
