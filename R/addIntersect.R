@@ -45,17 +45,20 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CDMConnector)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' indications <- list("headache" = 378253, "asthma" = 317009)
-#' cdm <- CDMConnector::generateConceptCohortSet(
-#'   cdm = cdm, conceptSet = indications, name = "indication_cohorts"
-#' )
+#' indications <- list(headache = 378253, asthma = 317009)
+#' cdm <- generateConceptCohortSet(cdm = cdm,
+#'                                 conceptSet = indications,
+#'                                 name = "indication_cohorts")
 #'
-#' cdm <- generateIngredientCohortSet(
-#'   cdm = cdm, name = "drug_cohort",
-#'   ingredient = "acetaminophen"
-#' )
+#' cdm <- generateIngredientCohortSet(cdm = cdm,
+#'                                    name = "drug_cohort",
+#'                                    ingredient = "acetaminophen")
 #'
 #' cdm$drug_cohort |>
 #'   addIndication(
@@ -63,7 +66,7 @@
 #'     indicationWindow = list(c(0, 0)),
 #'     unknownIndicationTable = "condition_occurrence"
 #'   ) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 addIndication <- function(cohort,
@@ -117,20 +120,22 @@ addIndication <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation(numberIndividuals = 50)
 #'
+#' cdm <- generateIngredientCohortSet(cdm = cdm,
+#'                                    name = "drug_cohort",
+#'                                    ingredient = "acetaminophen")
 #'
-#' cdm <- generateIngredientCohortSet(
-#'   cdm = cdm, name = "drug_cohort", ingredient = "acetaminophen"
-#' )
-#'
-#' cdm <- generateIngredientCohortSet(
-#'   cdm = cdm, name = "treatments", ingredient = c("metformin", "simvastatin")
-#' )
+#' cdm <- generateIngredientCohortSet(cdm = cdm,
+#'                                    name = "treatments",
+#'                                    ingredient = c("metformin", "simvastatin"))
 #'
 #' cdm$drug_cohort |>
 #'   addTreatment("treatments", window = list(c(0, 0), c(1, 30), c(31, 60))) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 addTreatment <- function(cohort,

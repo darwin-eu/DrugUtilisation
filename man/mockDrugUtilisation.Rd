@@ -34,6 +34,8 @@ It creates a mock database for testing DrugUtilisation package
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 cdm

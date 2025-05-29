@@ -1,3 +1,19 @@
+# DrugUtilisation 1.0.2
+
+* Add examples of atc and ingredient documentation by @catalamarti
+* Add summariseTreatment input information in vignette by @KimLopezGuell
+* Drug restart documentation by @KimLopezGuell
+* Add drug utilisation documentation by @KimLopezGuell
+* Update equation daily dose vignette by @KimLopezGuell
+* Compatibility with omopgenerics 1.2.0 by @catalamarti
+* Homogenise examples by @catalamarti
+
+# DrugUtilisation 1.0.1
+
+* lifecycle stable by @catalamarti
+* Correct settings to not be NA by @catalamarti 
+* add .options argument by @catalamarti 
+
 # DrugUtilisation 1.0.0
 
 * Stable release.

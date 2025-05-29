@@ -76,9 +76,11 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' summariseDoseCoverage(cdm, 1125315)
+#' summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315)
 #' }
 #'
 summariseDoseCoverage <- function(cdm,

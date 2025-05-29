@@ -14,6 +14,8 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort2 <- cdm$cohort1 |>

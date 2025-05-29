@@ -29,9 +29,13 @@
 #'
 #' @examples
 #' \donttest{
-#' CDMConnector::requireEunomia()
-#' con <- duckdb::dbConnect(duckdb::duckdb(), CDMConnector::eunomiaDir())
-#' cdm <- CDMConnector::cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
+#' library(DrugUtilisation)
+#' library(CDMConnector)
+#' library(duckdb)
+#'
+#' requireEunomia()
+#' con <- dbConnect(drv = duckdb(dbdir = eunomiaDir()))
+#' cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
 #'
 #' timings <- benchmarkDrugUtilisation(cdm)
 #'

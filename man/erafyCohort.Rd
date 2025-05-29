@@ -36,6 +36,8 @@ Erafy a cohort_table collapsing records separated gapEra days or less.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 cdm$cohort2 <- cdm$cohort1 |>

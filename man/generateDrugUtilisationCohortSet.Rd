@@ -49,23 +49,25 @@ concatenated into a single cohort entry.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
 
-druglist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm, c("acetaminophen", "metformin"), nameStyle = "{concept_name}"
-)
+druglist <- getDrugIngredientCodes(cdm = cdm,
+                                   name = c("acetaminophen", "metformin"),
+                                   nameStyle = "{concept_name}")
 
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "drug_cohorts",
-  conceptSet = druglist,
-  gapEra = 30,
-  numberExposures = TRUE,
-  daysPrescribed = TRUE
-)
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "drug_cohorts",
+                                        conceptSet = druglist,
+                                        gapEra = 30,
+                                        numberExposures = TRUE,
+                                        daysPrescribed = TRUE)
 
 cdm$drug_cohorts |>
-  dplyr::glimpse()
+  glimpse()
 }
 
 }

@@ -272,6 +272,37 @@ cohortCount(cdm$acetaminophen_cohort)
 cohortCodelist(cdm$acetaminophen_cohort, cohortId = 1)
 ```
 
+## Analogous functions
+
+The function `generateDrugUtilisationCohortSet()` has two analogous functions:
+
+- `generateAtcCohortSet()` to generate cohorts using ATC labels.
+- `generateIngredientCohortSet()` to generate cohorts using ingredients names.
+
+Both functions allow to create cohorts and have all the same arguments than `generateDrugUtilisationCohortSet()` the main difference is that instead of the `conceptSet` argument we have the `atcName` argument and the `ingredient` argument. Also both functions have the `...` argument that is used by `CodelistGenerator::getATCCodes()` and `CodelistGenerator::getDrugIngredientCodes()` respectively.
+
+Let's see two simple examples, we can generate the 'alimentary tract and metabolism' (ATC code) cohort with:
+
+```{r}
+cdm <- generateAtcCohortSet(
+  cdm = cdm,
+  atcName = "alimentary tract and metabolism",
+  name = "atc_cohort"
+)
+settings(cdm$atc_cohort)
+```
+
+And the 'simvastatin' and 'metformin' cohorts, restricting to products with only one ingredient:
+```{r}
+cdm <- generateIngredientCohortSet(
+  cdm = cdm,
+  ingredient = c('simvastatin', 'metformin'),
+  name = "ingredient_cohort",
+  ingredientRange = c(1, 1)
+)
+settings(cdm$ingredient_cohort)
+```
+
 # Apply inclusion criteria to drug cohorts
 
 Once we have created our base cohort using a conceptSet and a gapEra we can apply different restrictions:

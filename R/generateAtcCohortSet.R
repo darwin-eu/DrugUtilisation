@@ -43,16 +43,17 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
-#' cdm <- generateAtcCohortSet(
-#'   cdm = cdm,
-#'   atcName = "alimentary tract and metabolism",
-#'   name = "drugs"
-#' )
+#' cdm <- generateAtcCohortSet(cdm = cdm,
+#'                             atcName = "alimentary tract and metabolism",
+#'                             name = "drugs")
 #'
 #' cdm$drugs |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 generateAtcCohortSet <- function(cdm,
                                  name,

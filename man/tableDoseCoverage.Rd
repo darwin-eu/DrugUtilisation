@@ -40,6 +40,8 @@ Format a dose_coverage object into a visual table.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 result <- summariseDoseCoverage(cdm, 1125315)

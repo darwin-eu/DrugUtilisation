@@ -41,14 +41,14 @@ Format a drug_restart object into a visual table.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
-conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "switch_cohort",
-  conceptSet = conceptlist
-)
+conceptlist <- list(acetaminophen = 1125360, metformin = c(1503297, 1503327))
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "switch_cohort",
+                                        conceptSet = conceptlist)
 
 result <- cdm$cohort1 |>
   summariseDrugRestart(switchCohortTable = "switch_cohort")

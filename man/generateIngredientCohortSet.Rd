@@ -61,16 +61,17 @@ be concatenated into a single cohort entry.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
 
-cdm <- generateIngredientCohortSet(
-  cdm = cdm,
-  ingredient = "acetaminophen",
-  name = "acetaminophen"
-)
+cdm <- generateIngredientCohortSet(cdm = cdm,
+                                   ingredient = "acetaminophen",
+                                   name = "acetaminophen")
 
 cdm$acetaminophen |>
-  dplyr::glimpse()
+  glimpse()
 }
 
 }

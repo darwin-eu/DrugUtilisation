@@ -2,7 +2,7 @@
 % Please edit documentation in R/summariseDrugRestart.R
 \name{addDrugRestart}
 \alias{addDrugRestart}
-\title{Summarise the drug restart per window.}
+\title{Add drug restart information as a column per follow-up period of interest.}
 \usage{
 addDrugRestart(
   cohort,
@@ -36,22 +36,22 @@ till after).}
 \item{nameStyle}{Character string to specify the nameStyle of the new columns.}
 }
 \value{
-A summarised_result object with the percentages of restart, switch
-and not exposed per window.
+The cohort table given with additional columns with information on the
+restart, switch and not exposed per follow-up period of interest.
 }
 \description{
-Summarise the drug restart per window.
+Add drug restart information as a column per follow-up period of interest.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
-conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "switch_cohort",
-  conceptSet = conceptlist
-)
+conceptlist <- list(acetaminophen = 1125360, metformin = c(1503297, 1503327))
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "switch_cohort",
+                                        conceptSet = conceptlist)
 
 cdm$cohort1 |>
   addDrugRestart(switchCohortTable = "switch_cohort")

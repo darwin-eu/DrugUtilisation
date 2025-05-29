@@ -30,20 +30,19 @@ summariseDrugRestart() function.
 }
 \examples{
 \dontrun{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 
 conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327))
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm,
-  name = "switch_cohort",
-  conceptSet = conceptlist
-)
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "switch_cohort",
+                                        conceptSet = conceptlist)
 
 result <- cdm$cohort1 |>
   summariseDrugRestart(switchCohortTable = "switch_cohort")
 
 plotDrugRestart(result)
-
 }
 
 }

@@ -31,6 +31,18 @@
 #' @return A summarised result
 #' @export
 #'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation(numberIndividuals = 100)
+#'
+#' result <- cdm$cohort1 |>
+#'   summariseProportionOfPatientsCovered(followUpDays = 365)
+#'
+#' tidy(result)
+#' }
+#'
 summariseProportionOfPatientsCovered <- function(cohort,
                                                  cohortId = NULL,
                                                  strata = list(),

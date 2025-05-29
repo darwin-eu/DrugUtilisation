@@ -48,10 +48,19 @@ To add a new column with the initial daily dose. To add multiple columns use
 }
 \examples{
 \donttest{
-cdm <- mockDrugUtilisation()
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
 
-cdm$cohort1 |>
-  addInitialDailyDose(ingredientConceptId = 1125315)
+cdm <- mockDrugUtilisation()
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
+
+cdm$dus_cohort |>
+  addInitialDailyDose(ingredientConceptId = 1125315) |>
+  glimpse()
 }
 
 }

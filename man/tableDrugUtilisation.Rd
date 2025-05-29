@@ -41,9 +41,14 @@ Format a drug_utilisation object into a visual table.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CodelistGenerator)
+
 cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(cdm, "acetaminophen")
-cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
 
 drugUse <- cdm$dus_cohort |>
   summariseDrugUtilisation(ingredientConceptId = 1125315)

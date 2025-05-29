@@ -92,15 +92,19 @@ Add new columns with drug use related information
 }
 \examples{
 \donttest{
-cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm,
-  name = "acetaminophen"
-)
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
 
-cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
-cdm[["dus_cohort"]] |>
-  addDrugUtilisation(ingredientConceptId = 1125315, gapEra = 30)
+cdm <- mockDrugUtilisation()
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
+cdm$dus_cohort |>
+  addDrugUtilisation(ingredientConceptId = 1125315, gapEra = 30) |>
+  glimpse()
 }
 
 }

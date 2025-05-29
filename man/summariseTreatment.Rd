@@ -50,6 +50,8 @@ This function is used to summarise treatments received
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+
 cdm <- mockDrugUtilisation()
 cdm$cohort1 |>
   summariseTreatment(

@@ -2,7 +2,7 @@
 % Please edit documentation in R/addDrugUtilisation.R
 \name{addInitialExposureDuration}
 \alias{addInitialExposureDuration}
-\title{To add a new column with the duratio of the first exposure.
+\title{To add a new column with the duration of the first exposure.
 To add multiple columns use \code{addDrugUtilisation()} for efficiency.}
 \usage{
 addInitialExposureDuration(
@@ -39,22 +39,24 @@ will be created.}
 The same cohort with the added column.
 }
 \description{
-To add a new column with the duratio of the first exposure.
+To add a new column with the duration of the first exposure.
 To add multiple columns use \code{addDrugUtilisation()} for efficiency.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm,
-  name = "acetaminophen"
-)
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm, name = "dus_cohort", conceptSet = codelist
-)
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
 
 cdm$dus_cohort |>
-  addInitialExposureDuration(conceptSet = codelist)
+  addInitialExposureDuration(conceptSet = codelist) |>
+  glimpse()
 }
 
 }

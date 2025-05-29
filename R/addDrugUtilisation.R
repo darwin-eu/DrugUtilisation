@@ -33,15 +33,19 @@
 #'
 #' @examples
 #' \donttest{
-#' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
-#' cdm <- generateDrugUtilisationCohortSet(cdm, "dus_cohort", codelist)
-#' cdm[["dus_cohort"]] |>
-#'   addDrugUtilisation(ingredientConceptId = 1125315, gapEra = 30)
+#' cdm <- mockDrugUtilisation()
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#'
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
+#' cdm$dus_cohort |>
+#'   addDrugUtilisation(ingredientConceptId = 1125315, gapEra = 30) |>
+#'   glimpse()
 #' }
 #'
 addDrugUtilisation <- function(cohort,
@@ -103,17 +107,19 @@ addDrugUtilisation <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addNumberExposures(conceptSet = codelist)
+#'   addNumberExposures(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addNumberExposures <- function(cohort,
@@ -164,17 +170,19 @@ addNumberExposures <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addDaysPrescribed(conceptSet = codelist)
+#'   addDaysPrescribed(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addDaysPrescribed <- function(cohort,
@@ -226,10 +234,19 @@ addDaysPrescribed <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' cdm <- mockDrugUtilisation()
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
-#' cdm$cohort1 |>
-#'   addCumulativeDose(ingredientConceptId = 1125315)
+#' cdm <- mockDrugUtilisation()
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
+#'
+#' cdm$dus_cohort |>
+#'   addCumulativeDose(ingredientConceptId = 1125315) |>
+#'   glimpse()
 #' }
 #'
 addCumulativeDose <- function(cohort,
@@ -281,10 +298,19 @@ addCumulativeDose <- function(cohort,
 #'
 #' @examples
 #' \donttest{
-#' cdm <- mockDrugUtilisation()
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
-#' cdm$cohort1 |>
-#'   addInitialDailyDose(ingredientConceptId = 1125315)
+#' cdm <- mockDrugUtilisation()
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
+#'
+#' cdm$dus_cohort |>
+#'   addInitialDailyDose(ingredientConceptId = 1125315) |>
+#'   glimpse()
 #' }
 #'
 addInitialDailyDose <- function(cohort,
@@ -335,17 +361,19 @@ addInitialDailyDose <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addCumulativeQuantity(conceptSet = codelist)
+#'   addCumulativeQuantity(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addCumulativeQuantity <- function(cohort,
@@ -396,17 +424,19 @@ addCumulativeQuantity <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addInitialQuantity(conceptSet = codelist)
+#'   addInitialQuantity(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addInitialQuantity <- function(cohort,
@@ -457,17 +487,19 @@ addInitialQuantity <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addTimeToExposure(conceptSet = codelist)
+#'   addTimeToExposure(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addTimeToExposure <- function(cohort,
@@ -519,17 +551,19 @@ addTimeToExposure <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addDaysExposed(conceptSet = codelist, gapEra = 1)
+#'   addDaysExposed(conceptSet = codelist, gapEra = 1) |>
+#'   glimpse()
 #' }
 #'
 addDaysExposed <- function(cohort,
@@ -564,7 +598,7 @@ addDaysExposed <- function(cohort,
     )
 }
 
-#' To add a new column with the duratio of the first exposure.
+#' To add a new column with the duration of the first exposure.
 #' To add multiple columns use `addDrugUtilisation()` for efficiency.
 #'
 #' @inheritParams cohortDoc
@@ -581,17 +615,19 @@ addDaysExposed <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addInitialExposureDuration(conceptSet = codelist)
+#'   addInitialExposureDuration(conceptSet = codelist) |>
+#'   glimpse()
 #' }
 #'
 addInitialExposureDuration <- function(cohort,
@@ -643,17 +679,19 @@ addInitialExposureDuration <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(CodelistGenerator)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
-#' codelist <- CodelistGenerator::getDrugIngredientCodes(
-#'   cdm,
-#'   name = "acetaminophen"
-#' )
-#' cdm <- generateDrugUtilisationCohortSet(
-#'   cdm = cdm, name = "dus_cohort", conceptSet = codelist
-#' )
+#' codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+#' cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+#'                                         name = "dus_cohort",
+#'                                         conceptSet = codelist)
 #'
 #' cdm$dus_cohort |>
-#'   addNumberEras(conceptSet = codelist, gapEra = 1)
+#'   addNumberEras(conceptSet = codelist, gapEra = 1) |>
+#'   glimpse()
 #' }
 #'
 addNumberEras <- function(cohort,

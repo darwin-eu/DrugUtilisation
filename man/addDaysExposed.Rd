@@ -48,17 +48,19 @@ To add a new column with the days exposed. To add multiple columns use
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
-codelist <- CodelistGenerator::getDrugIngredientCodes(
-  cdm,
-  name = "acetaminophen"
-)
-cdm <- generateDrugUtilisationCohortSet(
-  cdm = cdm, name = "dus_cohort", conceptSet = codelist
-)
+codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
+cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
+                                        name = "dus_cohort",
+                                        conceptSet = codelist)
 
 cdm$dus_cohort |>
-  addDaysExposed(conceptSet = codelist, gapEra = 1)
+  addDaysExposed(conceptSet = codelist, gapEra = 1) |>
+  glimpse()
 }
 
 }

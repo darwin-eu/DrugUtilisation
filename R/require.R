@@ -38,13 +38,16 @@
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requirePriorDrugWashout(days = 90)
 #'
 #' attrition(cdm$cohort1) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 requirePriorDrugWashout <- function(cohort,
@@ -118,13 +121,16 @@ requirePriorDrugWashout <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requireIsFirstDrugEntry()
 #'
 #' attrition(cdm$cohort1) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 requireIsFirstDrugEntry <- function(cohort,
@@ -182,13 +188,16 @@ requireIsFirstDrugEntry <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
 #'   requireObservationBeforeDrug(days = 365)
 #'
 #' attrition(cdm$cohort1) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 requireObservationBeforeDrug <- function(cohort,
@@ -255,15 +264,16 @@ requireObservationBeforeDrug <- function(cohort,
 #'
 #' @examples
 #' \donttest{
+#' library(DrugUtilisation)
+#' library(dplyr, warn.conflicts = FALSE)
+#'
 #' cdm <- mockDrugUtilisation()
 #'
 #' cdm$cohort1 <- cdm$cohort1 |>
-#'   requireDrugInDateRange(
-#'     dateRange = as.Date(c("2020-01-01", NA))
-#'   )
+#'   requireDrugInDateRange(dateRange = as.Date(c("2020-01-01", NA)))
 #'
 #' attrition(cdm$cohort1) |>
-#'   dplyr::glimpse()
+#'   glimpse()
 #' }
 #'
 requireDrugInDateRange <- function(cohort,

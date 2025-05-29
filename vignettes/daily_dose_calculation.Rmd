@@ -63,10 +63,12 @@ patternsWithFormula |>
 
 The formula in this case will be as follows:
 
-\begin{equation}
-if (denominator > 24) \rightarrow \textrm{daily dose} = 24 \cdot \frac{numerator}{denominator} \\
-if (denominator \leq 24) \rightarrow \textrm{daily dose} = numerator
-\end{equation}
+\[
+\begin{aligned}
+\text{if (denominator > 24)} &\rightarrow \text{daily dose} = 24 \cdot \frac{\text{numerator}}{\text{denominator}} \\
+\text{if (denominator} \leq 24) &\rightarrow \text{daily dose} = \text{numerator}
+\end{aligned}
+\]
 
 Note that daily dose has always unit associated in this case it will be determined by the `numerator_unit` field.
 

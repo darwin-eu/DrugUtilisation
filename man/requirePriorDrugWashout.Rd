@@ -37,13 +37,16 @@ individual.
 }
 \examples{
 \donttest{
+library(DrugUtilisation)
+library(dplyr, warn.conflicts = FALSE)
+
 cdm <- mockDrugUtilisation()
 
 cdm$cohort1 <- cdm$cohort1 |>
   requirePriorDrugWashout(days = 90)
 
 attrition(cdm$cohort1) |>
-  dplyr::glimpse()
+  glimpse()
 }
 
 }
