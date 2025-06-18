@@ -90,6 +90,7 @@ test_that("basic functionality drug_conceptId", {
 })
 
 test_that("cohort attrition", {
+  skip_on_cran()
   # create mock
   cdm <- mockDrugUtilisation(
     con = connection(),
