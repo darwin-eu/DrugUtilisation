@@ -17,7 +17,7 @@ considered as having no observed indication."><meta property="og:image" content=
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@ considered as having no observed indication."><meta property="og:image" content=
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Add a variable indicating individuals indications</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.2/R/addIntersect.R" class="external-link"><code>R/addIntersect.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/addIntersect.R" class="external-link"><code>R/addIntersect.R</code></a></small>
       <div class="d-none name"><code>addIndication.Rd</code></div>
     </div>
 
@@ -170,12 +170,12 @@ individual´s indications.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Collapse indications to mutually exclusive categories</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: ??</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.2.2 [unknown@Linux 6.11.0-1014-azure:R 4.5.0/:memory:]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1/:memory:]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 9<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2010-10-08<span style="color: #949494;">, </span>1987-08-06<span style="color: #949494;">, </span>2010-08-05<span style="color: #949494;">, </span>2006-05-13<span style="color: #949494;">, </span>2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2010-12-29<span style="color: #949494;">, </span>2001-06-07<span style="color: #949494;">, </span>2010-10-28<span style="color: #949494;">, </span>2008-06-29<span style="color: #949494;">, </span>2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ indication_0_to_0    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"asthma"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"heada…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2020-10-14<span style="color: #949494;">, </span>2006-05-13<span style="color: #949494;">, </span>2022-09-13<span style="color: #949494;">, </span>2010-08-05<span style="color: #949494;">, </span>1…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-05-26<span style="color: #949494;">, </span>2008-06-29<span style="color: #949494;">, </span>2022-11-02<span style="color: #949494;">, </span>2010-10-28<span style="color: #949494;">, </span>2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ indication_0_to_0    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "headache"<span style="color: #949494;">, </span>"asthma"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"n…</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
