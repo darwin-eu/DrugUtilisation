@@ -1,3 +1,7 @@
+# DrugUtilisation 1.0.3
+
+* Skip some tests for regression in duckdb by @catalamarti
+
 # DrugUtilisation 1.0.2
 
 * Add examples of atc and ingredient documentation by @catalamarti
