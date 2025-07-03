@@ -1,3 +1,7 @@
+# DrugUtilisation 1.0.4
+
+* Fix plotDrugUtilisation combining different cdm_name by @catalamarti
+
 # DrugUtilisation 1.0.3
 
 * Skip some tests for regression in duckdb by @catalamarti

@@ -222,7 +222,7 @@ plotDrugUtilisation <- function(result,
         cli::cli_abort()
     }
     vars <- getVariables(result)
-    x <- vars[!vars %in% c(asCharacterFacet(facet), result)]
+    x <- vars[!vars %in% asCharacterFacet(facet)]
     if (length(x) == 0) {
       result <- result |>
         omopgenerics::tidy() |>
@@ -288,7 +288,7 @@ plotDrugUtilisation <- function(result,
     result <- result |>
       dplyr::filter(.data$estimate_name %in% .env$est)
     vars <- getVariables(result)
-    x <- vars[!vars %in% c(asCharacterFacet(facet), result)]
+    x <- vars[!vars %in% asCharacterFacet(facet)]
     if (length(x) == 0) {
       result <- result |>
         omopgenerics::tidy() |>
@@ -535,6 +535,7 @@ getVariables <- function(res) {
     dplyr::distinct() |>
     omopgenerics::splitAll() |>
     omopgenerics::addSettings() |>
+    dplyr::select(!"result_id") |>
     as.list() |>
     purrr::map(unique) |>
     purrr::keep(\(x) length(x) > 1) |>
