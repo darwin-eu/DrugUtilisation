@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Identify and summarise indications among a drug cohort</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.3/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/indication.Rmd" class="external-link"><code>vignettes/indication.Rmd</code></a></small>
       <div class="d-none name"><code>indication.Rmd</code></div>
     </div>
 
@@ -156,12 +156,12 @@ with the label of the indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span>
+<span><span class="co">#&gt; Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span>
 <span><span class="co">#&gt; $ cohort_definition_id <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1…</span></span>
-<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 285<span style="color: #949494;">, </span>571<span style="color: #949494;">, </span>1115<span style="color: #949494;">, </span>1117<span style="color: #949494;">, </span>1335<span style="color: #949494;">, </span>1789<span style="color: #949494;">, </span>2485<span style="color: #949494;">, </span>2588<span style="color: #949494;">, </span>324…</span></span>
-<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1984-11-09<span style="color: #949494;">, </span>1980-05-17<span style="color: #949494;">, </span>1950-06-27<span style="color: #949494;">, </span>1974-05-03<span style="color: #949494;">, </span>…</span></span>
-<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1984-11-23<span style="color: #949494;">, </span>1980-05-31<span style="color: #949494;">, </span>1950-07-04<span style="color: #949494;">, </span>1974-05-10<span style="color: #949494;">, </span>…</span></span>
-<span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bronchitis"<span style="color: #949494;">, </span>"bronchitis"<span style="color: #949494;">, </span>"bronchitis"<span style="color: #949494;">, </span>"bronch…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ subject_id           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 42<span style="color: #949494;">, </span>53<span style="color: #949494;">, </span>72<span style="color: #949494;">, </span>185<span style="color: #949494;">, </span>280<span style="color: #949494;">, </span>295<span style="color: #949494;">, </span>295<span style="color: #949494;">, </span>320<span style="color: #949494;">, </span>652<span style="color: #949494;">, </span>885<span style="color: #949494;">, </span>88…</span></span>
+<span><span class="co">#&gt; $ cohort_start_date    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1980-06-21<span style="color: #949494;">, </span>1992-11-06<span style="color: #949494;">, </span>1979-07-10<span style="color: #949494;">, </span>1982-05-03<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ cohort_end_date      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1980-06-28<span style="color: #949494;">, </span>1992-11-20<span style="color: #949494;">, </span>1979-08-07<span style="color: #949494;">, </span>1982-05-17<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ indication_m30_to_0  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "none"<span style="color: #949494;">, </span>"bronchitis"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"none"<span style="color: #949494;">, </span>"no…</span></span></code></pre></div>
 <p>We can see that individuals are classified as having sinusistis
 (without bronchitis), bronchitis (without sinusitis), sinusitis and
 bronchitis, or no observed indication.</p>
@@ -170,7 +170,7 @@ bronchitis, or no observed indication.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
@@ -196,14 +196,14 @@ initiation.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> sinusitis                   18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                         7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis and sinusitis     3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none                         7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span></code></pre></div>
 <p>We can add indications for multiple time windows. Unsurprisingly we
 find more potential indications for wider windows (although this will
 likely increase our risk of false positives).</p>
@@ -219,30 +219,30 @@ likely increase our risk of false positives).</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_0_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_0_to_0     n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> unknown           <span style="text-decoration: underline;">11</span>211</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none                163</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sinusitis             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> bronchitis         <span style="text-decoration: underline;">2</span>524</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis         <span style="text-decoration: underline;">2</span>524</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> unknown           <span style="text-decoration: underline;">11</span>211</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none                163</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sinusitis             1</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m30_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m30_to_0          n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>527</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> sinusitis                   18</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> unknown                  <span style="text-decoration: underline;">11</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none                         7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> bronchitis and sinusitis     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none                         7</span></span>
 <span><span class="va">cdm</span><span class="op">[[</span><span class="st">"acetaminophen_users"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">indication_m365_to_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.0 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/Rtmpd0IFDf/file23d379ea9c5e.duckdb]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB v1.3.1 [unknown@Linux 6.11.0-1015-azure:R 4.5.1//tmp/RtmpiwddEk/file25091becd0ac.duckdb]</span></span></span>
 <span><span class="co">#&gt;   indication_m365_to_0         n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> bronchitis                <span style="text-decoration: underline;">2</span>615</span></span>
@@ -269,23 +269,23 @@ indication.</p>
 <p>We can then easily create a plot or a table of the results</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableIndication.html">tableIndication</a></span><span class="op">(</span><span class="va">indicationSummary</span><span class="op">)</span></span></code></pre></div>
-<div id="vnxcljjbjg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vnxcljjbjg table {
+<div id="eoelfyoqai" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eoelfyoqai table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vnxcljjbjg thead, #vnxcljjbjg tbody, #vnxcljjbjg tfoot, #vnxcljjbjg tr, #vnxcljjbjg td, #vnxcljjbjg th {
+#eoelfyoqai thead, #eoelfyoqai tbody, #eoelfyoqai tfoot, #eoelfyoqai tr, #eoelfyoqai td, #eoelfyoqai th {
   border-style: none;
 }
 
-#vnxcljjbjg p {
+#eoelfyoqai p {
   margin: 0;
   padding: 0;
 }
 
-#vnxcljjbjg .gt_table {
+#eoelfyoqai .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -311,12 +311,12 @@ indication.</p>
   border-left-color: #D9D9D9;
 }
 
-#vnxcljjbjg .gt_caption {
+#eoelfyoqai .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vnxcljjbjg .gt_title {
+#eoelfyoqai .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -328,7 +328,7 @@ indication.</p>
   border-bottom-width: 0;
 }
 
-#vnxcljjbjg .gt_subtitle {
+#eoelfyoqai .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -340,7 +340,7 @@ indication.</p>
   border-top-width: 0;
 }
 
-#vnxcljjbjg .gt_heading {
+#eoelfyoqai .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -352,13 +352,13 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_bottom_border {
+#eoelfyoqai .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_col_headings {
+#eoelfyoqai .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -373,7 +373,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_col_heading {
+#eoelfyoqai .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -393,7 +393,7 @@ indication.</p>
   overflow-x: hidden;
 }
 
-#vnxcljjbjg .gt_column_spanner_outer {
+#eoelfyoqai .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -405,15 +405,15 @@ indication.</p>
   padding-right: 4px;
 }
 
-#vnxcljjbjg .gt_column_spanner_outer:first-child {
+#eoelfyoqai .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vnxcljjbjg .gt_column_spanner_outer:last-child {
+#eoelfyoqai .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vnxcljjbjg .gt_column_spanner {
+#eoelfyoqai .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -425,11 +425,11 @@ indication.</p>
   width: 100%;
 }
 
-#vnxcljjbjg .gt_spanner_row {
+#eoelfyoqai .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vnxcljjbjg .gt_group_heading {
+#eoelfyoqai .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -455,7 +455,7 @@ indication.</p>
   text-align: left;
 }
 
-#vnxcljjbjg .gt_empty_group_heading {
+#eoelfyoqai .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -470,15 +470,15 @@ indication.</p>
   vertical-align: middle;
 }
 
-#vnxcljjbjg .gt_from_md > :first-child {
+#eoelfyoqai .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vnxcljjbjg .gt_from_md > :last-child {
+#eoelfyoqai .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vnxcljjbjg .gt_row {
+#eoelfyoqai .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -497,7 +497,7 @@ indication.</p>
   overflow-x: hidden;
 }
 
-#vnxcljjbjg .gt_stub {
+#eoelfyoqai .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -510,7 +510,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#vnxcljjbjg .gt_stub_row_group {
+#eoelfyoqai .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -524,15 +524,15 @@ indication.</p>
   vertical-align: top;
 }
 
-#vnxcljjbjg .gt_row_group_first td {
+#eoelfyoqai .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vnxcljjbjg .gt_row_group_first th {
+#eoelfyoqai .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vnxcljjbjg .gt_summary_row {
+#eoelfyoqai .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -542,16 +542,16 @@ indication.</p>
   padding-right: 5px;
 }
 
-#vnxcljjbjg .gt_first_summary_row {
+#eoelfyoqai .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_first_summary_row.thick {
+#eoelfyoqai .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vnxcljjbjg .gt_last_summary_row {
+#eoelfyoqai .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -561,7 +561,7 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_grand_summary_row {
+#eoelfyoqai .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -571,7 +571,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#vnxcljjbjg .gt_first_grand_summary_row {
+#eoelfyoqai .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,7 +581,7 @@ indication.</p>
   border-top-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_last_grand_summary_row_top {
+#eoelfyoqai .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -591,11 +591,11 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_striped {
+#eoelfyoqai .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vnxcljjbjg .gt_table_body {
+#eoelfyoqai .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -604,7 +604,7 @@ indication.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_footnotes {
+#eoelfyoqai .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -618,7 +618,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_footnote {
+#eoelfyoqai .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -627,7 +627,7 @@ indication.</p>
   padding-right: 5px;
 }
 
-#vnxcljjbjg .gt_sourcenotes {
+#eoelfyoqai .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -641,7 +641,7 @@ indication.</p>
   border-right-color: #D3D3D3;
 }
 
-#vnxcljjbjg .gt_sourcenote {
+#eoelfyoqai .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -649,72 +649,72 @@ indication.</p>
   padding-right: 5px;
 }
 
-#vnxcljjbjg .gt_left {
+#eoelfyoqai .gt_left {
   text-align: left;
 }
 
-#vnxcljjbjg .gt_center {
+#eoelfyoqai .gt_center {
   text-align: center;
 }
 
-#vnxcljjbjg .gt_right {
+#eoelfyoqai .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vnxcljjbjg .gt_font_normal {
+#eoelfyoqai .gt_font_normal {
   font-weight: normal;
 }
 
-#vnxcljjbjg .gt_font_bold {
+#eoelfyoqai .gt_font_bold {
   font-weight: bold;
 }
 
-#vnxcljjbjg .gt_font_italic {
+#eoelfyoqai .gt_font_italic {
   font-style: italic;
 }
 
-#vnxcljjbjg .gt_super {
+#eoelfyoqai .gt_super {
   font-size: 65%;
 }
 
-#vnxcljjbjg .gt_footnote_marks {
+#eoelfyoqai .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vnxcljjbjg .gt_asterisk {
+#eoelfyoqai .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vnxcljjbjg .gt_indent_1 {
+#eoelfyoqai .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vnxcljjbjg .gt_indent_2 {
+#eoelfyoqai .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vnxcljjbjg .gt_indent_3 {
+#eoelfyoqai .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vnxcljjbjg .gt_indent_4 {
+#eoelfyoqai .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vnxcljjbjg .gt_indent_5 {
+#eoelfyoqai .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vnxcljjbjg .katex-display {
+#eoelfyoqai .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vnxcljjbjg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eoelfyoqai div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -924,23 +924,23 @@ results by age groups and sex.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableIndication.html">tableIndication</a></span><span class="op">(</span><span class="va">indicationSummaryStratified</span><span class="op">)</span></span></code></pre></div>
-<div id="nmkjeekpgw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nmkjeekpgw table {
+<div id="gnjjobufjg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gnjjobufjg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nmkjeekpgw thead, #nmkjeekpgw tbody, #nmkjeekpgw tfoot, #nmkjeekpgw tr, #nmkjeekpgw td, #nmkjeekpgw th {
+#gnjjobufjg thead, #gnjjobufjg tbody, #gnjjobufjg tfoot, #gnjjobufjg tr, #gnjjobufjg td, #gnjjobufjg th {
   border-style: none;
 }
 
-#nmkjeekpgw p {
+#gnjjobufjg p {
   margin: 0;
   padding: 0;
 }
 
-#nmkjeekpgw .gt_table {
+#gnjjobufjg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -966,12 +966,12 @@ results by age groups and sex.</p>
   border-left-color: #D9D9D9;
 }
 
-#nmkjeekpgw .gt_caption {
+#gnjjobufjg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nmkjeekpgw .gt_title {
+#gnjjobufjg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -983,7 +983,7 @@ results by age groups and sex.</p>
   border-bottom-width: 0;
 }
 
-#nmkjeekpgw .gt_subtitle {
+#gnjjobufjg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -995,7 +995,7 @@ results by age groups and sex.</p>
   border-top-width: 0;
 }
 
-#nmkjeekpgw .gt_heading {
+#gnjjobufjg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1007,13 +1007,13 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_bottom_border {
+#gnjjobufjg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_col_headings {
+#gnjjobufjg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1028,7 +1028,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_col_heading {
+#gnjjobufjg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1048,7 +1048,7 @@ results by age groups and sex.</p>
   overflow-x: hidden;
 }
 
-#nmkjeekpgw .gt_column_spanner_outer {
+#gnjjobufjg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1060,15 +1060,15 @@ results by age groups and sex.</p>
   padding-right: 4px;
 }
 
-#nmkjeekpgw .gt_column_spanner_outer:first-child {
+#gnjjobufjg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nmkjeekpgw .gt_column_spanner_outer:last-child {
+#gnjjobufjg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nmkjeekpgw .gt_column_spanner {
+#gnjjobufjg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1080,11 +1080,11 @@ results by age groups and sex.</p>
   width: 100%;
 }
 
-#nmkjeekpgw .gt_spanner_row {
+#gnjjobufjg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nmkjeekpgw .gt_group_heading {
+#gnjjobufjg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1110,7 +1110,7 @@ results by age groups and sex.</p>
   text-align: left;
 }
 
-#nmkjeekpgw .gt_empty_group_heading {
+#gnjjobufjg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1125,15 +1125,15 @@ results by age groups and sex.</p>
   vertical-align: middle;
 }
 
-#nmkjeekpgw .gt_from_md > :first-child {
+#gnjjobufjg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nmkjeekpgw .gt_from_md > :last-child {
+#gnjjobufjg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nmkjeekpgw .gt_row {
+#gnjjobufjg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1152,7 +1152,7 @@ results by age groups and sex.</p>
   overflow-x: hidden;
 }
 
-#nmkjeekpgw .gt_stub {
+#gnjjobufjg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1165,7 +1165,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#nmkjeekpgw .gt_stub_row_group {
+#gnjjobufjg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1179,15 +1179,15 @@ results by age groups and sex.</p>
   vertical-align: top;
 }
 
-#nmkjeekpgw .gt_row_group_first td {
+#gnjjobufjg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nmkjeekpgw .gt_row_group_first th {
+#gnjjobufjg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nmkjeekpgw .gt_summary_row {
+#gnjjobufjg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1197,16 +1197,16 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#nmkjeekpgw .gt_first_summary_row {
+#gnjjobufjg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_first_summary_row.thick {
+#gnjjobufjg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nmkjeekpgw .gt_last_summary_row {
+#gnjjobufjg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1216,7 +1216,7 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_grand_summary_row {
+#gnjjobufjg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1226,7 +1226,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#nmkjeekpgw .gt_first_grand_summary_row {
+#gnjjobufjg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1236,7 +1236,7 @@ results by age groups and sex.</p>
   border-top-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_last_grand_summary_row_top {
+#gnjjobufjg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1246,11 +1246,11 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_striped {
+#gnjjobufjg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nmkjeekpgw .gt_table_body {
+#gnjjobufjg .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -1259,7 +1259,7 @@ results by age groups and sex.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_footnotes {
+#gnjjobufjg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1273,7 +1273,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_footnote {
+#gnjjobufjg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1282,7 +1282,7 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#nmkjeekpgw .gt_sourcenotes {
+#gnjjobufjg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1296,7 +1296,7 @@ results by age groups and sex.</p>
   border-right-color: #D3D3D3;
 }
 
-#nmkjeekpgw .gt_sourcenote {
+#gnjjobufjg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1304,72 +1304,72 @@ results by age groups and sex.</p>
   padding-right: 5px;
 }
 
-#nmkjeekpgw .gt_left {
+#gnjjobufjg .gt_left {
   text-align: left;
 }
 
-#nmkjeekpgw .gt_center {
+#gnjjobufjg .gt_center {
   text-align: center;
 }
 
-#nmkjeekpgw .gt_right {
+#gnjjobufjg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nmkjeekpgw .gt_font_normal {
+#gnjjobufjg .gt_font_normal {
   font-weight: normal;
 }
 
-#nmkjeekpgw .gt_font_bold {
+#gnjjobufjg .gt_font_bold {
   font-weight: bold;
 }
 
-#nmkjeekpgw .gt_font_italic {
+#gnjjobufjg .gt_font_italic {
   font-style: italic;
 }
 
-#nmkjeekpgw .gt_super {
+#gnjjobufjg .gt_super {
   font-size: 65%;
 }
 
-#nmkjeekpgw .gt_footnote_marks {
+#gnjjobufjg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nmkjeekpgw .gt_asterisk {
+#gnjjobufjg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nmkjeekpgw .gt_indent_1 {
+#gnjjobufjg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nmkjeekpgw .gt_indent_2 {
+#gnjjobufjg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nmkjeekpgw .gt_indent_3 {
+#gnjjobufjg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nmkjeekpgw .gt_indent_4 {
+#gnjjobufjg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nmkjeekpgw .gt_indent_5 {
+#gnjjobufjg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nmkjeekpgw .katex-display {
+#gnjjobufjg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nmkjeekpgw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gnjjobufjg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Assessing drug restart and switching after treatment</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.3/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
       <div class="d-none name"><code>drug_restart.Rmd</code></div>
     </div>
 
@@ -263,7 +263,10 @@ customisation options to format the resulting table according to the
 user preferences.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/tableDrugRestart.html">tableDrugRestart</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/tableDrugRestart.html">tableDrugRestart</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: <span style="font-weight: bold;">cdm_name</span>, <span style="font-weight: bold;">cohort_name</span>, <span style="font-weight: bold;">variable_name</span>, <span style="font-weight: bold;">follow_up_days</span>, <span style="font-weight: bold;">censor_date</span>,</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">cohort_table_name</span>, <span style="font-weight: bold;">incident</span>, <span style="font-weight: bold;">restrict_to_first_discontinuation</span>, and</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">switch_cohort_table</span> are missing in `columnOrder`, will be added last.</span></span></code></pre></div>
 <div id="ajhadkrwvf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ajhadkrwvf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1864,11 +1867,92 @@ add one column per follow-up window we ask for:</p>
 <tbody class="gt_table_body">
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">59</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2019-09-08</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-06-19</td>
+<td headers="subject_id" class="gt_row gt_right">69</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2020-04-28</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-10-03</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">19</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2009-03-10</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2011-04-27</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">99</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2020-03-12</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-04-10</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">128</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-08-20</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2021-08-20</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">4</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2009-05-01</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2009-11-27</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">121</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2019-05-17</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2019-11-13</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">191</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2019-11-02</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-04-17</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">54</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1987-06-05</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1990-04-03</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">98</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2014-07-10</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2016-02-06</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">129</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2020-01-10</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-08-31</td>
+<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
 </tr>
 <tr>
@@ -1891,99 +1975,18 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">4</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2009-05-01</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2009-11-27</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">99</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2020-03-12</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-04-10</td>
+<td headers="subject_id" class="gt_row gt_right">59</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2019-09-08</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-06-19</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">121</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2019-05-17</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2019-11-13</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">128</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-08-20</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2021-08-20</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">54</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1987-06-05</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1990-04-03</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">191</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2019-11-02</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-04-17</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">19</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2009-03-10</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2011-04-27</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">129</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2020-01-10</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-08-31</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">98</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2014-07-10</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2016-02-06</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">69</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2020-04-28</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-10-03</td>
-<td headers="drug_restart_180" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">78</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2016-08-20</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2016-11-02</td>
+<td headers="subject_id" class="gt_row gt_right">151</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2005-05-06</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2007-12-30</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2017,6 +2020,15 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">78</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2016-08-20</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2016-11-02</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">127</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2019-09-07</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2019-09-15</td>
@@ -2029,15 +2041,6 @@ add one column per follow-up window we ask for:</p>
 <td headers="subject_id" class="gt_row gt_right">99</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2021-05-16</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2021-06-22</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">151</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2005-05-06</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2007-12-30</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2062,18 +2065,9 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">181</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1987-06-02</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1997-12-15</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">187</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1994-10-31</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1996-09-28</td>
+<td headers="subject_id" class="gt_row gt_right">114</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-03-19</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2021-06-24</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2098,9 +2092,27 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">114</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-03-19</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2021-06-24</td>
+<td headers="subject_id" class="gt_row gt_right">181</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1987-06-02</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1997-12-15</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">187</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1994-10-31</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1996-09-28</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">11</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2007-04-03</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2007-05-07</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2143,9 +2155,9 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">11</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2007-04-03</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2007-05-07</td>
+<td headers="subject_id" class="gt_row gt_right">80</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2018-08-03</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2018-09-08</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2188,33 +2200,6 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">80</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2018-08-03</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2018-09-08</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">132</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2007-05-18</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2008-04-24</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">175</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2022-09-13</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2022-09-27</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">174</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2019-05-21</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2019-06-13</td>
@@ -2233,54 +2218,18 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">38</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2000-03-27</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2003-07-03</td>
+<td headers="subject_id" class="gt_row gt_right">132</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2007-05-18</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2008-04-24</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">43</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1972-03-04</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1990-03-14</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">35</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2014-12-01</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2016-04-11</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">47</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2016-02-29</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2016-09-10</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">69</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-01-06</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2021-01-19</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">125</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2013-01-13</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2013-07-15</td>
+<td headers="subject_id" class="gt_row gt_right">175</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2022-09-13</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2022-09-27</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2314,27 +2263,54 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">82</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2004-02-25</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2008-06-14</td>
+<td headers="subject_id" class="gt_row gt_right">35</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2014-12-01</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2016-04-11</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">169</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2016-03-29</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-10-15</td>
+<td headers="subject_id" class="gt_row gt_right">47</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2016-02-29</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2016-09-10</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">65</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2004-09-04</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2015-07-24</td>
+<td headers="subject_id" class="gt_row gt_right">69</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-01-06</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2021-01-19</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">38</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2000-03-27</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2003-07-03</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">43</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1972-03-04</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1990-03-14</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">125</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2013-01-13</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2013-07-15</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2368,27 +2344,27 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">155</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1999-08-04</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2001-12-26</td>
+<td headers="subject_id" class="gt_row gt_right">65</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2004-09-04</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2015-07-24</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">185</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1993-07-02</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1999-05-12</td>
+<td headers="subject_id" class="gt_row gt_right">82</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2004-02-25</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2008-06-14</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">124</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-07-09</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2022-08-07</td>
+<td headers="subject_id" class="gt_row gt_right">169</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2016-03-29</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-10-15</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2422,6 +2398,42 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">155</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1999-08-04</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2001-12-26</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">185</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1993-07-02</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1999-05-12</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">124</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-07-09</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2022-08-07</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">54</td>
+<td headers="cohort_start_date" class="gt_row gt_right">1990-06-01</td>
+<td headers="cohort_end_date" class="gt_row gt_right">1990-06-26</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">143</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2020-11-20</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2020-11-21</td>
@@ -2449,9 +2461,18 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">54</td>
-<td headers="cohort_start_date" class="gt_row gt_right">1990-06-01</td>
-<td headers="cohort_end_date" class="gt_row gt_right">1990-06-26</td>
+<td headers="subject_id" class="gt_row gt_right">7</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2010-01-08</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2011-05-13</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">179</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2017-08-07</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2017-08-11</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2494,27 +2515,45 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">7</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2010-01-08</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2011-05-13</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">179</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2017-08-07</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2017-08-11</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">177</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2022-02-05</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2022-03-17</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">67</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2009-09-27</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2012-08-13</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">98</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2016-05-09</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2017-03-17</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">171</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2000-01-18</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2002-04-03</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">121</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2020-05-04</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2021-09-09</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2575,36 +2614,18 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">67</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2009-09-27</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2012-08-13</td>
+<td headers="subject_id" class="gt_row gt_right">103</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2014-10-08</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-01-23</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">98</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2016-05-09</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2017-03-17</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">171</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2000-01-18</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2002-04-03</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">121</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2020-05-04</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2021-09-09</td>
+<td headers="subject_id" class="gt_row gt_right">129</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2020-11-08</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2020-11-22</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2638,69 +2659,6 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">129</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2020-11-08</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-11-22</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">103</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2014-10-08</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2020-01-23</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">158</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2015-01-16</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2018-11-30</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">144</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2011-12-07</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2013-03-06</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">128</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-09-30</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2021-10-07</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">102</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2009-03-20</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2009-09-23</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">196</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2000-11-04</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2004-05-07</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">3</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2001-07-12</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2002-03-10</td>
@@ -2728,6 +2686,60 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">144</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2011-12-07</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2013-03-06</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">128</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-09-30</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2021-10-07</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">158</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2015-01-16</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2018-11-30</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">102</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2009-03-20</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2009-09-23</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">196</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2000-11-04</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2004-05-07</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
+<td headers="subject_id" class="gt_row gt_right">59</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2021-10-24</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2022-03-31</td>
+<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+</tr>
+<tr>
+<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
 <td headers="subject_id" class="gt_row gt_right">74</td>
 <td headers="cohort_start_date" class="gt_row gt_right">2008-03-21</td>
 <td headers="cohort_end_date" class="gt_row gt_right">2017-06-02</td>
@@ -2746,9 +2758,9 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">59</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2021-10-24</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2022-03-31</td>
+<td headers="subject_id" class="gt_row gt_right">92</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2022-09-29</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2022-10-11</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
@@ -2764,12 +2776,12 @@ add one column per follow-up window we ask for:</p>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">92</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2022-09-29</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2022-10-11</td>
+<td headers="subject_id" class="gt_row gt_right">136</td>
+<td headers="cohort_start_date" class="gt_row gt_right">2012-12-09</td>
+<td headers="cohort_end_date" class="gt_row gt_right">2013-11-15</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">untreated</td>
+<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
+<td headers="drug_restart_inf" class="gt_row gt_left">restart and switch</td>
 </tr>
 <tr>
 <td headers="cohort_definition_id" class="gt_row gt_right">1</td>
@@ -2778,15 +2790,6 @@ add one column per follow-up window we ask for:</p>
 <td headers="cohort_end_date" class="gt_row gt_right">2014-07-01</td>
 <td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
 <td headers="drug_restart_365" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_inf" class="gt_row gt_left">restart and switch</td>
-</tr>
-<tr>
-<td headers="cohort_definition_id" class="gt_row gt_right">1</td>
-<td headers="subject_id" class="gt_row gt_right">136</td>
-<td headers="cohort_start_date" class="gt_row gt_right">2012-12-09</td>
-<td headers="cohort_end_date" class="gt_row gt_right">2013-11-15</td>
-<td headers="drug_restart_180" class="gt_row gt_left">untreated</td>
-<td headers="drug_restart_365" class="gt_row gt_left">restart</td>
 <td headers="drug_restart_inf" class="gt_row gt_left">restart and switch</td>
 </tr>
 <tr>
