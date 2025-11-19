@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +48,7 @@
       <h3 id="generate-a-set-of-drug-cohorts">Generate a set of drug cohorts<a class="anchor" aria-label="anchor" href="#generate-a-set-of-drug-cohorts"></a></h3>
       <div class="section-desc"><p>Generate a set of drug cohorts using given concepts or vocabulary hierarchies</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -60,25 +59,29 @@
 
         </dt>
         <dd>Generate a set of drug cohorts based on given concepts</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="generateIngredientCohortSet.html">generateIngredientCohortSet()</a></code>
 
         </dt>
         <dd>Generate a set of drug cohorts based on drug ingredients</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="generateAtcCohortSet.html">generateAtcCohortSet()</a></code>
 
         </dt>
         <dd>Generate a set of drug cohorts based on ATC classification</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="erafyCohort.html">erafyCohort()</a></code>
 
         </dt>
         <dd>Erafy a cohort_table collapsing records separated gapEra days or less.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="cohortGapEra.html">cohortGapEra()</a></code>
 
@@ -89,8 +92,7 @@
       <h3 id="apply-inclusion-criteria-to-drug-cohorts">Apply inclusion criteria to drug cohorts<a class="anchor" aria-label="anchor" href="#apply-inclusion-criteria-to-drug-cohorts"></a></h3>
       <div class="section-desc"><p>Apply inclusion criteria that filter drug cohort entries based on specified rules.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -101,19 +103,22 @@
 
         </dt>
         <dd>Restrict cohort to only cohort records within a certain date range</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="requireIsFirstDrugEntry.html">requireIsFirstDrugEntry()</a></code>
 
         </dt>
         <dd>Restrict cohort to only the first cohort record per subject</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="requireObservationBeforeDrug.html">requireObservationBeforeDrug()</a></code>
 
         </dt>
         <dd>Restrict cohort to only cohort records with the given amount of prior observation time in the database</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="requirePriorDrugWashout.html">requirePriorDrugWashout()</a></code>
 
@@ -124,8 +129,7 @@
       <h3 id="identify-and-summarise-indications-for-patients-in-drug-cohorts">Identify and summarise indications for patients in drug cohorts<a class="anchor" aria-label="anchor" href="#identify-and-summarise-indications-for-patients-in-drug-cohorts"></a></h3>
       <div class="section-desc"><p>Indications identified based on their presence in indication cohorts or OMOP CDM clinical tabes.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -136,19 +140,22 @@
 
         </dt>
         <dd>Add a variable indicating individuals indications</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="summariseIndication.html">summariseIndication()</a></code>
 
         </dt>
         <dd>Summarise the indications of individuals in a drug cohort</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableIndication.html">tableIndication()</a></code>
 
         </dt>
         <dd>Create a table showing indication results</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="plotIndication.html">plotIndication()</a></code>
 
@@ -159,8 +166,7 @@
       <h3 id="drug-use-functions">Drug use functions<a class="anchor" aria-label="anchor" href="#drug-use-functions"></a></h3>
       <div class="section-desc"><p>Drug use functions are used to summarise and obtain the drug use information</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -171,19 +177,22 @@
 
         </dt>
         <dd>Add new columns with drug use related information</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="summariseDrugUtilisation.html">summariseDrugUtilisation()</a></code>
 
         </dt>
         <dd>This function is used to summarise the dose utilisation table over multiple cohorts.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableDrugUtilisation.html">tableDrugUtilisation()</a></code>
 
         </dt>
         <dd>Format a drug_utilisation object into a visual table.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="plotDrugUtilisation.html">plotDrugUtilisation()</a></code>
 
@@ -194,8 +203,7 @@
       <h3 id="drug-use-individual-functions">Drug use individual functions<a class="anchor" aria-label="anchor" href="#drug-use-individual-functions"></a></h3>
       <div class="section-desc"><p>Drug use functions can be used to add a single estimates</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -206,55 +214,64 @@
 
         </dt>
         <dd>To add a new column with the number of exposures. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addNumberEras.html">addNumberEras()</a></code>
 
         </dt>
         <dd>To add a new column with the number of eras. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addTimeToExposure.html">addTimeToExposure()</a></code>
 
         </dt>
         <dd>To add a new column with the time to exposure. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addDaysExposed.html">addDaysExposed()</a></code>
 
         </dt>
         <dd>To add a new column with the days exposed. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addDaysPrescribed.html">addDaysPrescribed()</a></code>
 
         </dt>
         <dd>To add a new column with the days prescribed. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addInitialExposureDuration.html">addInitialExposureDuration()</a></code>
 
         </dt>
         <dd>To add a new column with the duration of the first exposure. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addInitialQuantity.html">addInitialQuantity()</a></code>
 
         </dt>
         <dd>To add a new column with the initial quantity. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addCumulativeQuantity.html">addCumulativeQuantity()</a></code>
 
         </dt>
         <dd>To add a new column with the cumulative quantity. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addInitialDailyDose.html">addInitialDailyDose()</a></code>
 
         </dt>
         <dd>To add a new column with the initial daily dose. To add multiple columns use <code><a href="../reference/addDrugUtilisation.html">addDrugUtilisation()</a></code> for efficiency.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="addCumulativeDose.html">addCumulativeDose()</a></code>
 
@@ -265,8 +282,7 @@
       <h3 id="summarise-treatment-persistence-using-proportion-of-patients-covered-ppc-">Summarise treatment persistence using proportion of patients covered (PPC)<a class="anchor" aria-label="anchor" href="#summarise-treatment-persistence-using-proportion-of-patients-covered-ppc-"></a></h3>
       <div class="section-desc"><p>Summarise the proportion of patients in the drug cohort over time.</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -277,13 +293,15 @@
 
         </dt>
         <dd>Summarise proportion Of patients covered</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableProportionOfPatientsCovered.html">tableProportionOfPatientsCovered()</a></code>
 
         </dt>
         <dd>Create a table with proportion of patients covered results</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="plotProportionOfPatientsCovered.html">plotProportionOfPatientsCovered()</a></code>
 
@@ -294,8 +312,7 @@
       <h3 id="summarise-treatments-during-certain-windows">Summarise treatments during certain windows<a class="anchor" aria-label="anchor" href="#summarise-treatments-during-certain-windows"></a></h3>
       <div class="section-desc"><p>Summarise the use of different treatments during certain windows</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -306,19 +323,22 @@
 
         </dt>
         <dd>Add a variable indicating individuals medications</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="summariseTreatment.html">summariseTreatment()</a></code>
 
         </dt>
         <dd>This function is used to summarise treatments received</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableTreatment.html">tableTreatment()</a></code>
 
         </dt>
         <dd>Format a summarised_treatment result into a visual table.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="plotTreatment.html">plotTreatment()</a></code>
 
@@ -329,8 +349,7 @@
       <h3 id="summarise-treatment-restart-or-switch-during-certain-time">Summarise treatment restart or switch during certain time<a class="anchor" aria-label="anchor" href="#summarise-treatment-restart-or-switch-during-certain-time"></a></h3>
       <div class="section-desc"><p>Summarise the restart of a treatment, or switch to another, during certain time</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -341,19 +360,22 @@
 
         </dt>
         <dd>Add drug restart information as a column per follow-up period of interest.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="summariseDrugRestart.html">summariseDrugRestart()</a></code>
 
         </dt>
         <dd>Summarise the drug restart for each follow-up period of interest.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableDrugRestart.html">tableDrugRestart()</a></code>
 
         </dt>
         <dd>Format a drug_restart object into a visual table.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="plotDrugRestart.html">plotDrugRestart()</a></code>
 
@@ -364,8 +386,7 @@
       <h3 id="daily-dose-documentation">Daily dose documentation<a class="anchor" aria-label="anchor" href="#daily-dose-documentation"></a></h3>
       <div class="section-desc"><p>Functions to assess coverage for the diferent ingredients and document how daily dose is calculated</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -376,19 +397,22 @@
 
         </dt>
         <dd>Patterns valid to compute daily dose with the associated formula.</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="patternTable.html">patternTable()</a></code>
 
         </dt>
         <dd>Function to create a tibble with the patterns from current drug strength table</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="summariseDoseCoverage.html">summariseDoseCoverage()</a></code>
 
         </dt>
         <dd>Check coverage of daily dose computation in a sample of the cdm for selected concept sets and ingredient</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="tableDoseCoverage.html">tableDoseCoverage()</a></code>
 
@@ -399,8 +423,7 @@
       <h3 id="complementary-functions">Complementary functions<a class="anchor" aria-label="anchor" href="#complementary-functions"></a></h3>
       <div class="section-desc"><p>Complementary functions</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -411,7 +434,8 @@
 
         </dt>
         <dd>Run benchmark of drug utilisation cohort generation</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="mockDrugUtilisation.html">mockDrugUtilisation()</a></code>
 
@@ -427,7 +451,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,270 @@
+# Identify and summarise indications among a drug cohort
+
+## Introduction
+
+In this vignette, we demonstrate the functionality provided by the
+DrugUtilisation package to help understand the indications of patients
+in a drug cohort.
+
+The DrugUtilisation package is designed to work with data in the OMOP
+CDM format, so our first step is to create a reference to the data using
+the DBI and CDMConnector packages.
+
+``` r
+library(DrugUtilisation)
+library(omock)
+library(CDMConnector)
+library(dplyr)
+library(PatientProfiles)
+
+cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
+```
+
+### Create a drug utilisation cohort
+
+We will use *acetaminophen* as our example drug. We’ll start by creating
+a cohort of acetaminophen users. Here we’ll include all acetaminophen
+records using a gap era of 7 days, but as we’ve seen in the previous
+vignette we could have also applied various other inclusion criteria.
+
+``` r
+cdm <- generateIngredientCohortSet(
+  cdm = cdm,
+  name = "acetaminophen_users",
+  ingredient = "acetaminophen",
+  gapEra = 7
+)
+```
+
+Note that `addIndication` works with a cohort as input, in this example
+we will use drug cohorts created with `generateDrugUtilisationCohortSet`
+but the input cohorts can be generated using many other ways.
+
+### Create a indication cohort
+
+Next we will create a set of indication cohorts. In this case we will
+create cohorts for sinusitis and bronchitis using
+[`CDMConnector::generateConceptCohortSet()`](https://darwin-eu.github.io/CDMConnector/reference/generateConceptCohortSet.html).
+
+``` r
+indications <- list(
+  sinusitis = c(257012, 4294548, 40481087),
+  bronchitis = c(260139, 258780)
+)
+
+cdm <- generateConceptCohortSet(
+  cdm = cdm, name = "indications_cohort", indications, end = 0
+)
+cdm
+```
+
+## Add indications with addIndication() function
+
+Now that we have these two cohort tables, one with our drug cohort and
+another with our indications cohort, we can assess patient indications.
+For this we will specify a time window around the drug cohort start date
+for which we identify any intersection with the indication cohort. We
+can add this information as a new variable on our cohort table. This
+function will add a new column per window provided with the label of the
+indication.
+
+``` r
+cdm[["acetaminophen_users"]] <- cdm[["acetaminophen_users"]] |>
+  addIndication(
+    indicationCohortName = "indications_cohort",
+    indicationWindow = list(c(-30, 0)),
+    indexDate = "cohort_start_date"
+  )
+cdm[["acetaminophen_users"]] |>
+  glimpse()
+#> Rows: ??
+#> Columns: 5
+#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+#> $ subject_id           <int> 23, 23, 533, 533, 579, 695, 812, 825, 1076, 1091,…
+#> $ cohort_start_date    <date> 1986-04-28, 1988-05-08, 1979-07-24, 1980-03-30, …
+#> $ cohort_end_date      <date> 1986-05-19, 1988-05-22, 1979-08-23, 1980-04-06, …
+#> $ indication_m30_to_0  <chr> "none", "none", "none", "bronchitis", "none", "no…
+```
+
+We can see that individuals are classified as having sinusistis (without
+bronchitis), bronchitis (without sinusitis), sinusitis and bronchitis,
+or no observed indication.
+
+``` r
+cdm[["acetaminophen_users"]] |>
+  group_by(indication_m30_to_0) |>
+  tally()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#>   indication_m30_to_0          n
+#>   <chr>                    <dbl>
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 none                     11351
+#> 4 bronchitis and sinusitis     3
+```
+
+As well as the indication cohort table, we can also use the clinical
+tables in the OMOP CDM to identify other, unknown, indications. Here we
+consider anyone who is not in an indication cohort but has a record in
+the condition occurrence table to have an “unknown” indication. We can
+see that many of the people previously considered to have no indication
+are now considered as having an unknown indication as they have a
+condition occurrence record in the 30 days up to their drug initiation.
+
+``` r
+cdm[["acetaminophen_users"]] |>
+  select(!"indication_m30_to_0") |>
+  addIndication(
+    indicationCohortName = "indications_cohort",
+    indicationWindow = list(c(-30, 0)),
+    unknownIndicationTable = "condition_occurrence"
+  ) |>
+  group_by(indication_m30_to_0) |>
+  tally()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#>   indication_m30_to_0          n
+#>   <chr>                    <dbl>
+#> 1 none                         7
+#> 2 bronchitis and sinusitis     3
+#> 3 bronchitis                2527
+#> 4 sinusitis                   18
+#> 5 unknown                  11344
+```
+
+We can add indications for multiple time windows. Unsurprisingly we find
+more potential indications for wider windows (although this will likely
+increase our risk of false positives).
+
+``` r
+cdm[["acetaminophen_users"]] <- cdm[["acetaminophen_users"]] |>
+  select(!"indication_m30_to_0") |>
+  addIndication(
+    indicationCohortName = "indications_cohort",
+    indicationWindow = list(c(0, 0), c(-30, 0), c(-365, 0)),
+    unknownIndicationTable = "condition_occurrence"
+  )
+cdm[["acetaminophen_users"]] |>
+  group_by(indication_0_to_0) |>
+  tally()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#>   indication_0_to_0     n
+#>   <chr>             <dbl>
+#> 1 bronchitis         2524
+#> 2 unknown           11211
+#> 3 none                163
+#> 4 sinusitis             1
+cdm[["acetaminophen_users"]] |>
+  group_by(indication_m30_to_0) |>
+  tally()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#>   indication_m30_to_0          n
+#>   <chr>                    <dbl>
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 none                         7
+#> 4 bronchitis and sinusitis     3
+#> 5 unknown                  11344
+cdm[["acetaminophen_users"]] |>
+  group_by(indication_m365_to_0) |>
+  tally()
+#> # Source:   SQL [?? x 2]
+#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpJi4w27/file20cff1d8f26.duckdb]
+#>   indication_m365_to_0         n
+#>   <chr>                    <dbl>
+#> 1 bronchitis                2615
+#> 2 sinusitis                  211
+#> 3 bronchitis and sinusitis   101
+#> 4 none                         4
+#> 5 unknown                  10968
+```
+
+### Summarise indications with summariseIndication()
+
+Instead of adding variables with indications like above, we could
+instead obtain a general summary of observed indications.
+`summariseIndication` has similar arguments to
+[`addIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/addIndication.md),
+but returns a summary result of the indication.
+
+``` r
+indicationSummary <- cdm[["acetaminophen_users"]] |>
+  select(!starts_with("indication")) |>
+  summariseIndication(
+    indicationCohortName = "indications_cohort",
+    indicationWindow = list(c(0, 0), c(-30, 0), c(-365, 0)),
+    unknownIndicationTable = c("condition_occurrence")
+  )
+```
+
+We can then easily create a plot or a table of the results
+
+``` r
+tableIndication(indicationSummary)
+```
+
+[TABLE]
+
+``` r
+plotIndication(indicationSummary)
+```
+
+![](indication_files/figure-html/unnamed-chunk-10-1.png)
+
+As well as getting these overall results, we can also stratify the
+results by some variables of interest. For example, here we stratify our
+results by age groups and sex.
+
+``` r
+indicationSummaryStratified <- cdm[["acetaminophen_users"]] |>
+  select(!starts_with("indication")) |>
+  addDemographics(ageGroup = list(c(0, 19), c(20, 150))) |>
+  summariseIndication(
+    strata = list("age_group", "sex"),
+    indicationCohortName = "indications_cohort",
+    indicationWindow = list(c(0, 0), c(-30, 0), c(-365, 0)),
+    unknownIndicationTable = c("condition_occurrence")
+  )
+```
+
+``` r
+tableIndication(indicationSummaryStratified)
+```
+
+[TABLE]
+
+``` r
+indicationSummaryStratified |>
+  filter(variable_name == "Indication on index date") |>
+  plotIndication(
+    facet = . ~ age_group + sex,
+    colour = "variable_level"
+  )
+```
+
+![](indication_files/figure-html/unnamed-chunk-13-1.png)
+
+#### Custom plotting
+
+Instead of having the indication on the x-axis, we can choose a
+different variable. For example we can have the age group on the x-axis
+and stratify our results by sex. Furthermore the plot can be a stacked
+bar plot and the x and y don’t need to be swapped as in the previous
+plot.
+
+``` r
+indicationSummaryStratified |>
+  filter(variable_name == "Indication on index date") |>
+  plotIndication(
+    facet = . ~ sex,
+    x = "age_group",
+    colour = "variable_level",
+    position = "stack"
+  )
+```
+
+![](indication_files/figure-html/unnamed-chunk-14-1.png)

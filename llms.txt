@@ -1,0 +1,441 @@
+# DrugUtilisation
+
+[![CRANstatus](https://www.r-pkg.org/badges/version/DrugUtilisation)](https://CRAN.R-project.org/package=DrugUtilisation)
+[![codecov.io](https://codecov.io/github/darwin-eu/DrugUtilisation/coverage.svg?branch=main)](https://app.codecov.io/github/darwin-eu/DrugUtilisation?branch=main)
+[![R-CMD-check](https://github.com/darwin-eu/DrugUtilisation/workflows/R-CMD-check/badge.svg)](https://github.com/darwin-eu/DrugUtilisation/actions)
+[![Lifecycle:stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+## Package overview
+
+DrugUtilisation contains functions to instantiate and characterise drug
+cohorts in data mapped to the OMOP Common Data Model. The package
+supports:
+
+- Creation of drug cohorts
+
+- Identification of indications for those in a drug cohort
+
+- Summarising drug utilisation among a cohort in terms of duration,
+  quantity, and dose
+
+- Description of treatment adherence based on proportion of patients
+  covered
+
+- Detailing treatment restart and switching after an initial treatment
+  discontinuation
+
+## Example usage
+
+First, we need to create a cdm reference for the data we´ll be using.
+Here we generate an example with simulated data, but to see how you
+would set this up for your database please consult the CDMConnector
+package [connection
+examples](https://darwin-eu.github.io/CDMConnector/articles/a04_DBI_connection_examples.html).
+
+``` r
+library(DrugUtilisation)
+library(dplyr)
+library(CDMConnector)
+
+cdm <- mockDrugUtilisation(numberIndividual = 100, source = "duckdb")
+```
+
+### Create a cohort of acetaminophen users
+
+To generate the cohort of acetaminophen users we will use
+`generateIngredientCohortSet`, concatenating any records with fewer than
+7 days between them. We then filter our cohort records to only include
+the first record per person and require that they have at least 30 days
+observation in the database prior to their drug start date.
+
+``` r
+cdm <- generateIngredientCohortSet(
+  cdm = cdm,
+  name = "dus_cohort",
+  ingredient = "acetaminophen",
+  gapEra = 7
+)
+cdm$dus_cohort |>
+  requireIsFirstDrugEntry() |>
+  requireObservationBeforeDrug(days = 30)
+#> # Source:   table<dus_cohort> [?? x 4]
+#> # Database: DuckDB v1.3.1 [root@Darwin 24.6.0:R 4.4.1/:memory:]
+#>    cohort_definition_id subject_id cohort_start_date cohort_end_date
+#>                   <int>      <int> <date>            <date>         
+#>  1                    1         13 2007-07-19        2007-11-19     
+#>  2                    1         29 2014-10-16        2017-08-02     
+#>  3                    1         83 2020-04-14        2020-08-04     
+#>  4                    1         14 2020-09-17        2020-09-20     
+#>  5                    1         23 1993-05-24        1996-06-23     
+#>  6                    1         25 2021-10-17        2021-10-22     
+#>  7                    1         69 2004-12-06        2005-02-04     
+#>  8                    1         74 2020-08-07        2020-08-09     
+#>  9                    1         93 2021-03-21        2021-08-15     
+#> 10                    1         26 2019-03-08        2021-06-02     
+#> # ℹ more rows
+```
+
+### Indications of acetaminophen users
+
+Now we´ve created our cohort we could first summarise the indications of
+the cohort. These indications will always be cohorts, so we first need
+to create them. Here we create two indication cohorts, one for headache
+and the other for influenza.
+
+``` r
+indications <- list(headache = 378253, influenza = 4266367)
+cdm <- generateConceptCohortSet(
+  cdm = cdm,
+  conceptSet = indications,
+  name = "indications_cohort"
+)
+```
+
+We can summarise the indication results using the `summariseIndication`
+function:
+
+``` r
+indication_summary <- cdm$dus_cohort |>
+  summariseIndication(
+    indicationCohortName = "indications_cohort",
+    unknownIndicationTable = "condition_occurrence",
+    indicationWindow = list(c(-30, 0))
+  )
+#> ℹ Intersect with indications table (indications_cohort)
+#> ℹ Summarising indications.
+indication_summary |> glimpse()
+#> Rows: 12
+#> Columns: 13
+#> $ result_id        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+#> $ cdm_name         <chr> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …
+#> $ group_name       <chr> "cohort_name", "cohort_name", "cohort_name", "cohort_…
+#> $ group_level      <chr> "acetaminophen", "acetaminophen", "acetaminophen", "a…
+#> $ strata_name      <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ strata_level     <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ variable_name    <chr> "Indication from 30 days before to the index date", "…
+#> $ variable_level   <chr> "headache", "headache", "influenza", "influenza", "he…
+#> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
+#> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
+#> $ estimate_value   <chr> "10", "17.5438596491228", "11", "19.2982456140351", "…
+#> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
+#> $ additional_level <chr> "-30 to 0", "-30 to 0", "-30 to 0", "-30 to 0", "-30 …
+```
+
+### Drug use
+
+We can quickly obtain a summary of drug utilisation among our cohort,
+with various measures calculated for a provided ingredient concept (in
+this case the concept for acetaminophen).
+
+``` r
+drug_utilisation_summary <- cdm$dus_cohort |>
+  summariseDrugUtilisation(
+    ingredientConceptId = 1125315,
+    gapEra = 7
+  )
+drug_utilisation_summary |> glimpse()
+#> Rows: 72
+#> Columns: 13
+#> $ result_id        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+#> $ cdm_name         <chr> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …
+#> $ group_name       <chr> "cohort_name", "cohort_name", "cohort_name", "cohort_…
+#> $ group_level      <chr> "acetaminophen", "acetaminophen", "acetaminophen", "a…
+#> $ strata_name      <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ strata_level     <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ variable_name    <chr> "number records", "number subjects", "number exposure…
+#> $ variable_level   <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#> $ estimate_name    <chr> "count", "count", "q25", "median", "q75", "mean", "sd…
+#> $ estimate_type    <chr> "integer", "integer", "integer", "integer", "integer"…
+#> $ estimate_value   <chr> "57", "57", "1", "1", "1", "1.19298245614035", "0.515…
+#> $ additional_name  <chr> "overall", "overall", "concept_set", "concept_set", "…
+#> $ additional_level <chr> "overall", "overall", "ingredient_1125315_descendants…
+table(drug_utilisation_summary$variable_name)
+#> 
+#>    cumulative dose milligram          cumulative quantity 
+#>                            7                            7 
+#>                 days exposed              days prescribed 
+#>                            7                            7 
+#> initial daily dose milligram    initial exposure duration 
+#>                            7                            7 
+#>             initial quantity                  number eras 
+#>                            7                            7 
+#>             number exposures               number records 
+#>                            7                            1 
+#>              number subjects             time to exposure 
+#>                            1                            7
+```
+
+### Combine and share results
+
+Now we can combine our results and suppress any counts less than 5 so
+that they are ready to be shared.
+
+``` r
+results <- bind(
+  indication_summary,
+  drug_utilisation_summary
+) |>
+  suppress(minCellCount = 5)
+results |> glimpse()
+#> Rows: 84
+#> Columns: 13
+#> $ result_id        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,…
+#> $ cdm_name         <chr> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …
+#> $ group_name       <chr> "cohort_name", "cohort_name", "cohort_name", "cohort_…
+#> $ group_level      <chr> "acetaminophen", "acetaminophen", "acetaminophen", "a…
+#> $ strata_name      <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ strata_level     <chr> "overall", "overall", "overall", "overall", "overall"…
+#> $ variable_name    <chr> "Indication from 30 days before to the index date", "…
+#> $ variable_level   <chr> "headache", "headache", "influenza", "influenza", "he…
+#> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
+#> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
+#> $ estimate_value   <chr> "10", "17.5438596491228", "11", "19.2982456140351", "…
+#> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
+#> $ additional_level <chr> "-30 to 0", "-30 to 0", "-30 to 0", "-30 to 0", "-30 …
+```
+
+## Further analyses
+
+There are many more drug-related analyses that we could have done with
+this acetaminophen cohort using the DrugUtilisation package. Please see
+the package website for more details.
+
+# Package index
+
+### Generate a set of drug cohorts
+
+Generate a set of drug cohorts using given concepts or vocabulary
+hierarchies
+
+- [`generateDrugUtilisationCohortSet()`](https://darwin-eu.github.io/DrugUtilisation/reference/generateDrugUtilisationCohortSet.md)
+  : Generate a set of drug cohorts based on given concepts
+- [`generateIngredientCohortSet()`](https://darwin-eu.github.io/DrugUtilisation/reference/generateIngredientCohortSet.md)
+  : Generate a set of drug cohorts based on drug ingredients
+- [`generateAtcCohortSet()`](https://darwin-eu.github.io/DrugUtilisation/reference/generateAtcCohortSet.md)
+  : Generate a set of drug cohorts based on ATC classification
+- [`erafyCohort()`](https://darwin-eu.github.io/DrugUtilisation/reference/erafyCohort.md)
+  : Erafy a cohort_table collapsing records separated gapEra days or
+  less.
+- [`cohortGapEra()`](https://darwin-eu.github.io/DrugUtilisation/reference/cohortGapEra.md)
+  : Get the gapEra used to create a cohort
+
+### Apply inclusion criteria to drug cohorts
+
+Apply inclusion criteria that filter drug cohort entries based on
+specified rules.
+
+- [`requireDrugInDateRange()`](https://darwin-eu.github.io/DrugUtilisation/reference/requireDrugInDateRange.md)
+  : Restrict cohort to only cohort records within a certain date range
+- [`requireIsFirstDrugEntry()`](https://darwin-eu.github.io/DrugUtilisation/reference/requireIsFirstDrugEntry.md)
+  : Restrict cohort to only the first cohort record per subject
+- [`requireObservationBeforeDrug()`](https://darwin-eu.github.io/DrugUtilisation/reference/requireObservationBeforeDrug.md)
+  : Restrict cohort to only cohort records with the given amount of
+  prior observation time in the database
+- [`requirePriorDrugWashout()`](https://darwin-eu.github.io/DrugUtilisation/reference/requirePriorDrugWashout.md)
+  : Restrict cohort to only cohort records with a given amount of time
+  since the last cohort record ended
+
+### Identify and summarise indications for patients in drug cohorts
+
+Indications identified based on their presence in indication cohorts or
+OMOP CDM clinical tabes.
+
+- [`addIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/addIndication.md)
+  : Add a variable indicating individuals indications
+- [`summariseIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseIndication.md)
+  : Summarise the indications of individuals in a drug cohort
+- [`tableIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableIndication.md)
+  : Create a table showing indication results
+- [`plotIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotIndication.md)
+  : Generate a plot visualisation (ggplot2) from the output of
+  summariseIndication
+
+### Drug use functions
+
+Drug use functions are used to summarise and obtain the drug use
+information
+
+- [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  : Add new columns with drug use related information
+
+- [`summariseDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDrugUtilisation.md)
+  : This function is used to summarise the dose utilisation table over
+  multiple cohorts.
+
+- [`tableDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugUtilisation.md)
+  : Format a drug_utilisation object into a visual table.
+
+- [`plotDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotDrugUtilisation.md)
+  :
+
+  Plot the results of `summariseDrugUtilisation`
+
+### Drug use individual functions
+
+Drug use functions can be used to add a single estimates
+
+- [`addNumberExposures()`](https://darwin-eu.github.io/DrugUtilisation/reference/addNumberExposures.md)
+  :
+
+  To add a new column with the number of exposures. To add multiple
+  columns use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addNumberEras()`](https://darwin-eu.github.io/DrugUtilisation/reference/addNumberEras.md)
+  :
+
+  To add a new column with the number of eras. To add multiple columns
+  use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addTimeToExposure()`](https://darwin-eu.github.io/DrugUtilisation/reference/addTimeToExposure.md)
+  :
+
+  To add a new column with the time to exposure. To add multiple columns
+  use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addDaysExposed()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDaysExposed.md)
+  :
+
+  To add a new column with the days exposed. To add multiple columns use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addDaysPrescribed()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDaysPrescribed.md)
+  :
+
+  To add a new column with the days prescribed. To add multiple columns
+  use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addInitialExposureDuration()`](https://darwin-eu.github.io/DrugUtilisation/reference/addInitialExposureDuration.md)
+  :
+
+  To add a new column with the duration of the first exposure. To add
+  multiple columns use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addInitialQuantity()`](https://darwin-eu.github.io/DrugUtilisation/reference/addInitialQuantity.md)
+  :
+
+  To add a new column with the initial quantity. To add multiple columns
+  use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addCumulativeQuantity()`](https://darwin-eu.github.io/DrugUtilisation/reference/addCumulativeQuantity.md)
+  :
+
+  To add a new column with the cumulative quantity. To add multiple
+  columns use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addInitialDailyDose()`](https://darwin-eu.github.io/DrugUtilisation/reference/addInitialDailyDose.md)
+  :
+
+  To add a new column with the initial daily dose. To add multiple
+  columns use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+- [`addCumulativeDose()`](https://darwin-eu.github.io/DrugUtilisation/reference/addCumulativeDose.md)
+  :
+
+  To add a new column with the cumulative dose. To add multiple columns
+  use
+  [`addDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugUtilisation.md)
+  for efficiency.
+
+### Summarise treatment persistence using proportion of patients covered (PPC)
+
+Summarise the proportion of patients in the drug cohort over time.
+
+- [`summariseProportionOfPatientsCovered()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseProportionOfPatientsCovered.md)
+  : Summarise proportion Of patients covered
+- [`tableProportionOfPatientsCovered()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableProportionOfPatientsCovered.md)
+  : Create a table with proportion of patients covered results
+- [`plotProportionOfPatientsCovered()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotProportionOfPatientsCovered.md)
+  : Plot proportion of patients covered
+
+### Summarise treatments during certain windows
+
+Summarise the use of different treatments during certain windows
+
+- [`addTreatment()`](https://darwin-eu.github.io/DrugUtilisation/reference/addTreatment.md)
+  : Add a variable indicating individuals medications
+- [`summariseTreatment()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseTreatment.md)
+  : This function is used to summarise treatments received
+- [`tableTreatment()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableTreatment.md)
+  : Format a summarised_treatment result into a visual table.
+- [`plotTreatment()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotTreatment.md)
+  : Generate a custom ggplot2 from a summarised_result object generated
+  with summariseTreatment function.
+
+### Summarise treatment restart or switch during certain time
+
+Summarise the restart of a treatment, or switch to another, during
+certain time
+
+- [`addDrugRestart()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDrugRestart.md)
+  : Add drug restart information as a column per follow-up period of
+  interest.
+- [`summariseDrugRestart()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDrugRestart.md)
+  : Summarise the drug restart for each follow-up period of interest.
+- [`tableDrugRestart()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugRestart.md)
+  : Format a drug_restart object into a visual table.
+- [`plotDrugRestart()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotDrugRestart.md)
+  : Generate a custom ggplot2 from a summarised_result object generated
+  with summariseDrugRestart() function.
+
+### Daily dose documentation
+
+Functions to assess coverage for the diferent ingredients and document
+how daily dose is calculated
+
+- [`patternsWithFormula`](https://darwin-eu.github.io/DrugUtilisation/reference/patternsWithFormula.md)
+  : Patterns valid to compute daily dose with the associated formula.
+- [`patternTable()`](https://darwin-eu.github.io/DrugUtilisation/reference/patternTable.md)
+  : Function to create a tibble with the patterns from current drug
+  strength table
+- [`summariseDoseCoverage()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDoseCoverage.md)
+  : Check coverage of daily dose computation in a sample of the cdm for
+  selected concept sets and ingredient
+- [`tableDoseCoverage()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDoseCoverage.md)
+  : Format a dose_coverage object into a visual table.
+
+### Complementary functions
+
+Complementary functions
+
+- [`benchmarkDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/benchmarkDrugUtilisation.md)
+  : Run benchmark of drug utilisation cohort generation
+- [`mockDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/mockDrugUtilisation.md)
+  : It creates a mock database for testing DrugUtilisation package
+
+# Articles
+
+### Package functionalities
+
+- [Create mock data to test DrugUtilisation
+  package](https://darwin-eu.github.io/DrugUtilisation/articles/mock_data.md):
+- [Creating drug
+  cohorts](https://darwin-eu.github.io/DrugUtilisation/articles/create_cohorts.md):
+- [Identify and summarise indications among a drug
+  cohort](https://darwin-eu.github.io/DrugUtilisation/articles/indication.md):
+- [Daily dose
+  calculation](https://darwin-eu.github.io/DrugUtilisation/articles/daily_dose_calculation.md):
+- [Getting drug utilisation related information of subjects in a
+  cohort](https://darwin-eu.github.io/DrugUtilisation/articles/drug_utilisation.md):
+- [Summarise
+  treatments](https://darwin-eu.github.io/DrugUtilisation/articles/summarise_treatments.md):
+- [Summarising treatment
+  adherence](https://darwin-eu.github.io/DrugUtilisation/articles/treatment_discontinuation.md):
+- [Assessing drug restart and switching after
+  treatment](https://darwin-eu.github.io/DrugUtilisation/articles/drug_restart.md):
