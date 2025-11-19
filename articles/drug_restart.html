@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Assessing drug restart and switching after treatment</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.5/vignettes/drug_restart.Rmd" class="external-link"><code>vignettes/drug_restart.Rmd</code></a></small>
       <div class="d-none name"><code>drug_restart.Rmd</code></div>
     </div>
 
@@ -1407,20 +1407,20 @@ add one column per follow-up window we ask for:</p>
 <span>    followUpDays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">180</span>, <span class="fl">365</span>, <span class="cn">Inf</span><span class="op">)</span>,</span>
 <span>    censorDate <span class="op">=</span> <span class="cn">NULL</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;og_038_1763592098&gt; [?? x 7]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Source:   table&lt;og_038_1763592698&gt; [?? x 7]</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]</span></span></span>
 <span><span class="co">#&gt;    cohort_definition_id subject_id cohort_start_date cohort_end_date</span></span>
 <span><span class="co">#&gt;                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1        191 2019-11-02        2020-04-17     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         99 2020-03-12        2020-04-10     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1        121 2019-05-17        2019-11-13     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1        128 2021-08-20        2021-08-20     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         19 2009-03-10        2011-04-27     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         54 1987-06-05        1990-04-03     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1          4 2009-05-01        2009-11-27     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1         98 2014-07-10        2016-02-06     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1        129 2020-01-10        2020-08-31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1        103 2010-11-18        2014-07-23     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>                    1        116 2016-12-01        2017-06-29     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>                    1         59 2019-09-08        2020-06-19     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>                    1        103 2010-11-18        2014-07-23     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>                    1        129 2020-01-10        2020-08-31     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>                    1         98 2014-07-10        2016-02-06     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>                    1         19 2009-03-10        2011-04-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>                    1        121 2019-05-17        2019-11-13     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>                    1        128 2021-08-20        2021-08-20     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>                    1          4 2009-05-01        2009-11-27     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>                    1        191 2019-11-02        2020-04-17     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: drug_restart_180 &lt;chr&gt;, drug_restart_365 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   drug_restart_inf &lt;chr&gt;</span></span></span></code></pre></div>
