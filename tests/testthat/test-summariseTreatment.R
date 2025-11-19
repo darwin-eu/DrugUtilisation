@@ -1,5 +1,7 @@
 test_that("test summariseTreatment", {
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema(), seed = 1)
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
+
   expect_no_error(
     x <- cdm$cohort1 |>
       summariseTreatment(
@@ -52,11 +54,13 @@ test_that("test summariseTreatment", {
       dplyr::pull("estimate_value") == "-"
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test addTreatment", {
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema(), seed = 1)
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
+
   expect_no_error(
     x <- cdm$cohort1 |>
       addTreatment(
@@ -65,6 +69,7 @@ test_that("test addTreatment", {
         mutuallyExclusive = FALSE
       )
   )
-  mockDisconnect(cdm = cdm)
+
+  dropCreatedTables(cdm = cdm)
 })
 

@@ -1,6 +1,8 @@
 test_that("input validation", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
+
   expect_no_error(
     requirePriorDrugWashout(
       cohort = cdm$cohort1,
@@ -101,7 +103,7 @@ test_that("input validation", {
     )
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("requirePrioUseWashout example", {
@@ -127,13 +129,11 @@ test_that("requirePrioUseWashout example", {
     period_type_concept_id = 44814724
   )
 
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = cohort1,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    cohort1 = cohort1,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   cdm$cohort2 <- requirePriorDrugWashout(
     cohort = cdm$cohort1,
@@ -235,11 +235,11 @@ test_that("requirePrioUseWashout example", {
     period_type_concept_id = 44814724
   )
 
-  cdm <-
-    mockDrugUtilisation(
-      cohort1 = cohort1,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    cohort1 = cohort1,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   cdm$cohort3 <- requirePriorDrugWashout(
     cohort = cdm$cohort1,
@@ -306,7 +306,7 @@ test_that("requirePrioUseWashout example", {
     2
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test cohortId, example 2", {
@@ -332,13 +332,11 @@ test_that("test cohortId, example 2", {
     period_type_concept_id = 44814724
   )
 
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = cohort1,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    cohort1 = cohort1,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   cdm$cohort3 <- requirePriorDrugWashout(
     cohort = cdm$cohort1,
@@ -412,14 +410,12 @@ test_that("test cohortId, example 2", {
     4
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("requireDrugInDateRange", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = dplyr::tibble(
       cohort_definition_id = c(1, 3, 2, 1, 3, 3, 1, 3, 2, 1) |> as.integer(),
       subject_id = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) |> as.integer(),
@@ -432,7 +428,8 @@ test_that("requireDrugInDateRange", {
         "1992-04-18", "2018-05-02", "2012-02-15", "2022-11-12", "2003-08-04"
       ))
     )
-  )
+  ) |>
+    copyCdm()
 
   cdm$cohort3 <- requireDrugInDateRange(
     cohort = cdm$cohort1,
@@ -506,14 +503,12 @@ test_that("requireDrugInDateRange", {
   )))
   expect_equal(cohort1, cdm$cohort1 |> collectCohort())
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("requireObservationBeforeDrug", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = dplyr::tibble(
       cohort_definition_id = c(1, 3, 2, 1, 3, 3, 1, 3, 2, 1) |> as.integer(),
       subject_id = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) |> as.integer(),
@@ -539,7 +534,8 @@ test_that("requireObservationBeforeDrug", {
       )),
       period_type_concept_id = 44814724L
     )
-  )
+  ) |>
+    copyCdm()
 
   cdm$cohort3 <- requireObservationBeforeDrug(
     cohort = cdm$cohort1,
@@ -577,17 +573,15 @@ test_that("requireObservationBeforeDrug", {
   expect_true(all(cohort |> dplyr::pull("subject_id") |> sort() == c(3, 4, 5, 6, 10)))
   expect_true(all(cohort |> dplyr::pull("cohort_start_date") |> sort() == c("1991-05-25", "1997-11-07", "2010-02-10", "2019-07-17", "2022-01-26")))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("requireIsFirstDrugEntry", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort = dplyr::tibble(
-      cohort_definition_id = c(1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2),
-      subject_id = c(1, 1, 1, 2, 3, 3, 3, 3, 1, 1, 2, 3),
+      cohort_definition_id = c(1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2) |> as.integer(),
+      subject_id = c(1, 1, 1, 2, 3, 3, 3, 3, 1, 1, 2, 3) |> as.integer(),
       cohort_start_date = as.Date(c(
         "2020-04-01", "2020-05-01", "2020-06-01", "2022-05-21", "1983-08-02",
         "1983-12-02", "1993-08-02", "2005-08-02", "2020-04-01", "2020-05-01",
@@ -599,7 +593,8 @@ test_that("requireIsFirstDrugEntry", {
         "2022-05-30", "2000-08-02"
       ))
     )
-  )
+  ) |>
+    copyCdm()
 
   cdm$cohort3 <- requireIsFirstDrugEntry(
     cohort = cdm$cohort,
@@ -636,5 +631,5 @@ test_that("requireIsFirstDrugEntry", {
     1, 1, 1, 2, 2, 3, 3, 3, 3
   )))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

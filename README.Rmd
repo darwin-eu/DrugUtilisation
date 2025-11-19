@@ -40,11 +40,10 @@ First, we need to create a cdm reference for the data we´ll be using. Here we g
 
 ```{r, message=FALSE, warning=FALSE}
 library(DrugUtilisation)
-library(CDMConnector)
-library(omopgenerics)
 library(dplyr)
+library(CDMConnector)
 
-cdm <- mockDrugUtilisation(numberIndividual = 100)
+cdm <- mockDrugUtilisation(numberIndividual = 100, source = "duckdb")
 ```
 
 ### Create a cohort of acetaminophen users
@@ -69,7 +68,8 @@ Now we´ve created our cohort we could first summarise the indications of the co
 
 ```{r}
 indications <- list(headache = 378253, influenza = 4266367)
-cdm <- generateConceptCohortSet(cdm,
+cdm <- generateConceptCohortSet(
+  cdm = cdm,
   conceptSet = indications,
   name = "indications_cohort"
 )

@@ -340,8 +340,10 @@ addCensorDays <- function(x, censorDate, prefix) {
     )
   if (!is.null(censorDate)) {
     x <- x %>%
-      dplyr::mutate(censor_days = as.integer(!!CDMConnector::datediff(
-        start = "cohort_end_date", end = censorDate
+      dplyr::mutate(censor_days = as.integer(clock::date_count_between(
+        start = .data$cohort_end_date,
+        end = .data[[censorDate]],
+        precision = "day"
       ))) |>
       dplyr::mutate(censor_days = dplyr::case_when(
         is.na(.data$censor_days) ~ .data[[id]],
@@ -380,8 +382,10 @@ addRestartDays <- function(x, cohort, prefix) {
           cohort_start_date = min(.data$cohort_start_date, na.rm = TRUE),
           .group = "drop"
         ) %>%
-        dplyr::mutate(restart_days = as.integer(!!CDMConnector::datediff(
-          "cohort_end_date", "cohort_start_date"
+        dplyr::mutate(restart_days = as.integer(clock::date_count_between(
+          start = .data$cohort_end_date,
+          end = .data$cohort_start_date,
+          precision = "day"
         ))) |>
         dplyr::select(
           "cohort_definition_id", "subject_id", "cohort_end_date",
@@ -422,8 +426,10 @@ addSwitchDays <- function(x, switchCohortTable, switchCohortId, incident, prefix
     dplyr::summarise(
       switch_start = min(.data$switch_start, na.rm = TRUE), .group = "drop"
     ) %>%
-    dplyr::mutate(switch_days = as.integer(!!CDMConnector::datediff(
-      start = "cohort_end_date", end = "switch_start"
+    dplyr::mutate(switch_days = as.integer(clock::date_count_between(
+      start = .data$cohort_end_date,
+      end = .data$switch_start,
+      precision = "day"
     ))) |>
     dplyr::select("subject_id", "cohort_end_date", "switch_days")
   x |>

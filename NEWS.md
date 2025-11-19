@@ -1,3 +1,16 @@
+# DrugUtilisation 1.0.5
+
+* Explictly copy data into the database using insertTable by @ablack3 in #727
+* Correct as.numeric of datediff by @catalamarti in #731
+* Add style argument in tables and figures by @catalamarti in #734
+* Call libraries explicitly in vignettes by @catalamarti in #739
+* Include in vignette how to use days prescribed by @catalamarti in #743
+* tests edge case by @catalamarti in #744
+* Support local datasets and standardise testing by @catalamarti in #736
+* Review mock data vignette by @catalamarti in #745
+* add plotIndication params by @ginberg in #740
+* add type and style as NULL to use default values by @catalamarti in #747
+
 # DrugUtilisation 1.0.4
 
 * Fix plotDrugUtilisation combining different cdm_name by @catalamarti

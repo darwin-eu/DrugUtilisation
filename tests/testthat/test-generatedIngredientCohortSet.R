@@ -1,6 +1,7 @@
 test_that("test same results for ingredient cohorts", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   cdm <- generateIngredientCohortSet(
     cdm = cdm,
@@ -25,15 +26,13 @@ test_that("test same results for ingredient cohorts", {
 
   expect_equal(cohort_1_df, cohort_2_df)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("options", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema()
-  )
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   expect_no_error(generateIngredientCohortSet(
     cdm = cdm,
@@ -42,12 +41,13 @@ test_that("options", {
     name = "test_cohort_1"
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("handle empty ingredient name gracefully", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   expect_error(generateIngredientCohortSet(
     cdm = cdm, ingredient = "", name = "empty_ingredient_test"
@@ -57,12 +57,13 @@ test_that("handle empty ingredient name gracefully", {
     cdm = cdm, ingredient = "nonexistent", name = "nonexistent_ingredient_test"
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("date works", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   cdm <- generateIngredientCohortSet(
     cdm = cdm,
@@ -86,12 +87,13 @@ test_that("date works", {
       cohort_df$cohort_end_date <= as.Date("2020-12-31")
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("ingredient list and vector both work", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   ingredient1 <- c("simvastatin", "acetaminophen", "metformin")
 
@@ -123,5 +125,5 @@ test_that("ingredient list and vector both work", {
     sort(settings(cdm$test_list)$cohort_name) == c("test_1", "test_2")
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

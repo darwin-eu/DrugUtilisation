@@ -5,26 +5,27 @@
 \title{It creates a mock database for testing DrugUtilisation package}
 \usage{
 mockDrugUtilisation(
-  con = NULL,
-  writeSchema = NULL,
   numberIndividuals = 10,
-  seed = NULL,
-  ...
+  ...,
+  source = "local",
+  con = lifecycle::deprecated(),
+  writeSchema = lifecycle::deprecated(),
+  seed = lifecycle::deprecated()
 )
 }
 \arguments{
-\item{con}{A DBIConnection object to a database. If NULL a new duckdb
-connection will be used.}
-
-\item{writeSchema}{A schema with writing permissions to copy there the cdm
-tables.}
-
 \item{numberIndividuals}{Number of individuals in the mock cdm.}
-
-\item{seed}{Seed for the random numbers. If NULL no seed is used.}
 
 \item{...}{Tables to use as basis to create the mock. If some tables are
 provided they will be used to construct the cdm object.}
+
+\item{source}{Source for the mock cdm, it can either be 'local' or 'duckdb'.}
+
+\item{con}{deprecated.}
+
+\item{writeSchema}{deprecated.}
+
+\item{seed}{deprecated.}
 }
 \value{
 A cdm reference with the mock tables

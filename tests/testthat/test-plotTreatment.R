@@ -1,8 +1,6 @@
 test_that("plot treatment (from cohort) works", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 3, 3, 1, 2, 4, 4, 1),
@@ -42,9 +40,9 @@ test_that("plot treatment (from cohort) works", {
       observation_period_start_date = as.Date("2000-01-01"),
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
-    ),
-    seed = 1
-  )
+    )
+  ) |>
+    copyCdm()
 
   treatment1 <- cdm$cohort1 |>
     summariseTreatment(
@@ -56,7 +54,7 @@ test_that("plot treatment (from cohort) works", {
     plot1 <- plotTreatment(treatment1)
   )
 
-  expect_true(ggplot2::is.ggplot(plot1))
+  expect_true(ggplot2::is_ggplot(plot1))
 
   treatment2 <- cdm$cohort1 |>
     summariseTreatment(
@@ -69,7 +67,7 @@ test_that("plot treatment (from cohort) works", {
     plot2 <- plotTreatment(treatment2)
   )
 
-  expect_true(ggplot2::is.ggplot(plot2))
+  expect_true(ggplot2::is_ggplot(plot2))
 
   treatment3 <- cdm$cohort1 |>
     PatientProfiles::addSex() |>
@@ -85,7 +83,7 @@ test_that("plot treatment (from cohort) works", {
     plot3 <- plotTreatment(treatment3)
   )
 
-  expect_true(ggplot2::is.ggplot(plot3))
+  expect_true(ggplot2::is_ggplot(plot3))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

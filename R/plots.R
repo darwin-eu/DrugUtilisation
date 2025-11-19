@@ -36,17 +36,27 @@
 #'   )
 #'
 #' plotTreatment(result)
+#'
+#' plotTreatment(result, x = "cohort_name", facet = "window_name")
 #' }
 #'
 plotTreatment <- function(result,
+                          x = "variable_level",
+                          position = "stack",
                           facet = cdm_name + cohort_name ~ window_name,
-                          colour = "variable_level") {
+                          colour = "variable_level",
+                          style = NULL) {
+  lab <- getLabel(x = x, def = "Treatment")
   barPlotInternal(
     result = result,
     resultType = "summarise_treatment",
+    x = x,
+    position = position,
+    flipCoordinates = identical(x, "variable_level"),
     facet = facet,
     colour = colour,
-    lab = "Treatment"
+    lab = lab,
+    style = style
   )
 }
 
@@ -75,17 +85,27 @@ plotTreatment <- function(result,
 #'   summariseDrugRestart(switchCohortTable = "switch_cohort")
 #'
 #' plotDrugRestart(result)
+#'
+#' plotDrugRestart(result, x = "cohort_name", facet = "follow_up_days")
 #' }
 #'
 plotDrugRestart <- function(result,
+                            x = "variable_level",
+                            position = "stack",
                             facet = cdm_name + cohort_name ~ follow_up_days,
-                            colour = "variable_level") {
+                            colour = "variable_level",
+                            style = NULL) {
+  lab <- getLabel(x = x, def = "Event")
   barPlotInternal(
     result = result,
     resultType = "summarise_drug_restart",
+    x = x,
+    position = position,
+    flipCoordinates = identical(x, "variable_level"),
     facet = facet,
     colour = colour,
-    lab = "Event"
+    lab = lab,
+    style = style
   )
 }
 
@@ -104,7 +124,7 @@ plotDrugRestart <- function(result,
 #' library(DrugUtilisation)
 #' library(CDMConnector)
 #'
-#' cdm <- mockDrugUtilisation()
+#' cdm <- mockDrugUtilisation(source = "duckdb")
 #'
 #' indications <- list(headache = 378253, asthma = 317009)
 #' cdm <- generateConceptCohortSet(cdm = cdm,
@@ -123,17 +143,27 @@ plotDrugRestart <- function(result,
 #'   )
 #'
 #' plotIndication(result)
+#'
+#' plotIndication(result, x = "window_name", facet = NULL)
 #' }
 #'
 plotIndication <- function(result,
+                           x = "variable_level",
+                           position = "stack",
                            facet = cdm_name + cohort_name ~ window_name,
-                           colour = "variable_level") {
+                           colour = "variable_level",
+                           style = NULL) {
+  lab <- getLabel(x = x, def = "Indication")
   barPlotInternal(
     result = result,
     resultType = "summarise_indication",
+    x = x,
+    position = position,
+    flipCoordinates = identical(x = x, y = "variable_level"),
     facet = facet,
     colour = colour,
-    lab = "Indication"
+    lab = lab,
+    style = style
   )
 }
 
@@ -192,15 +222,15 @@ plotIndication <- function(result,
 #'     colour = "sex"
 #'   )
 #'
-#' mockDisconnect(cdm)
 #' }
 #'
 plotDrugUtilisation <- function(result,
                                 variable = "number exposures",
                                 plotType = "barplot",
                                 facet = strataColumns(result),
-                                colour = "cohort_name") {
-  rlang::check_installed("visOmopResults")
+                                colour = "cohort_name",
+                                style = NULL) {
+  rlang::check_installed("visOmopResults", version = "1.2.0")
   rlang::check_installed("ggplot2")
 
   # initial checks
@@ -239,7 +269,8 @@ plotDrugUtilisation <- function(result,
         y = estimates,
         facet = facet,
         colour = colour,
-        label = vars
+        label = vars,
+        style = style
       )
     } else {
       p <- visOmopResults::scatterPlot(
@@ -254,7 +285,8 @@ plotDrugUtilisation <- function(result,
         facet = facet,
         colour = colour,
         label = vars,
-        group = vars
+        group = vars,
+        style = style
       )
     }
     ylab <- paste0(variable, " (", estimates, ")")
@@ -276,6 +308,7 @@ plotDrugUtilisation <- function(result,
       ymax = NULL,
       facet = facet,
       colour = colour,
+      style = style
     )
     xlab <- variable
     ylab <- "Density"
@@ -308,7 +341,8 @@ plotDrugUtilisation <- function(result,
       middle = "median",
       upper = "q75",
       ymax = "max",
-      label = vars
+      label = vars,
+      style = style
     )
     ylab <- variable
   }
@@ -358,7 +392,8 @@ correctX <- function(x) { # issue in visOmopResults
 plotProportionOfPatientsCovered <- function(result,
                                             facet = "cohort_name",
                                             colour = strataColumns(result),
-                                            ribbon = TRUE) {
+                                            ribbon = TRUE,
+                                            style = NULL) {
   rlang::check_installed("ggplot2", reason = "for plot functions")
   rlang::check_installed("scales", reason = "for plot functions")
 
@@ -373,8 +408,7 @@ plotProportionOfPatientsCovered <- function(result,
 
   if (nrow(workingResult) == 0) {
     cli::cli_warn("No PPC results found")
-    return(ggplot2::ggplot() +
-             ggplot2::theme_void())
+    return(visOmopResults::emptyPlot(style = style, type = "ggplot"))
   }
 
   checkVersion(result)
@@ -442,6 +476,10 @@ plotProportionOfPatientsCovered <- function(result,
       ggplot2::facet_wrap(facets = facet)
   }
 
+  # add style
+  p <- p +
+    visOmopResults::themeVisOmop(style = style)
+
   return(p)
 }
 
@@ -461,15 +499,30 @@ uniteColumn <- function(x, cols, name, call = parent.frame()) {
   }
   return(x)
 }
-
+getLabel <- function(x, def) {
+  if (identical(x, "variable_level")) {
+    lab <- def
+  } else if (is.character(x) & length(x) == 1) {
+    lab <- x |>
+      stringr::str_replace_all(pattern = "_", replacement = " ") |>
+      stringr::str_to_sentence()
+  } else {
+    lab <- ""
+  }
+  return(lab)
+}
 barPlotInternal <- function(result,
                             resultType,
+                            x = "variable_level",
+                            position = "stack",
+                            flipCoordinates = TRUE,
                             facet,
                             colour,
                             lab,
+                            style,
                             call = parent.frame()) {
   rlang::check_installed("ggplot2")
-  rlang::check_installed("visOmopResults")
+  rlang::check_installed("visOmopResults", version = "1.2.0")
 
   result <- omopgenerics::validateResultArgument(result, call = call)
 
@@ -479,7 +532,7 @@ barPlotInternal <- function(result,
 
   if (nrow(result) == 0) {
     cli::cli_warn(c("!" = "There are no results to plot, returning empty plot"))
-    return(emptyPlot())
+    return(visOmopResults::emptyPlot(type = "ggplot", style = style))
   }
 
   checkVersion(result)
@@ -516,18 +569,26 @@ barPlotInternal <- function(result,
       dplyr::mutate(window_name = factor(.data$window_name, levels = windows))
   }
 
-  visOmopResults::barPlot(
+  plot <- visOmopResults::barPlot(
     result = result,
-    x = "variable_level",
+    x = x,
     y = "percentage",
+    position = position,
     facet = facet,
     colour = colour,
-    label = label
+    label = label,
+    style = style
   ) +
-    ggplot2::coord_flip() +
     ggplot2::theme(legend.position = "top") +
-    ggplot2::ylim(c(0, 100)) +
+    ggplot2::ylim(c(0, 100.5)) +
     ggplot2::labs(colour = "", fill = "", y = "Percentage (%)", x = lab)
+
+  if (flipCoordinates) {
+    plot <- plot +
+      ggplot2::coord_flip()
+  }
+
+  return(plot)
 }
 getVariables <- function(res) {
   res |>
@@ -540,8 +601,4 @@ getVariables <- function(res) {
     purrr::map(unique) |>
     purrr::keep(\(x) length(x) > 1) |>
     names()
-}
-emptyPlot <- function() {
-  ggplot2::ggplot() +
-    ggplot2::theme_void()
 }

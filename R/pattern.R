@@ -87,24 +87,6 @@ drugStrengthPattern <- function(cdm,
   return(drugStrengthRelated)
 }
 
-.addRoute <- function(drugTable) {
-  cdm <- omopgenerics::cdmReference(drugTable)
-  drugTable |>
-    dplyr::left_join(
-      cdm[["concept_relationship"]] |>
-        dplyr::select(c("concept_id_1", "concept_id_2", "relationship_id")) |>
-        dplyr::filter(.data$relationship_id == "RxNorm has dose form") |>
-        dplyr::select(-"relationship_id") |>
-        dplyr::rename(
-          "drug_concept_id" = "concept_id_1",
-          "dose_form_concept_id" = "concept_id_2"
-        ),
-      by = "drug_concept_id"
-    ) |>
-    dplyr::left_join(routes, by = "dose_form_concept_id", copy = TRUE) |>
-    dplyr::select(-"dose_form_concept_id")
-}
-
 #' Function to create a tibble with the patterns from current drug strength table
 #'
 #' @inheritParams cdmDoc

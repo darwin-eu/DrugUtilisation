@@ -16,14 +16,13 @@
 
 #' It creates a mock database for testing DrugUtilisation package
 #'
-#' @param con A DBIConnection object to a database. If NULL a new duckdb
-#' connection will be used.
-#' @param writeSchema A schema with writing permissions to copy there the cdm
-#' tables.
 #' @param numberIndividuals Number of individuals in the mock cdm.
-#' @param seed Seed for the random numbers. If NULL no seed is used.
 #' @param ... Tables to use as basis to create the mock. If some tables are
 #' provided they will be used to construct the cdm object.
+#' @param source Source for the mock cdm, it can either be 'local' or 'duckdb'.
+#' @param seed deprecated.
+#' @param con deprecated.
+#' @param writeSchema deprecated.
 #'
 #' @return A cdm reference with the mock tables
 #'
@@ -38,18 +37,39 @@
 #' cdm
 #' }
 #'
-mockDrugUtilisation <- function(con = NULL,
-                                writeSchema = NULL,
-                                numberIndividuals = 10,
-                                seed = NULL,
-                                ...) {
+mockDrugUtilisation <- function(numberIndividuals = 10,
+                                ...,
+                                source = "local",
+                                con = lifecycle::deprecated(),
+                                writeSchema = lifecycle::deprecated(),
+                                seed = lifecycle::deprecated()) {
   tables <- list(...)
-  omopgenerics::assertNumeric(seed, length = 1, null = TRUE)
   omopgenerics::assertNumeric(numberIndividuals, length = 1, integerish = TRUE, min = 1)
   omopgenerics::assertList(tables, named = TRUE, class = "data.frame")
+  omopgenerics::assertChoice(source, c("local", "duckdb"), length = 1)
 
-  if (is.null(con)) con <- duckdb::dbConnect(duckdb::duckdb(), ":memory:")
-  if (is.null(writeSchema)) writeSchema <- c(schema = "main", prefix = "mock_")
+  # deprecations
+  if (lifecycle::is_present(con)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "mockDrugUtilisation(con)",
+      with = "omopgenerics::insertCdmTo()"
+    )
+  }
+  if (lifecycle::is_present(writeSchema)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "mockDrugUtilisation(writeSchema)",
+      with = "omopgenerics::insertCdmTo()"
+    )
+  }
+  if (lifecycle::is_present(seed)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "mockDrugUtilisation(seed)",
+      with = "set.seed()"
+    )
+  }
 
   # get vocabulary
   vocab <- vocabularyTables(
@@ -62,9 +82,6 @@ mockDrugUtilisation <- function(con = NULL,
   tables$concept_ancestor <- vocab$concept_ancestor
   tables$drug_strength <- vocab$drug_strength
   tables$concept_relationship <- vocab$concept_relationship
-
-  # set seed
-  if (!is.null(seed)) set.seed(seed)
 
   if (!all(c("person", "observation_period") %in% names(tables))) {
     minDates <- calculateMinDate(tables)
@@ -117,7 +134,15 @@ mockDrugUtilisation <- function(con = NULL,
   )
 
   cohortPos <- lapply(tables, isCohort) |> unlist()
-  cohorts <- tables[cohortPos] |> createCohorts(tables$observation_period)
+  cohorts <- tables[cohortPos] |>
+    createCohorts(tables$observation_period) |>
+    purrr::map(\(x) {
+      x |>
+        dplyr::mutate(
+          cohort_definition_id = as.integer(.data$cohort_definition_id),
+          subject_id = as.integer(.data$subject_id)
+        )
+    })
   tables <- tables[!cohortPos]
 
   colTypes <- omopgenerics::omopTableFields() |>
@@ -149,12 +174,15 @@ mockDrugUtilisation <- function(con = NULL,
     tables = tables, cdmName = "DUS MOCK", cohortTables = cohorts
   )
 
-  writeSchema <- strsplit(writeSchema, "\\.")[[1]]
-  suppressMessages(
-    cdm <- CDMConnector::copyCdmTo(
-      con = con, cdm = cdm, schema = writeSchema, overwrite = TRUE
+  if (source == "duckdb") {
+    rlang::check_installed("CDMConnector")
+    rlang::check_installed("duckdb")
+    src <- CDMConnector::dbSource(
+      con = duckdb::dbConnect(drv = duckdb::duckdb()),
+      writeSchema = "main"
     )
-  )
+    cdm <- omopgenerics::insertCdmTo(cdm = cdm, to = src)
+  }
 
   return(cdm)
 }
@@ -335,7 +363,7 @@ createCohort <- function(observation_period) {
     )
   cohort <- cohort |>
     dplyr::mutate(
-      cohort_definition_id = sample(1:3, nrow(cohort), replace = T)
+      cohort_definition_id = sample(1:3L, nrow(cohort), replace = T)
     ) |>
     dplyr::select(
       "cohort_definition_id",
@@ -568,5 +596,5 @@ correctObsDates <- function(tab, datesRange) {
 }
 
 isCohort <- function(x) {
-  all(c("cohort_definition_id", "subject_id", "cohort_start_date", "cohort_end_date") %in% names(x))
+  all(c("cohort_definition_id", "subject_id", "cohort_start_date", "cohort_end_date") %in% colnames(x))
 }

@@ -1,8 +1,6 @@
 test_that("basic plot", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:4,
       person_id = c(1, 2, 3, 4),
@@ -25,7 +23,8 @@ test_that("basic plot", {
       observation_period_end_date = as.Date(c("2000-01-25", "2002-01-15", "2010-01-25", "2011-01-25")),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered()
@@ -33,7 +32,6 @@ test_that("basic plot", {
   expect_no_error(plotProportionOfPatientsCovered(ppc))
   expect_no_error(plotProportionOfPatientsCovered(ppc, facet = "cdm_name"))
   expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "cohort_name"))
-
 
   # expected warnings - empty result or result with no ppc
   expect_warning(plotProportionOfPatientsCovered(
@@ -46,7 +44,7 @@ test_that("basic plot", {
   expect_error(plotProportionOfPatientsCovered(ppc, facet = "not_a_var"))
   expect_error(plotProportionOfPatientsCovered(ppc, colour = "not_a_var"))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("multiple cohorts", {
@@ -56,8 +54,6 @@ test_that("multiple cohorts", {
   # id 3 - in cohort 1 for 20 days, exits the database after 25
   # id 4 - in cohort 2 for 25 days, exits the database after 30
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:4,
       person_id = c(1, 2, 3, 4),
@@ -80,7 +76,8 @@ test_that("multiple cohorts", {
       observation_period_end_date = as.Date(c("2000-01-25", "2002-01-15", "2010-01-25", "2011-01-30")),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered()
@@ -88,7 +85,7 @@ test_that("multiple cohorts", {
   expect_no_error(plotProportionOfPatientsCovered(ppc, facet = "cohort_name"))
   expect_no_error(plotProportionOfPatientsCovered(ppc, colour = "cohort_name"))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("stratification", {
@@ -100,8 +97,6 @@ test_that("stratification", {
   # id 4 - in cohort for 20 days, exits the database after 25
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     dus_cohort = dplyr::tibble(
       cohort_definition_id = 1,
       subject_id = c(1, 1, 2, 3, 4),
@@ -126,6 +121,7 @@ test_that("stratification", {
         "group_a", "group_b"
       )
     )
+  cdm <- copyCdm(cdm = cdm)
 
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered(strata = list(
@@ -149,5 +145,5 @@ test_that("stratification", {
       )
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

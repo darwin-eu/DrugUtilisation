@@ -9,7 +9,8 @@ plotDrugUtilisation(
   variable = "number exposures",
   plotType = "barplot",
   facet = strataColumns(result),
-  colour = "cohort_name"
+  colour = "cohort_name",
+  style = NULL
 )
 }
 \arguments{
@@ -27,6 +28,14 @@ columns.}
 
 \item{colour}{Columns to color by. See options with
 \code{availablePlotColumns(result)}.}
+
+\item{style}{Visual theme to apply. Character, or \code{NULL}. If a character, this
+may be either the name of a built-in style (see \code{plotStyle()}), or a path to
+a \code{.yml} file that defines a custom style. If NULL, the function will use the
+explicit default style, unless a global style option is set (see
+\code{visOmopResults::setGlobalPlotOptions()}) or a \verb{_brand.yml} file is present
+(in that order). Refer to the \strong{visOmopResults} package vignette on styles
+to learn more.}
 }
 \value{
 A ggplot2 object.
@@ -77,7 +86,6 @@ result |>
     colour = "sex"
   )
 
-mockDisconnect(cdm)
 }
 
 }

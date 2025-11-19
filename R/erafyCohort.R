@@ -25,7 +25,6 @@
 #'
 #' settings(cdm$cohort2)
 #'
-#' mockDisconnect(cdm)
 #' }
 erafyCohort <- function(cohort,
                         gapEra,

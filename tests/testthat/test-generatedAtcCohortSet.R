@@ -1,6 +1,7 @@
 test_that("test same results for ingredient cohorts", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
 
   expect_warning(cdm <- generateAtcCohortSet(cdm = cdm, name = "test_cohort_1"))
 
@@ -28,5 +29,5 @@ test_that("test same results for ingredient cohorts", {
   expect_equal(cohort_1_df, cohort_2_df)
   expect_equal(cohort_1_df, cohort_3_df)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

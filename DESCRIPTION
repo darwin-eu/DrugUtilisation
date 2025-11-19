@@ -1,7 +1,7 @@
 Package: DrugUtilisation
 Title: Summarise Patient-Level Drug Utilisation in Data Mapped to the OMOP 
     Common Data Model 
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: c(
     person(
         "Martí", "Català", email = "marti.catalasabate@ndorms.ox.ac.uk", 
@@ -49,9 +49,11 @@ Description: Summarise patient-level drug utilisation cohorts using data mapped
 License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: 
     bit64,
+    CDMConnector (>= 1.4.0),
+    CohortConstructor,
     CohortSurvival,
     covr,
     DBI,
@@ -63,22 +65,23 @@ Suggests:
     here,
     knitr,
     odbc,
+    omock,
     rmarkdown,
     RPostgres,
     scales,
     testthat (>= 3.1.5),
     tibble,
-    visOmopResults (>= 1.0.0)
+    visOmopResults (>= 1.3.0)
 Config/testthat/edition: 3
-Imports: 
-    CDMConnector (>= 1.4.0),
+Imports:
     cli,
     clock,
     CodelistGenerator (>= 3.1.0),
     dplyr,
     glue,
-    omopgenerics (>= 1.0.0),
-    PatientProfiles (>= 1.0.0),
+    lifecycle,
+    omopgenerics (>= 1.3.1),
+    PatientProfiles (>= 1.4.2),
     purrr,
     rlang,
     stringr,

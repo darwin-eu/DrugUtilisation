@@ -12,7 +12,6 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-CDMConnector::requireEunomia()
 knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
@@ -30,14 +29,11 @@ For example, let's say we would like to study adherence among new users of amoxi
 
 ```{r}
 library(DrugUtilisation)
+library(omock)
+library(CohortSurvival)
+library(PatientProfiles)
 
-db <- DBI::dbConnect(duckdb::duckdb(), dbdir = CDMConnector::eunomiaDir())
-cdm <- CDMConnector::cdmFromCon(
-  con = db,
-  cdmSchema = "main",
-  writeSchema = "main",
-  cdmName = "Eunomia"
-)
+cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
 
 cdm <- generateIngredientCohortSet(
   cdm = cdm,
@@ -51,7 +47,7 @@ cdm <- generateIngredientCohortSet(
 We can estimate Kaplan-Meier survival curves we can use estimateSingleEventSurvival from the CohortSurvival package, with the follow-up beginning from an individual's cohort start date and discontinuation occurring at their cohort end date. As the outcome washout is set to Inf we'll only be considering the first cohort entry for an individual. It is important to note that because the survival analysis is focused on a single cohort entry, with the cohort end date taken to indicate treatment discontinuation, the gap era used above when creating the drug cohort can often have an important impact on the results.
 
 ```{r}
-discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
+discontinuationSummary <- estimateSingleEventSurvival(
   cdm = cdm,
   targetCohortTable = "amoxicillin",
   outcomeCohortTable = "amoxicillin",
@@ -64,22 +60,23 @@ discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
 
 We can plot our study result like so:
 ```{r, out.width="75%"}
-#CohortSurvival::plotSurvival(discontinuationSummary)
+plotSurvival(discontinuationSummary)
 ```
 
 Or we can similarly create a table summarising the result
 ```{r}
-#CohortSurvival::tableSurvival(discontinuationSummary)
+tableSurvival(discontinuationSummary)
 ```
 
 We can also easily stratify our results. Here we add patient demographics to our cohort table using the PatientProfiles packages and then stratify results by age group and sex.
 ```{r}
 cdm$amoxicillin <- cdm$amoxicillin |>
-  PatientProfiles::addDemographics(
-    ageGroup = list(c(0, 40), c(41, Inf)), name = "amoxicillin"
+  addDemographics(
+    ageGroup = list(c(0, 40), c(41, Inf)),
+    name = "amoxicillin"
   )
 
-discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
+discontinuationSummary <- estimateSingleEventSurvival(
   cdm = cdm,
   strata = list(c("age_group"), c("sex")),
   targetCohortTable = "amoxicillin",
@@ -92,13 +89,12 @@ discontinuationSummary <- CohortSurvival::estimateSingleEventSurvival(
 
 Again we could present our results in a plot or a table.
 ```{r, out.width="75%"}
-#CohortSurvival::plotSurvival(discontinuationSummary, facet = "strata_level")
+plotSurvival(discontinuationSummary, facet = c("age_group", "sex"))
 ```
 
 ```{r}
-#CohortSurvival::tableSurvival(discontinuationSummary)
+tableSurvival(discontinuationSummary)
 ```
-
 
 ## Proportion of patients covered
 

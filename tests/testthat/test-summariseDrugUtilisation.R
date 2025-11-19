@@ -7,8 +7,6 @@ test_that("summariseDrugUtilisation works", {
   )
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 3, 3, 1, 2, 4, 4, 1),
@@ -49,7 +47,8 @@ test_that("summariseDrugUtilisation works", {
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   x0 <- cdm$dus_cohort |>
     summariseDrugUtilisation(ingredientConceptId = 1125315)
@@ -107,5 +106,5 @@ test_that("summariseDrugUtilisation works", {
     )
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

@@ -1,7 +1,5 @@
 test_that("summarise drug restart", {
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 2, 1, 1, 2, 4, 4, 1),
@@ -45,7 +43,8 @@ test_that("summarise drug restart", {
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327), "c" = 1503328)
   cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "switch_cohort", conceptSet = conceptlist)
@@ -127,7 +126,7 @@ test_that("summarise drug restart", {
   expect_error(summariseDrugRestart(cdm$dus_cohort))
   expect_error(summariseDrugRestart(cdm$dus_cohort, switchCohortTable = "switch_cohort", switchCohortId = 5))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test addDrugRestart", {
@@ -150,8 +149,6 @@ test_that("test addDrugRestart", {
   }
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     dus_cohort = dplyr::tibble(
       cohort_definition_id = 1L,
       subject_id = c(1L, 1L, 1L, 2L, 3L),
@@ -175,7 +172,8 @@ test_that("test addDrugRestart", {
         "2021-02-01", "2021-07-20", "2022-06-15", "2021-10-10"
       ))
     )
-  )
+  ) |>
+    copyCdm()
 
   x <- cdm$dus_cohort |>
     PatientProfiles::addCohortIntersectDays(
@@ -310,5 +308,5 @@ test_that("test addDrugRestart", {
   )
   expect_true("test" %in% colnames(x7))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

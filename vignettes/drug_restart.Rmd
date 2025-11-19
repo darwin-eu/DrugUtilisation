@@ -26,8 +26,11 @@ For this vignette we will use mock data contained in the DrugUtilisation package
   
 ```{r, message = FALSE, warning = FALSE}
 library(DrugUtilisation)
+library(CodelistGenerator)
+library(dplyr, warn.conflicts = FALSE)
+library(PatientProfiles)
 
-cdm <- mockDrugUtilisation(numberIndividual = 200)
+cdm <- mockDrugUtilisation(numberIndividual = 200, source = "duckdb")
 ```
 
 ## Generate study cohorts
@@ -39,8 +42,8 @@ For this we will need two cohorts: one of patients exposed to metformin and anot
 
 ```{r, message = FALSE, warning = FALSE}
 # codelists
-metformin <- CodelistGenerator::getDrugIngredientCodes(cdm = cdm, name = "metformin")
-insulin <- CodelistGenerator::getDrugIngredientCodes(cdm = cdm, name = "insulin detemir")
+metformin <- getDrugIngredientCodes(cdm = cdm, name = "metformin")
+insulin <- getDrugIngredientCodes(cdm = cdm, name = "insulin detemir")
 
 cdm <- generateDrugUtilisationCohortSet(
   cdm = cdm, name = "metformin", conceptSet = metformin
@@ -87,7 +90,7 @@ results <- cdm$metformin |>
   )
 
 results |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 We could be interested in getting these results in different follow-up periods since the first metformin exposure ended. For instance, next we get the results in the first 180 days, the first year, and until the end of observation.
@@ -134,7 +137,7 @@ For instance, we reproduce the last calculation but this time straifying by sex.
 
 ```{r}
 results <- cdm$cohort1 |>
-  PatientProfiles::addSex(name = "cohort1") |>
+  addSex(name = "cohort1") |>
   summariseDrugRestart(
     switchCohortTable = "insulin",
     switchCohortId = NULL,
@@ -178,6 +181,5 @@ cdm$metformin |>
     switchCohortId = NULL,
     followUpDays = c(180, 365, Inf),
     censorDate = NULL
-  ) |>
-  gt::gt()
+  )
 ```

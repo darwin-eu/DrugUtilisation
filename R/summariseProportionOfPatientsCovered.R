@@ -73,13 +73,11 @@ summariseProportionOfPatientsCovered <- function(cohort,
   if (is.null(followUpDays)) {
     cli::cli_inform("Setting followUpDays to maximum time from first cohort entry to last cohort exit per cohort")
     maxDays <- cohort %>%
-      dplyr::mutate(days_in_cohort = as.integer(
-        !!CDMConnector::datediff(
-          start = "cohort_start_date",
-          end = "cohort_end_date",
-          interval = "day"
-        )
-      )) %>%
+      dplyr::mutate(days_in_cohort = as.integer(clock::date_count_between(
+        start = .data$cohort_start_date,
+        end = .data$cohort_end_date,
+        precision = "day"
+      ))) %>%
       dplyr::group_by(.data$cohort_definition_id, .data$subject_id) |>
       dplyr::summarise(days = sum(.data$days_in_cohort, na.rm = TRUE)) |>
       dplyr::group_by(.data$cohort_definition_id) |>

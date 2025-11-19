@@ -4,12 +4,24 @@
 \alias{plotDoc}
 \title{Helper for consistent documentation of \code{plot}.}
 \arguments{
+\item{x}{Variable to plot on x-axis}
+
+\item{position}{Position of bars, can be either \code{dodge} or \code{stack}}
+
 \item{facet}{Columns to facet by. See options with
 \code{availablePlotColumns(result)}. Formula is also allowed to specify rows and
 columns.}
 
 \item{colour}{Columns to color by. See options with
 \code{availablePlotColumns(result)}.}
+
+\item{style}{Visual theme to apply. Character, or \code{NULL}. If a character, this
+may be either the name of a built-in style (see \code{plotStyle()}), or a path to
+a \code{.yml} file that defines a custom style. If NULL, the function will use the
+explicit default style, unless a global style option is set (see
+\code{visOmopResults::setGlobalPlotOptions()}) or a \verb{_brand.yml} file is present
+(in that order). Refer to the \strong{visOmopResults} package vignette on styles
+to learn more.}
 }
 \description{
 Helper for consistent documentation of \code{plot}.

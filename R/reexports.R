@@ -49,7 +49,3 @@ omopgenerics::additionalColumns
 #' @importFrom omopgenerics settingsColumns
 #' @export
 omopgenerics::settingsColumns
-
-#' @importFrom PatientProfiles mockDisconnect
-#' @export
-PatientProfiles::mockDisconnect

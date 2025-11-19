@@ -888,7 +888,7 @@ addDrugUseInternal <- function(x,
         dplyr::mutate("time_to_exposure" = dplyr::if_else(
           .data$time_to_exposure <= .data[[indexDate]],
           0L,
-          as.integer(!!CDMConnector::datediff(start = indexDate, end = "time_to_exposure"))
+          as.integer(clock::date_count_between(start = .data[[indexDate]], end = .data$time_to_exposure, precision = "day"))
         ))
     }
     x <- x |>
@@ -912,9 +912,11 @@ addDrugUseInternal <- function(x,
   if (initialQuantity | initialExposureDuration) {
     qs <- c(
       "as.numeric(sum(.data$quantity, na.rm = TRUE))",
-      "max(as.integer(local(CDMConnector::datediff(
-        start = 'drug_exposure_start_date', end = 'drug_exposure_end_date'
-      ))) + 1L, na.rm = TRUE)"
+      "max(as.integer(clock::date_count_between(
+        start = .data$drug_exposure_start_date,
+        end = .data$drug_exposure_end_date,
+        precision = 'day'
+      )) + 1L, na.rm = TRUE)"
     ) |>
       rlang::parse_exprs() |>
       rlang::set_names(c("initial_quantity", "initial_exposure_duration"))
@@ -959,10 +961,10 @@ addDrugUseInternal <- function(x,
             .data[[censorDate]], .data$drug_exposure_end_date
           )
         ) %>%
-        dplyr::mutate("exposed_time" = as.integer(!!CDMConnector::datediff(
-          start = "drug_exposure_start_date",
-          end = "drug_exposure_end_date",
-          interval = "day"
+        dplyr::mutate("exposed_time" = as.integer(clock::date_count_between(
+          start = .data$drug_exposure_start_date,
+          end = .data$drug_exposure_end_date,
+          precision = "day"
         )) + 1L)
     }
     qs <- c(
@@ -1017,8 +1019,10 @@ addDrugUseInternal <- function(x,
           .data[[censorDate]]
         )
       ) %>%
-      dplyr::mutate("exposure_duration" = as.integer(!!CDMConnector::datediff(
-        start = "start_contribution", end = "end_contribution"
+      dplyr::mutate("exposure_duration" = as.integer(clock::date_count_between(
+        start = .data$start_contribution,
+        end = .data$end_contribution,
+        precision = "day"
       )) + 1L) |>
       dplyr::select(-c("start_contribution", "end_contribution")) |>
       dplyr::compute(

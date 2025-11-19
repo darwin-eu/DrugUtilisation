@@ -1,10 +1,8 @@
 test_that("test benchmarking function", {
   skip_on_cran()
 
-  con <- duckdb::dbConnect(duckdb::duckdb(), CDMConnector::eunomiaDir())
-  cdm <- CDMConnector::cdmFromCon(
-    con = con, cdmSchema = "main", writeSchema = "main"
-  )
+  cdm <- omock::mockCdmFromDataset(datasetName = "GiBleed", source = "local") |>
+    copyCdm()
 
   initialTables <- omopgenerics::listSourceTables(cdm =  cdm)
 
@@ -26,5 +24,5 @@ test_that("test benchmarking function", {
     cdm = cdm, indicationCohort = "indication"
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

@@ -30,7 +30,7 @@ Daily dose is always computed at the ingredient level. So we can calculate the d
 
 ```{r}
 library(DrugUtilisation)
-cdm <- mockDrugUtilisation(numberIndividuals = 100, seed = 123456)
+cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
 cdm$drug_strength |>
   dplyr::glimpse()
 ```
