@@ -47,6 +47,5 @@ cdm$cohort2
 
 settings(cdm$cohort2)
 
-mockDisconnect(cdm)
 }
 }

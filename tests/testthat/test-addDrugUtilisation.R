@@ -3,8 +3,6 @@ test_that("Basic functionality", {
   skip_on_cran()
   # basic functionality
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 3, 3, 1, 2, 4, 4, 1),
@@ -45,7 +43,8 @@ test_that("Basic functionality", {
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   # basic functionality
   expect_no_error(
@@ -155,14 +154,12 @@ test_that("Basic functionality", {
 
   # nameStyle
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("gapEra consecutive prescriptions", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:2,
       person_id = c(1, 1),
@@ -185,7 +182,8 @@ test_that("gapEra consecutive prescriptions", {
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   expect_no_error(
     x <- cdm$dus_cohort |>
@@ -195,14 +193,12 @@ test_that("gapEra consecutive prescriptions", {
   expect_identical(x$number_exposures_ingredient_1125315_descendants, 2L)
   expect_identical(x$number_eras_ingredient_1125315_descendants, 1L)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test subfunctions", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 3, 3, 1, 2, 4, 4, 1),
@@ -224,8 +220,8 @@ test_that("test subfunctions", {
       quantity = c(10, 20, 30, 1, 10, 5, 15, 20, 30, 14, 10, 2)
     ),
     dus_cohort = dplyr::tibble(
-      cohort_definition_id = c(1, 2, 1, 1, 1, 2),
-      subject_id = c(1, 1, 2, 3, 4, 4),
+      cohort_definition_id = c(1, 2, 1, 1, 1, 2) |> as.integer(),
+      subject_id = c(1, 1, 2, 3, 4, 4) |> as.integer(),
       cohort_start_date = as.Date(c(
         "2020-01-15", "2020-01-24", "2021-01-15", "2022-02-01", "2010-01-05",
         "2010-01-05"
@@ -243,7 +239,8 @@ test_that("test subfunctions", {
       observation_period_end_date = as.Date("2024-01-01"),
       period_type_concept_id = 0
     )
-  )
+  ) |>
+    copyCdm()
 
   # main
   expect_no_error(
@@ -364,13 +361,11 @@ test_that("test subfunctions", {
       addNumberExposures(conceptSet = codes)
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test addDaysPrescribed", {
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1,
       person_id = 1L,
@@ -394,7 +389,9 @@ test_that("test addDaysPrescribed", {
       cohort_start_date = as.Date(c("2020-01-01", "2020-01-10", "2020-01-10")),
       cohort_end_date = as.Date(c("2020-02-15", "2020-03-15", "2020-02-10"))
     )
-  )
+  ) |>
+    copyCdm()
+
   codes <- list(aceta = 1125315L)
 
   # test incident behavior
@@ -425,7 +422,7 @@ test_that("test addDaysPrescribed", {
   )
   expect_identical(x, y)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("validateNameStyle", {

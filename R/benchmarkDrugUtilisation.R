@@ -30,12 +30,9 @@
 #' @examples
 #' \donttest{
 #' library(DrugUtilisation)
-#' library(CDMConnector)
-#' library(duckdb)
+#' library(omock)
 #'
-#' requireEunomia()
-#' con <- dbConnect(drv = duckdb(dbdir = eunomiaDir()))
-#' cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
+#' cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
 #'
 #' timings <- benchmarkDrugUtilisation(cdm)
 #'
@@ -72,7 +69,7 @@ benchmarkDrugUtilisation <- function(cdm,
   mainCohort <- paste0(prefix, "main")
   altCohort <- paste0(prefix, "alt")
   inclusion <- paste0(prefix, "inclusion")
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -88,7 +85,7 @@ benchmarkDrugUtilisation <- function(cdm,
       gapEra = 30
     )
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -106,7 +103,7 @@ benchmarkDrugUtilisation <- function(cdm,
       daysPrescribed = TRUE
     )
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -119,7 +116,7 @@ benchmarkDrugUtilisation <- function(cdm,
       requireObservationBeforeDrug(days = 365, name = inclusion) |>
       requirePriorDrugWashout(days = 365, name = inclusion)
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -134,7 +131,7 @@ benchmarkDrugUtilisation <- function(cdm,
       name = altCohort
     )
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -148,7 +145,7 @@ benchmarkDrugUtilisation <- function(cdm,
         gapEra = 30, ingredientConceptId = ingredientConceptId
       )
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -164,7 +161,7 @@ benchmarkDrugUtilisation <- function(cdm,
           indicationCohortName = indicationCohort
         )
     )
-    time <- as.numeric(Sys.time() - t0)
+    time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
     result <- result |>
       dplyr::union_all(dplyr::tibble(task = task, time = time))
   }
@@ -177,7 +174,7 @@ benchmarkDrugUtilisation <- function(cdm,
     cdm[[mainCohort]] |>
       summariseDrugRestart(switchCohortTable = altCohort)
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -189,7 +186,7 @@ benchmarkDrugUtilisation <- function(cdm,
     cdm[[mainCohort]] |>
       summariseProportionOfPatientsCovered()
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -204,7 +201,7 @@ benchmarkDrugUtilisation <- function(cdm,
         window = list(c(-Inf, -1), c(0, 0), c(1, Inf))
       )
   )
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 
@@ -213,7 +210,7 @@ benchmarkDrugUtilisation <- function(cdm,
   benchmarkMessage(task)
   t0 <- Sys.time()
   omopgenerics::dropSourceTable(cdm = cdm, name = dplyr::starts_with(prefix))
-  time <- as.numeric(Sys.time() - t0)
+  time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
     dplyr::union_all(dplyr::tibble(task = task, time = time))
 

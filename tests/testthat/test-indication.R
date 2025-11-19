@@ -53,15 +53,14 @@ test_that("test case single indication", {
   )
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = targetCohortName,
     cohort2 = indicationCohortName,
     condition_occurrence = condition_occurrence,
     observation_period = observationPeriod
-  )
-  # check it works without cdm object specified
+  ) |>
+    copyCdm()
 
+  # check it works without cdm object specified
   expect_no_error(cdm[["cohort1"]] |>
     addIndication(
       indicationCohortName = "cohort2", indicationWindow = list(c(0, 0)),
@@ -194,7 +193,7 @@ test_that("test case single indication", {
     )
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test case single indication with unknown indication table", {
@@ -241,12 +240,11 @@ test_that("test case single indication with unknown indication table", {
     period_type_concept_id = 44814724
   )
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = targetCohortName,
     cohort2 = indicationCohortName, condition_occurrence = condition_occurrence,
     observation_period = observationPeriod
-  )
+  ) |>
+    copyCdm()
 
   # check for indication 0
   res0 <- cdm[["cohort1"]] |>
@@ -359,7 +357,7 @@ test_that("test case single indication with unknown indication table", {
       dplyr::collect()
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test indicationDate", {
@@ -406,15 +404,13 @@ test_that("test indicationDate", {
     period_type_concept_id = 44814724
   )
 
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = targetCohortName,
-      cohort2 = indicationCohortName,
-      condition_occurrence = condition_occurrence,
-      observation_period = observationPeriod
-    )
+  cdm <-mockDrugUtilisation(
+    cohort1 = targetCohortName,
+    cohort2 = indicationCohortName,
+    condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   # original
   res012inf <- cdm[["cohort1"]] |>
@@ -476,7 +472,7 @@ test_that("test indicationDate", {
       dplyr::pull("indication_m2_to_0")
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("test attributes", {
@@ -522,15 +518,13 @@ test_that("test attributes", {
     observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = targetCohortName,
-      cohort2 = indicationCohortName,
-      condition_occurrence = condition_occurrence,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    cohort1 = targetCohortName,
+    cohort2 = indicationCohortName,
+    condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   cdm[["cohort1new"]] <- cdm[["cohort1"]] |>
     addIndication(
@@ -548,7 +542,7 @@ test_that("test attributes", {
     class(cdm[["cohort1new"]])[class(cdm[["cohort1new"]]) != "GeneratedCohortSet"]
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("summariseIndication", {
@@ -593,15 +587,13 @@ test_that("summariseIndication", {
     observation_period_end_date = as.Date("2024-01-01"),
     period_type_concept_id = 44814724
   )
-  cdm <-
-    mockDrugUtilisation(
-      con = connection(),
-      writeSchema = schema(),
-      cohort1 = targetCohortName,
-      cohort2 = indicationCohortName,
-      condition_occurrence = condition_occurrence,
-      observation_period = observationPeriod
-    )
+  cdm <- mockDrugUtilisation(
+    cohort1 = targetCohortName,
+    cohort2 = indicationCohortName,
+    condition_occurrence = condition_occurrence,
+    observation_period = observationPeriod
+  ) |>
+    copyCdm()
 
   result <- cdm[["cohort1"]] |>
     summariseIndication(
@@ -633,7 +625,6 @@ test_that("summariseIndication", {
       unknownIndicationTable = "condition_occurrence",
       indicationWindow = list(c(0, 0), c(-7, 0), c(-30, 0), c(-Inf, 0))
     )
-
 
   expect_true(inherits(result, "summarised_result"))
   x <- tidyr::expand_grid(
@@ -672,5 +663,5 @@ test_that("summariseIndication", {
     "summarise_indication", unique(settings(result)$result_type)
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

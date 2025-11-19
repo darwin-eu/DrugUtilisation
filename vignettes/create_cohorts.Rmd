@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
+## Introduction
 
 In this vignette we will introduce how to create a drug users cohorts. A cohort is a set of people that satisfy a certain inclusion criteria during a certain time frame. The cohort object is defined in : `vignette("cdm_reference", package = "omopgenerics")`.
 
@@ -34,7 +34,7 @@ These cohorts can be subsetted to the exposures of interest applying the differe
 
 - Require a certain time before exposure `requirePriorDrugWashout()`.
 
-# Creating a `cdm_reference` object
+## Creating a `cdm_reference` object
 
 The first thing that we need is a `cdm_reference` object to our OMOP CDM instance. You can learn how to create cdm references using CDMConnector here: `vignette("a04_DBI_connection_examples", package = "CDMConnector")`.
 
@@ -42,20 +42,22 @@ The DrugUtilisation packages contains some mock data that can be useful to test 
 
 ```{r}
 library(DrugUtilisation)
+library(omopgenerics, warn.conflicts = FALSE)
+library(dplyr, warn.conflicts = FALSE)
 
-cdm <- mockDrugUtilisation(numberIndividuals = 100, seed = 1)
+cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
 
 cdm
 ```
 
-# Create a drug users cohort
+## Create a drug users cohort
 
 To create a basic drug users cohort we need two things:
 
 - A conceptSet: will determine which concepts we will use.
 - A gapEra: will determine how we will collapse those exposures.
 
-## Creating a conceptSet
+### Creating a conceptSet
 
 There are three possible forms of a conceptSet:
 
@@ -67,7 +69,8 @@ conceptSet
 
 - A `codelist` object, see `vignette("codelists", package = "omopgenerics")`
 ```{r}
-conceptSet <- list(acetaminophen = c(1, 2, 3)) |> omopgenerics::newCodelist()
+conceptSet <- list(acetaminophen = c(1, 2, 3)) |> 
+  newCodelist()
 conceptSet
 conceptSet$acetaminophen
 ```
@@ -75,13 +78,13 @@ conceptSet$acetaminophen
 - A `conceptSetExpression` object, see `vignette("codelists", package = "omopgenerics")`
 
 ```{r}
-conceptSet <- list(acetaminophen = dplyr::tibble(
+conceptSet <- list(acetaminophen = tibble(
   concept_id = 1125315,
   excluded = FALSE,
   descendants = TRUE,
   mapped = FALSE
 )) |>
-  omopgenerics::newConceptSetExpression()
+  newConceptSetExpression()
 conceptSet
 conceptSet$acetaminophen
 ```
@@ -95,8 +98,8 @@ library(CodelistGenerator)
 
 For example we can create a conceptSet based in an ingredient with `getDrugIngredientCodes()`:
 ```{r}
-codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
-codes[["161_acetaminophen"]]
+codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}")
+codes[["acetaminophen"]]
 ```
 
 We could also use the function `codesFromConceptSet()` to read a concept set from a json file:
@@ -105,7 +108,7 @@ codes <- codesFromConceptSet(path = system.file("acetaminophen.json", package = 
 codes
 ```
 
-## The gapEra parameter
+### The gapEra parameter
 
 The `gapEra` parameter is used to join exposures into episodes, let's say for example we have an individual with 4 drug exposures that we are interested in. The first two overlap each other, then there is a gap of 29 days and two consecutive exposures:
 
@@ -118,9 +121,8 @@ dplyr::tibble(
   tidyr::pivot_longer(c("start", "end")) |>
   dplyr::mutate(lab = format(value, "%d %b")) |>
   ggplot2::ggplot(ggplot2::aes(x = value, y = drug_exposure_id, group = drug_exposure_id, label = lab)) +
-  ggplot2::geom_point(size = 5) +
+  ggplot2::geom_point(size = 3) +
   ggplot2::geom_line(linewidth = 2) +
-  ggplot2::lims(y = c(0.5, 4.5)) +
   ggplot2::geom_text(nudge_y = 0.2) +
   ggplot2::geom_line(
     data = dplyr::tibble(
@@ -147,6 +149,7 @@ dplyr::tibble(
   ) +
   # ggplot2::ggtitle("subject_id = 1") +
   ggplot2::ylab("Drug exposure id") +
+  ggplot2::scale_y_continuous(breaks = c(1:4), limits = c(0.5, 4.5)) +
   ggplot2::xlab("Time") +
   ggplot2::theme(legend.position = "none")
 ```
@@ -219,14 +222,18 @@ x |>
   ggplot2::theme(legend.position = "none", axis.ticks.y = ggplot2::element_blank())
 ```
 
-## Create your cohort
+### Create your cohort
 
 We will then create now a cohort with all the drug users of acetaminophen with a gapEra of 30 days.
 
 ```{r, messages = TRUE}
-codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen")
-names(codes) <- "acetaminophen"
-cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "acetaminophen_cohort", conceptSet = codes, gapEra = 30)
+codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}")
+cdm <- generateDrugUtilisationCohortSet(
+  cdm = cdm, 
+  name = "acetaminophen_cohort", 
+  conceptSet = codes, 
+  gapEra = 30L
+)
 cdm
 ```
 
@@ -236,12 +243,12 @@ We can compare what we see with what we would expect; if we look at the individu
 
 ```{r}
 cdm$drug_exposure |>
-  dplyr::filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
+  filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
 ```
 
 ```{r}
 cdm$acetaminophen_cohort |>
-  dplyr::filter(subject_id == 69)
+  filter(subject_id == 69)
 ```
 
 In this case gapEra did not have a big impact as we can see in the attrition:
@@ -254,14 +261,14 @@ We can see this particular case of this individual:
 
 ```{r}
 cdm$drug_exposure |>
-  dplyr::filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
+  filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
 ```
 
 In this case we have 3 exposures separated by 3 days, so if we use the 30 days gap both exposures are joined into a single episode, whereas if we would use a gapEra smaller than 3 we would consider them as different episodes.
 
 ```{r}
 cdm$acetaminophen_cohort |>
-  dplyr::filter(subject_id == 50)
+  filter(subject_id == 50)
 ```
 
 We can access the other cohort attributes using the adequate functions. In settings we can see that the gapEra used is recorded or with cohortCodelist we can see which was the codelist used to create the cohort.
@@ -272,7 +279,7 @@ cohortCount(cdm$acetaminophen_cohort)
 cohortCodelist(cdm$acetaminophen_cohort, cohortId = 1)
 ```
 
-## Analogous functions
+### Analogous functions
 
 The function `generateDrugUtilisationCohortSet()` has two analogous functions:
 
@@ -303,7 +310,170 @@ cdm <- generateIngredientCohortSet(
 settings(cdm$ingredient_cohort)
 ```
 
-# Apply inclusion criteria to drug cohorts
+### Carry over days / Use days prescribed
+
+As we have seen in the previous examples overlapping drug exposure records are collapsed in a single episode and records separated by `gapEra` days or less are also collapsed into the same era. Now we will see another case where we want to carry over the overlapping days. Let's say we have the following records (as we had in the previous example):
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 3}
+dplyr::tibble(
+  drug_exposure_id = c(1, 2),
+  start = as.Date(c("2020-01-01", "2020-01-20")),
+  end = as.Date(c("2020-01-30", "2020-02-15"))
+) |>
+  tidyr::pivot_longer(c("start", "end")) |>
+  dplyr::mutate(lab = format(value, "%d %b")) |>
+  ggplot2::ggplot(ggplot2::aes(x = value, y = drug_exposure_id, group = drug_exposure_id, label = lab)) +
+  ggplot2::geom_point(size = 3) +
+  ggplot2::geom_line(linewidth = 2) +
+  ggplot2::geom_text(nudge_y = 0.2) +
+  ggplot2::geom_line(
+    data = dplyr::tibble(
+      y = c(1.5),
+      type = c("overlap"),
+      start = as.Date(c("2020-01-20")),
+      end = as.Date(c("2020-01-30"))
+    ) |>
+      tidyr::pivot_longer(c("start", "end")),
+    mapping = ggplot2::aes(x = value, y = y, group = y, color = type),
+    inherit.aes = FALSE,
+    linewidth = 2
+  ) +
+  ggtext::geom_richtext(
+    data = dplyr::tibble(
+      y = c(1.5),
+      type = c("overlap"),
+      lab = c("overlap"),
+      start = as.Date(c("2020-01-25"))
+    ),
+    mapping = ggplot2::aes(x = start, y = y, group = y, label = lab, color = type),
+    inherit.aes = FALSE,
+    nudge_y = 0.2
+  ) +
+  # ggplot2::ggtitle("subject_id = 1") +
+  ggplot2::ylab("Drug exposure id") +
+  ggplot2::scale_y_continuous(breaks = c(1:2), limits = c(0.75, 2.5)) +
+  ggplot2::xlab("Time") +
+  ggplot2::theme(legend.position = "none")
+```
+
+What we want is to carry over the overlap between both records and add it at the end of the exposure:
+
+```{r, echo = FALSE, fig.width = 7, fig.height = 3}
+dplyr::tibble(
+  drug_exposure_id = c(1, 2),
+  start = as.Date(c("2020-01-01", "2020-01-20")),
+  end = as.Date(c("2020-01-30", "2020-02-15"))
+) |>
+  tidyr::pivot_longer(c("start", "end")) |>
+  dplyr::mutate(lab = format(value, "%d %b")) |>
+  ggplot2::ggplot(ggplot2::aes(x = value, y = drug_exposure_id, group = drug_exposure_id, label = lab)) +
+  ggplot2::geom_point(size = 3) +
+  ggplot2::geom_line(linewidth = 2) +
+  ggplot2::geom_text(nudge_y = 0.2) +
+  ggplot2::geom_line(
+    data = dplyr::tibble(
+      y = c(1.5),
+      type = c("overlap"),
+      start = as.Date(c("2020-01-20")),
+      end = as.Date(c("2020-01-30"))
+    ) |>
+      tidyr::pivot_longer(c("start", "end")),
+    mapping = ggplot2::aes(x = value, y = y, group = y, color = type),
+    inherit.aes = FALSE,
+    linewidth = 2
+  ) +
+  ggplot2::geom_line(
+    data = dplyr::tibble(
+      y = c(0.5),
+      type = c("zoriginal", "overlap"),
+      start = as.Date(c("2020-01-01", "2020-02-16")),
+      end = as.Date(c("2020-02-15", "2020-02-26"))
+    ) |>
+      tidyr::pivot_longer(c("start", "end")),
+    mapping = ggplot2::aes(x = value, y = y, group = type, color = type),
+    inherit.aes = FALSE,
+    linewidth = 2
+  ) +
+  ggtext::geom_richtext(
+    data = dplyr::tibble(
+      y = c(1.5, 0.5, 0.5),
+      type = c("overlap", "zoriginal", "overlap"),
+      lab = c("overlap", "exposure", "carry over"),
+      start = as.Date(c("2020-01-25", "2020-01-25", "2020-02-21"))
+    ),
+    mapping = ggplot2::aes(x = start, y = y, group = y, label = lab, color = type),
+    inherit.aes = FALSE,
+    nudge_y = 0.2
+  ) +
+  # ggplot2::ggtitle("subject_id = 1") +
+  ggplot2::ylab("Drug exposure id") +
+  ggplot2::scale_y_continuous(breaks = c(1:2), limits = c(0.25, 2.5)) +
+  ggplot2::xlab("Time") +
+  ggplot2::theme(legend.position = "none")
+```
+
+So in this case we want to carry over the 11 days (between 20th Jan and 30th Jan) that the individual is exposed by two exposures at the end and add them at the end of the continuous exposure. Let's start by creating a very simple mock data set with the same exposures than in the example:
+
+```{r}
+cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
+  drug_exposure_id = 1:2L,
+  person_id = 1L,
+  drug_concept_id = 1125360L,
+  drug_exposure_start_date = as.Date(c("2020-01-01", "2020-01-20")),
+  drug_exposure_end_date = as.Date(c("2020-01-30", "2020-02-15"))
+), source = "duckdb")
+cdm2$drug_exposure
+```
+
+Let's now create the DrugUtilisation cohort with the `numberExposure` and `daysPrescribed` arguments as TRUE:
+
+```{r}
+cdm2 <- generateDrugUtilisationCohortSet(
+  cdm = cdm2, 
+  name = "dus_cohort", 
+  conceptSet = codes, 
+  daysPrescribed = TRUE
+)
+```
+
+The generated cohort will span from 1st of January to 15th of February and have 1 extra column (`days_prescribed`):
+
+```{r}
+cdm2$dus_cohort |>
+  glimpse()
+```
+
+Now what we can do is to instead of using the provided end date to set the end date as: `cohort_start_date + days_prescribed - 1`. Note that we subtract 1 day because `days_prescribed` is defined as a 'duration' so `end - start + 1` (so start and end date are both counted in the number of days count).
+
+One solution would be to do directly `cohort_end_date = cohort_start_date + days_prescribed - 1`, but this can lead to two main problems: (1) no all sources handles correctly the addition and subtraction of numbers to a date, (2) we could create overlapping cohort records. To account for both issues we will use [CohortConstructor](https://ohdsi.github.io/CohortConstructor/), in particular the `padCohortDate()` function, see example:
+
+```{r}
+library(CohortConstructor)
+cdm2$dus_cohort <- cdm2$dus_cohort |>
+  mutate(days_to_add = days_prescribed - 1L) |>
+  padCohortDate(
+    days = "days_to_add",
+    cohortDate = "cohort_end_date",
+    indexDate = "cohort_start_date",
+    collapse = TRUE
+  )
+```
+
+Now we can see that the created cohort is as we wished between 1st of January to 26th of February:
+
+```{r}
+cdm2$dus_cohort
+```
+
+Please note that this does not change the data in drug_exposure, so if you then use this cohort to see in which days the individual was 'exposed' only the days between 1st of January and 15th of February will count as are the days that the individual has an ongoing prescription recorded:
+
+```{r}
+cdm2$dus_cohort |>
+  addDaysExposed(conceptSet = codes, gapEra = 1L) |>
+  glimpse()
+```
+
+## Apply inclusion criteria to drug cohorts
 
 Once we have created our base cohort using a conceptSet and a gapEra we can apply different restrictions:
 
@@ -312,7 +482,7 @@ Once we have created our base cohort using a conceptSet and a gapEra we can appl
 - require a prior observation in the cdm: `requireObservationBeforeDrug()`
 - require that date are within a certain interval: `requireDrugInDateRange()`
 
-## `requirePriorDrugWashout()`
+### `requirePriorDrugWashout()`
 
 To require that the cohort entries (drug episodes) are incident we would usually define a time (`days`) where the individual is not exposed to the drug. This can be achieved using `requirePriorDrugWashout()` function. In this example we would restrict to individuals with 365 days of no exposure:
 
@@ -360,7 +530,7 @@ cdm
 attrition(cdm$my_new_cohort)
 ```
 
-## `requireIsFirstDrugEntry()`
+### `requireIsFirstDrugEntry()`
 
 To require that the cohort entry (drug episodes) is the first one of the available ones we can use the `requireIsFirstDrugEntry()` function. See example:
 
@@ -395,7 +565,7 @@ And the attrition will have a new line:
 attrition(cdm$acetaminophen_cohort)
 ```
 
-## `requireObservationBeforeDrug()`
+### `requireObservationBeforeDrug()`
 
 To require that a cohort entry (drug episodes) has a certain time of prior observation we can use the `requireObservationBeforeDrug()` function. See example:
 
@@ -431,7 +601,7 @@ attrition(cdm$acetaminophen_cohort)
 ```
 
 
-## `requireDrugInDateRange()`
+### `requireDrugInDateRange()`
 
 To require that a cohort entry (drug episodes) has a certain date within an specific range we can use the `requireDrugInDateRange()` function. In general you would like to apply this restriction to the incident date (cohort_start_date), but the function is flexible and you can use it to restrict to any other date. See example:
 
@@ -477,7 +647,7 @@ cdm$my_new_cohort <- cdm$my_new_cohort |>
 attrition(cdm$my_new_cohort)
 ```
 
-# The order matters
+## The order matters
 
 It is very important to know that the different restrictions are not commutable operations and that different order can lead to different results. Let's see the following example where we have an individual with 4 cohort entries:
 
@@ -504,7 +674,7 @@ x |>
   ggplot2::lims(y = c(0.8, 1.2)) +
   ggplot2::geom_point(
     ggplot2::aes(x = as.Date("2010-01-01"), y = 1),
-    shape = 23, color = "#00AF6A", size = 5, fill = "#00AF6A"
+    shape = 23, color = "#00AF6A", size = 3, fill = "#00AF6A"
   ) +
   ggplot2::geom_text(
     ggplot2::aes(x = as.Date("2010-01-01"), y = 0.92, label = "Start observation", hjust = "left"),
@@ -533,7 +703,7 @@ In this case we will see the result of combining in different ways 4 inclusion c
 - **minObs**: `requireObservationBeforeDrug(days = 365)`
 - **2011-2012** `requireDrugInDateRange(dateRange = as.Date(c("2011-01-01", "2012-12-31)))`
 
-## first and washout
+### first and washout
 
 If we would apply the initially the **first** requirement and then the **washout** one we would end with only the first record:
 
@@ -577,7 +747,7 @@ x |>
   ggplot2::ggtitle("washout + first")
 ```
 
-## first and minObs
+### first and minObs
 
 If we would apply the initially the **first** requirement and then the **minObs** one we would end with no record in the cohort:
 
@@ -597,7 +767,7 @@ x |>
   ggplot2::ggtitle("minObs + first")
 ```
 
-## first and 2011-2012
+### first and 2011-2012
 
 If we would apply the initially the **first** requirement and then the **2011-2012** one we would end with no record in the cohort:
 
@@ -617,7 +787,7 @@ x |>
   ggplot2::ggtitle("2011-2012 + first")
 ```
 
-## washout and minObs
+### washout and minObs
 
 If we would apply the initially the **washout** requirement and then the **minObs** one we would end with only the last record selected:
 
@@ -637,7 +807,7 @@ x |>
   ggplot2::ggtitle("minObs + washout")
 ```
 
-## washout and 2011-2012
+### washout and 2011-2012
 
 If we would apply initially the **washout** requirement and then the **2011-2012** one no record would be selected:
 
@@ -657,11 +827,11 @@ x |>
   ggplot2::ggtitle("2011-2012 + washout")
 ```
 
-## minObs and 2011-2012
+### minObs and 2011-2012
 
 Finally `requireObservationBeforeDrug` and `requireDrugInDateRange` will always be commutable operations so the other of this two will always be the same.
 
-## Recommended order
+### Recommended order
 
 Having all this into account the recommended order to apply criteria would be:
 

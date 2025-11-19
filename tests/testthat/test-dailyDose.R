@@ -88,25 +88,23 @@ test_that("functionality of addDailyDose function", {
   )
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
-    seed = 11,
     drug_strength = drug_strength,
     concept = concept,
     numberIndividuals = 50,
     concept_ancestor = concept_ancestor,
     concept_relationship = concept_relationship
-  )
+  ) |>
+    copyCdm()
 
   daily_dose <- .addDailyDose(cdm[["drug_exposure"]], ingredientConceptId = 1)
 
   # compute behavior
-  initialTables <- CDMConnector::listSourceTables(cdm)
+  initialTables <- omopgenerics::listSourceTables(cdm)
   expect_no_error(
     x <- cdm[["drug_exposure"]] |>
       .addDailyDose(ingredientConceptId = 1, name = "my_custom_name")
   )
-  finalTables <- CDMConnector::listSourceTables(cdm)
+  finalTables <- omopgenerics::listSourceTables(cdm)
   expect_identical(omopgenerics::tableName(x), "my_custom_name")
   expect_true("my_custom_name" %in% setdiff(finalTables, initialTables))
 
@@ -255,25 +253,28 @@ test_that("functionality of addDailyDose function", {
   # check it works without specifying cdm object
   expect_no_error(.addDailyDose(cdm[["drug_exposure"]], ingredientConceptId = 1))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 
   # integer64
   skip_if_not_installed("bit64")
 
   set.seed(12345)
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
   res1 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = 4)
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 
   set.seed(12345)
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
   res2 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = 4L)
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 
   set.seed(12345)
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
   res3 <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315, sampleSize = bit64::as.integer64(4))
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 
   expect_identical(res1, res2)
   expect_identical(res1, res3)

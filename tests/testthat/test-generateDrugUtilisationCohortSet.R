@@ -1,6 +1,8 @@
 test_that("test inputs", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema())
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
+
   expect_error(generateDrugUtilisationCohortSet())
   expect_error(generateDrugUtilisationCohortSet(cdm = cdm))
   expect_error(generateDrugUtilisationCohortSet(cdm, "dus", 1))
@@ -8,22 +10,21 @@ test_that("test inputs", {
   expect_no_error(generateDrugUtilisationCohortSet(cdm, "dus", list(acetaminophen = 1)))
   cdmNew <- generateDrugUtilisationCohortSet(cdm, "dus", list(acetaminophen = 1125360))
   expect_true("cohort_table" %in% class(cdmNew$dus))
-  expect_true(all(colnames(cdmNew$dus) == c(
+  expect_true(all(c(
     "cohort_definition_id", "subject_id", "cohort_start_date", "cohort_end_date"
-  )))
+  ) %in% colnames(cdmNew$dus)))
+  expect_true(length(colnames(cdmNew$dus)) == 4)
   expect_error(generateDrugUtilisationCohortSet(
     cdm, "dus", list(acetaminophen = 1125360),
     gapEra = "7"
   ))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("basic functionality drug_conceptId", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:4,
       person_id = c(1, 1, 1, 1),
@@ -37,7 +38,9 @@ test_that("basic functionality drug_conceptId", {
       drug_type_concept_id = 38000177,
       quantity = 1
     )
-  )
+  ) |>
+    copyCdm()
+
   acetaminophen <- list(acetaminophen = c(1125360, 2905077, 43135274))
 
   # check gap
@@ -86,15 +89,13 @@ test_that("basic functionality drug_conceptId", {
   # check cdm reference in attributes
   expect_true(!is.null(omopgenerics::cdmReference(cdm$dus)))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("cohort attrition", {
   skip_on_cran()
   # create mock
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:10L,
       person_id = c(rep(1L, 9), 2L),
@@ -117,7 +118,8 @@ test_that("cohort attrition", {
       observation_period_end_date = as.Date(c("2021-03-01", "2022-01-01")),
       period_type_concept_id = 44814724L
     )
-  )
+  ) |>
+    copyCdm()
 
   # capture messages
   res <- capture.output(
@@ -203,14 +205,12 @@ test_that("cohort attrition", {
   expect_identical(cohort1$number_exposures, c(4L, 1L, 1L))
   expect_identical(cohort1$days_prescribed, c(134L, 46L, 24L))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("subsetCohort functionality", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:5L,
       person_id = c(1L, 2L, 3L, 4L, 1L),
@@ -226,7 +226,9 @@ test_that("subsetCohort functionality", {
       cohort_start_date = as.Date(c(rep("2020-01-01", 4), "2021-01-01")),
       cohort_end_date = cohort_start_date
     )
-  )
+  ) |>
+    copyCdm()
+
   acetaminophen <- list(acetaminophen = c(1125360, 2905077, 43135274))
 
   # subset all cohort
@@ -249,5 +251,5 @@ test_that("subsetCohort functionality", {
   expect_true(cohortCount(cdm$dus1)$number_records == 3)
   expect_true(cohortCount(cdm$dus1)$number_subjects == 2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

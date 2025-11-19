@@ -35,11 +35,12 @@ test_that("create patterns, correct output", {
     valid_start_date = as.Date("1900-01-01"),
     valid_end_date = as.Date("2100-01-01")
   )
-
   cdm <- mockDrugUtilisation(
-    con = connection(), writeSchema = schema(), drug_strength = drug_strength,
-    concept = concept, concept_relationship = concept_relationship
-  )
+    drug_strength = drug_strength,
+    concept = concept,
+    concept_relationship = concept_relationship
+  ) |>
+    copyCdm()
 
   expect_no_error(patternTab <- patternTable(cdm))
   expect_true(all(colnames(patternTab) == c(
@@ -60,5 +61,5 @@ test_that("create patterns, correct output", {
     nrow() |>
     expect_equal(1)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

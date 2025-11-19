@@ -115,8 +115,10 @@ subsetTables <- function(cdm, conceptSet, name, subsetCohort, subsetCohortId) {
       cohort <- cohort %>%
         dplyr::mutate(
           number_exposures = 1L,
-          days_prescribed = as.integer(!!CDMConnector::datediff(
-            "cohort_start_date", "cohort_end_date"
+          days_prescribed = as.integer(clock::date_count_between(
+            start = .data$cohort_start_date,
+            end = .data$cohort_end_date,
+            precision = "day"
           )) + 1L
         ) |>
         erafy(
@@ -199,9 +201,10 @@ erafy <- function(x,
     dplyr::select(dplyr::all_of(c(group, "date_event" = end))) |>
     dplyr::mutate(date_id = 1, !!!newCols)
   if (gap > 0) {
+    gap <- as.integer(gap)
     xend <- xend %>%
-      dplyr::mutate("date_event" = as.Date(!!CDMConnector::dateadd(
-        date = "date_event", number = gap, interval = "day"
+      dplyr::mutate("date_event" = as.Date(clock::add_days(
+        x = .data$date_event, n = .env$gap
       )))
   }
   x <- xstart |>
@@ -209,7 +212,7 @@ erafy <- function(x,
     dplyr::group_by(dplyr::across(dplyr::all_of(group))) |>
     dplyr::arrange(.data$date_event, .data$date_id) |>
     dplyr::mutate(era_id = dplyr::if_else(
-      cumsum(.data$date_id) == -1 && .data$date_id == -1, -1L, 0L
+      cumsum(.data$date_id) == -1 & .data$date_id == -1, -1L, 0L
     )) |>
     dplyr::arrange(.data$date_event, .data$date_id, .data$era_id) |>
     dplyr::mutate(era_id = cumsum(.data$era_id)) |>
@@ -223,9 +226,10 @@ erafy <- function(x,
       .groups = "drop"
     )
   if (gap > 0) {
+    gap <- -gap
     x <- x %>%
-      dplyr::mutate(!!end := as.Date(!!CDMConnector::dateadd(
-        date = end, number = -gap, interval = "day"
+      dplyr::mutate(!!end := as.Date(clock::add_days(
+        x = .data[[end]], n = .env$gap
       )))
   }
   x <- x |>

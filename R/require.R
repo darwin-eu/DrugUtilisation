@@ -84,8 +84,10 @@ requirePriorDrugWashout <- function(cohort,
             order_by = .data$cohort_start_date
           )) |>
           dplyr::ungroup() %>%
-          dplyr::mutate(prior_time = !!CDMConnector::datediff(
-            "prior_end_date", "cohort_start_date"
+          dplyr::mutate(prior_time = clock::date_count_between(
+            start = .data$prior_end_date,
+            end = .data$cohort_start_date,
+            precision = "day"
           )) |>
           dplyr::filter(.data$prior_time <= .env$days) |>
           dplyr::select("cohort_definition_id", "subject_id", "cohort_start_date"),

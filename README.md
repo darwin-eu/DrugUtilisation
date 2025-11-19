@@ -37,11 +37,10 @@ examples](https://darwin-eu.github.io/CDMConnector/articles/a04_DBI_connection_e
 
 ``` r
 library(DrugUtilisation)
-library(CDMConnector)
-library(omopgenerics)
 library(dplyr)
+library(CDMConnector)
 
-cdm <- mockDrugUtilisation(numberIndividual = 100)
+cdm <- mockDrugUtilisation(numberIndividual = 100, source = "duckdb")
 ```
 
 ### Create a cohort of acetaminophen users
@@ -63,19 +62,19 @@ cdm$dus_cohort |>
   requireIsFirstDrugEntry() |>
   requireObservationBeforeDrug(days = 30)
 #> # Source:   table<dus_cohort> [?? x 4]
-#> # Database: DuckDB v1.2.0 [root@Darwin 24.4.0:R 4.4.1/:memory:]
+#> # Database: DuckDB v1.3.1 [root@Darwin 24.6.0:R 4.4.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         19 2015-03-30        2015-08-24     
-#>  2                    1         24 2004-05-12        2005-10-17     
-#>  3                    1         27 2008-05-25        2010-11-30     
-#>  4                    1          3 2011-10-10        2014-04-19     
-#>  5                    1         47 2009-05-20        2013-10-09     
-#>  6                    1         51 2022-07-23        2022-07-24     
-#>  7                    1         73 2008-11-23        2012-08-16     
-#>  8                    1         31 2003-11-05        2005-03-24     
-#>  9                    1         17 2019-10-26        2020-12-19     
-#> 10                    1         28 1966-11-26        1967-03-31     
+#>  1                    1         13 2007-07-19        2007-11-19     
+#>  2                    1         29 2014-10-16        2017-08-02     
+#>  3                    1         83 2020-04-14        2020-08-04     
+#>  4                    1         14 2020-09-17        2020-09-20     
+#>  5                    1         23 1993-05-24        1996-06-23     
+#>  6                    1         25 2021-10-17        2021-10-22     
+#>  7                    1         69 2004-12-06        2005-02-04     
+#>  8                    1         74 2020-08-07        2020-08-09     
+#>  9                    1         93 2021-03-21        2021-08-15     
+#> 10                    1         26 2019-03-08        2021-06-02     
 #> # ℹ more rows
 ```
 
@@ -88,7 +87,8 @@ and the other for influenza.
 
 ``` r
 indications <- list(headache = 378253, influenza = 4266367)
-cdm <- generateConceptCohortSet(cdm,
+cdm <- generateConceptCohortSet(
+  cdm = cdm,
   conceptSet = indications,
   name = "indications_cohort"
 )
@@ -119,7 +119,7 @@ indication_summary |> glimpse()
 #> $ variable_level   <chr> "headache", "headache", "influenza", "influenza", "he…
 #> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
 #> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
-#> $ estimate_value   <chr> "9", "16.0714285714286", "7", "12.5", "6", "10.714285…
+#> $ estimate_value   <chr> "10", "17.5438596491228", "11", "19.2982456140351", "…
 #> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
 #> $ additional_level <chr> "-30 to 0", "-30 to 0", "-30 to 0", "-30 to 0", "-30 …
 ```
@@ -149,7 +149,7 @@ drug_utilisation_summary |> glimpse()
 #> $ variable_level   <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ estimate_name    <chr> "count", "count", "q25", "median", "q75", "mean", "sd…
 #> $ estimate_type    <chr> "integer", "integer", "integer", "integer", "integer"…
-#> $ estimate_value   <chr> "56", "56", "1", "1", "1", "1.21428571428571", "0.494…
+#> $ estimate_value   <chr> "57", "57", "1", "1", "1", "1.19298245614035", "0.515…
 #> $ additional_name  <chr> "overall", "overall", "concept_set", "concept_set", "…
 #> $ additional_level <chr> "overall", "overall", "ingredient_1125315_descendants…
 table(drug_utilisation_summary$variable_name)
@@ -192,7 +192,7 @@ results |> glimpse()
 #> $ variable_level   <chr> "headache", "headache", "influenza", "influenza", "he…
 #> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
 #> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
-#> $ estimate_value   <chr> "9", "16.0714285714286", "7", "12.5", "6", "10.714285…
+#> $ estimate_value   <chr> "10", "17.5438596491228", "11", "19.2982456140351", "…
 #> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
 #> $ additional_level <chr> "-30 to 0", "-30 to 0", "-30 to 0", "-30 to 0", "-30 …
 ```

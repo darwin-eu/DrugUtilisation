@@ -42,13 +42,12 @@ test_that("tableIndication works", {
     period_type_concept_id = 44814724
   )
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = targetCohortName,
     cohort2 = indicationCohortName,
     condition_occurrence = condition_occurrence,
     observation_period = observationPeriod
-  )
+  ) |>
+    copyCdm()
 
   result <- cdm[["cohort1"]] |>
     summariseIndication(
@@ -90,7 +89,7 @@ test_that("tableIndication works", {
   fx2 <- tableIndication(results, type = "flextable", header = "group")
   expect_identical(fx, fx2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("tableDoseCoverage", {
@@ -183,15 +182,13 @@ test_that("tableDoseCoverage", {
   )
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
-    seed = 11,
     drug_strength = drug_strength,
     concept = concept,
     numberIndividuals = 50,
     concept_ancestor = concept_ancestor,
     concept_relationship = concept_relationship
-  )
+  ) |>
+    copyCdm()
 
   coverage <- summariseDoseCoverage(cdm, 1)
 
@@ -215,14 +212,12 @@ test_that("tableDoseCoverage", {
   expect_no_error(gt2 <- tableDoseCoverage(results))
   expect_identical(gt1, gt2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("tableDrugUtilisation", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 3, 3, 1, 2, 4, 4, 1),
@@ -278,7 +273,8 @@ test_that("tableDrugUtilisation", {
       provider_id = 0L,
       care_site_id = 0L
     )
-  )
+  ) |>
+    copyCdm()
 
   result <- cdm$dus_cohort |>
     PatientProfiles::addSex(name = "dus_cohort") |>
@@ -299,14 +295,12 @@ test_that("tableDrugUtilisation", {
   expect_no_error(default2 <- tableDrugUtilisation(results))
   expect_identical(default, default2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("tableDrugRestart", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 2, 1, 1, 2, 4, 4, 1),
@@ -365,7 +359,8 @@ test_that("tableDrugRestart", {
       provider_id = 0L,
       care_site_id = 0L
     )
-  )
+  ) |>
+    copyCdm()
 
   conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327), "c" = 1503328)
   cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "switch_cohort", conceptSet = conceptlist)
@@ -391,35 +386,34 @@ test_that("tableDrugRestart", {
   expect_no_error(gt2 <- tableDrugRestart(result))
   expect_identical(gt1, gt2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("tableProportionOfPatientsCovered works", {
   skip_on_cran()
 
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     dus_cohort = dplyr::tibble(
-      cohort_definition_id = 1,
-      subject_id = c(1, 1, 2, 3, 4),
+      cohort_definition_id = 1L,
+      subject_id = c(1, 1, 2, 3, 4) |> as.integer(),
       cohort_start_date = as.Date(c("2000-01-01", "2000-01-10", "2002-01-01", "2010-01-01", "2011-01-01")),
       cohort_end_date = as.Date(c("2000-01-05", "2000-01-15", "2002-01-15", "2010-01-20", "2011-01-20"))
     ),
     observation_period = dplyr::tibble(
-      observation_period_id = 1:4,
-      person_id = 1:4,
+      observation_period_id = 1:4L,
+      person_id = 1:4L,
       observation_period_start_date = as.Date(c("2000-01-01", "2002-01-01", "2010-01-01", "2011-01-01")),
       observation_period_end_date = as.Date(c("2000-01-25", "2002-01-15", "2010-01-25", "2011-01-25")),
-      period_type_concept_id = 0
+      period_type_concept_id = 0L
     )
   )
   cdm$dus_cohort <- cdm$dus_cohort |>
     dplyr::mutate(
       var0 = "group",
-      var1 = dplyr::if_else(subject_id == 1, "group_1", "group_2"),
-      var2 = dplyr::if_else(subject_id %in% c(1, 2), "group_a", "group_b")
+      var1 = dplyr::if_else(subject_id == 1L, "group_1", "group_2"),
+      var2 = dplyr::if_else(subject_id %in% c(1L, 2L), "group_a", "group_b")
     )
+  cdm <- copyCdm(cdm = cdm)
 
   ppc <- cdm$dus_cohort |>
     summariseProportionOfPatientsCovered(
@@ -450,12 +444,14 @@ test_that("tableProportionOfPatientsCovered works", {
   expect_no_error(tb2 <- tableProportionOfPatientsCovered(result))
   expect_identical(tb1, tb2)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("tableTreatment", {
   skip_on_cran()
-  cdm <- mockDrugUtilisation(con = connection(), writeSchema = schema(), seed = 1)
+  cdm <- mockDrugUtilisation() |>
+    copyCdm()
+
   result <- cdm$cohort1 |>
     summariseTreatment(
       treatmentCohortName = "cohort2", window = list(c(0, 30), c(31, 365))
@@ -473,5 +469,5 @@ test_that("tableTreatment", {
   expect_no_error(x2 <- tableTreatment(results))
   expect_identical(x, x2)
 
-  omopgenerics::cdmDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

@@ -31,12 +31,9 @@ Run benchmark of drug utilisation cohort generation
 \examples{
 \donttest{
 library(DrugUtilisation)
-library(CDMConnector)
-library(duckdb)
+library(omock)
 
-requireEunomia()
-con <- dbConnect(drv = duckdb(dbdir = eunomiaDir()))
-cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
+cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
 
 timings <- benchmarkDrugUtilisation(cdm)
 

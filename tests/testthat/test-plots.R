@@ -1,8 +1,6 @@
 test_that("plotDrugRestart works", {
   skip_on_cran()
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = 1:12,
       person_id = c(1, 1, 1, 2, 2, 2, 1, 1, 2, 4, 4, 1),
@@ -61,7 +59,8 @@ test_that("plotDrugRestart works", {
       provider_id = 0L,
       care_site_id = 0L
     )
-  )
+  ) |>
+    copyCdm()
 
   conceptlist <- list("a" = 1125360, "b" = c(1503297, 1503327), "c" = 1503328)
   cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "switch_cohort", conceptSet = conceptlist)
@@ -76,7 +75,7 @@ test_that("plotDrugRestart works", {
 
   # default
   default <- plotDrugRestart(results)
-  expect_true(ggplot2::is.ggplot(default))
+  expect_true(ggplot2::is_ggplot(default))
   expect_true(all(c(
     "cdm_name", "cohort_name", "age_group", "sex", "percentage",
     "variable_level"
@@ -84,9 +83,9 @@ test_that("plotDrugRestart works", {
 
   # other combinations
   gg1 <- plotDrugRestart(results)
-  expect_true(ggplot2::is.ggplot(gg1))
+  expect_true(ggplot2::is_ggplot(gg1))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("plotIndication works", {
@@ -133,13 +132,12 @@ test_that("plotIndication works", {
     period_type_concept_id = 44814724
   )
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     cohort1 = targetCohortName,
     cohort2 = indicationCohortName,
     condition_occurrence = condition_occurrence,
     observation_period = observationPeriod
-  )
+  ) |>
+    copyCdm()
 
   result <- cdm$cohort1 |>
     summariseIndication(
@@ -150,7 +148,7 @@ test_that("plotIndication works", {
 
   expect_no_error(p <- plotIndication(result))
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
 
 test_that("plotDrugUtilisation", {
@@ -158,8 +156,6 @@ test_that("plotDrugUtilisation", {
   nExposures <- 10000
   nPersons <- 1000
   cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
     drug_exposure = dplyr::tibble(
       drug_exposure_id = seq_len(nExposures),
       person_id = sample(seq_len(nPersons), size = nExposures, replace = TRUE),
@@ -198,7 +194,8 @@ test_that("plotDrugUtilisation", {
       provider_id = 0L,
       care_site_id = 0L
     )
-  )
+  ) |>
+    copyCdm()
 
   cdm <- generateDrugUtilisationCohortSet(
     cdm = cdm, name = "dus_cohort", conceptSet = list(acetaminophen = 1125315L)
@@ -258,5 +255,5 @@ test_that("plotDrugUtilisation", {
       )
   )
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })

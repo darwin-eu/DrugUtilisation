@@ -30,10 +30,14 @@ For this vignette we will use mock data contained in the DrugUtilisation package
 
 ```{r setup, message = FALSE, warning = FALSE}
 library(DrugUtilisation)
+library(dplyr, warn.conflicts = FALSE)
+library(CodelistGenerator)
+library(PatientProfiles)
 
-cdm <- mockDrugUtilisation(numberIndividual = 200)
+cdm <- mockDrugUtilisation(numberIndividual = 200, source = "duckdb")
+
 cdm$cohort1 |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 ## Drug codes
@@ -41,7 +45,7 @@ cdm$cohort1 |>
 Since we want to characterise *acetaminophen* and *simvastatin* usage for subjects in cohort1, we first have to get the codelist with CodelistGenerator:
 
 ```{r, message = FALSE, warning = FALSE}
-drugConcepts <- CodelistGenerator::getDrugIngredientCodes(cdm = cdm, name = c("acetaminophen", "simvastatin"))
+drugConcepts <- getDrugIngredientCodes(cdm = cdm, name = c("acetaminophen", "simvastatin"))
 ```
 
 # Add drug utilisation information
@@ -68,7 +72,7 @@ cohort <- addNumberExposures(
 )
 
 cohort |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 ## addNumberEras()
@@ -92,7 +96,7 @@ cohort <- addNumberEras(
 )
 
 cohort |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 ## daysExposed 
@@ -180,7 +184,7 @@ In what follows we create a permanent table "drug_utilisation_example" in the da
 ```{r, eval = TRUE}
 cdm$drug_utilisation_example <- cdm$cohort1 |>
   # add end of current observation date with the package PatientProfiels
-  PatientProfiles::addFutureObservation(futureObservationType = "date") |>
+  addFutureObservation(futureObservationType = "date") |>
   # add the targeted drug utilisation measures
   addDrugUtilisation(
     indexDate = "cohort_end_date",
@@ -204,7 +208,7 @@ cdm$drug_utilisation_example <- cdm$cohort1 |>
   )
 
 cdm$drug_utilisation_example |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 # Summarise drug utilisation information
@@ -242,7 +246,7 @@ duResults <- summariseDrugUtilisation(
 )
 
 duResults |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 
@@ -253,7 +257,7 @@ Additionally, the `strata` argument will provide the estimates for different str
 ```{r, eval = TRUE}
 duResults <- cdm$cohort1 |>
   # add age and sex
-  PatientProfiles::addDemographics(
+  addDemographics(
     age = TRUE,
     ageGroup = list("<=50" = c(0, 50), ">50" = c(51, 150)),
     sex = TRUE,
@@ -283,7 +287,7 @@ duResults <- cdm$cohort1 |>
   )
 
 duResults |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 The estimates obtained in this last part correspond to the mean (`mean`) and standard deviation (`sd`) of those that had information on dose and quantity, and the number  (`count_missing`) (and percentage  (`percentage_missing`)) of subjects with missing information.

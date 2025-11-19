@@ -48,7 +48,8 @@ tableIndication <- function(result,
                               "cohort_table_name", "index_date",
                               "indication_cohort_name"
                             ),
-                            type = "gt",
+                            type = NULL,
+                            style = NULL,
                             .options = list()) {
   dusTable(
     result = result,
@@ -63,6 +64,7 @@ tableIndication <- function(result,
     },
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
     type = type,
+    style = style,
     .options = .options,
   )
 }
@@ -90,8 +92,9 @@ tableIndication <- function(result,
 tableDoseCoverage <- function(result,
                               header = c("variable_name", "estimate_name"),
                               groupColumn = c("cdm_name", "ingredient_name"),
-                              type = "gt",
+                              type = NULL,
                               hide = c("variable_level", "sample_size"),
+                              style = NULL,
                               .options = list()) {
   dusTable(
     result = result,
@@ -108,6 +111,7 @@ tableDoseCoverage <- function(result,
       "Median (Q25 - Q75)" = "<median> (<q25> - <q75>)"
     ),
     type = type,
+    style = style,
     .options = .options
   )
 }
@@ -141,12 +145,13 @@ tableDoseCoverage <- function(result,
 tableDrugUtilisation <- function(result,
                                  header = c("cdm_name"),
                                  groupColumn = c("cohort_name", strataColumns(result)),
-                                 type = "gt",
+                                 type = NULL,
                                  hide = c(
                                    "variable_level", "censor_date",
                                    "cohort_table_name", "gap_era", "index_date",
                                    "restrict_incident"
                                  ),
+                                 style = NULL,
                                  .options = list()) {
   dusTable(
     result = result,
@@ -163,6 +168,7 @@ tableDrugUtilisation <- function(result,
       "Median (Q25 - Q75)" = "<median> (<q25> - <q75>)"
     ),
     type = type,
+    style = style,
     .options = .options
   )
 }
@@ -194,12 +200,13 @@ tableDrugUtilisation <- function(result,
 tableTreatment <- function(result,
                            header = c("cdm_name", "cohort_name"),
                            groupColumn = "variable_name",
-                           type = "gt",
+                           type = NULL,
                            hide = c(
                              "window_name", "mutually_exclusive", "censor_date",
                              "cohort_table_name", "index_date",
                              "treatment_cohort_name"
                            ),
+                           style = NULL,
                            .options = list()) {
   dusTable(
     result = result,
@@ -211,6 +218,7 @@ tableTreatment <- function(result,
     modifyResults = NULL,
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
     type = type,
+    style = style,
     .options = .options
   )
 }
@@ -244,13 +252,14 @@ tableTreatment <- function(result,
 tableDrugRestart <- function(result,
                              header = c("cdm_name", "cohort_name"),
                              groupColumn = "variable_name",
-                             type = "gt",
+                             type = NULL,
                              hide = c(
                                "censor_date",
                                "restrict_to_first_discontinuation",
                                "follow_up_days", "cohort_table_name",
                                "incident", "switch_cohort_table"
                              ),
+                             style = NULL,
                              .options = list()) {
   dusTable(
     result = result,
@@ -262,6 +271,7 @@ tableDrugRestart <- function(result,
     modifyResults = NULL,
     estimateName = c("N (%)" = "<count> (<percentage> %)"),
     type = type,
+    style = style,
     .options = .options
   )
 }
@@ -293,8 +303,9 @@ tableDrugRestart <- function(result,
 tableProportionOfPatientsCovered <- function(result,
                                              header = c("cohort_name", strataColumns(result)),
                                              groupColumn = "cdm_name",
-                                             type = "gt",
+                                             type = NULL,
                                              hide = c("variable_name", "variable_level", "cohort_table_name"),
+                                             style = NULL,
                                              .options = list()) {
   dusTable(
     result = result,
@@ -314,6 +325,7 @@ tableProportionOfPatientsCovered <- function(result,
       "PPC upper" = "<ppc_upper>%"
     ),
     type = type,
+    style = style,
     .options = .options
   )
 }
@@ -328,15 +340,15 @@ dusTable <- function(result,
                      modifyResults,
                      estimateName,
                      type,
+                     style,
                      call = parent.frame()) {
-  rlang::check_installed("visOmopResults")
+  rlang::check_installed("visOmopResults", version = "1.2.0")
 
   # check inputs
   result <- omopgenerics::validateResultArgument(result, call = call)
   omopgenerics::assertCharacter(header, null = TRUE, call = call)
   omopgenerics::assertCharacter(groupColumn, null = TRUE, call = call)
   omopgenerics::assertCharacter(hide, null = TRUE, call = call)
-  omopgenerics::assertChoice(type, visOmopResults::tableType(), length = 1, call = call)
 
   # overlap of parameters
   cols <- list(header = header, groupColumn = groupColumn, hide = hide)
@@ -347,7 +359,7 @@ dusTable <- function(result,
     omopgenerics::filterSettings(.data$result_type == .env$resultType)
   if (nrow(result) == 0) {
     cli::cli_warn("There are no results with `result_type = {resultType}`")
-    return(emptyTable(type))
+    return(visOmopResults::emptyTable(type = type, style = style))
   }
 
   checkVersion(result)
@@ -355,7 +367,7 @@ dusTable <- function(result,
   if (is.function(modifyResults)) {
     result <- do.call(modifyResults, list(x = result, call = call))
     if (nrow(result) == 0) {
-      return(emptyTable(type))
+      return(visOmopResults::emptyTable(type = type, style = style))
     }
   }
 
@@ -386,15 +398,12 @@ dusTable <- function(result,
     rename = rename,
     settingsColumn = setColumns,
     type = type,
+    style = style,
     columnOrder = cols[!cols %in% c(hide, groupColumn, header)],
     .options = .options
   )
 }
 
-emptyTable <- function(type) {
-  omopgenerics::emptySummarisedResult() |>
-    visOmopResults::visOmopTable(type = type)
-}
 checkIntersection <- function(cols, call) {
   pairs <- tidyr::expand_grid(i = seq_along(cols), j = seq_along(cols)) |>
     dplyr::filter(.data$i < .data$j)

@@ -27,9 +27,10 @@
       "quantity"
     ) |>
     dplyr::distinct() %>%
-    dplyr::mutate(days_exposed = !!CDMConnector::datediff(
-      start = "drug_exposure_start_date",
-      end = "drug_exposure_end_date"
+    dplyr::mutate(days_exposed = clock::date_count_between(
+      start = .data$drug_exposure_start_date,
+      end = .data$drug_exposure_end_date,
+      precision = "day"
     ) + 1) |>
     dplyr::inner_join(
       drugStrengthPattern(cdm = cdm, ingredientConceptId = ingredientConceptId),
@@ -96,6 +97,10 @@ summariseDoseCoverage <- function(cdm,
   omopgenerics::assertNumeric(x = sampleSize, min = 0, length = 1, null = TRUE, integerish = TRUE)
   omopgenerics::assertCharacter(estimates)
 
+  # insert routes table
+  nmRoutes <- omopgenerics::uniqueTableName()
+  cdm <- omopgenerics::insertTable(cdm = cdm, name = nmRoutes, table = routes)
+
   # get daily dosage
   dailyDose <- cdm[["drug_exposure"]] |>
     dplyr::inner_join(
@@ -109,9 +114,10 @@ summariseDoseCoverage <- function(cdm,
       "drug_concept_id", "drug_exposure_start_date", "drug_exposure_end_date",
       "quantity"
     ) %>%
-    dplyr::mutate(days_exposed = !!CDMConnector::datediff(
-      start = "drug_exposure_start_date",
-      end = "drug_exposure_end_date"
+    dplyr::mutate(days_exposed = clock::date_count_between(
+      start = .data$drug_exposure_start_date,
+      end = .data$drug_exposure_end_date,
+      precision = "day"
     ) + 1) |>
     dplyr::left_join(
       drugStrengthPattern(cdm = cdm, ingredientConceptId = ingredientConceptId),
@@ -123,7 +129,19 @@ summariseDoseCoverage <- function(cdm,
       "drug_concept_id", "daily_dose", "unit", "pattern_id",
       "concept_id" = "ingredient_concept_id"
     ) |>
-    .addRoute() |>
+    dplyr::left_join(
+      cdm[["concept_relationship"]] |>
+        dplyr::select(c("concept_id_1", "concept_id_2", "relationship_id")) |>
+        dplyr::filter(.data$relationship_id == "RxNorm has dose form") |>
+        dplyr::select(-"relationship_id") |>
+        dplyr::rename(
+          "drug_concept_id" = "concept_id_1",
+          "dose_form_concept_id" = "concept_id_2"
+        ),
+      by = "drug_concept_id"
+    ) |>
+    dplyr::left_join(cdm[[nmRoutes]], by = "dose_form_concept_id") |>
+    dplyr::select(-"dose_form_concept_id") |>
     dplyr::left_join(
       cdm[["concept"]] |>
         dplyr::rename("ingredient_name" = "concept_name") |>
@@ -131,6 +149,9 @@ summariseDoseCoverage <- function(cdm,
       by = "concept_id"
     ) |>
     dplyr::collect()
+
+  # drop nmRoutes
+  omopgenerics::dropSourceTable(cdm = cdm, name = nmRoutes)
 
   if (!is.null(sampleSize)) {
     dailyDose <- dailyDose |>

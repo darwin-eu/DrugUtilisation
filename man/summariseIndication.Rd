@@ -61,10 +61,10 @@ indication.
 \examples{
 \donttest{
 library(DrugUtilisation)
-library(CDMConnector)
 library(dplyr, warn.conflicts = FALSE)
+library(CDMConnector)
 
-cdm <- mockDrugUtilisation()
+cdm <- mockDrugUtilisation(source = "duckdb")
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,

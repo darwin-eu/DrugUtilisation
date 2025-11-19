@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup, warning = FALSE}
 library(DrugUtilisation)
+library(dplyr, warn.conflicts = FALSE)
 ```
 
 # Introduction
@@ -28,46 +29,53 @@ For example, one could use the default parameters to create a mock cdm reference
 cdm <- mockDrugUtilisation()
 ```
 
+As you can see this creates a local (in memory) cdm reference object:
+
+```{r}
+cdm
+```
+
 This will then populate several omop tables (for example, `person`, `concept` and `visit_occurrence`) and two cohorts in the cdm reference.
 
 ```{r, message= FALSE, warning=FALSE}
 cdm$person |>
-  dplyr::glimpse()
+  glimpse()
 
 cdm$person |>
-  dplyr::tally()
-```
-
-```{r, message= FALSE, warning=FALSE}
-cdm$concept |>
-  dplyr::glimpse()
+  tally()
 
 cdm$concept |>
-  dplyr::tally()
-```
+  glimpse()
 
-```{r, message= FALSE, warning=FALSE}
-cdm$visit_occurrence |>
-  dplyr::glimpse()
+cdm$concept |>
+  tally()
 
 cdm$visit_occurrence |>
-  dplyr::tally()
-```
+  glimpse()
 
-```{r, message= FALSE, warning=FALSE}
-cdm$cohort1 |>
-  dplyr::glimpse()
+cdm$visit_occurrence |>
+  tally()
 
 cdm$cohort1 |>
-  dplyr::tally()
+  glimpse()
+
+cdm$cohort1 |>
+  tally()
+
+cdm$cohort2 |>
+  glimpse()
+
+cdm$cohort2 |>
+  tally()
 ```
 
-```{r, message= FALSE, warning=FALSE}
-cdm$cohort2 |>
-  dplyr::glimpse()
+## Insert to `duckdb`
 
-cdm$cohort2 |>
-  dplyr::tally()
+By default as we have seen the generated mock data is locally stored in memory which is not a realistic situation in some cases. So inserting this cdm_reference to a database is quite useful in terms to simulate a real situation. You can insert the local cdm to another source (e.g. duckdb, postgres, sql server, arrow...) using the function `omopgenerics::insertCdmTo()`. Alternatively you can use the `source` argument to insert the cdm to a *DuckDB* database:
+
+```{r}
+cdm <- mockDrugUtilisation(source = "duckdb")
+cdm
 ```
 
 ## Setting seeds
@@ -75,50 +83,56 @@ cdm$cohort2 |>
 The user can also set the seed to control the randomness within the data.
 
 ```{r, message= FALSE, warning=FALSE}
-cdm <- mockDrugUtilisation(
-  seed = 789
-)
+set.seed(seed = 1)
+cdm <- mockDrugUtilisation(source = "duckdb")
+cdm$person |>
+  glimpse()
 ```
 
-We now observe that `cohort1` has been changed as a result of this seed:
+If we would run it again the result will be different:
+
+```{r}
+cdm <- mockDrugUtilisation(source = "duckdb")
+cdm$person |>
+  glimpse()
+```
+
+But if we set the same seed again, the result would be the same than initially:
+
+```{r}
+set.seed(seed = 1)
+cdm <- mockDrugUtilisation(source = "duckdb")
+cdm$person |>
+  glimpse()
+```
+
+This can be quite useful to generate the same cdm_reference object.
+
+## Create bigger mock
+
+By default the generated mock contains only 10 individuals and small tables size:
+
+```{r}
+lapply(cdm, \(x) x |> tally() |> pull())
+```
+
+You can change that using the `numberIndividual` argument to generate more individuals and records:
 
 ```{r, message= FALSE, warning=FALSE}
-cdm$cohort1 |>
-  dplyr::glimpse()
+cdm <- mockDrugUtilisation(numberIndividual = 100, source = "duckdb")
 ```
 
-The users can then create mock data in two ways, one is to set the `numberIndividual` parameter and the other is to cusutomise the tables.
-
-## Create mock data using numberIndividual parameter
-
-An example of use is as follows:
-
-```{r, message= FALSE, warning=FALSE}
-cdm <- mockDrugUtilisation(numberIndividual = 100)
-```
-
-This will ensure that each of `person`, `observation_period`, `cohort1` and `cohort2` will have 100 rows. 
+This will ensure that the `person` table will define 100 mock individuals: 
 
 ```{r, message= FALSE, warning=FALSE}
 cdm$person |>
-  dplyr::glimpse()
+  tally()
 ```
 
-```{r, message= FALSE, warning=FALSE}
-cdm$person |>
-  dplyr::tally()
-```
-
-As a consequence of this, the number of rows for other tables such as `visit_occurrence`, `condition_occurrence` and `drug_strength` will have more rows compared to the mock data produced using default settings.
+As a consequence of this, the generated tables will have more rows compared to the initial ones:
 
 ```{r, message= FALSE, warning=FALSE}
-cdm$visit_occurrence |>
-  dplyr::glimpse()
-```
-
-```{r, message= FALSE, warning=FALSE}
-cdm$visit_occurrence |>
-  dplyr::tally()
+lapply(cdm, \(x) x |> tally() |> pull())
 ```
 
 ## Creat mock data by customising tables
@@ -129,7 +143,7 @@ As we saw previously, the omop tables are automatically populated in `mockDrugUt
 
 ```{r, message= FALSE, warning=FALSE}
 cdm <- mockDrugUtilisation(
-  drug_exposure = dplyr::tibble(
+  drug_exposure = tibble(
     drug_exposure_id = 1:3,
     person_id = c(1, 1, 1),
     drug_concept_id = c(2, 3, 4),
@@ -141,13 +155,14 @@ cdm <- mockDrugUtilisation(
     )),
     quantity = c(41, 52, 1),
     drug_type_concept_id = 0
-  )
+  ),
+  source = "duckdb"
 )
 ```
 
 ```{r, message= FALSE, warning=FALSE}
 cdm$drug_exposure |>
-  dplyr::glimpse()
+  glimpse()
 ```
 
 However, one needs to be vigilant that the customised omop table is implicitly dependent on other omop tables. For example, the `drug_exposure_start_date` of someone in the `drug_exposure` table should lie within that person's `observation_period_start_date` and `observation_period_end_date`.
@@ -160,23 +175,24 @@ Similarly, cohort tables can also be customised.
 
 ```{r, message= FALSE, warning=FALSE}
 cdm <- mockDrugUtilisation(
-  observation_period = dplyr::tibble(
+  observation_period = tibble(
     observation_period_id = 1,
     person_id = 1:2,
     observation_period_start_date = as.Date("1900-01-01"),
     observation_period_end_date = as.Date("2100-01-01"),
     period_type_concept_id = 0
   ),
-  cohort1 = dplyr::tibble(
+  cohort1 = tibble(
     cohort_definition_id = 1,
     subject_id = c(1, 1, 2),
     cohort_start_date = as.Date(c("2000-01-01", "2001-01-01", "2000-01-01")),
     cohort_end_date = as.Date(c("2000-03-01", "2001-03-01", "2000-03-01"))
-  )
+  ),
+  source = "duckdb"
 )
 ```
 
 ```{r, message= FALSE, warning=FALSE}
 cdm$cohort1 |>
-  dplyr::glimpse()
+  glimpse()
 ```

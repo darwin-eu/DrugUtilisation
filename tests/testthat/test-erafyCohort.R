@@ -14,11 +14,8 @@ test_that("erafyCohort", {
     cohort_definition_id = c(1L, 2L, 3L),
     cohort_name = c("cohort1", "cohort2", "cohort3")
   )
-  cdm <- mockDrugUtilisation(
-    con = connection(),
-    writeSchema = schema(),
-    my_cohort = myCohort
-  )
+  cdm <- mockDrugUtilisation(my_cohort = myCohort) |>
+    copyCdm()
 
   initialTables <- omopgenerics::listSourceTables(cdm)
 
@@ -75,5 +72,5 @@ test_that("erafyCohort", {
 
   expect_identical(omopgenerics::listSourceTables(cdm), initialTables)
 
-  mockDisconnect(cdm = cdm)
+  dropCreatedTables(cdm = cdm)
 })
