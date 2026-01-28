@@ -881,10 +881,10 @@ addDrugUseInternal <- function(x,
       ))
     qs <- qs[c(numberExposures, timeToExposure, cumulativeQuantity)]
     toJoin <- drugData |>
-      dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) %>%
+      dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
       dplyr::summarise(!!!qs, .groups = "drop")
     if (timeToExposure) {
-      toJoin <- toJoin %>%
+      toJoin <- toJoin |>
         dplyr::mutate("time_to_exposure" = dplyr::if_else(
           .data$time_to_exposure <= .data[[indexDate]],
           0L,
@@ -925,7 +925,7 @@ addDrugUseInternal <- function(x,
       dplyr::left_join(
         drugData |>
           dplyr::group_by(dplyr::across(dplyr::all_of(c(cols, "concept_name")))) |>
-          dplyr::filter(.data$drug_exposure_start_date == min(.data$drug_exposure_start_date, na.rm = TRUE)) %>%
+          dplyr::filter(.data$drug_exposure_start_date == min(.data$drug_exposure_start_date, na.rm = TRUE)) |>
           dplyr::summarise(!!!qs, .groups = "drop") |>
           tidyr::pivot_wider(
             names_from = "concept_name",
@@ -960,7 +960,7 @@ addDrugUseInternal <- function(x,
             .data$drug_exposure_end_date >= .data[[censorDate]],
             .data[[censorDate]], .data$drug_exposure_end_date
           )
-        ) %>%
+        ) |>
         dplyr::mutate("exposed_time" = as.integer(clock::date_count_between(
           start = .data$drug_exposure_start_date,
           end = .data$drug_exposure_end_date,
@@ -1018,7 +1018,7 @@ addDrugUseInternal <- function(x,
           .data$drug_exposure_end_date,
           .data[[censorDate]]
         )
-      ) %>%
+      ) |>
       dplyr::mutate("exposure_duration" = as.integer(clock::date_count_between(
         start = .data$start_contribution,
         end = .data$end_contribution,

@@ -14,6 +14,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#' Add daily dose to `drug_exposure` like table
+#'
+#' @param x A `cdm_table` class table with at least `drug_concept_id`,
+#' `drug_exposure_start_date`, `drug_exposure_end_date` and `quantity` as
+#' columns.
+#' @inheritParams ingredientConceptIdDoc
+#' @param name Name of the new generated table, if `NULL` a temporary table will
+#' be generated.
+#'
+#' @return A `cdm_table` with two new columns 'daily_dose' and 'unit'.
+#' @export
+#'
+addDailyDose <- function(x,
+                         ingredientConceptId,
+                         name = NULL) {
+  # input check
+  cols <- c("drug_concept_id", "drug_exposure_start_date",
+            "drug_exposure_end_date", "quantity")
+  omopgenerics::assertTable(x = x, class = "cdm_table", columns = cols)
+  omopgenerics::assertNumeric(ingredientConceptId, integerish = TRUE)
+  omopgenerics::validateNameArgument(name = name, null = TRUE)
+
+  .addDailyDose(
+    drugExposure = x,
+    ingredientConceptId = ingredientConceptId,
+    name = name
+  )
+}
+
 .addDailyDose <- function(drugExposure,
                           ingredientConceptId,
                           name = NULL) {
@@ -26,7 +55,7 @@
       "drug_concept_id", "drug_exposure_start_date", "drug_exposure_end_date",
       "quantity"
     ) |>
-    dplyr::distinct() %>%
+    dplyr::distinct() |>
     dplyr::mutate(days_exposed = clock::date_count_between(
       start = .data$drug_exposure_start_date,
       end = .data$drug_exposure_end_date,
@@ -113,7 +142,7 @@ summariseDoseCoverage <- function(cdm,
     dplyr::select(
       "drug_concept_id", "drug_exposure_start_date", "drug_exposure_end_date",
       "quantity"
-    ) %>%
+    ) |>
     dplyr::mutate(days_exposed = clock::date_count_between(
       start = .data$drug_exposure_start_date,
       end = .data$drug_exposure_end_date,
@@ -207,17 +236,14 @@ standardUnits <- function(drugExposure) {
         .data$amount_unit_concept_id == 9655,
         .data$amount_value / 1000, .data$amount_value
       ),
-      numerator_value = dplyr::if_else(
-        .data$numerator_unit_concept_id == 9655,
-        .data$numerator_value / 1000, .data$numerator_value
+      numerator_value = dplyr::case_when(
+        .data$numerator_unit_concept_id == 9655 ~ .data$numerator_value / 1000,
+        .data$numerator_unit_concept_id == 9439 ~ .data$numerator_value / 1000000,
+        .default = .data$numerator_value
       ),
       denominator_value = dplyr::if_else(
         .data$denominator_unit_concept_id == 8519,
         .data$denominator_value * 1000, .data$denominator_value
-      ),
-      numerator_value = dplyr::if_else(
-        .data$numerator_unit_concept_id == 9439,
-        .data$numerator_value / 1000000, .data$numerator_value
       )
     )
 }

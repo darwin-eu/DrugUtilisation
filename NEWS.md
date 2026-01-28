@@ -1,3 +1,7 @@
+# DrugUtilisation 1.1.0
+
+* Export `addDailyDose()` function by @catalamarti in #749
+
 # DrugUtilisation 1.0.5
 
 * Explictly copy data into the database using insertTable by @ablack3 in #727

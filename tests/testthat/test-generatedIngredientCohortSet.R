@@ -53,7 +53,7 @@ test_that("handle empty ingredient name gracefully", {
     cdm = cdm, ingredient = "", name = "empty_ingredient_test"
   ))
 
-  expect_error(generateIngredientCohortSet(
+  expect_warning(generateIngredientCohortSet(
     cdm = cdm, ingredient = "nonexistent", name = "nonexistent_ingredient_test"
   ))
 

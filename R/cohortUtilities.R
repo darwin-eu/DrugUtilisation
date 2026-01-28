@@ -112,7 +112,7 @@ subsetTables <- function(cdm, conceptSet, name, subsetCohort, subsetCohortId) {
     # erafy
     cli::cli_inform(c("i" = "Collapsing overlaping records."))
     if (numberRecords(cohort) > 0) {
-      cohort <- cohort %>%
+      cohort <- cohort |>
         dplyr::mutate(
           number_exposures = 1L,
           days_prescribed = as.integer(clock::date_count_between(
@@ -202,7 +202,7 @@ erafy <- function(x,
     dplyr::mutate(date_id = 1, !!!newCols)
   if (gap > 0) {
     gap <- as.integer(gap)
-    xend <- xend %>%
+    xend <- xend |>
       dplyr::mutate("date_event" = as.Date(clock::add_days(
         x = .data$date_event, n = .env$gap
       )))
@@ -227,7 +227,7 @@ erafy <- function(x,
     )
   if (gap > 0) {
     gap <- -gap
-    x <- x %>%
+    x <- x |>
       dplyr::mutate(!!end := as.Date(clock::add_days(
         x = .data[[end]], n = .env$gap
       )))

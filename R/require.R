@@ -83,7 +83,7 @@ requirePriorDrugWashout <- function(cohort,
             .data$cohort_end_date,
             order_by = .data$cohort_start_date
           )) |>
-          dplyr::ungroup() %>%
+          dplyr::ungroup() |>
           dplyr::mutate(prior_time = clock::date_count_between(
             start = .data$prior_end_date,
             end = .data$cohort_start_date,

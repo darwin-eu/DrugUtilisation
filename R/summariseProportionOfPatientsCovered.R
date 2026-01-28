@@ -72,12 +72,12 @@ summariseProportionOfPatientsCovered <- function(cohort,
 
   if (is.null(followUpDays)) {
     cli::cli_inform("Setting followUpDays to maximum time from first cohort entry to last cohort exit per cohort")
-    maxDays <- cohort %>%
+    maxDays <- cohort |>
       dplyr::mutate(days_in_cohort = as.integer(clock::date_count_between(
         start = .data$cohort_start_date,
         end = .data$cohort_end_date,
         precision = "day"
-      ))) %>%
+      ))) |>
       dplyr::group_by(.data$cohort_definition_id, .data$subject_id) |>
       dplyr::summarise(days = sum(.data$days_in_cohort, na.rm = TRUE)) |>
       dplyr::group_by(.data$cohort_definition_id) |>
@@ -215,7 +215,7 @@ getPPC <- function(cohort, cohortId, strata, days) {
   }
   cli::cli_progress_done(.envir = parent.frame())
 
-  result <- dplyr::bind_rows(result) %>%
+  result <- dplyr::bind_rows(result) |>
     dplyr::mutate(denominator_count = dplyr::if_else(is.na(.data$denominator_count),
       0, .data$denominator_count
     )) |>
@@ -259,53 +259,53 @@ getOverallCounts <- function(workingCohort) {
 }
 
 getStratifiedStartingCount <- function(workingCohort, workingStrata) {
-  workingCohort %>%
+  workingCohort |>
     dplyr::select(c("subject_id", dplyr::all_of(workingStrata))) |>
     dplyr::distinct() |>
-    dplyr::group_by(dplyr::pick(.env$workingStrata)) %>%
+    dplyr::group_by(dplyr::pick(.env$workingStrata)) |>
     dplyr::summarise(
       denominator_count = dplyr::n(),
       outcome_count = dplyr::n()
-    ) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::ungroup() |>
     tidyr::unite("strata_level",
       c(dplyr::all_of(.env$workingStrata)),
       remove = FALSE,
       sep = " &&& "
-    ) %>%
-    dplyr::mutate(strata_name = !!paste0(workingStrata, collapse = " &&& ")) %>%
-    dplyr::relocate("strata_level", .after = "strata_name") %>%
+    ) |>
+    dplyr::mutate(strata_name = !!paste0(workingStrata, collapse = " &&& ")) |>
+    dplyr::relocate("strata_level", .after = "strata_name") |>
     dplyr::select(!dplyr::any_of(workingStrata))
 }
 
 getStratifiedCounts <- function(workingCohort, workingStrata) {
   workingCohort |>
-    dplyr::group_by(dplyr::pick(.env$workingStrata)) %>%
+    dplyr::group_by(dplyr::pick(.env$workingStrata)) |>
     # so that we get empty result if no records
     dplyr::summarise(placeholder = dplyr::n()) |>
     dplyr::select(!"placeholder") |>
     dplyr::full_join(
       workingCohort |>
         dplyr::filter(.data$in_observation == 1) |>
-        dplyr::group_by(dplyr::pick(.env$workingStrata)) %>%
+        dplyr::group_by(dplyr::pick(.env$workingStrata)) |>
         dplyr::summarise(denominator_count = dplyr::n_distinct(.data$subject_id)),
       by = workingStrata
     ) |>
     dplyr::full_join(
       workingCohort |>
         dplyr::filter(.data$in_cohort == 1) |>
-        dplyr::group_by(dplyr::pick(.env$workingStrata)) %>%
+        dplyr::group_by(dplyr::pick(.env$workingStrata)) |>
         dplyr::summarise(outcome_count = dplyr::n_distinct(.data$subject_id)),
       by = workingStrata
-    ) %>%
+    ) |>
     dplyr::ungroup() |>
     tidyr::unite("strata_level",
       c(dplyr::all_of(.env$workingStrata)),
       remove = FALSE,
       sep = " &&& "
-    ) %>%
-    dplyr::mutate(strata_name = !!paste0(workingStrata, collapse = " &&& ")) %>%
-    dplyr::relocate("strata_level", .after = "strata_name") %>%
+    ) |>
+    dplyr::mutate(strata_name = !!paste0(workingStrata, collapse = " &&& ")) |>
+    dplyr::relocate("strata_level", .after = "strata_name") |>
     dplyr::select(!dplyr::any_of(workingStrata))
 }
 

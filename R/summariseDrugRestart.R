@@ -339,7 +339,7 @@ addCensorDays <- function(x, censorDate, prefix) {
       futureObservationName = id
     )
   if (!is.null(censorDate)) {
-    x <- x %>%
+    x <- x |>
       dplyr::mutate(censor_days = as.integer(clock::date_count_between(
         start = .data$cohort_end_date,
         end = .data[[censorDate]],
@@ -381,7 +381,7 @@ addRestartDays <- function(x, cohort, prefix) {
         dplyr::summarise(
           cohort_start_date = min(.data$cohort_start_date, na.rm = TRUE),
           .group = "drop"
-        ) %>%
+        ) |>
         dplyr::mutate(restart_days = as.integer(clock::date_count_between(
           start = .data$cohort_end_date,
           end = .data$cohort_start_date,
@@ -425,7 +425,7 @@ addSwitchDays <- function(x, switchCohortTable, switchCohortId, incident, prefix
     dplyr::group_by(.data$subject_id, .data$cohort_end_date) |>
     dplyr::summarise(
       switch_start = min(.data$switch_start, na.rm = TRUE), .group = "drop"
-    ) %>%
+    ) |>
     dplyr::mutate(switch_days = as.integer(clock::date_count_between(
       start = .data$cohort_end_date,
       end = .data$switch_start,
