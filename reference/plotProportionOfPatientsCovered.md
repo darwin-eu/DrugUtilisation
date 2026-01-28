@@ -61,14 +61,19 @@ cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
                                         conceptSet = list(drug_of_interest = c(1503297, 1503327)))
 #> ℹ Subsetting drug_exposure table
 #> ℹ Checking whether any record needs to be dropped.
+#> ℹ Collapsing overlaping records.
 #> ℹ Collapsing records with gapEra = 1 days.
 
 result <- cdm$my_cohort |>
   summariseProportionOfPatientsCovered(followUpDays = 365)
-#> Warning: No records found in cohort table
+#> Getting PPC for cohort drug_of_interest
+#> Collecting cohort into memory
+#> Geting PPC over 365 days following first cohort entry
+#>  -- getting PPC for ■■■■■■■■■■                       111 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    336 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 
 plotProportionOfPatientsCovered(result)
-#> Warning: No PPC results found
 
 # }
 ```

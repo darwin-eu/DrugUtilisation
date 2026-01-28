@@ -86,12 +86,12 @@ library(DrugUtilisation)
 cdm <- mockDrugUtilisation()
 
 result <- summariseDoseCoverage(cdm, 1125315)
-#> ℹ The following estimates will be computed:
+#> ℹ The following estimates will be calculated:
 #> • daily_dose: count_missing, percentage_missing, mean, sd, q25, median, q75
 #> ! Table is collected to memory as not all requested estimates are supported on
 #>   the database side
-#> → Start summary of data, at 2025-11-19 22:49:40.289803
-#> ✔ Summary finished, at 2025-11-19 22:49:40.741889
+#> → Start summary of data, at 2026-01-28 15:56:33.481438
+#> ✔ Summary finished, at 2026-01-28 15:56:33.985844
 
 tableDoseCoverage(result)
 #> cdm_name, ingredient_name, variable_name, variable_level, estimate_name, and
@@ -134,13 +134,13 @@ overall
 
 overall
 
-6
+17
 
 0 (0.00 %)
 
-4,099.38 (6,328.95)
+2,532.24 (5,298.38)
 
-1,207.45 (529.36 - 4,407.37)
+43.90 (8.83 - 1,600.00)
 
 milligram
 
@@ -148,44 +148,70 @@ overall
 
 overall
 
-6
+17
 
 0 (0.00 %)
 
-4,099.38 (6,328.95)
+2,532.24 (5,298.38)
 
-1,207.45 (529.36 - 4,407.37)
+43.90 (8.83 - 1,600.00)
 
-topical
+oral
 
 overall
-
-6
-
-0 (0.00 %)
-
-4,099.38 (6,328.95)
-
-1,207.45 (529.36 - 4,407.37)
-
-18
 
 5
 
 0 (0.00 %)
 
-4,916.50 (6,712.81)
+170.09 (340.06)
 
-1,371.43 (1,043.48 - 5,419.35)
+13.94 (11.34 - 43.90)
 
-9
+topical
 
-1
+overall
+
+12
 
 0 (0.00 %)
 
-–
+3,516.47 (6,099.02)
 
-13.79 (13.79 - 13.79)
+943.97 (8.16 - 4,362.38)
+
+oral
+
+9
+
+5
+
+0 (0.00 %)
+
+170.09 (340.06)
+
+13.94 (11.34 - 43.90)
+
+topical
+
+18
+
+7
+
+0 (0.00 %)
+
+6,021.43 (7,115.26)
+
+4,192.14 (1,429.21 - 6,800.18)
+
+9
+
+5
+
+0 (0.00 %)
+
+9.54 (10.31)
+
+6.14 (3.11 - 8.83)
 
 \# }

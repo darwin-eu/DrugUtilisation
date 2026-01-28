@@ -187,7 +187,7 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -216,7 +216,7 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8532, 8532, 8532, 8507, 8532, …
 #> $ year_of_birth               <int> 1985, 1979, 1962, 1997, 1956, 2010, 1950, …
@@ -247,7 +247,7 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -328,7 +328,7 @@ individuals:
 cdm$person |>
   tally()
 #> # Source:   SQL [?? x 1]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>       n
 #>   <dbl>
 #> 1   100
@@ -409,7 +409,7 @@ cdm$drug_exposure |>
   glimpse()
 #> Rows: ??
 #> Columns: 23
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ drug_exposure_id             <int> 1, 2, 3
 #> $ person_id                    <int> 1, 1, 1
 #> $ drug_concept_id              <int> 2, 3, 4
@@ -474,7 +474,7 @@ cdm$cohort1 |>
   glimpse()
 #> Rows: ??
 #> Columns: 4
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ cohort_definition_id <int> 1, 1, 1
 #> $ subject_id           <int> 1, 1, 2
 #> $ cohort_start_date    <date> 2000-01-01, 2001-01-01, 2000-01-01

@@ -199,12 +199,20 @@ how daily dose is calculated
 
 - [`patternsWithFormula`](https://darwin-eu.github.io/DrugUtilisation/reference/patternsWithFormula.md)
   : Patterns valid to compute daily dose with the associated formula.
+
 - [`patternTable()`](https://darwin-eu.github.io/DrugUtilisation/reference/patternTable.md)
   : Function to create a tibble with the patterns from current drug
   strength table
+
+- [`addDailyDose()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDailyDose.md)
+  :
+
+  Add daily dose to `drug_exposure` like table
+
 - [`summariseDoseCoverage()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDoseCoverage.md)
   : Check coverage of daily dose computation in a sample of the cdm for
   selected concept sets and ingredient
+
 - [`tableDoseCoverage()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDoseCoverage.md)
   : Format a dose_coverage object into a visual table.
 

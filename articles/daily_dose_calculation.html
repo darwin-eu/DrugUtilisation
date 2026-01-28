@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Daily dose calculation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.5/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/vignettes/daily_dose_calculation.Rmd" class="external-link"><code>vignettes/daily_dose_calculation.Rmd</code></a></small>
       <div class="d-none name"><code>daily_dose_calculation.Rmd</code></div>
     </div>
 
@@ -100,7 +100,7 @@ through the <em>drug strength</em> table:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: ??</span></span>
 <span><span class="co">#&gt; Columns: 12</span></span>
-<span><span class="co">#&gt; Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]</span></span>
+<span><span class="co">#&gt; Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]</span></span>
 <span><span class="co">#&gt; $ drug_concept_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125360<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503327<span style="color: #949494;">, </span>150332…</span></span>
 <span><span class="co">#&gt; $ ingredient_concept_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1125315<span style="color: #949494;">, </span>1125315<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>1503297<span style="color: #949494;">, </span>150329…</span></span>
 <span><span class="co">#&gt; $ amount_value                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1.0e+03<span style="color: #949494;">, </span>5.0e+02<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">,</span>…</span></span>
@@ -151,44 +151,44 @@ into 4 different formulas:</p>
 <p>This formula was applied for the following 3 patterns that cover
 8,044 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-38d9968c{}.cl-38d2a9a8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-38d5933e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-38d59348{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-38d5b012{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38d5b01c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38d5b026{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38d5b027{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38d5b030{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38d5b031{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-38d9968c">
+<style>.cl-208cf908{}.cl-2082c1cc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-208717c2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-208717d6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-208757dc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-208757e6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-208757e7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-208757f0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-208757fa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-208757fb{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-208cf908">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-38d5b012"><p class="cl-38d5933e"><span class="cl-38d2a9a8">pattern_id</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">amount</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">amount_unit</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">numerator</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">numerator_unit</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">denominator</span></p></th>
-<th class="cl-38d5b01c"><p class="cl-38d59348"><span class="cl-38d2a9a8">denominator_unit</span></p></th>
+<th class="cl-208757dc"><p class="cl-208717c2"><span class="cl-2082c1cc">pattern_id</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">amount</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">amount_unit</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">numerator</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">numerator_unit</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">denominator</span></p></th>
+<th class="cl-208757e6"><p class="cl-208717d6"><span class="cl-2082c1cc">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-38d5b026"><p class="cl-38d5933e"><span class="cl-38d2a9a8">1</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">microgram</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">hour</span></p></td>
+<td class="cl-208757e7"><p class="cl-208717c2"><span class="cl-2082c1cc">1</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">microgram</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-38d5b026"><p class="cl-38d5933e"><span class="cl-38d2a9a8">2</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">milligram</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b027"><p class="cl-38d59348"><span class="cl-38d2a9a8">hour</span></p></td>
+<td class="cl-208757e7"><p class="cl-208717c2"><span class="cl-2082c1cc">2</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">milligram</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757f0"><p class="cl-208717d6"><span class="cl-2082c1cc">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-38d5b030"><p class="cl-38d5933e"><span class="cl-38d2a9a8">3</span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8"></span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8">unit</span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8">number</span></p></td>
-<td class="cl-38d5b031"><p class="cl-38d59348"><span class="cl-38d2a9a8">hour</span></p></td>
+<td class="cl-208757fa"><p class="cl-208717c2"><span class="cl-2082c1cc">3</span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc"></span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc">unit</span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc">number</span></p></td>
+<td class="cl-208757fb"><p class="cl-208717d6"><span class="cl-2082c1cc">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -208,35 +208,35 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 2 patterns that cover
 5,611 (&lt;1%) relationships:</p>
 <div class="tabwid">
-<style>.cl-38f52be0{}.cl-38ef4612{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-38f1ca04{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-38f1ca0e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-38f1e444{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38f1e44e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38f1e458{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38f1e459{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38f1e45a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-38f1e462{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-38f52be0">
+<style>.cl-20ae9a9a{}.cl-20a668fc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-20a9e73e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20a9e748{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20aa1aa6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20aa1ab0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20aa1ac4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20aa1ac5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20aa1ace{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20aa1ad8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-20ae9a9a">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-38f1e444"><p class="cl-38f1ca04"><span class="cl-38ef4612">pattern_id</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">amount</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">amount_unit</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">numerator</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">numerator_unit</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">denominator</span></p></th>
-<th class="cl-38f1e44e"><p class="cl-38f1ca0e"><span class="cl-38ef4612">denominator_unit</span></p></th>
+<th class="cl-20aa1aa6"><p class="cl-20a9e73e"><span class="cl-20a668fc">pattern_id</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">amount</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">amount_unit</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">numerator</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">numerator_unit</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">denominator</span></p></th>
+<th class="cl-20aa1ab0"><p class="cl-20a9e748"><span class="cl-20a668fc">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-38f1e458"><p class="cl-38f1ca04"><span class="cl-38ef4612">4</span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612">number</span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612">microgram</span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e459"><p class="cl-38f1ca0e"><span class="cl-38ef4612">hour</span></p></td>
+<td class="cl-20aa1ac4"><p class="cl-20a9e73e"><span class="cl-20a668fc">4</span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc">number</span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc">microgram</span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ac5"><p class="cl-20a9e748"><span class="cl-20a668fc">hour</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-38f1e45a"><p class="cl-38f1ca04"><span class="cl-38ef4612">5</span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612">number</span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612">milligram</span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612"></span></p></td>
-<td class="cl-38f1e462"><p class="cl-38f1ca0e"><span class="cl-38ef4612">hour</span></p></td>
+<td class="cl-20aa1ace"><p class="cl-20a9e73e"><span class="cl-20a668fc">5</span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc">number</span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc">milligram</span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc"></span></p></td>
+<td class="cl-20aa1ad8"><p class="cl-20a9e748"><span class="cl-20a668fc">hour</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -253,71 +253,71 @@ be determined by the <code>numerator_unit</code> field.</p>
 <p>This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:</p>
 <div class="tabwid">
-<style>.cl-3911488e{}.cl-390aabe6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-390d7218{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-390d722c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-390d8e74{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-390d8e7e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-390d8e88{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-390d8e89{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-390d8e8a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-390d8e92{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-3911488e">
+<style>.cl-20d02b38{}.cl-20c81560{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-20cb7af2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20cb7afc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20cba694{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20cba695{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20cba69e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20cba6a8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20cba6b2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20cba6b3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-20d02b38">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-390d8e74"><p class="cl-390d7218"><span class="cl-390aabe6">pattern_id</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">amount</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">amount_unit</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">numerator</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">numerator_unit</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">denominator</span></p></th>
-<th class="cl-390d8e7e"><p class="cl-390d722c"><span class="cl-390aabe6">denominator_unit</span></p></th>
+<th class="cl-20cba694"><p class="cl-20cb7af2"><span class="cl-20c81560">pattern_id</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">amount</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">amount_unit</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">numerator</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">numerator_unit</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">denominator</span></p></th>
+<th class="cl-20cba695"><p class="cl-20cb7afc"><span class="cl-20c81560">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e88"><p class="cl-390d7218"><span class="cl-390aabe6">6</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">international unit</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba69e"><p class="cl-20cb7af2"><span class="cl-20c81560">6</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">international unit</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e88"><p class="cl-390d7218"><span class="cl-390aabe6">7</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">microgram</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba69e"><p class="cl-20cb7af2"><span class="cl-20c81560">7</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">microgram</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e88"><p class="cl-390d7218"><span class="cl-390aabe6">8</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">milliequivalent</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba69e"><p class="cl-20cb7af2"><span class="cl-20c81560">8</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">milliequivalent</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e88"><p class="cl-390d7218"><span class="cl-390aabe6">9</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">milligram</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba69e"><p class="cl-20cb7af2"><span class="cl-20c81560">9</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">milligram</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e88"><p class="cl-390d7218"><span class="cl-390aabe6">10</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6">milliliter</span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e89"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba69e"><p class="cl-20cb7af2"><span class="cl-20c81560">10</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560">milliliter</span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6a8"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-390d8e8a"><p class="cl-390d7218"><span class="cl-390aabe6">11</span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6">number</span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6">unit</span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
-<td class="cl-390d8e92"><p class="cl-390d722c"><span class="cl-390aabe6"></span></p></td>
+<td class="cl-20cba6b2"><p class="cl-20cb7af2"><span class="cl-20c81560">11</span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560">number</span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560">unit</span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
+<td class="cl-20cba6b3"><p class="cl-20cb7afc"><span class="cl-20c81560"></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -334,287 +334,287 @@ field.</p>
 <p>This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:</p>
 <div class="tabwid">
-<style>.cl-39372220{}.cl-392dffba{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-39313de2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-39313dec{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-39315f2a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39315f34{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39315f3e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39315f3f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39315f48{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39315f49{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-39372220">
+<style>.cl-20fcd818{}.cl-20f2d034{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-20f6a6d2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20f6a6e6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20f6d5bc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20f6d5c6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20f6d5c7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20f6d5d0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20f6d5da{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20f6d5db{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-20fcd818">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-39315f2a"><p class="cl-39313de2"><span class="cl-392dffba">pattern_id</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">amount</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">amount_unit</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">numerator</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">numerator_unit</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">denominator</span></p></th>
-<th class="cl-39315f34"><p class="cl-39313dec"><span class="cl-392dffba">denominator_unit</span></p></th>
+<th class="cl-20f6d5bc"><p class="cl-20f6a6d2"><span class="cl-20f2d034">pattern_id</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">amount</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">amount_unit</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">numerator</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">numerator_unit</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">denominator</span></p></th>
+<th class="cl-20f6d5c6"><p class="cl-20f6a6e6"><span class="cl-20f2d034">denominator_unit</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">12</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">international unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">12</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">international unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">13</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">international unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">13</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">international unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">14</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliequivalent</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">14</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliequivalent</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">15</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">Actuation</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">15</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">16</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">liter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">16</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">17</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">17</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">18</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">18</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">19</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">square centimeter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">19</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">20</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">20</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">21</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">21</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">22</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">Actuation</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">22</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">23</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">23</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">24</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">24</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">25</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">square centimeter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">25</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">26</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">international unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">26</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">international unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">27</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">international unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">27</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">international unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">28</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">mega-international unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">28</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">mega-international unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">29</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliequivalent</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">29</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliequivalent</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">30</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliequivalent</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">30</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliequivalent</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">31</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">Actuation</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">31</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">32</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">liter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">32</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">liter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">33</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">33</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">34</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">34</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">35</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">square centimeter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">35</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">square centimeter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">36</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">36</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">37</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">37</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">38</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">Actuation</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">38</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">Actuation</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">39</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milligram</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">39</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milligram</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f3e"><p class="cl-39313de2"><span class="cl-392dffba">40</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f3f"><p class="cl-39313dec"><span class="cl-392dffba">milliliter</span></p></td>
+<td class="cl-20f6d5c7"><p class="cl-20f6a6d2"><span class="cl-20f2d034">40</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5d0"><p class="cl-20f6a6e6"><span class="cl-20f2d034">milliliter</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-39315f48"><p class="cl-39313de2"><span class="cl-392dffba">41</span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba">number</span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba">unit</span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba"></span></p></td>
-<td class="cl-39315f49"><p class="cl-39313dec"><span class="cl-392dffba">square centimeter</span></p></td>
+<td class="cl-20f6d5da"><p class="cl-20f6a6d2"><span class="cl-20f2d034">41</span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034">number</span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034">unit</span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034"></span></p></td>
+<td class="cl-20f6d5db"><p class="cl-20f6a6e6"><span class="cl-20f2d034">square centimeter</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -730,23 +730,23 @@ so:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coverageResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summariseDoseCoverage.html">summariseDoseCoverage</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, ingredientConceptId <span class="op">=</span> <span class="fl">1125315</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/tableDoseCoverage.html">tableDoseCoverage</a></span><span class="op">(</span><span class="va">coverageResult</span><span class="op">)</span></span></code></pre></div>
-<div id="lwhloeurod" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lwhloeurod table {
+<div id="twtkdsheqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#twtkdsheqv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lwhloeurod thead, #lwhloeurod tbody, #lwhloeurod tfoot, #lwhloeurod tr, #lwhloeurod td, #lwhloeurod th {
+#twtkdsheqv thead, #twtkdsheqv tbody, #twtkdsheqv tfoot, #twtkdsheqv tr, #twtkdsheqv td, #twtkdsheqv th {
   border-style: none;
 }
 
-#lwhloeurod p {
+#twtkdsheqv p {
   margin: 0;
   padding: 0;
 }
 
-#lwhloeurod .gt_table {
+#twtkdsheqv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -772,12 +772,12 @@ so:</p>
   border-left-color: #D9D9D9;
 }
 
-#lwhloeurod .gt_caption {
+#twtkdsheqv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lwhloeurod .gt_title {
+#twtkdsheqv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -789,7 +789,7 @@ so:</p>
   border-bottom-width: 0;
 }
 
-#lwhloeurod .gt_subtitle {
+#twtkdsheqv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -801,7 +801,7 @@ so:</p>
   border-top-width: 0;
 }
 
-#lwhloeurod .gt_heading {
+#twtkdsheqv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -813,13 +813,13 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_bottom_border {
+#twtkdsheqv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_col_headings {
+#twtkdsheqv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -834,7 +834,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_col_heading {
+#twtkdsheqv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -854,7 +854,7 @@ so:</p>
   overflow-x: hidden;
 }
 
-#lwhloeurod .gt_column_spanner_outer {
+#twtkdsheqv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -866,15 +866,15 @@ so:</p>
   padding-right: 4px;
 }
 
-#lwhloeurod .gt_column_spanner_outer:first-child {
+#twtkdsheqv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lwhloeurod .gt_column_spanner_outer:last-child {
+#twtkdsheqv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lwhloeurod .gt_column_spanner {
+#twtkdsheqv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -886,11 +886,11 @@ so:</p>
   width: 100%;
 }
 
-#lwhloeurod .gt_spanner_row {
+#twtkdsheqv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lwhloeurod .gt_group_heading {
+#twtkdsheqv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -916,7 +916,7 @@ so:</p>
   text-align: left;
 }
 
-#lwhloeurod .gt_empty_group_heading {
+#twtkdsheqv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -931,15 +931,15 @@ so:</p>
   vertical-align: middle;
 }
 
-#lwhloeurod .gt_from_md > :first-child {
+#twtkdsheqv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lwhloeurod .gt_from_md > :last-child {
+#twtkdsheqv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lwhloeurod .gt_row {
+#twtkdsheqv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +958,7 @@ so:</p>
   overflow-x: hidden;
 }
 
-#lwhloeurod .gt_stub {
+#twtkdsheqv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -971,7 +971,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#lwhloeurod .gt_stub_row_group {
+#twtkdsheqv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -985,15 +985,15 @@ so:</p>
   vertical-align: top;
 }
 
-#lwhloeurod .gt_row_group_first td {
+#twtkdsheqv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lwhloeurod .gt_row_group_first th {
+#twtkdsheqv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lwhloeurod .gt_summary_row {
+#twtkdsheqv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1003,16 +1003,16 @@ so:</p>
   padding-right: 5px;
 }
 
-#lwhloeurod .gt_first_summary_row {
+#twtkdsheqv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_first_summary_row.thick {
+#twtkdsheqv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lwhloeurod .gt_last_summary_row {
+#twtkdsheqv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1022,7 +1022,7 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_grand_summary_row {
+#twtkdsheqv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1032,7 +1032,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#lwhloeurod .gt_first_grand_summary_row {
+#twtkdsheqv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1042,7 @@ so:</p>
   border-top-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_last_grand_summary_row_top {
+#twtkdsheqv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1052,11 +1052,11 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_striped {
+#twtkdsheqv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lwhloeurod .gt_table_body {
+#twtkdsheqv .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -1065,7 +1065,7 @@ so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_footnotes {
+#twtkdsheqv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1079,7 +1079,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_footnote {
+#twtkdsheqv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1088,7 +1088,7 @@ so:</p>
   padding-right: 5px;
 }
 
-#lwhloeurod .gt_sourcenotes {
+#twtkdsheqv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1102,7 +1102,7 @@ so:</p>
   border-right-color: #D3D3D3;
 }
 
-#lwhloeurod .gt_sourcenote {
+#twtkdsheqv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1110,72 +1110,72 @@ so:</p>
   padding-right: 5px;
 }
 
-#lwhloeurod .gt_left {
+#twtkdsheqv .gt_left {
   text-align: left;
 }
 
-#lwhloeurod .gt_center {
+#twtkdsheqv .gt_center {
   text-align: center;
 }
 
-#lwhloeurod .gt_right {
+#twtkdsheqv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lwhloeurod .gt_font_normal {
+#twtkdsheqv .gt_font_normal {
   font-weight: normal;
 }
 
-#lwhloeurod .gt_font_bold {
+#twtkdsheqv .gt_font_bold {
   font-weight: bold;
 }
 
-#lwhloeurod .gt_font_italic {
+#twtkdsheqv .gt_font_italic {
   font-style: italic;
 }
 
-#lwhloeurod .gt_super {
+#twtkdsheqv .gt_super {
   font-size: 65%;
 }
 
-#lwhloeurod .gt_footnote_marks {
+#twtkdsheqv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lwhloeurod .gt_asterisk {
+#twtkdsheqv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lwhloeurod .gt_indent_1 {
+#twtkdsheqv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lwhloeurod .gt_indent_2 {
+#twtkdsheqv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lwhloeurod .gt_indent_3 {
+#twtkdsheqv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lwhloeurod .gt_indent_4 {
+#twtkdsheqv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lwhloeurod .gt_indent_5 {
+#twtkdsheqv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lwhloeurod .katex-display {
+#twtkdsheqv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lwhloeurod div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#twtkdsheqv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1382,23 +1382,23 @@ so:</p>
 example the following will suppress the <code>cdmName</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tableDoseCoverage.html">tableDoseCoverage</a></span><span class="op">(</span><span class="va">coverageResult</span>, groupColumn <span class="op">=</span> <span class="st">"ingredient_name"</span>, hide <span class="op">=</span> <span class="st">"cdm_name"</span><span class="op">)</span></span></code></pre></div>
-<div id="purqrnghzy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#purqrnghzy table {
+<div id="navrlwhloe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#navrlwhloe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#purqrnghzy thead, #purqrnghzy tbody, #purqrnghzy tfoot, #purqrnghzy tr, #purqrnghzy td, #purqrnghzy th {
+#navrlwhloe thead, #navrlwhloe tbody, #navrlwhloe tfoot, #navrlwhloe tr, #navrlwhloe td, #navrlwhloe th {
   border-style: none;
 }
 
-#purqrnghzy p {
+#navrlwhloe p {
   margin: 0;
   padding: 0;
 }
 
-#purqrnghzy .gt_table {
+#navrlwhloe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1424,12 +1424,12 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-left-color: #D9D9D9;
 }
 
-#purqrnghzy .gt_caption {
+#navrlwhloe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#purqrnghzy .gt_title {
+#navrlwhloe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1441,7 +1441,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-width: 0;
 }
 
-#purqrnghzy .gt_subtitle {
+#navrlwhloe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1453,7 +1453,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-top-width: 0;
 }
 
-#purqrnghzy .gt_heading {
+#navrlwhloe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1465,13 +1465,13 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_bottom_border {
+#navrlwhloe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_col_headings {
+#navrlwhloe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1486,7 +1486,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_col_heading {
+#navrlwhloe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1506,7 +1506,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   overflow-x: hidden;
 }
 
-#purqrnghzy .gt_column_spanner_outer {
+#navrlwhloe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1518,15 +1518,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 4px;
 }
 
-#purqrnghzy .gt_column_spanner_outer:first-child {
+#navrlwhloe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#purqrnghzy .gt_column_spanner_outer:last-child {
+#navrlwhloe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#purqrnghzy .gt_column_spanner {
+#navrlwhloe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1538,11 +1538,11 @@ example the following will suppress the <code>cdmName</code>:</p>
   width: 100%;
 }
 
-#purqrnghzy .gt_spanner_row {
+#navrlwhloe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#purqrnghzy .gt_group_heading {
+#navrlwhloe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1568,7 +1568,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   text-align: left;
 }
 
-#purqrnghzy .gt_empty_group_heading {
+#navrlwhloe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1583,15 +1583,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   vertical-align: middle;
 }
 
-#purqrnghzy .gt_from_md > :first-child {
+#navrlwhloe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#purqrnghzy .gt_from_md > :last-child {
+#navrlwhloe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#purqrnghzy .gt_row {
+#navrlwhloe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1610,7 +1610,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   overflow-x: hidden;
 }
 
-#purqrnghzy .gt_stub {
+#navrlwhloe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1623,7 +1623,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#purqrnghzy .gt_stub_row_group {
+#navrlwhloe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1637,15 +1637,15 @@ example the following will suppress the <code>cdmName</code>:</p>
   vertical-align: top;
 }
 
-#purqrnghzy .gt_row_group_first td {
+#navrlwhloe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#purqrnghzy .gt_row_group_first th {
+#navrlwhloe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#purqrnghzy .gt_summary_row {
+#navrlwhloe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1655,16 +1655,16 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#purqrnghzy .gt_first_summary_row {
+#navrlwhloe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_first_summary_row.thick {
+#navrlwhloe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#purqrnghzy .gt_last_summary_row {
+#navrlwhloe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1674,7 +1674,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_grand_summary_row {
+#navrlwhloe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1684,7 +1684,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#purqrnghzy .gt_first_grand_summary_row {
+#navrlwhloe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1694,7 +1694,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-top-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_last_grand_summary_row_top {
+#navrlwhloe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1704,11 +1704,11 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_striped {
+#navrlwhloe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#purqrnghzy .gt_table_body {
+#navrlwhloe .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -1717,7 +1717,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_footnotes {
+#navrlwhloe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1731,7 +1731,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_footnote {
+#navrlwhloe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1740,7 +1740,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#purqrnghzy .gt_sourcenotes {
+#navrlwhloe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1754,7 +1754,7 @@ example the following will suppress the <code>cdmName</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#purqrnghzy .gt_sourcenote {
+#navrlwhloe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1762,72 +1762,72 @@ example the following will suppress the <code>cdmName</code>:</p>
   padding-right: 5px;
 }
 
-#purqrnghzy .gt_left {
+#navrlwhloe .gt_left {
   text-align: left;
 }
 
-#purqrnghzy .gt_center {
+#navrlwhloe .gt_center {
   text-align: center;
 }
 
-#purqrnghzy .gt_right {
+#navrlwhloe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#purqrnghzy .gt_font_normal {
+#navrlwhloe .gt_font_normal {
   font-weight: normal;
 }
 
-#purqrnghzy .gt_font_bold {
+#navrlwhloe .gt_font_bold {
   font-weight: bold;
 }
 
-#purqrnghzy .gt_font_italic {
+#navrlwhloe .gt_font_italic {
   font-style: italic;
 }
 
-#purqrnghzy .gt_super {
+#navrlwhloe .gt_super {
   font-size: 65%;
 }
 
-#purqrnghzy .gt_footnote_marks {
+#navrlwhloe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#purqrnghzy .gt_asterisk {
+#navrlwhloe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#purqrnghzy .gt_indent_1 {
+#navrlwhloe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#purqrnghzy .gt_indent_2 {
+#navrlwhloe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#purqrnghzy .gt_indent_3 {
+#navrlwhloe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#purqrnghzy .gt_indent_4 {
+#navrlwhloe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#purqrnghzy .gt_indent_5 {
+#navrlwhloe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#purqrnghzy .katex-display {
+#navrlwhloe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#purqrnghzy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#navrlwhloe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

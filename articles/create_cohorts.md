@@ -136,6 +136,12 @@ to read a concept set from a json file:
 
 ``` r
 codes <- codesFromConceptSet(path = system.file("acetaminophen.json", package = "DrugUtilisation"), cdm = cdm)
+#> Warning: `codesFromConceptSet()` was deprecated in CodelistGenerator 4.0.0.
+#> ℹ Please use omopgenerics::importConceptSetExpression() |> asCodelist()
+#>   instead.
+#> This warning is displayed once per session.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 codes
 #> 
 #> ── 1 codelist ──────────────────────────────────────────────────────────────────
@@ -231,7 +237,7 @@ a single exposure as the records overlap each other:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
 #> # Source:   SQL [?? x 23]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> # ℹ 23 variables: drug_exposure_id <int>, person_id <int>,
 #> #   drug_concept_id <int>, drug_exposure_start_date <date>,
 #> #   drug_exposure_end_date <date>, drug_type_concept_id <int>, quantity <dbl>,
@@ -245,7 +251,7 @@ cdm$drug_exposure |>
 cdm$acetaminophen_cohort |>
   filter(subject_id == 69)
 #> # Source:   SQL [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> # ℹ 4 variables: cohort_definition_id <int>, subject_id <int>,
 #> #   cohort_start_date <date>, cohort_end_date <date>
 ```
@@ -269,7 +275,7 @@ We can see this particular case of this individual:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
 #> # Source:   SQL [?? x 23]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1              153        50         2905077 2009-02-05              
@@ -293,7 +299,7 @@ episodes.
 cdm$acetaminophen_cohort |>
   filter(subject_id == 50)
 #> # Source:   SQL [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1         50 2009-02-05        2009-07-16     
@@ -421,7 +427,7 @@ cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
 ), source = "duckdb")
 cdm2$drug_exposure
 #> # Source:   table<drug_exposure> [?? x 23]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1                1         1         1125360 2020-01-01              
@@ -459,7 +465,7 @@ cdm2$dus_cohort |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ cohort_definition_id <int> 1
 #> $ subject_id           <int> 1
 #> $ cohort_start_date    <date> 2020-01-01
@@ -501,7 +507,7 @@ January to 26th of February:
 ``` r
 cdm2$dus_cohort
 #> # Source:   table<dus_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1          1 2020-01-01        2020-02-15
@@ -519,7 +525,7 @@ cdm2$dus_cohort |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #> $ cohort_definition_id       <int> 1
 #> $ subject_id                 <int> 1
 #> $ cohort_start_date          <date> 2020-01-01
@@ -561,19 +567,19 @@ criteria:
 ``` r
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         33 2017-01-04        2019-09-13     
-#>  2                    1         33 2021-10-02        2021-11-13     
-#>  3                    1         84 2022-12-13        2022-12-14     
-#>  4                    1         22 2004-12-23        2005-06-17     
-#>  5                    1         14 2021-02-06        2021-03-15     
-#>  6                    1         27 1970-05-28        1972-10-28     
-#>  7                    1         27 1974-09-09        1976-01-10     
-#>  8                    1         50 2009-02-05        2009-07-16     
-#>  9                    1         50 2010-10-24        2015-07-12     
-#> 10                    1         73 2015-03-11        2015-06-17     
+#>  1                    1         62 2006-06-21        2014-05-13     
+#>  2                    1          6 2019-12-21        2020-04-08     
+#>  3                    1         93 2006-09-22        2008-01-06     
+#>  4                    1         49 2015-11-03        2017-05-04     
+#>  5                    1         98 1972-02-29        1972-11-04     
+#>  6                    1         25 2020-03-05        2020-05-07     
+#>  7                    1         85 2014-03-12        2014-04-11     
+#>  8                    1         43 2008-12-22        2009-07-31     
+#>  9                    1         58 2017-09-07        2018-09-13     
+#> 10                    1         12 2005-11-10        2012-03-21     
 #> # ℹ more rows
 ```
 
@@ -686,19 +692,19 @@ criteria:
 ``` r
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1          6 2019-12-21        2020-04-08     
-#>  2                    1         55 1999-11-01        2004-05-03     
-#>  3                    1         65 1995-04-25        2004-07-01     
-#>  4                    1         89 2020-06-17        2022-03-03     
-#>  5                    1         26 1994-12-01        1995-04-02     
-#>  6                    1         34 2009-06-19        2009-06-28     
-#>  7                    1         59 2007-06-20        2008-06-28     
-#>  8                    1         13 1986-11-20        1987-02-12     
-#>  9                    1         29 2016-04-02        2019-11-13     
-#> 10                    1         38 2010-12-18        2016-08-26     
+#>  1                    1         13 1986-11-20        1987-02-12     
+#>  2                    1         29 2016-04-02        2019-11-13     
+#>  3                    1         38 2010-12-18        2016-08-26     
+#>  4                    1         24 2014-03-28        2014-08-09     
+#>  5                    1         27 1970-05-28        1972-10-28     
+#>  6                    1         84 2022-12-13        2022-12-14     
+#>  7                    1         15 1972-01-05        1983-04-19     
+#>  8                    1         31 2017-07-13        2022-03-30     
+#>  9                    1         41 1988-03-31        1995-06-17     
+#> 10                    1         89 2020-06-17        2022-03-03     
 #> # ℹ more rows
 ```
 
@@ -757,7 +763,7 @@ criteria:
 ``` r
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          2 1998-05-20        2012-04-20     
@@ -835,7 +841,7 @@ criteria:
 ``` r
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.2 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          3 2014-03-17        2015-03-01     

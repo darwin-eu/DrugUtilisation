@@ -13,7 +13,7 @@ treatment persistence."><meta property="og:image" content="https://darwin-eu.git
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@ treatment persistence."><meta property="og:image" content="https://darwin-eu.git
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Summarise proportion Of patients covered</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.0.5/R/summariseProportionOfPatientsCovered.R" class="external-link"><code>R/summariseProportionOfPatientsCovered.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/summariseProportionOfPatientsCovered.R" class="external-link"><code>R/summariseProportionOfPatientsCovered.R</code></a></small>
       <div class="d-none name"><code>summariseProportionOfPatientsCovered.Rd</code></div>
     </div>
 
@@ -109,34 +109,34 @@ last cohort end date will be used</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting PPC for cohort cohort_1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Collecting cohort into memory</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Geting PPC over 365 days following first cohort entry</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■                     </span> 116 of 365 days</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■                     </span> 119 of 365 days</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■                      </span> 106 of 365 days</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span> 353 of 365 days</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 365 of 365 days</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting PPC for cohort cohort_2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Collecting cohort into memory</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Geting PPC over 365 days following first cohort entry</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■                     </span> 118 of 365 days</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■       </span> 287 of 365 days</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 365 of 365 days</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting PPC for cohort cohort_3</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Collecting cohort into memory</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Geting PPC over 365 days following first cohort entry</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■                     </span> 117 of 365 days</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■              </span> 210 of 365 days</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  -- getting PPC for <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 365 of 365 days</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,098 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    cdm_name cohort_name variable_name variable_level time  outcome_count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DUS MOCK cohort_1    overall       overall        0                44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DUS MOCK cohort_1    overall       overall        1                43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DUS MOCK cohort_1    overall       overall        2                43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DUS MOCK cohort_1    overall       overall        3                43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DUS MOCK cohort_1    overall       overall        4                43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DUS MOCK cohort_1    overall       overall        5                43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DUS MOCK cohort_1    overall       overall        6                42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DUS MOCK cohort_1    overall       overall        7                41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DUS MOCK cohort_1    overall       overall        8                40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DUS MOCK cohort_1    overall       overall        9                40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DUS MOCK cohort_1    overall       overall        0                36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DUS MOCK cohort_1    overall       overall        1                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DUS MOCK cohort_1    overall       overall        2                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DUS MOCK cohort_1    overall       overall        3                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DUS MOCK cohort_1    overall       overall        4                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DUS MOCK cohort_1    overall       overall        5                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DUS MOCK cohort_1    overall       overall        6                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DUS MOCK cohort_1    overall       overall        7                34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DUS MOCK cohort_1    overall       overall        8                34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DUS MOCK cohort_1    overall       overall        9                34</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,088 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: denominator_count &lt;int&gt;, ppc &lt;dbl&gt;, ppc_lower &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ppc_upper &lt;dbl&gt;, cohort_table_name &lt;chr&gt;</span></span>
