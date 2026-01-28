@@ -79,12 +79,12 @@ cdm[["acetaminophen_users"]] |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ subject_id           <int> 190, 311, 311, 826, 1133, 1144, 1144, 1276, 1289,…
-#> $ cohort_start_date    <date> 1969-08-12, 1978-05-22, 1987-09-23, 1963-11-18, …
-#> $ cohort_end_date      <date> 1969-08-26, 1978-06-12, 1987-12-22, 1963-12-02, …
-#> $ indication_m30_to_0  <chr> "none", "none", "none", "none", "none", "none", "…
+#> $ subject_id           <int> 102, 143, 232, 287, 287, 439, 442, 859, 859, 859,…
+#> $ cohort_start_date    <date> 1974-01-16, 2000-08-16, 1988-11-06, 1976-10-13, …
+#> $ cohort_end_date      <date> 1974-01-30, 2000-08-23, 1988-11-27, 1976-10-20, …
+#> $ indication_m30_to_0  <chr> "none", "none", "none", "bronchitis", "none", "no…
 ```
 
 We can see that individuals are classified as having sinusistis (without
@@ -96,7 +96,7 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2527
@@ -124,7 +124,7 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
 #> 1 none                         7
@@ -150,37 +150,37 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_0_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #>   indication_0_to_0     n
 #>   <chr>             <dbl>
-#> 1 unknown           11211
-#> 2 none                163
+#> 1 bronchitis         2524
+#> 2 unknown           11211
 #> 3 sinusitis             1
-#> 4 bronchitis         2524
+#> 4 none                163
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 unknown                  11344
-#> 2 bronchitis and sinusitis     3
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
 #> 3 none                         7
-#> 4 bronchitis                2527
-#> 5 sinusitis                   18
+#> 4 bronchitis and sinusitis     3
+#> 5 unknown                  11344
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m365_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/RtmpcFIVAq/file23f13073ba1e.duckdb]
+#> # Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2//tmp/Rtmp4eF403/file22c16dba8f50.duckdb]
 #>   indication_m365_to_0         n
 #>   <chr>                    <dbl>
-#> 1 bronchitis and sinusitis   101
-#> 2 none                         4
-#> 3 unknown                  10968
-#> 4 bronchitis                2615
-#> 5 sinusitis                  211
+#> 1 bronchitis                2615
+#> 2 sinusitis                  211
+#> 3 bronchitis and sinusitis   101
+#> 4 none                         4
+#> 5 unknown                  10968
 ```
 
 ### Summarise indications with summariseIndication()

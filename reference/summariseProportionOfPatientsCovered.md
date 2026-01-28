@@ -55,18 +55,17 @@ result <- cdm$cohort1 |>
 #> Getting PPC for cohort cohort_1
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■                       106 of 365 days
-#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   353 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■                     131 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 #> Getting PPC for cohort cohort_2
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■        287 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■                    141 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 #> Getting PPC for cohort cohort_3
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■               210 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■■                   153 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 
 tidy(result)

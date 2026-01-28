@@ -99,8 +99,8 @@ result <- cdm$my_cohort |>
 #> Getting PPC for cohort drug_of_interest
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■                       106 of 365 days
-#>  -- getting PPC for ■■■■■■■■■■■■■■■■                 177 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■                     132 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■           260 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 
 tableProportionOfPatientsCovered(result)

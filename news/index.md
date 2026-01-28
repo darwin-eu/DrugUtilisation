@@ -2,6 +2,8 @@
 
 ## DrugUtilisation 1.1.0
 
+CRAN release: 2026-01-28
+
 - Export
   [`addDailyDose()`](https://darwin-eu.github.io/DrugUtilisation/reference/addDailyDose.md)
   function by [@catalamarti](https://github.com/catalamarti) in
