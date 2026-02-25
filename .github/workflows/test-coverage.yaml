@@ -14,7 +14,7 @@ jobs:
   test-coverage:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.TOKEN_GITHUB }}
 
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +28,6 @@ jobs:
           extra-packages: |
             any::covr
             any::xml2
-            url::https://cran.r-project.org/src/contrib/Archive/duckdb/duckdb_1.2.2.tar.gz
           needs: coverage
 
       - name: Test coverage

@@ -57,7 +57,9 @@ Suggests:
     CohortSurvival,
     covr,
     DBI,
+    downlit,
     duckdb,
+    extrafont,
     flextable,
     ggplot2,
     ggtext,
@@ -66,12 +68,14 @@ Suggests:
     knitr,
     odbc,
     omock,
+    plotly,
     rmarkdown,
     RPostgres,
     scales,
     testthat (>= 3.1.5),
     tibble,
-    visOmopResults (>= 1.3.0)
+    visOmopResults (>= 1.3.0),
+    xml2
 Config/testthat/edition: 3
 Imports:
     cli,
