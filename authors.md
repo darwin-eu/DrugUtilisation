@@ -26,7 +26,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/darwin-eu/DrugUtilisation/blob/v1.1.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/darwin-eu/DrugUtilisation/blob/main/inst/CITATION)
 
 Burkard, Theresa, López-Güell, Kim, Gorbachev, Artem, Bellas, Lucía,
 Jödicke, M. A, Burn, Edward, de Ridder, Maria, Mosseveld, Mees, Gratton,

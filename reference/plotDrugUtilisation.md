@@ -95,8 +95,6 @@ result |>
     colour = "sex",
     plotType = "boxplot"
   )
-#> Ignoring unknown labels:
-#> • fill : "Sex"
 
 
 result |>

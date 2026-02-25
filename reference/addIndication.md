@@ -112,7 +112,7 @@ cdm$drug_cohort |>
 #> ℹ Collapse indications to mutually exclusive categories
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.3 [unknown@Linux 6.11.0-1018-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1
 #> $ subject_id           <int> 1, 2, 3, 5, 7, 8, 9
 #> $ cohort_start_date    <date> 1997-01-09, 2009-06-27, 1998-07-30, 1992-01-18, 2…

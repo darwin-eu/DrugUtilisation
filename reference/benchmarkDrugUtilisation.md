@@ -43,23 +43,23 @@ library(DrugUtilisation)
 library(omock)
 
 cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
-#> ℹ Reading GiBleed tables.
+#> ℹ Loading bundled GiBleed tables from package data.
 #> ℹ Adding drug_strength table.
 #> ℹ Creating local <cdm_reference> object.
 #> ℹ Inserting <cdm_reference> into duckdb.
 
 timings <- benchmarkDrugUtilisation(cdm)
-#> 28-01-2026 17:33:01 Benchmark get necessary concepts
-#> 28-01-2026 17:33:01 Benchmark generateDrugUtilisation
-#> 28-01-2026 17:33:04 Benchmark generateDrugUtilisation with numberExposures and
+#> 25-02-2026 23:38:59 Benchmark get necessary concepts
+#> 25-02-2026 23:38:59 Benchmark generateDrugUtilisation
+#> 25-02-2026 23:39:02 Benchmark generateDrugUtilisation with numberExposures and
 #> daysPrescribed
-#> 28-01-2026 17:33:08 Benchmark require
-#> 28-01-2026 17:33:10 Benchmark generateIngredientCohortSet
-#> 28-01-2026 17:33:14 Benchmark summariseDrugUtilisation
-#> 28-01-2026 17:33:21 Benchmark summariseDrugRestart
-#> 28-01-2026 17:33:23 Benchmark summariseProportionOfPatientsCovered
-#> 28-01-2026 17:33:28 Benchmark summariseTreatment
-#> 28-01-2026 17:33:32 Benchmark drop created tables
+#> 25-02-2026 23:39:06 Benchmark require
+#> 25-02-2026 23:39:08 Benchmark generateIngredientCohortSet
+#> 25-02-2026 23:39:12 Benchmark summariseDrugUtilisation
+#> 25-02-2026 23:39:18 Benchmark summariseDrugRestart
+#> 25-02-2026 23:39:21 Benchmark summariseProportionOfPatientsCovered
+#> 25-02-2026 23:39:25 Benchmark summariseTreatment
+#> 25-02-2026 23:39:29 Benchmark drop created tables
 
 timings
 #> # A tibble: 10 × 13
