@@ -2,6 +2,19 @@ url: https://darwin-eu.github.io/DrugUtilisation/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left:
+      - home
+      - reference
+      - articles
+      - news
+      - tutorial
+  components:
+    tutorial:
+      text: "Tutorial"
+      href: tutorial/
+
 articles:
 - title: Package functionalities
   navbar: Package functionalities
