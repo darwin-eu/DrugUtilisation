@@ -21,7 +21,8 @@ summariseIndication(
   unknownIndicationTable = NULL,
   indexDate = "cohort_start_date",
   mutuallyExclusive = TRUE,
-  censorDate = NULL
+  censorDate = NULL,
+  notInObservation = "include"
 )
 ```
 
@@ -72,6 +73,11 @@ summariseIndication(
   Name of a column that indicates the date to stop the analysis, if NULL
   end of individuals observation is used.
 
+- notInObservation:
+
+  Whether to include the individuals not in observation as a separate
+  category ("include") or to exclude them ("exclude").
+
 ## Value
 
 A summarised result
@@ -120,7 +126,7 @@ cdm$drug_cohort |>
 #> $ variable_level   <chr> "asthma", "asthma", "headache", "headache", "asthma a…
 #> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
 #> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
-#> $ estimate_value   <chr> "0", "0", "2", "28.5714285714286", "0", "0", "2", "28…
+#> $ estimate_value   <chr> "1", "25.00000", "1", "25.00000", "0", "0", "2", "50.…
 #> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
 #> $ additional_level <chr> "-inf to 0", "-inf to 0", "-inf to 0", "-inf to 0", "…
 # }

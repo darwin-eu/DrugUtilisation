@@ -33,6 +33,7 @@ package [connection
 examples](https://darwin-eu.github.io/CDMConnector/articles/a04_DBI_connection_examples.html).
 
 ``` r
+
 library(DrugUtilisation)
 library(dplyr)
 library(CDMConnector)
@@ -49,6 +50,7 @@ the first record per person and require that they have at least 30 days
 observation in the database prior to their drug start date.
 
 ``` r
+
 cdm <- generateIngredientCohortSet(
   cdm = cdm,
   name = "dus_cohort",
@@ -83,6 +85,7 @@ to create them. Here we create two indication cohorts, one for headache
 and the other for influenza.
 
 ``` r
+
 indications <- list(headache = 378253, influenza = 4266367)
 cdm <- generateConceptCohortSet(
   cdm = cdm,
@@ -95,6 +98,7 @@ We can summarise the indication results using the `summariseIndication`
 function:
 
 ``` r
+
 indication_summary <- cdm$dus_cohort |>
   summariseIndication(
     indicationCohortName = "indications_cohort",
@@ -128,6 +132,7 @@ with various measures calculated for a provided ingredient concept (in
 this case the concept for acetaminophen).
 
 ``` r
+
 drug_utilisation_summary <- cdm$dus_cohort |>
   summariseDrugUtilisation(
     ingredientConceptId = 1125315,
@@ -171,6 +176,7 @@ Now we can combine our results and suppress any counts less than 5 so
 that they are ready to be shared.
 
 ``` r
+
 results <- bind(
   indication_summary,
   drug_utilisation_summary

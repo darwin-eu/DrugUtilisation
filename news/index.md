@@ -1,5 +1,29 @@
 # Changelog
 
+## DrugUtilisation 1.2.0
+
+CRAN release: 2026-06-18
+
+- add tutorial in the website by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#751](https://github.com/darwin-eu/DrugUtilisation/issues/751)
+- Speed up benchmark with PPC only 365 days by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#755](https://github.com/darwin-eu/DrugUtilisation/issues/755)
+- Create
+  [`summariseDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDiscontinuationAsSurvival.md),
+  [`tableDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDiscontinuationAsSurvival.md)
+  and
+  [`plotDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotDiscontinuationAsSurvival.md)
+  by [@catalamarti](https://github.com/catalamarti) in
+  [\#757](https://github.com/darwin-eu/DrugUtilisation/issues/757)
+  [\#763](https://github.com/darwin-eu/DrugUtilisation/issues/763)
+- add notInObservation argument for summariseTreatment and
+  summariseIndication by [@catalamarti](https://github.com/catalamarti)
+  in [\#759](https://github.com/darwin-eu/DrugUtilisation/issues/759)
+- Fix empty cohorts by [@catalamarti](https://github.com/catalamarti) in
+  [\#764](https://github.com/darwin-eu/DrugUtilisation/issues/764)
+
 ## DrugUtilisation 1.1.0
 
 CRAN release: 2026-01-28

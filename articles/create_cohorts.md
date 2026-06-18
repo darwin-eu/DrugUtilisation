@@ -37,6 +37,7 @@ The DrugUtilisation packages contains some mock data that can be useful
 to test the package:
 
 ``` r
+
 library(DrugUtilisation)
 library(omopgenerics, warn.conflicts = FALSE)
 library(dplyr, warn.conflicts = FALSE)
@@ -68,6 +69,7 @@ There are three possible forms of a conceptSet:
 - A named list of concept ids
 
 ``` r
+
 conceptSet <- list(acetaminophen = c(1, 2, 3))
 conceptSet
 #> $acetaminophen
@@ -78,6 +80,7 @@ conceptSet
   [`vignette("codelists", package = "omopgenerics")`](https://darwin-eu.github.io/omopgenerics/articles/codelists.html)
 
 ``` r
+
 conceptSet <- list(acetaminophen = c(1, 2, 3)) |> 
   newCodelist()
 #> Warning: ! `codelist` casted to integers.
@@ -94,6 +97,7 @@ conceptSet$acetaminophen
   [`vignette("codelists", package = "omopgenerics")`](https://darwin-eu.github.io/omopgenerics/articles/codelists.html)
 
 ``` r
+
 conceptSet <- list(acetaminophen = tibble(
   concept_id = 1125315,
   excluded = FALSE,
@@ -118,6 +122,7 @@ The package
 can be very useful to create conceptSet.
 
 ``` r
+
 library(CodelistGenerator)
 ```
 
@@ -125,6 +130,7 @@ For example we can create a conceptSet based in an ingredient with
 [`getDrugIngredientCodes()`](https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html):
 
 ``` r
+
 codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}")
 codes[["acetaminophen"]]
 #> [1]  1125315  1125360  2905077 43135274
@@ -135,6 +141,7 @@ We could also use the function
 to read a concept set from a json file:
 
 ``` r
+
 codes <- codesFromConceptSet(path = system.file("acetaminophen.json", package = "DrugUtilisation"), cdm = cdm)
 #> Warning: `codesFromConceptSet()` was deprecated in CodelistGenerator 4.0.0.
 #> ℹ Please use omopgenerics::importConceptSetExpression() |> asCodelist()
@@ -185,7 +192,7 @@ single episode:
 ![](create_cohorts_files/figure-html/unnamed-chunk-11-1.png)
 
 The result would be the same for any value between 1 and 28 (**gapEra
-$\in$ \[1, 28\]**).
+$`\in`$ \[1, 28\]**).
 
 Whereas, if we would use a **gapEra = 29** all the records would be
 collapsed into a single episode:
@@ -203,6 +210,7 @@ We will then create now a cohort with all the drug users of
 acetaminophen with a gapEra of 30 days.
 
 ``` r
+
 codes <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}")
 cdm <- generateDrugUtilisationCohortSet(
   cdm = cdm, 
@@ -234,10 +242,11 @@ individual with more records we can see how all of them are joined into
 a single exposure as the records overlap each other:
 
 ``` r
+
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
 #> # Source:   SQL [?? x 23]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> # ℹ 23 variables: drug_exposure_id <int>, person_id <int>,
 #> #   drug_concept_id <int>, drug_exposure_start_date <date>,
 #> #   drug_exposure_end_date <date>, drug_type_concept_id <int>, quantity <dbl>,
@@ -248,10 +257,11 @@ cdm$drug_exposure |>
 ```
 
 ``` r
+
 cdm$acetaminophen_cohort |>
   filter(subject_id == 69)
 #> # Source:   SQL [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> # ℹ 4 variables: cohort_definition_id <int>, subject_id <int>,
 #> #   cohort_start_date <date>, cohort_end_date <date>
 ```
@@ -260,6 +270,7 @@ In this case gapEra did not have a big impact as we can see in the
 attrition:
 
 ``` r
+
 attrition(cdm$acetaminophen_cohort)
 #> # A tibble: 2 × 7
 #>   cohort_definition_id number_records number_subjects reason_id reason          
@@ -272,10 +283,11 @@ attrition(cdm$acetaminophen_cohort)
 We can see this particular case of this individual:
 
 ``` r
+
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
 #> # Source:   SQL [?? x 23]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1              153        50         2905077 2009-02-05              
@@ -296,10 +308,11 @@ we would use a gapEra smaller than 3 we would consider them as different
 episodes.
 
 ``` r
+
 cdm$acetaminophen_cohort |>
   filter(subject_id == 50)
 #> # Source:   SQL [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1         50 2009-02-05        2009-07-16     
@@ -312,6 +325,7 @@ cohortCodelist we can see which was the codelist used to create the
 cohort.
 
 ``` r
+
 settings(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 3
 #>   cohort_definition_id cohort_name   gap_era
@@ -355,6 +369,7 @@ Let’s see two simple examples, we can generate the ‘alimentary tract and
 metabolism’ (ATC code) cohort with:
 
 ``` r
+
 cdm <- generateAtcCohortSet(
   cdm = cdm,
   atcName = "alimentary tract and metabolism",
@@ -378,6 +393,7 @@ And the ‘simvastatin’ and ‘metformin’ cohorts, restricting to products
 with only one ingredient:
 
 ``` r
+
 cdm <- generateIngredientCohortSet(
   cdm = cdm,
   ingredient = c('simvastatin', 'metformin'),
@@ -418,6 +434,7 @@ add them at the end of the continuous exposure. Let’s start by creating
 a very simple mock data set with the same exposures than in the example:
 
 ``` r
+
 cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
   drug_exposure_id = 1:2L,
   person_id = 1L,
@@ -427,7 +444,7 @@ cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
 ), source = "duckdb")
 cdm2$drug_exposure
 #> # Source:   table<drug_exposure> [?? x 23]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1                1         1         1125360 2020-01-01              
@@ -445,6 +462,7 @@ Let’s now create the DrugUtilisation cohort with the `numberExposure`
 and `daysPrescribed` arguments as TRUE:
 
 ``` r
+
 cdm2 <- generateDrugUtilisationCohortSet(
   cdm = cdm2, 
   name = "dus_cohort", 
@@ -461,11 +479,12 @@ The generated cohort will span from 1st of January to 15th of February
 and have 1 extra column (`days_prescribed`):
 
 ``` r
+
 cdm2$dus_cohort |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 1
 #> $ subject_id           <int> 1
 #> $ cohort_start_date    <date> 2020-01-01
@@ -490,6 +509,7 @@ particular the
 function, see example:
 
 ``` r
+
 library(CohortConstructor)
 cdm2$dus_cohort <- cdm2$dus_cohort |>
   mutate(days_to_add = days_prescribed - 1L) |>
@@ -505,9 +525,10 @@ Now we can see that the created cohort is as we wished between 1st of
 January to 26th of February:
 
 ``` r
+
 cdm2$dus_cohort
 #> # Source:   table<dus_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1          1 2020-01-01        2020-02-15
@@ -520,12 +541,13 @@ count as are the days that the individual has an ongoing prescription
 recorded:
 
 ``` r
+
 cdm2$dus_cohort |>
   addDaysExposed(conceptSet = codes, gapEra = 1L) |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id       <int> 1
 #> $ subject_id                 <int> 1
 #> $ cohort_start_date          <date> 2020-01-01
@@ -557,6 +579,7 @@ function. In this example we would restrict to individuals with 365 days
 of no exposure:
 
 ``` r
+
 cdm$acetaminophen_cohort <- cdm$acetaminophen_cohort |>
   requirePriorDrugWashout(days = 365)
 ```
@@ -565,21 +588,22 @@ The result will be a cohort with the individuals that fulfill the
 criteria:
 
 ``` r
+
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         26 1994-12-01        1995-04-02     
-#>  2                    1         41 1988-03-31        1995-06-17     
-#>  3                    1         46 1974-08-07        1997-08-05     
-#>  4                    1          8 2006-04-08        2011-01-02     
-#>  5                    1         77 2013-06-10        2015-12-06     
-#>  6                    1         92 1994-01-24        2008-02-21     
-#>  7                    1         31 2017-07-13        2022-03-30     
-#>  8                    1         89 2020-06-17        2022-03-03     
-#>  9                    1         95 2018-09-22        2018-11-05     
-#> 10                    1          2 1998-05-20        2012-04-20     
+#>  1                    1         29 2016-04-02        2019-11-13     
+#>  2                    1         24 2014-03-28        2014-08-09     
+#>  3                    1         15 1972-01-05        1983-04-19     
+#>  4                    1         35 1998-04-20        1998-10-22     
+#>  5                    1         87 2017-10-01        2018-03-12     
+#>  6                    1         34 2009-06-19        2009-06-28     
+#>  7                    1         18 2011-04-22        2013-11-13     
+#>  8                    1         18 2016-02-01        2016-10-22     
+#>  9                    1         45 2008-04-06        2008-04-13     
+#> 10                    1         38 2010-12-18        2016-08-26     
 #> # ℹ more rows
 ```
 
@@ -588,6 +612,7 @@ This would also get recorded in the attrition, counts and settings.
 In the settings a new column with the specified parameter used:
 
 ``` r
+
 settings(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 4
 #>   cohort_definition_id cohort_name   gap_era prior_use_washout
@@ -598,6 +623,7 @@ settings(cdm$acetaminophen_cohort)
 The counts will be updated:
 
 ``` r
+
 cohortCount(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 3
 #>   cohort_definition_id number_records number_subjects
@@ -608,6 +634,7 @@ cohortCount(cdm$acetaminophen_cohort)
 And the attrition will have a new line:
 
 ``` r
+
 attrition(cdm$acetaminophen_cohort)
 #> # A tibble: 3 × 7
 #>   cohort_definition_id number_records number_subjects reason_id reason          
@@ -628,6 +655,7 @@ then apply the inclusion criteria to only one of them (simvastatin) and
 save the result to a table named: `my_new_cohort`
 
 ``` r
+
 codes <- getDrugIngredientCodes(cdm = cdm, name = c("metformin", "simvastatin"))
 cdm <- generateDrugUtilisationCohortSet(cdm = cdm, name = "my_cohort", conceptSet = codes, gapEra = 30)
 #> ℹ Subsetting drug_exposure table
@@ -682,6 +710,7 @@ available ones we can use the
 function. See example:
 
 ``` r
+
 cdm$acetaminophen_cohort <- cdm$acetaminophen_cohort |>
   requireIsFirstDrugEntry()
 ```
@@ -690,21 +719,22 @@ The result will be a cohort with the individuals that fulfill the
 criteria:
 
 ``` r
+
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         15 1972-01-05        1983-04-19     
-#>  2                    1         31 2017-07-13        2022-03-30     
-#>  3                    1         41 1988-03-31        1995-06-17     
-#>  4                    1          7 1976-04-02        1986-10-18     
-#>  5                    1         35 1998-04-20        1998-10-22     
-#>  6                    1         58 2017-09-07        2018-09-13     
-#>  7                    1         62 2006-06-21        2014-05-13     
-#>  8                    1         72 2013-08-02        2013-12-04     
-#>  9                    1         77 2013-06-10        2015-12-06     
-#> 10                    1         85 2014-03-12        2014-04-11     
+#>  1                    1         29 2016-04-02        2019-11-13     
+#>  2                    1         24 2014-03-28        2014-08-09     
+#>  3                    1         15 1972-01-05        1983-04-19     
+#>  4                    1         35 1998-04-20        1998-10-22     
+#>  5                    1         87 2017-10-01        2018-03-12     
+#>  6                    1         34 2009-06-19        2009-06-28     
+#>  7                    1         18 2011-04-22        2013-11-13     
+#>  8                    1         45 2008-04-06        2008-04-13     
+#>  9                    1         38 2010-12-18        2016-08-26     
+#> 10                    1          9 2007-07-03        2009-03-04     
 #> # ℹ more rows
 ```
 
@@ -714,6 +744,7 @@ top of the already exiting ones.
 In the settings a new column with the specified parameter used:
 
 ``` r
+
 settings(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 5
 #>   cohort_definition_id cohort_name   gap_era prior_use_washout limit      
@@ -724,6 +755,7 @@ settings(cdm$acetaminophen_cohort)
 The counts will be updated:
 
 ``` r
+
 cohortCount(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 3
 #>   cohort_definition_id number_records number_subjects
@@ -734,6 +766,7 @@ cohortCount(cdm$acetaminophen_cohort)
 And the attrition will have a new line:
 
 ``` r
+
 attrition(cdm$acetaminophen_cohort)
 #> # A tibble: 4 × 7
 #>   cohort_definition_id number_records number_subjects reason_id reason          
@@ -753,6 +786,7 @@ prior observation we can use the
 function. See example:
 
 ``` r
+
 cdm$acetaminophen_cohort <- cdm$acetaminophen_cohort |>
   requireObservationBeforeDrug(days = 365)
 ```
@@ -761,9 +795,10 @@ The result will be a cohort with the individuals that fulfill the
 criteria:
 
 ``` r
+
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          2 1998-05-20        2012-04-20     
@@ -785,6 +820,7 @@ top of the already exiting ones.
 In the settings a new column with the specified parameter used:
 
 ``` r
+
 settings(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 6
 #>   cohort_definition_id cohort_name   gap_era prior_use_washout limit      
@@ -796,6 +832,7 @@ settings(cdm$acetaminophen_cohort)
 The counts will be updated:
 
 ``` r
+
 cohortCount(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 3
 #>   cohort_definition_id number_records number_subjects
@@ -806,6 +843,7 @@ cohortCount(cdm$acetaminophen_cohort)
 And the attrition will have a new line:
 
 ``` r
+
 attrition(cdm$acetaminophen_cohort)
 #> # A tibble: 5 × 7
 #>   cohort_definition_id number_records number_subjects reason_id reason          
@@ -828,6 +866,7 @@ incident date (cohort_start_date), but the function is flexible and you
 can use it to restrict to any other date. See example:
 
 ``` r
+
 cdm$acetaminophen_cohort <- cdm$acetaminophen_cohort |>
   requireDrugInDateRange(
     indexDate = "cohort_start_date",
@@ -839,9 +878,10 @@ The result will be a cohort with the individuals that fulfill the
 criteria:
 
 ``` r
+
 cdm$acetaminophen_cohort
 #> # Source:   table<acetaminophen_cohort> [?? x 4]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          3 2014-03-17        2015-03-01     
@@ -863,6 +903,7 @@ top of the already exiting ones.
 In the settings a new column with the specified parameter used:
 
 ``` r
+
 settings(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 6
 #>   cohort_definition_id cohort_name   gap_era prior_use_washout limit      
@@ -874,6 +915,7 @@ settings(cdm$acetaminophen_cohort)
 The counts will be updated:
 
 ``` r
+
 cohortCount(cdm$acetaminophen_cohort)
 #> # A tibble: 1 × 3
 #>   cohort_definition_id number_records number_subjects
@@ -884,6 +926,7 @@ cohortCount(cdm$acetaminophen_cohort)
 And the attrition will have a new line:
 
 ``` r
+
 attrition(cdm$acetaminophen_cohort)
 #> # A tibble: 6 × 7
 #>   cohort_definition_id number_records number_subjects reason_id reason          
@@ -902,6 +945,7 @@ leave the other element as NA and then no condition will be applied, see
 for example:
 
 ``` r
+
 cdm$my_new_cohort <- cdm$my_new_cohort |>
   requireDrugInDateRange(dateRange = as.Date(c(NA, "2010-12-31")))
 attrition(cdm$my_new_cohort)

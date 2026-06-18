@@ -55,33 +55,32 @@ result <- cdm$cohort1 |>
 #> Getting PPC for cohort cohort_1
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■■■                     129 of 365 days
+#>  -- getting PPC for ■■■■■■■■■                        96 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■     326 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 #> Getting PPC for cohort cohort_2
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■■■                     131 of 365 days
-#>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 #> Getting PPC for cohort cohort_3
 #> Collecting cohort into memory
 #> Geting PPC over 365 days following first cohort entry
-#>  -- getting PPC for ■■■■■■■■■■■■                     138 of 365 days
+#>  -- getting PPC for ■■■■■■■■■■■■■                    141 of 365 days
 #>  -- getting PPC for ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  365 of 365 days
 
 tidy(result)
 #> # A tibble: 1,098 × 11
 #>    cdm_name cohort_name variable_name variable_level time  outcome_count
 #>    <chr>    <chr>       <chr>         <chr>          <chr>         <int>
-#>  1 DUS MOCK cohort_1    overall       overall        0                36
-#>  2 DUS MOCK cohort_1    overall       overall        1                35
-#>  3 DUS MOCK cohort_1    overall       overall        2                35
-#>  4 DUS MOCK cohort_1    overall       overall        3                35
-#>  5 DUS MOCK cohort_1    overall       overall        4                35
-#>  6 DUS MOCK cohort_1    overall       overall        5                35
-#>  7 DUS MOCK cohort_1    overall       overall        6                35
-#>  8 DUS MOCK cohort_1    overall       overall        7                34
-#>  9 DUS MOCK cohort_1    overall       overall        8                34
-#> 10 DUS MOCK cohort_1    overall       overall        9                34
+#>  1 DUS MOCK cohort_1    overall       overall        0                38
+#>  2 DUS MOCK cohort_1    overall       overall        1                38
+#>  3 DUS MOCK cohort_1    overall       overall        2                38
+#>  4 DUS MOCK cohort_1    overall       overall        3                36
+#>  5 DUS MOCK cohort_1    overall       overall        4                36
+#>  6 DUS MOCK cohort_1    overall       overall        5                36
+#>  7 DUS MOCK cohort_1    overall       overall        6                36
+#>  8 DUS MOCK cohort_1    overall       overall        7                36
+#>  9 DUS MOCK cohort_1    overall       overall        8                36
+#> 10 DUS MOCK cohort_1    overall       overall        9                35
 #> # ℹ 1,088 more rows
 #> # ℹ 5 more variables: denominator_count <int>, ppc <dbl>, ppc_lower <dbl>,
 #> #   ppc_upper <dbl>, cohort_table_name <chr>

@@ -81,9 +81,9 @@ cdm$dus_cohort |>
 #> Rows: 7
 #> Columns: 5
 #> $ cohort_definition_id              <int> 1, 1, 1, 1, 1, 1, 1
-#> $ subject_id                        <int> 1, 3, 4, 6, 7, 8, 9
-#> $ cohort_start_date                 <date> 1999-02-16, 2011-07-05, 2009-05-06, …
-#> $ cohort_end_date                   <date> 1999-12-17, 2011-08-14, 2011-05-01, …
-#> $ days_prescribed_161_acetaminophen <int> 305, 41, 726, 40, 128, 4401, 614
+#> $ subject_id                        <int> 1, 2, 3, 4, 6, 7, 10
+#> $ cohort_start_date                 <date> 2022-11-09, 2002-09-21, 2012-09-25, …
+#> $ cohort_end_date                   <date> 2022-11-11, 2005-09-05, 2012-10-02, …
+#> $ days_prescribed_161_acetaminophen <int> 3, 1081, 8, 305, 1, 49, 590
 # }
 ```

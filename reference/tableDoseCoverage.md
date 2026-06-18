@@ -90,8 +90,8 @@ result <- summariseDoseCoverage(cdm, 1125315)
 #> • daily_dose: count_missing, percentage_missing, mean, sd, q25, median, q75
 #> ! Table is collected to memory as not all requested estimates are supported on
 #>   the database side
-#> → Start summary of data, at 2026-02-26 08:37:13.702615
-#> ✔ Summary finished, at 2026-02-26 08:37:14.097754
+#> → Start summary of data, at 2026-06-18 08:40:18.890695
+#> ✔ Summary finished, at 2026-06-18 08:40:19.265829
 
 tableDoseCoverage(result)
 #> cdm_name, ingredient_name, variable_name, variable_level, estimate_name, and
@@ -101,117 +101,3 @@ tableDoseCoverage(result)
   
 
 ```
-
-Variable name
-
-number records
-
-Missing dose
-
-daily_dose
-
-Unit
-
-Route
-
-Pattern id
-
-Estimate name
-
-N
-
-N (%)
-
-Mean (SD)
-
-Median (Q25 - Q75)
-
-DUS MOCK; acetaminophen
-
-overall
-
-overall
-
-overall
-
-17
-
-0 (0.00 %)
-
-2,532.24 (5,298.38)
-
-43.90 (8.83 - 1,600.00)
-
-milligram
-
-overall
-
-overall
-
-17
-
-0 (0.00 %)
-
-2,532.24 (5,298.38)
-
-43.90 (8.83 - 1,600.00)
-
-oral
-
-overall
-
-5
-
-0 (0.00 %)
-
-170.09 (340.06)
-
-13.94 (11.34 - 43.90)
-
-topical
-
-overall
-
-12
-
-0 (0.00 %)
-
-3,516.47 (6,099.02)
-
-943.97 (8.16 - 4,362.38)
-
-oral
-
-9
-
-5
-
-0 (0.00 %)
-
-170.09 (340.06)
-
-13.94 (11.34 - 43.90)
-
-topical
-
-18
-
-7
-
-0 (0.00 %)
-
-6,021.43 (7,115.26)
-
-4,192.14 (1,429.21 - 6,800.18)
-
-9
-
-5
-
-0 (0.00 %)
-
-9.54 (10.31)
-
-6.14 (3.11 - 8.83)
-
-\# }

@@ -83,12 +83,12 @@ cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
 cdm$dus_cohort |>
   addNumberEras(conceptSet = codelist, gapEra = 1) |>
   glimpse()
-#> Rows: 8
+#> Rows: 11
 #> Columns: 5
-#> $ cohort_definition_id          <int> 1, 1, 1, 1, 1, 1, 1, 1
-#> $ subject_id                    <int> 1, 2, 3, 4, 5, 6, 8, 10
-#> $ cohort_start_date             <date> 2021-06-27, 2009-06-12, 2010-06-23, 2020…
-#> $ cohort_end_date               <date> 2022-09-25, 2009-12-08, 2018-11-22, 2020…
-#> $ number_eras_161_acetaminophen <int> 1, 1, 1, 1, 1, 1, 1, 1
+#> $ cohort_definition_id          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+#> $ subject_id                    <int> 2, 3, 4, 5, 5, 6, 7, 7, 8, 9, 10
+#> $ cohort_start_date             <date> 1971-10-08, 2022-02-16, 2007-02-26, 2017…
+#> $ cohort_end_date               <date> 1973-02-20, 2022-03-15, 2009-12-24, 2018…
+#> $ number_eras_161_acetaminophen <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 # }
 ```

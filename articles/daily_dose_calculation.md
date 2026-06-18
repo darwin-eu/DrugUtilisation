@@ -16,13 +16,14 @@ relationship between drug concept id and ingredient concept id through
 the *drug strength* table:
 
 ``` r
+
 library(DrugUtilisation)
 cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
 cdm$drug_strength |>
   dplyr::glimpse()
 #> Rows: ??
 #> Columns: 12
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ drug_concept_id             <int> 1125315, 1125360, 1503297, 1503327, 150332…
 #> $ ingredient_concept_id       <int> 1125315, 1125315, 1503297, 1503297, 150329…
 #> $ amount_value                <dbl> NA, 5.0e+02, NA, 1.0e+03, 5.0e+02, NA, NA,…
@@ -68,17 +69,19 @@ This formula was applied for the following 3 patterns that cover 8,044
 (\<1%) relationships:
 
 | pattern_id | amount | amount_unit | numerator | numerator_unit | denominator | denominator_unit |
-|------------|--------|-------------|-----------|----------------|-------------|------------------|
-| 1          |        |             | number    | microgram      | number      | hour             |
-| 2          |        |             | number    | milligram      | number      | hour             |
-| 3          |        |             | number    | unit           | number      | hour             |
+|----|----|----|----|----|----|----|
+| 1 |  |  | number | microgram | number | hour |
+| 2 |  |  | number | milligram | number | hour |
+| 3 |  |  | number | unit | number | hour |
 
 The formula in this case will be as follows:
 
-$$\begin{aligned}
-\text{if (denominator > 24)} & \left. \rightarrow\text{daily dose} = 24 \cdot \frac{\text{numerator}}{\text{denominator}} \right. \\
-{\text{if (denominator} \leq 24)} & \left. \rightarrow\text{daily dose} = \text{numerator} \right.
-\end{aligned}$$
+``` math
+\begin{aligned}
+\text{if (denominator > 24)} &\rightarrow \text{daily dose} = 24 \cdot \frac{\text{numerator}}{\text{denominator}} \\
+\text{if (denominator} \leq 24) &\rightarrow \text{daily dose} = \text{numerator}
+\end{aligned}
+```
 
 Note that daily dose has always unit associated in this case it will be
 determined by the `numerator_unit` field.
@@ -89,13 +92,17 @@ This formula was applied for the following 2 patterns that cover 5,611
 (\<1%) relationships:
 
 | pattern_id | amount | amount_unit | numerator | numerator_unit | denominator | denominator_unit |
-|------------|--------|-------------|-----------|----------------|-------------|------------------|
-| 4          |        |             | number    | microgram      |             | hour             |
-| 5          |        |             | number    | milligram      |             | hour             |
+|----|----|----|----|----|----|----|
+| 4 |  |  | number | microgram |  | hour |
+| 5 |  |  | number | milligram |  | hour |
 
 The formula in this case will be as follows:
 
-$$\text{daily dose} = 24 \cdot numerator$$
+``` math
+\begin{equation}
+\textrm{daily dose} = 24 \cdot numerator
+\end{equation}
+```
 
 In this case unit will be determined by the `numerator_unit` field.
 
@@ -104,18 +111,22 @@ In this case unit will be determined by the `numerator_unit` field.
 This formula was applied for the following 6 patterns that cover
 1,102,435 (37%) relationships:
 
-| pattern_id | amount | amount_unit        | numerator | numerator_unit | denominator | denominator_unit |
-|------------|--------|--------------------|-----------|----------------|-------------|------------------|
-| 6          | number | international unit |           |                |             |                  |
-| 7          | number | microgram          |           |                |             |                  |
-| 8          | number | milliequivalent    |           |                |             |                  |
-| 9          | number | milligram          |           |                |             |                  |
-| 10         | number | milliliter         |           |                |             |                  |
-| 11         | number | unit               |           |                |             |                  |
+| pattern_id | amount | amount_unit | numerator | numerator_unit | denominator | denominator_unit |
+|----|----|----|----|----|----|----|
+| 6 | number | international unit |  |  |  |  |
+| 7 | number | microgram |  |  |  |  |
+| 8 | number | milliequivalent |  |  |  |  |
+| 9 | number | milligram |  |  |  |  |
+| 10 | number | milliliter |  |  |  |  |
+| 11 | number | unit |  |  |  |  |
 
 The formula in this case will be as follows:
 
-$$\text{daily dose} = \frac{quantity \cdot amount}{days\ exposed}$$
+``` math
+\begin{equation}
+\textrm{daily dose} = \frac{quantity \cdot amount}{days\: exposed}
+\end{equation}
+```
 
 In this case unit will be determined by the `amount_unit` field.
 
@@ -124,42 +135,46 @@ In this case unit will be determined by the `amount_unit` field.
 This formula was applied for the following 30 patterns that cover
 1,398,518 (47%) relationships:
 
-| pattern_id | amount | amount_unit | numerator | numerator_unit          | denominator | denominator_unit  |
-|------------|--------|-------------|-----------|-------------------------|-------------|-------------------|
-| 12         |        |             | number    | international unit      | number      | milligram         |
-| 13         |        |             | number    | international unit      | number      | milliliter        |
-| 14         |        |             | number    | milliequivalent         | number      | milliliter        |
-| 15         |        |             | number    | milligram               | number      | Actuation         |
-| 16         |        |             | number    | milligram               | number      | liter             |
-| 17         |        |             | number    | milligram               | number      | milligram         |
-| 18         |        |             | number    | milligram               | number      | milliliter        |
-| 19         |        |             | number    | milligram               | number      | square centimeter |
-| 20         |        |             | number    | milliliter              | number      | milligram         |
-| 21         |        |             | number    | milliliter              | number      | milliliter        |
-| 22         |        |             | number    | unit                    | number      | Actuation         |
-| 23         |        |             | number    | unit                    | number      | milligram         |
-| 24         |        |             | number    | unit                    | number      | milliliter        |
-| 25         |        |             | number    | unit                    | number      | square centimeter |
-| 26         |        |             | number    | international unit      |             | milligram         |
-| 27         |        |             | number    | international unit      |             | milliliter        |
-| 28         |        |             | number    | mega-international unit |             | milliliter        |
-| 29         |        |             | number    | milliequivalent         |             | milligram         |
-| 30         |        |             | number    | milliequivalent         |             | milliliter        |
-| 31         |        |             | number    | milligram               |             | Actuation         |
-| 32         |        |             | number    | milligram               |             | liter             |
-| 33         |        |             | number    | milligram               |             | milligram         |
-| 34         |        |             | number    | milligram               |             | milliliter        |
-| 35         |        |             | number    | milligram               |             | square centimeter |
-| 36         |        |             | number    | milliliter              |             | milligram         |
-| 37         |        |             | number    | milliliter              |             | milliliter        |
-| 38         |        |             | number    | unit                    |             | Actuation         |
-| 39         |        |             | number    | unit                    |             | milligram         |
-| 40         |        |             | number    | unit                    |             | milliliter        |
-| 41         |        |             | number    | unit                    |             | square centimeter |
+| pattern_id | amount | amount_unit | numerator | numerator_unit | denominator | denominator_unit |
+|----|----|----|----|----|----|----|
+| 12 |  |  | number | international unit | number | milligram |
+| 13 |  |  | number | international unit | number | milliliter |
+| 14 |  |  | number | milliequivalent | number | milliliter |
+| 15 |  |  | number | milligram | number | Actuation |
+| 16 |  |  | number | milligram | number | liter |
+| 17 |  |  | number | milligram | number | milligram |
+| 18 |  |  | number | milligram | number | milliliter |
+| 19 |  |  | number | milligram | number | square centimeter |
+| 20 |  |  | number | milliliter | number | milligram |
+| 21 |  |  | number | milliliter | number | milliliter |
+| 22 |  |  | number | unit | number | Actuation |
+| 23 |  |  | number | unit | number | milligram |
+| 24 |  |  | number | unit | number | milliliter |
+| 25 |  |  | number | unit | number | square centimeter |
+| 26 |  |  | number | international unit |  | milligram |
+| 27 |  |  | number | international unit |  | milliliter |
+| 28 |  |  | number | mega-international unit |  | milliliter |
+| 29 |  |  | number | milliequivalent |  | milligram |
+| 30 |  |  | number | milliequivalent |  | milliliter |
+| 31 |  |  | number | milligram |  | Actuation |
+| 32 |  |  | number | milligram |  | liter |
+| 33 |  |  | number | milligram |  | milligram |
+| 34 |  |  | number | milligram |  | milliliter |
+| 35 |  |  | number | milligram |  | square centimeter |
+| 36 |  |  | number | milliliter |  | milligram |
+| 37 |  |  | number | milliliter |  | milliliter |
+| 38 |  |  | number | unit |  | Actuation |
+| 39 |  |  | number | unit |  | milligram |
+| 40 |  |  | number | unit |  | milliliter |
+| 41 |  |  | number | unit |  | square centimeter |
 
 The formula in this case will be as follows:
 
-$$\text{daily dose} = \frac{quantity \cdot numerator}{days\ exposed}$$
+``` math
+\begin{equation}
+\textrm{daily dose} = \frac{quantity \cdot numerator}{days\: exposed}
+\end{equation}
+```
 
 In this case unit will be determined by the `numerator_unit` field.
 
@@ -172,6 +187,7 @@ The described formulas and patterns can be found in the exported
 `patternsWithFormula` data set:
 
 ``` r
+
 patternsWithFormula |>
   dplyr::glimpse()
 #> Rows: 41
@@ -201,6 +217,7 @@ combinations. The idea of a pattern to provide a platform to associate
 each drug in the `drug_strength` table with its constituent ingredients.
 
 ``` r
+
 patternTable(cdm) |>
   dplyr::glimpse()
 #> Rows: 5
@@ -233,6 +250,7 @@ dose computation for chosen concept sets and ingredients. Let’s take
 *acetaminophen* as an example.
 
 ``` r
+
 summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315) |>
   dplyr::glimpse()
 #> Rows: 56
@@ -253,7 +271,7 @@ summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315) |>
 ```
 
 The output will summarise the usage of *acetaminophen* in the database.
-For example, overall there are $78$ records of *acetaminophen* and for
+For example, overall there are $`78`$ records of *acetaminophen* and for
 all of them daily dose can be calculated. By default the output will
 also include the mean, median, lower and upper quartiles and standard
 deviation of the daily dose of *acetaminophen* calculated as explained
@@ -271,6 +289,7 @@ To better inspect the content of the output of
 we can create a gt table like so:
 
 ``` r
+
 coverageResult <- summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315)
 tableDoseCoverage(coverageResult)
 ```
@@ -281,6 +300,7 @@ The user also has the freedom to customize the gt table output. For
 example the following will suppress the `cdmName`:
 
 ``` r
+
 tableDoseCoverage(coverageResult, groupColumn = "ingredient_name", hide = "cdm_name")
 ```
 

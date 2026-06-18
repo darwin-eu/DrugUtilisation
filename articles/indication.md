@@ -11,6 +11,7 @@ CDM format, so our first step is to create a reference to the data using
 the DBI and CDMConnector packages.
 
 ``` r
+
 library(DrugUtilisation)
 library(omock)
 library(CDMConnector)
@@ -28,6 +29,7 @@ records using a gap era of 7 days, but as we’ve seen in the previous
 vignette we could have also applied various other inclusion criteria.
 
 ``` r
+
 cdm <- generateIngredientCohortSet(
   cdm = cdm,
   name = "acetaminophen_users",
@@ -47,6 +49,7 @@ create cohorts for sinusitis and bronchitis using
 [`CDMConnector::generateConceptCohortSet()`](https://darwin-eu.github.io/CDMConnector/reference/generateConceptCohortSet.html).
 
 ``` r
+
 indications <- list(
   sinusitis = c(257012, 4294548, 40481087),
   bronchitis = c(260139, 258780)
@@ -69,6 +72,7 @@ function will add a new column per window provided with the label of the
 indication.
 
 ``` r
+
 cdm[["acetaminophen_users"]] <- cdm[["acetaminophen_users"]] |>
   addIndication(
     indicationCohortName = "indications_cohort",
@@ -79,12 +83,12 @@ cdm[["acetaminophen_users"]] |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ subject_id           <int> 152, 363, 439, 826, 856, 925, 1025, 1072, 1144, 1…
-#> $ cohort_start_date    <date> 2017-02-26, 2005-07-01, 1987-08-17, 1993-03-16, …
-#> $ cohort_end_date      <date> 2017-03-19, 2005-07-01, 1987-08-24, 1993-03-30, …
-#> $ indication_m30_to_0  <chr> "none", "none", "none", "bronchitis", "none", "br…
+#> $ subject_id           <int> 86, 160, 165, 182, 245, 285, 285, 285, 337, 366, …
+#> $ cohort_start_date    <date> 1977-12-14, 1990-01-13, 1972-08-20, 2007-10-17, …
+#> $ cohort_end_date      <date> 1977-12-28, 1990-01-27, 1972-09-03, 2007-10-31, …
+#> $ indication_m30_to_0  <chr> "none", "none", "none", "none", "none", "none", "…
 ```
 
 We can see that individuals are classified as having sinusistis (without
@@ -92,17 +96,18 @@ bronchitis), bronchitis (without sinusitis), sinusitis and bronchitis,
 or no observed indication.
 
 ``` r
+
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 none                     11351
-#> 2 bronchitis and sinusitis     3
-#> 3 bronchitis                2527
-#> 4 sinusitis                   18
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 none                     11351
+#> 4 bronchitis and sinusitis     3
 ```
 
 As well as the indication cohort table, we can also use the clinical
@@ -114,6 +119,7 @@ are now considered as having an unknown indication as they have a
 condition occurrence record in the 30 days up to their drug initiation.
 
 ``` r
+
 cdm[["acetaminophen_users"]] |>
   select(!"indication_m30_to_0") |>
   addIndication(
@@ -124,14 +130,14 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 bronchitis                2527
-#> 2 sinusitis                   18
-#> 3 bronchitis and sinusitis     3
-#> 4 none                         7
-#> 5 unknown                  11344
+#> 1 unknown                  11344
+#> 2 bronchitis                2527
+#> 3 sinusitis                   18
+#> 4 bronchitis and sinusitis     3
+#> 5 none                         7
 ```
 
 We can add indications for multiple time windows. Unsurprisingly we find
@@ -139,6 +145,7 @@ more potential indications for wider windows (although this will likely
 increase our risk of false positives).
 
 ``` r
+
 cdm[["acetaminophen_users"]] <- cdm[["acetaminophen_users"]] |>
   select(!"indication_m30_to_0") |>
   addIndication(
@@ -150,7 +157,7 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_0_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #>   indication_0_to_0     n
 #>   <chr>             <dbl>
 #> 1 bronchitis         2524
@@ -161,19 +168,19 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 unknown                  11344
-#> 2 bronchitis                2527
-#> 3 sinusitis                   18
-#> 4 bronchitis and sinusitis     3
-#> 5 none                         7
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 bronchitis and sinusitis     3
+#> 4 none                         7
+#> 5 unknown                  11344
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m365_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2//tmp/Rtmpt9KhGV/file21414dbf1319.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
 #>   indication_m365_to_0         n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2615
@@ -192,6 +199,7 @@ instead obtain a general summary of observed indications.
 but returns a summary result of the indication.
 
 ``` r
+
 indicationSummary <- cdm[["acetaminophen_users"]] |>
   select(!starts_with("indication")) |>
   summariseIndication(
@@ -204,12 +212,14 @@ indicationSummary <- cdm[["acetaminophen_users"]] |>
 We can then easily create a plot or a table of the results
 
 ``` r
+
 tableIndication(indicationSummary)
 ```
 
 [TABLE]
 
 ``` r
+
 plotIndication(indicationSummary)
 ```
 
@@ -220,6 +230,7 @@ results by some variables of interest. For example, here we stratify our
 results by age groups and sex.
 
 ``` r
+
 indicationSummaryStratified <- cdm[["acetaminophen_users"]] |>
   select(!starts_with("indication")) |>
   addDemographics(ageGroup = list(c(0, 19), c(20, 150))) |>
@@ -232,12 +243,14 @@ indicationSummaryStratified <- cdm[["acetaminophen_users"]] |>
 ```
 
 ``` r
+
 tableIndication(indicationSummaryStratified)
 ```
 
 [TABLE]
 
 ``` r
+
 indicationSummaryStratified |>
   filter(variable_name == "Indication on index date") |>
   plotIndication(
@@ -257,6 +270,7 @@ bar plot and the x and y don’t need to be swapped as in the previous
 plot.
 
 ``` r
+
 indicationSummaryStratified |>
   filter(variable_name == "Indication on index date") |>
   plotIndication(

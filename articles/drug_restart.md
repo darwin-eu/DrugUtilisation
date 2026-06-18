@@ -15,6 +15,7 @@ For this vignette we will use mock data contained in the DrugUtilisation
 package.
 
 ``` r
+
 library(DrugUtilisation)
 library(CodelistGenerator)
 library(dplyr, warn.conflicts = FALSE)
@@ -34,6 +35,7 @@ For this we will need two cohorts: one of patients exposed to metformin
 and another of patients exposed to insulin.
 
 ``` r
+
 # codelists
 metformin <- getDrugIngredientCodes(cdm = cdm, name = "metformin")
 insulin <- getDrugIngredientCodes(cdm = cdm, name = "insulin detemir")
@@ -88,6 +90,7 @@ Now, let’s use the function to assess metformin restart and switch to
 insulin after the first metformin treatment.
 
 ``` r
+
 results <- cdm$metformin |>
   summariseDrugRestart(
     switchCohortTable = "insulin",
@@ -123,6 +126,7 @@ get the results in the first 180 days, the first year, and until the end
 of observation.
 
 ``` r
+
 results <- cdm$metformin |>
   summariseDrugRestart(
     switchCohortTable = "insulin",
@@ -175,6 +179,7 @@ by sex. We first use PatientProfiles to add a column indicating the sex,
 which later we use in strata.
 
 ``` r
+
 results <- cdm$cohort1 |>
   addSex(name = "cohort1") |>
   summariseDrugRestart(
@@ -204,6 +209,7 @@ This function offers multiple customisation options to format the
 resulting table according to the user preferences.
 
 ``` r
+
 results |>
   tableDrugRestart()
 #> cdm_name, cohort_name, variable_name, follow_up_days, censor_date,
@@ -223,6 +229,7 @@ variable_name column of the summarised result). This function offers
 customisation options for colours, facetting, and handling of strata.
 
 ``` r
+
 results |>
   plotDrugRestart(facet = cohort_name + sex ~ follow_up_days)
 ```
@@ -238,6 +245,7 @@ will use the function
 which will add one column per follow-up window we ask for:
 
 ``` r
+
 cdm$metformin |>
   addDrugRestart(
     switchCohortTable = "insulin",
@@ -245,20 +253,20 @@ cdm$metformin |>
     followUpDays = c(180, 365, Inf),
     censorDate = NULL
   )
-#> # Source:   table<og_036_1772095143> [?? x 7]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Source:   table<og_036_1781772120> [?? x 7]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1        129 2020-01-10        2020-08-31     
+#>  1                    1         69 2020-04-28        2020-10-03     
 #>  2                    1         98 2014-07-10        2016-02-06     
-#>  3                    1         69 2020-04-28        2020-10-03     
-#>  4                    1         54 1987-06-05        1990-04-03     
+#>  3                    1        129 2020-01-10        2020-08-31     
+#>  4                    1         19 2009-03-10        2011-04-27     
 #>  5                    1        191 2019-11-02        2020-04-17     
-#>  6                    1         99 2020-03-12        2020-04-10     
-#>  7                    1        121 2019-05-17        2019-11-13     
-#>  8                    1        128 2021-08-20        2021-08-20     
-#>  9                    1          4 2009-05-01        2009-11-27     
-#> 10                    1         19 2009-03-10        2011-04-27     
+#>  6                    1         54 1987-06-05        1990-04-03     
+#>  7                    1         99 2020-03-12        2020-04-10     
+#>  8                    1        121 2019-05-17        2019-11-13     
+#>  9                    1        128 2021-08-20        2021-08-20     
+#> 10                    1          4 2009-05-01        2009-11-27     
 #> # ℹ more rows
 #> # ℹ 3 more variables: drug_restart_180 <chr>, drug_restart_365 <chr>,
 #> #   drug_restart_inf <chr>

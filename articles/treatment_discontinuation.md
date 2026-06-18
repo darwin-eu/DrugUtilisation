@@ -16,6 +16,7 @@ create our amoxicillin study cohort. Here we’ll use the synthetic
 Eunomia dataset to show how this could be done.
 
 ``` r
+
 library(DrugUtilisation)
 library(omock)
 library(CohortSurvival)
@@ -45,6 +46,7 @@ creating the drug cohort can often have an important impact on the
 results.
 
 ``` r
+
 discontinuationSummary <- estimateSingleEventSurvival(
   cdm = cdm,
   targetCohortTable = "amoxicillin",
@@ -59,6 +61,7 @@ discontinuationSummary <- estimateSingleEventSurvival(
 We can plot our study result like so:
 
 ``` r
+
 plotSurvival(discontinuationSummary)
 ```
 
@@ -67,6 +70,7 @@ plotSurvival(discontinuationSummary)
 Or we can similarly create a table summarising the result
 
 ``` r
+
 tableSurvival(discontinuationSummary)
 ```
 
@@ -77,6 +81,7 @@ demographics to our cohort table using the PatientProfiles packages and
 then stratify results by age group and sex.
 
 ``` r
+
 cdm$amoxicillin <- cdm$amoxicillin |>
   addDemographics(
     ageGroup = list(c(0, 40), c(41, Inf)),
@@ -97,12 +102,14 @@ discontinuationSummary <- estimateSingleEventSurvival(
 Again we could present our results in a plot or a table.
 
 ``` r
+
 plotSurvival(discontinuationSummary, facet = c("age_group", "sex"))
 ```
 
 ![](treatment_discontinuation_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
+
 tableSurvival(discontinuationSummary)
 ```
 
@@ -122,6 +129,7 @@ typically far less sensitive to the choice of gap era used when creating
 the drug cohort.
 
 ``` r
+
 ppcSummary <- cdm$amoxicillin |>
   summariseProportionOfPatientsCovered(followUpDays = 90)
 ```
@@ -130,6 +138,7 @@ Like with our survival estimates, we can quickly create a plot of our
 results
 
 ``` r
+
 plotProportionOfPatientsCovered(ppcSummary)
 ```
 
@@ -138,6 +147,7 @@ plotProportionOfPatientsCovered(ppcSummary)
 Similarly, we can also stratify our results in a similar way.
 
 ``` r
+
 ppcSummary <- cdm$amoxicillin |>
   summariseProportionOfPatientsCovered(
     strata = list(c("age_group"), c("sex")),
@@ -146,6 +156,7 @@ ppcSummary <- cdm$amoxicillin |>
 ```
 
 ``` r
+
 plotProportionOfPatientsCovered(ppcSummary, facet = c("sex", "age_group"))
 ```
 

@@ -19,6 +19,7 @@ the cohort table of interest from which we want to study drug usage of
 acetaminophen.
 
 ``` r
+
 library(DrugUtilisation)
 library(dplyr, warn.conflicts = FALSE)
 library(CodelistGenerator)
@@ -30,7 +31,7 @@ cdm$cohort1 |>
   glimpse()
 #> Rows: ??
 #> Columns: 4
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 3, 1, 1, 3, 3, 2, 1, 3, 2, 3, 3, 1, 2, 3, 2, 2, 1…
 #> $ subject_id           <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
 #> $ cohort_start_date    <date> 2004-08-15, 2015-06-19, 2001-07-26, 2008-06-25, …
@@ -44,6 +45,7 @@ for subjects in cohort1, we first have to get the codelist with
 CodelistGenerator:
 
 ``` r
+
 drugConcepts <- getDrugIngredientCodes(cdm = cdm, name = c("acetaminophen", "simvastatin"))
 ```
 
@@ -73,6 +75,7 @@ In what follows we add a column in the cohort table, with the number of
 incident exposures during the time patients are in the cohort:
 
 ``` r
+
 cohort <- addNumberExposures(
   cohort = cdm$cohort1, # cohort with the population of interest
   conceptSet = drugConcepts, # concepts of the drugs of interest
@@ -87,7 +90,7 @@ cohort |>
   glimpse()
 #> Rows: ??
 #> Columns: 6
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id               <int> 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1,…
 #> $ subject_id                         <int> 1, 6, 7, 9, 10, 12, 14, 15, 17, 20,…
 #> $ cohort_start_date                  <date> 2004-08-15, 2012-07-24, 2013-06-10…
@@ -111,6 +114,7 @@ only identified by the concept name, instead of using the prefix
 “number_eras\_” set by default.
 
 ``` r
+
 cohort <- addNumberEras(
   cohort = cdm$cohort1, # cohort with the population of interest
   conceptSet = drugConcepts, # concepts of the drugs of interest
@@ -126,13 +130,13 @@ cohort |>
   glimpse()
 #> Rows: ??
 #> Columns: 6
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 3, 3, 1, 1…
 #> $ subject_id           <int> 1, 6, 7, 9, 10, 12, 14, 15, 17, 20, 21, 22, 23, 2…
 #> $ cohort_start_date    <date> 2004-08-15, 2012-07-24, 2013-06-10, 2017-11-04, …
 #> $ cohort_end_date      <date> 2005-04-10, 2012-08-10, 2013-08-26, 2018-02-24, …
-#> $ `36567_simvastatin`  <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ `161_acetaminophen`  <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#> $ `36567_simvastatin`  <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 ```
 
 ### daysExposed
@@ -230,6 +234,7 @@ comprehensive
 This broader function computes multiple drug utilization metrics.
 
 ``` r
+
 addDrugUtilisation(
   cohort,
   indexDate = "cohort_start_date",
@@ -279,6 +284,7 @@ using a gap of 7 days, and we only consider incident exposures during
 that time.
 
 ``` r
+
 cdm$drug_utilisation_example <- cdm$cohort1 |>
   # add end of current observation date with the package PatientProfiels
   addFutureObservation(futureObservationType = "date") |>
@@ -308,7 +314,7 @@ cdm$drug_utilisation_example |>
   glimpse()
 #> Rows: ??
 #> Columns: 13
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id                                                <int> 3,…
 #> $ subject_id                                                          <int> 1,…
 #> $ cohort_start_date                                                   <date> 2…
@@ -316,8 +322,8 @@ cdm$drug_utilisation_example |>
 #> $ future_observation                                                  <date> 2…
 #> $ cumulative_quantity_ingredient_1503297_descendants                  <dbl> 0,…
 #> $ cumulative_quantity_ingredient_1125315_descendants                  <dbl> 0,…
-#> $ initial_quantity_ingredient_1125315_descendants                     <dbl> 0,…
 #> $ initial_quantity_ingredient_1503297_descendants                     <dbl> 0,…
+#> $ initial_quantity_ingredient_1125315_descendants                     <dbl> 0,…
 #> $ cumulative_dose_milligram_ingredient_1125315_descendants_1125315    <dbl> 0,…
 #> $ initial_daily_dose_milligram_ingredient_1125315_descendants_1125315 <dbl> 0,…
 #> $ cumulative_dose_milligram_ingredient_1503297_descendants_1503297    <dbl> 0,…
@@ -341,6 +347,7 @@ by setting TRUE or FALSE each of the drug utilisation measures, the user
 can choose which measures to obtain.
 
 ``` r
+
 duResults <- summariseDrugUtilisation(
   cohort = cdm$cohort1,
   strata = list(),
@@ -380,9 +387,9 @@ duResults |>
 #> $ variable_level   <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ estimate_name    <chr> "count", "count", "q25", "median", "q75", "mean", "sd…
 #> $ estimate_type    <chr> "integer", "integer", "integer", "integer", "integer"…
-#> $ estimate_value   <chr> "66", "66", "0", "0", "0", "0.151515151515152", "0.50…
+#> $ estimate_value   <chr> "66", "66", "0", "0", "0", "0.196969696969697", "0.50…
 #> $ additional_name  <chr> "overall", "overall", "concept_set", "concept_set", "…
-#> $ additional_level <chr> "overall", "overall", "ingredient_1125315_descendants…
+#> $ additional_level <chr> "overall", "overall", "ingredient_1503297_descendants…
 ```
 
 As seen below, the result of this function is a `summarised_result`
@@ -396,6 +403,7 @@ if the subject is older than 50, and use those to stratify by sex and
 age, together and separately as follows:
 
 ``` r
+
 duResults <- cdm$cohort1 |>
   # add age and sex
   addDemographics(
@@ -459,6 +467,7 @@ can be nicely visualised in a tabular format using the function
 [`tableDrugUtilisation()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugUtilisation.md).
 
 ``` r
+
 tableDrugUtilisation(duResults)
 #> cdm_name, cohort_name, age_group, sex, variable_level, censor_date,
 #> cohort_table_name, gap_era, index_date, and restrict_incident are missing in

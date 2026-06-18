@@ -90,13 +90,13 @@ cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
 
 cdm$drug_cohorts |>
   glimpse()
-#> Rows: 12
+#> Rows: 15
 #> Columns: 6
-#> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2
-#> $ subject_id           <int> 1, 2, 3, 4, 6, 7, 9, 1, 4, 4, 5, 9
-#> $ cohort_start_date    <date> 2012-10-08, 2007-10-22, 2021-07-19, 1996-12-29, 2…
-#> $ cohort_end_date      <date> 2012-12-29, 2007-11-28, 2021-09-12, 2015-09-13, 2…
-#> $ number_exposures     <int> 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1
-#> $ days_prescribed      <int> 83, 39, 74, 7399, 378, 569, 372, 32, 1761, 797, …
+#> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2
+#> $ subject_id           <int> 1, 2, 3, 4, 5, 7, 9, 10, 1, 2, 2, 6, 9, 9, 10
+#> $ cohort_start_date    <date> 2016-07-06, 2018-02-06, 2017-10-11, 2017-05-08, 2…
+#> $ cohort_end_date      <date> 2016-08-26, 2019-08-17, 2017-10-23, 2017-09-23, 2…
+#> $ number_exposures     <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1
+#> $ days_prescribed      <int> 52, 558, 13, 139, 1, 299, 95, 295, 307, 101, 138…
 # }
 ```

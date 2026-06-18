@@ -16,6 +16,7 @@ cohorts), while the second contains three are of treatments they could
 receive.
 
 ``` r
+
 library(DrugUtilisation)
 library(dplyr, warn.conflicts = FALSE)
 library(omopgenerics)
@@ -42,6 +43,7 @@ Notice that `cohort1` is a cohort table with three cohorts representing
 three different conditions:
 
 ``` r
+
 settings(cdm$cohort1)
 #> # A tibble: 3 × 2
 #>   cohort_definition_id cohort_name
@@ -54,6 +56,7 @@ settings(cdm$cohort1)
 And `cohort2` is a cohort table with three different treatment cohorts:
 
 ``` r
+
 settings(cdm$cohort2)
 #> # A tibble: 3 × 2
 #>   cohort_definition_id cohort_name
@@ -81,6 +84,7 @@ to summarise treatments defined in `cohort2` in the target cohorts
 defined in `cohort1`.
 
 ``` r
+
 summariseTreatment(
   cohort = cdm$cohort1,
   treatmentCohortName = c("cohort2"),
@@ -94,6 +98,7 @@ We can also stratify our cohort and calculate the estimates within each
 strata group by using the `strata` parameter.
 
 ``` r
+
 cdm[["cohort1"]] <- cdm[["cohort1"]] |>
   addSex() |>
   addAge(ageGroup = list("<40" = c(0, 39), ">=40" = c(40, 150)))
@@ -136,6 +141,7 @@ functions also has other input parameters which can be tuned:
   to only one of them, and the percentages will add up to a 100.
 
 ``` r
+
 result_not_mutually_exc <- summariseTreatment(
   cohort = cdm$cohort1,
   treatmentCohortName = c("cohort2"),
@@ -162,6 +168,7 @@ tableTreatment(result = result_not_mutually_exc)
 [TABLE]
 
 ``` r
+
 tableTreatment(result = result_mutually_exc)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
 #> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
@@ -192,6 +199,7 @@ This function has customisation options to format the table according to
 user preferences.
 
 ``` r
+
 tableTreatment(result = results)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
 #> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
@@ -209,6 +217,7 @@ untreated in each cohort, stratum, and time-window. This function offers
 customization options for colors, faceting, and handling of strata.
 
 ``` r
+
 plotTreatment(
   result = results,
   facet =  sex + age_group ~ window_name + cohort_name,

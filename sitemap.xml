@@ -53,6 +53,7 @@
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/numberExposuresDoc.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/patternTable.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/patternsWithFormula.html</loc></url>
+<url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/plotDiscontinuationAsSurvival.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/plotDoc.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/plotDrugRestart.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/plotDrugUtilisation.html</loc></url>
@@ -67,12 +68,14 @@
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/restrictIncidentDoc.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/resultDoc.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/strataDoc.html</loc></url>
+<url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseDiscontinuationAsSurvival.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseDoseCoverage.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseDrugRestart.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseDrugUtilisation.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseIndication.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseProportionOfPatientsCovered.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/summariseTreatment.html</loc></url>
+<url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/tableDiscontinuationAsSurvival.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/tableDoc.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/tableDoseCoverage.html</loc></url>
 <url><loc>https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugRestart.html</loc></url>

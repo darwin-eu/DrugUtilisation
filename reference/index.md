@@ -162,6 +162,17 @@ Summarise the proportion of patients in the drug cohort over time.
 - [`plotProportionOfPatientsCovered()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotProportionOfPatientsCovered.md)
   : Plot proportion of patients covered
 
+### Summarise treatment persistence using survival analysis
+
+Summarise the percistence of a drug cohort over time.
+
+- [`summariseDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseDiscontinuationAsSurvival.md)
+  : Summarise discontinuation as a survival analysis
+- [`tableDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/tableDiscontinuationAsSurvival.md)
+  : Create a table with discontinuation as survival results
+- [`plotDiscontinuationAsSurvival()`](https://darwin-eu.github.io/DrugUtilisation/reference/plotDiscontinuationAsSurvival.md)
+  : Plot discontinuation
+
 ### Summarise treatments during certain windows
 
 Summarise the use of different treatments during certain windows

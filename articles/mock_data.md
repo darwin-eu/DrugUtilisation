@@ -1,6 +1,7 @@
 # Create mock data to test DrugUtilisation package
 
 ``` r
+
 library(DrugUtilisation)
 library(dplyr, warn.conflicts = FALSE)
 ```
@@ -16,12 +17,14 @@ For example, one could use the default parameters to create a mock cdm
 reference like so:
 
 ``` r
+
 cdm <- mockDrugUtilisation()
 ```
 
 As you can see this creates a local (in memory) cdm reference object:
 
 ``` r
+
 cdm
 #> 
 #> ── # OMOP CDM reference (local) of DUS MOCK ────────────────────────────────────
@@ -37,6 +40,7 @@ This will then populate several omop tables (for example, `person`,
 `concept` and `visit_occurrence`) and two cohorts in the cdm reference.
 
 ``` r
+
 cdm$person |>
   glimpse()
 #> Rows: 10
@@ -163,6 +167,7 @@ Alternatively you can use the `source` argument to insert the cdm to a
 *DuckDB* database:
 
 ``` r
+
 cdm <- mockDrugUtilisation(source = "duckdb")
 cdm
 #> 
@@ -181,13 +186,14 @@ The user can also set the seed to control the randomness within the
 data.
 
 ``` r
+
 set.seed(seed = 1)
 cdm <- mockDrugUtilisation(source = "duckdb")
 cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -211,12 +217,13 @@ cdm$person |>
 If we would run it again the result will be different:
 
 ``` r
+
 cdm <- mockDrugUtilisation(source = "duckdb")
 cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8532, 8532, 8532, 8507, 8532, …
 #> $ year_of_birth               <int> 1985, 1979, 1962, 1997, 1956, 2010, 1950, …
@@ -241,13 +248,14 @@ But if we set the same seed again, the result would be the same than
 initially:
 
 ``` r
+
 set.seed(seed = 1)
 cdm <- mockDrugUtilisation(source = "duckdb")
 cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -276,6 +284,7 @@ By default the generated mock contains only 10 individuals and small
 tables size:
 
 ``` r
+
 lapply(cdm, \(x) x |> tally() |> pull())
 #> $person
 #> [1] 10
@@ -318,6 +327,7 @@ You can change that using the `numberIndividual` argument to generate
 more individuals and records:
 
 ``` r
+
 cdm <- mockDrugUtilisation(numberIndividual = 100, source = "duckdb")
 ```
 
@@ -325,10 +335,11 @@ This will ensure that the `person` table will define 100 mock
 individuals:
 
 ``` r
+
 cdm$person |>
   tally()
 #> # Source:   SQL [?? x 1]
-#> # Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #>       n
 #>   <dbl>
 #> 1   100
@@ -338,6 +349,7 @@ As a consequence of this, the generated tables will have more rows
 compared to the initial ones:
 
 ``` r
+
 lapply(cdm, \(x) x |> tally() |> pull())
 #> $person
 #> [1] 100
@@ -386,6 +398,7 @@ However, the user can customise these tables. For example, to customise
 `drug_exposure` table, one could do the following:
 
 ``` r
+
 cdm <- mockDrugUtilisation(
   drug_exposure = tibble(
     drug_exposure_id = 1:3,
@@ -405,11 +418,12 @@ cdm <- mockDrugUtilisation(
 ```
 
 ``` r
+
 cdm$drug_exposure |>
   glimpse()
 #> Rows: ??
 #> Columns: 23
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ drug_exposure_id             <int> 1, 2, 3
 #> $ person_id                    <int> 1, 1, 1
 #> $ drug_concept_id              <int> 2, 3, 4
@@ -451,6 +465,7 @@ similar fashion.
 Similarly, cohort tables can also be customised.
 
 ``` r
+
 cdm <- mockDrugUtilisation(
   observation_period = tibble(
     observation_period_id = 1,
@@ -470,11 +485,12 @@ cdm <- mockDrugUtilisation(
 ```
 
 ``` r
+
 cdm$cohort1 |>
   glimpse()
 #> Rows: ??
 #> Columns: 4
-#> Database: DuckDB 1.4.4 [unknown@Linux 6.14.0-1017-azure:R 4.5.2/:memory:]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 1, 1, 1
 #> $ subject_id           <int> 1, 1, 2
 #> $ cohort_start_date    <date> 2000-01-01, 2001-01-01, 2000-01-01

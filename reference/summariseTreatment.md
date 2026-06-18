@@ -14,7 +14,8 @@ summariseTreatment(
   strata = list(),
   indexDate = "cohort_start_date",
   censorDate = NULL,
-  mutuallyExclusive = FALSE
+  mutuallyExclusive = FALSE,
+  notInObservation = "include"
 )
 ```
 
@@ -58,6 +59,11 @@ summariseTreatment(
 - mutuallyExclusive:
 
   Whether to include mutually exclusive treatments or not.
+
+- notInObservation:
+
+  Whether to include the individuals not in observation as a separate
+  category ("include") or to exclude them ("exclude").
 
 ## Value
 

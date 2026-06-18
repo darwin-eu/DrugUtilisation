@@ -81,19 +81,23 @@ cdm$cohort1 |>
 #>   TRUE)`.
 #> Caused by warning in `min.default()`:
 #> ! no non-missing arguments to min; returning Inf
+#> Warning: There was 1 warning in `dplyr::summarise()`.
+#> ℹ In argument: `switch_start = min(.data$switch_start, na.rm = TRUE)`.
+#> Caused by warning in `min.default()`:
+#> ! no non-missing arguments to min; returning Inf
 #> # A tibble: 10 × 5
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>  *                <int>      <int> <date>            <date>         
-#>  1                    2          1 2015-11-27        2016-02-06     
-#>  2                    3          2 1994-11-19        1996-02-27     
-#>  3                    2          3 2001-10-14        2001-11-03     
-#>  4                    3          4 2011-06-19        2018-05-19     
-#>  5                    1          5 2022-11-09        2022-11-17     
-#>  6                    2          6 2011-12-14        2012-06-21     
-#>  7                    1          7 2020-07-28        2020-11-03     
-#>  8                    1          8 1982-02-14        1983-01-17     
-#>  9                    1          9 2021-04-07        2021-05-31     
-#> 10                    1         10 2021-03-13        2021-04-14     
+#>  1                    3          1 2012-12-12        2014-07-14     
+#>  2                    1          2 2019-11-08        2019-11-11     
+#>  3                    2          3 2016-03-20        2016-03-24     
+#>  4                    2          4 1975-03-24        1977-01-14     
+#>  5                    2          5 2021-05-21        2021-07-16     
+#>  6                    1          6 2016-02-20        2018-11-15     
+#>  7                    2          7 1996-09-27        1998-07-26     
+#>  8                    3          8 2012-11-25        2013-03-14     
+#>  9                    2          9 2006-03-30        2016-11-10     
+#> 10                    1         10 1989-01-14        1995-02-10     
 #> # ℹ 1 more variable: drug_restart_inf <chr>
 # }
 ```
