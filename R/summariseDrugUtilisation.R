@@ -101,6 +101,9 @@ summariseDrugUtilisation <- function(cohort,
 
   cohortTableName <- omopgenerics::tableName(cohort)
   cohortTableName[is.na(cohortTableName)] <- "temp"
+  cohortSet <- omopgenerics::settings(cohort) |>
+    dplyr::filter(.data$cohort_definition_id %in% .env$cohortId) |>
+    dplyr::select("cohort_name")
 
   # concept dictionary
   dic <- dplyr::tibble(concept_set = names(conceptSet)) |>
@@ -117,7 +120,7 @@ summariseDrugUtilisation <- function(cohort,
   )
   cohort <- cohort |>
     dplyr::filter(.data$cohort_definition_id %in% .env$cohortId) |>
-  dplyr::select(dplyr::all_of(initialCols)) |>
+    dplyr::select(dplyr::all_of(initialCols)) |>
     PatientProfiles::addCohortName() |>
     addDrugUseInternal(
       indexDate = indexDate,
@@ -162,7 +165,7 @@ summariseDrugUtilisation <- function(cohort,
     )
   ) |>
     dplyr::mutate(
-      cdm_name = dplyr::coalesce(omopgenerics::cdmName(cdm), as.character(NA)),
+      cdm_name = omopgenerics::cdmName(cdm),
       concept_set_name = dplyr::if_else(
         .data$variable_name %in% c("number records", "number subjects"),
         NA_character_,
@@ -188,6 +191,7 @@ summariseDrugUtilisation <- function(cohort,
     dplyr::select(-c(dplyr::starts_with("additional"))) |>
     omopgenerics::uniteAdditional(cols = c("concept_set", "ingredient")) |>
     dplyr::select(dplyr::all_of(omopgenerics::resultColumns())) |>
+    addMissingDrugUtilisationCountRows(cohortSet = cohortSet, cdm = cdm) |>
     dplyr::arrange(.data$result_id, .data$group_name, .data$group_level, .data$strata_name, .data$strata_level) |>
     omopgenerics::newSummarisedResult(settings = dplyr::tibble(
       result_id = 1L,
@@ -200,4 +204,52 @@ summariseDrugUtilisation <- function(cohort,
       restrict_incident = as.character(restrictIncident),
       gap_era = as.character(gapEra)
     ))
+}
+
+addMissingDrugUtilisationCountRows <- function(result, cohortSet, cdm) {
+  countVariables <- c("number records", "number subjects")
+
+  result <- result |>
+    dplyr::filter(!(
+      .data$variable_name %in% .env$countVariables &
+        .data$group_name != "cohort_name"
+    ))
+
+  expected <- tidyr::expand_grid(
+    group_level = cohortSet$cohort_name,
+    variable_name = countVariables
+  )
+  existing <- result |>
+    dplyr::filter(
+      .data$group_name == "cohort_name",
+      .data$strata_name == "overall",
+      .data$strata_level == "overall",
+      .data$variable_name %in% .env$countVariables,
+      .data$estimate_name == "count"
+    ) |>
+    dplyr::distinct(.data$group_level, .data$variable_name)
+
+  missing <- expected |>
+    dplyr::anti_join(existing, by = c("group_level", "variable_name"))
+  if (nrow(missing) == 0) {
+    return(result)
+  }
+
+  missing <- missing |>
+    dplyr::mutate(
+      result_id = 1L,
+      cdm_name = omopgenerics::cdmName(cdm),
+      group_name = "cohort_name",
+      strata_name = "overall",
+      strata_level = "overall",
+      variable_level = NA_character_,
+      estimate_name = "count",
+      estimate_value = "0",
+      estimate_type = "integer",
+      additional_name = "overall",
+      additional_level = "overall"
+    ) |>
+    dplyr::select(dplyr::all_of(omopgenerics::resultColumns()))
+
+  dplyr::bind_rows(result, missing)
 }

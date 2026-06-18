@@ -330,6 +330,74 @@ tableProportionOfPatientsCovered <- function(result,
   )
 }
 
+#' Create a table with discontinuation as survival results
+#'
+#' @inheritParams resultDoc
+#' @inheritParams tableDoc
+#' @param gapSummary Whether to include *Gap summary* statistics.
+#'
+#' @return A table with a formatted version of `summariseDiscontinuationAsSurvival()` results.
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation()
+#'
+#' result <- summariseDiscontinuationAsSurvival(cdm$cohort1)
+#'
+#' tableDiscontinuationAsSurvival(result)
+#' }
+#'
+tableDiscontinuationAsSurvival <- function(result,
+                                 header = c("cdm_name"),
+                                 groupColumn = c("cohort_name", strataColumns(result)),
+                                 type = NULL,
+                                 gapSummary = TRUE,
+                                 hide = c("variable_level"[!gapSummary], "competing_outcome", "estimate_gap", "event_gap", "follow_up_days", "cohort_survival_version"),
+                                 style = NULL,
+                                 .options = list()) {
+  omopgenerics::assertLogical(gapSummary, length = 1)
+  if (gapSummary) {
+    modifyResults = \(x, ...) {
+      x |>
+        dplyr::filter(!stringr::str_starts(.data$variable_name, "Survival"))
+    }
+  } else {
+    modifyResults = \(x, ...) {
+      x |>
+        dplyr::filter(stringr::str_starts(.data$variable_name, "Summary"))
+    }
+  }
+  dusTable(
+    result = result,
+    resultType = "summarise_discontinuation_as_survival",
+    header = header,
+    groupColumn = groupColumn,
+    hide = hide,
+    rename = c("Time (days)" = "variable_level"),
+    modifyResults = modifyResults,
+    estimateName = c(
+      "Number records" = "<number_records_count>",
+      "N at risk" = "<n_risk_count>"[gapSummary],
+      "N events" = "<n_events_count>",
+      "N censor" = "<n_censor_count>"[gapSummary],
+      "Restricted mean survival (95% CI)" = "<restricted_mean_survival> (<restricted_mean_survival_95CI_lower>, <restricted_mean_survival_95CI_upper>)",
+      "Median survival (95% CI)" = "<median_survival> (<median_survival_95CI_lower>, <median_survival_95CI_higher>)",
+      "0% quantile (95% CI)" = "<q0_survival> (<q0_survival_95CI_lower>, <q0_survival_95CI_higher>)",
+      "5% quantile (95% CI)" = "<q05_survival> (<q05_survival_95CI_lower>, <q05_survival_95CI_higher>)",
+      "25% quantile (95% CI)" = "<q25_survival> (<q25_survival_95CI_lower>, <q25_survival_95CI_higher>)",
+      "75% quantile (95% CI)" = "<q75_survival> (<q75_survival_95CI_lower>, <q75_survival_95CI_higher>)",
+      "95% quantile (95% CI)" = "<q95_survival> (<q95_survival_95CI_lower>, <q95_survival_95CI_higher>)",
+      "100% quantile (95% CI)"= "<q100_survival> (<q100_survival_95CI_lower>, <q100_survival_95CI_higher>)"
+    ),
+    type = type,
+    style = style,
+    .options = .options
+  )
+}
+
 dusTable <- function(result,
                      resultType,
                      header,
