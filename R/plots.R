@@ -396,42 +396,144 @@ plotProportionOfPatientsCovered <- function(result,
                                             style = NULL) {
   rlang::check_installed("ggplot2", reason = "for plot functions")
   rlang::check_installed("scales", reason = "for plot functions")
+  rlang::check_installed("visOmopResults", reason = "for plot functions")
 
   result <- omopgenerics::validateResultArgument(result)
-  omopgenerics::assertLogical(ribbon, length = 1)
+  # to force evaluation of strata
+  colour <- colour
+  facet <- facet
 
-  workingResult <- result |>
+  result <- result |>
     omopgenerics::filterSettings(
       .data$result_type == "summarise_proportion_of_patients_covered"
     ) |>
     dplyr::filter(stringr::str_starts(.data$estimate_name, "ppc"))
 
-  if (nrow(workingResult) == 0) {
+  if (nrow(result) == 0) {
     cli::cli_warn("No PPC results found")
     return(visOmopResults::emptyPlot(style = style, type = "ggplot"))
   }
 
   checkVersion(result)
 
-  workingResult <- workingResult|>
+  result <- result|>
     dplyr::mutate(estimate_value = as.numeric(.data$estimate_value) / 100) |>
     omopgenerics::tidy() |>
     dplyr::mutate(time = as.numeric(.data$time)) |>
     dplyr::select(!dplyr::all_of(c("variable_name", "variable_level")))
 
-  group <- colnames(workingResult) |>
-    purrr::keep(\(x) !x %in% c("time", "ppc", "ppc_lower", "ppc_upper"))
+  plotEvolution(
+    result = result,
+    facet = facet,
+    colour = colour,
+    ribbon = ribbon,
+    style = style,
+    x = "time",
+    y = "ppc",
+    ymin = "ppc_lower",
+    ymax = "ppc_upper",
+    yLab = "Proportion of patients covered (PPC)"
+  )
+}
 
-  workingResult <- workingResult |>
+#' Plot discontinuation
+#'
+#' @inheritParams resultDoc
+#' @inheritParams plotDoc
+#' @param ribbon Whether to plot a ribbon with the confidence intervals.
+#'
+#' @return Plot probability to continue the drug over over time
+#'
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' library(DrugUtilisation)
+#'
+#' cdm <- mockDrugUtilisation()
+#'
+#' result <- cdm$cohort1 |>
+#'   summariseDiscontinuationAsSurvival(followUpDays = 365)
+#'
+#' plotDiscontinuationAsSurvival(result)
+#' }
+#'
+plotDiscontinuationAsSurvival <- function(result,
+                                facet = "cohort_name",
+                                colour = c("variable_name", strataColumns(result)),
+                                ribbon = TRUE,
+                                style = NULL) {
+  rlang::check_installed("ggplot2", reason = "for plot functions")
+  rlang::check_installed("scales", reason = "for plot functions")
+  rlang::check_installed("visOmopResults", reason = "for plot functions")
+
+  result <- omopgenerics::validateResultArgument(result)
+  # to force evaluation of strata
+  colour <- colour
+  facet <- facet
+
+  result <- result |>
+    omopgenerics::filterSettings(
+      .data$result_type == "summarise_discontinuation_as_survival"
+    ) |>
+    dplyr::filter(stringr::str_starts(.data$variable_name, "Survival"))
+
+  if (nrow(result) == 0) {
+    cli::cli_warn("No discontinuation results found")
+    return(visOmopResults::emptyPlot(style = style, type = "ggplot"))
+  }
+
+  checkVersion(result)
+
+  result <- result|>
+    omopgenerics::tidy() |>
+    dplyr::mutate(time = as.numeric(.data$variable_level)) |>
+    dplyr::select(!dplyr::any_of(c("variable_level")))
+
+  plotEvolution(
+    result = result,
+    facet = facet,
+    colour = colour,
+    ribbon = ribbon,
+    style = style,
+    x = "time",
+    y = "estimate",
+    ymin = "estimate_95CI_lower",
+    ymax = "estimate_95CI_upper",
+    yLab = "Survival probability"
+  )
+}
+
+plotEvolution <- function(result,
+                          facet,
+                          colour,
+                          ribbon,
+                          style,
+                          x,
+                          y,
+                          ymin,
+                          ymax,
+                          yLab,
+                          call = parent.frame()) {
+  omopgenerics::assertLogical(ribbon, length = 1, call = call)
+
+  group <- colnames(result) |>
+    purrr::keep(\(col) !col %in% c(x, y, ymin, ymax))
+
+  result <- result |>
     uniteColumn(group, "group_vars") |>
     uniteColumn(colour, "colour_vars")
 
   p <- ggplot2::ggplot(
-    data = workingResult,
+    data = result,
     mapping = ggplot2::aes(
-      x = .data$time, y = .data$ppc, group = .data$group_vars,
-      colour = .data$colour_vars, ymin = .data$ppc_lower,
-      ymax = .data$ppc_upper, fill = .data$colour_vars
+      x = .data[[x]],
+      y = .data[[y]],
+      group = .data$group_vars,
+      colour = .data$colour_vars,
+      ymin = .data[[ymin]],
+      ymax = .data[[ymax]],
+      fill = .data$colour_vars
     )
   ) +
     ggplot2::geom_line()
@@ -443,7 +545,7 @@ plotProportionOfPatientsCovered <- function(result,
 
   p <- p +
     ggplot2::labs(
-      y = "Proportion of patients covered (PPC)",
+      y = yLab,
       x = "Time (days)",
       colour = paste0(colour, collapse = "; ")
     ) +
@@ -461,7 +563,7 @@ plotProportionOfPatientsCovered <- function(result,
       purrr::map(\(x) stringr::str_split_1(x, pattern = stringr::fixed(" + "))) |>
       purrr::flatten_chr() |>
       purrr::keep(\(x) x != ".") |>
-      purrr::keep(\(x) !x %in% colnames(workingResult)) |>
+      purrr::keep(\(x) !x %in% colnames(result)) |>
       unique()
     if (length(notPresent) > 0) {
       cli::cli_abort("{.var {notPresent}} not present in data.")
@@ -471,7 +573,7 @@ plotProportionOfPatientsCovered <- function(result,
   } else if (!is.null(facet)) {
     mes <- "`facet` must point to columns in `result`"
     if (!is.character(facet)) cli::cli_abort(message = mes)
-    if (any(!facet %in% colnames(workingResult))) cli::cli_abort(message = mes)
+    if (any(!facet %in% colnames(result))) cli::cli_abort(message = mes)
     p <- p +
       ggplot2::facet_wrap(facets = facet)
   }

@@ -1,3 +1,12 @@
+
+# DrugUtilisation 1.2.0
+
+* add tutorial in the website by @catalamarti in #751
+* Speed up benchmark with PPC only 365 days by @catalamarti in #755
+* Create `summariseDiscontinuationAsSurvival()`, `tableDiscontinuationAsSurvival()` and `plotDiscontinuationAsSurvival()` by @catalamarti in #757 #763
+* add notInObservation argument for summariseTreatment and summariseIndication by @catalamarti in #759
+* Fix empty cohorts by @catalamarti in #764
+
 # DrugUtilisation 1.1.0
 
 * Export `addDailyDose()` function by @catalamarti in #749

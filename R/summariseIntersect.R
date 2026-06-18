@@ -39,6 +39,8 @@
 #' @param mutuallyExclusive Whether to report indications as mutually exclusive
 #' or report them as independent results.
 #' @inheritParams censorDateDoc
+#' @param notInObservation Whether to include the individuals not in observation
+#' as a separate category ("include") or to exclude them ("exclude").
 #'
 #' @return A summarised result
 #'
@@ -79,7 +81,8 @@ summariseIndication <- function(cohort,
                                 unknownIndicationTable = NULL,
                                 indexDate = "cohort_start_date",
                                 mutuallyExclusive = TRUE,
-                                censorDate = NULL) {
+                                censorDate = NULL,
+                                notInObservation = "include") {
   res <- .summariseIntersect(
     cohort = cohort,
     cohortId = {{cohortId}},
@@ -91,6 +94,7 @@ summariseIndication <- function(cohort,
     unknownTable = unknownIndicationTable,
     indexDate = indexDate,
     censorDate = censorDate,
+    notInObservation = notInObservation,
     nm = "indications"
   )
 
@@ -109,7 +113,8 @@ summariseIndication <- function(cohort,
         cohort_table_name = cohortTableName,
         indication_cohort_name = indicationCohortName,
         index_date = indexDate,
-        censor_date = as.character(censorDate %||% "observation_period_end_date")
+        censor_date = as.character(censorDate %||% "observation_period_end_date"),
+        not_in_observation = notInObservation
       )
     )
 }
@@ -128,6 +133,8 @@ summariseIndication <- function(cohort,
 #' @inheritParams censorDateDoc
 #' @param mutuallyExclusive Whether to include mutually exclusive treatments or
 #' not.
+#' @param notInObservation Whether to include the individuals not in observation
+#' as a separate category ("include") or to exclude them ("exclude").
 #'
 #' @return A summary of treatments stratified by cohort_name and strata_name
 #'
@@ -153,7 +160,8 @@ summariseTreatment <- function(cohort,
                                strata = list(),
                                indexDate = "cohort_start_date",
                                censorDate = NULL,
-                               mutuallyExclusive = FALSE) {
+                               mutuallyExclusive = FALSE,
+                               notInObservation = "include") {
   res <- .summariseIntersect(
     cohort = cohort,
     cohortId = {{cohortId}},
@@ -165,6 +173,7 @@ summariseTreatment <- function(cohort,
     unknownTable = character(),
     indexDate = indexDate,
     censorDate = censorDate,
+    notInObservation = notInObservation,
     nm = "medications"
   )
 
@@ -182,7 +191,8 @@ summariseTreatment <- function(cohort,
         cohort_table_name = cohortTableName,
         treatment_cohort_name = treatmentCohortName,
         index_date = as.character(indexDate),
-        censor_date = as.character(censorDate %||% "observation_period_end_date")
+        censor_date = as.character(censorDate %||% "observation_period_end_date"),
+        not_in_observation = notInObservation
       )
     )
 }
@@ -197,6 +207,7 @@ summariseTreatment <- function(cohort,
                                 unknownTable,
                                 indexDate,
                                 censorDate,
+                                notInObservation,
                                 nm,
                                 call = parent.frame()) {
   # initial checks
@@ -210,6 +221,7 @@ summariseTreatment <- function(cohort,
   cohortTableId <- omopgenerics::validateCohortIdArgument(cohortTableId, cdm[[cohortTable]], call = call)
   window <- omopgenerics::validateWindowArgument(window, call = call)
   names(window) <- paste0("win", seq_along(window))
+  omopgenerics::assertChoice(notInObservation, c("include", "exclude"), length = 1)
 
   if (length(cohortTableId) > 5 & isTRUE(mutuallyExclusive)) {
     n <- length(cohortTableId)
@@ -249,10 +261,17 @@ summariseTreatment <- function(cohort,
       strata = strata,
       includeOverallStrata = TRUE,
       variables = variables,
-      estimates = c("count", "percentage"),
+      estimates = c("count"),
       counts = FALSE
     )
   )
+
+  # calculate percentage
+  if (notInObservation == "exclude") {
+    result <- result |>
+      dplyr::filter(.data$variable_level != "not in observation")
+  }
+  result <- calculatePercentage(result)
 
   # format output
   set <- omopgenerics::settings(cohort) |>
@@ -268,16 +287,19 @@ summariseTreatment <- function(cohort,
       omopgenerics::validateWindowArgument(snakeCase = FALSE) |>
       names()
   )
-  extraLabs <- c("unknown"[length(unknownTable) > 0], dplyr::if_else(
-    nm == "indications", "none", "untreated"
-  ), "not in observation")
+  extraLabs <- c(
+    "unknown"[length(unknownTable) > 0],
+    dplyr::if_else(nm == "indications", "none", "untreated"),
+    "not in observation"[notInObservation == "include"]
+  )
   labels <- omopgenerics::settings(cdm[[cohortTable]]) |>
     dplyr::filter(.data$cohort_definition_id %in% .env$cohortTableId) |>
     dplyr::pull("cohort_name") |>
     sort()
   result <- result |>
     formatOutput(
-      mutuallyExclusive, labels, extraLabs, variableNames, set
+      mutuallyExclusive, labels, extraLabs, variableNames, set,
+      cdmName = omopgenerics::cdmName(cdm)
     )
 
   # drop old tables
@@ -286,6 +308,30 @@ summariseTreatment <- function(cohort,
   return(result)
 }
 
+calculatePercentage <- function(result, notInObservation) {
+  result <- result |>
+    dplyr::mutate(count = as.integer(.data$estimate_value)) |>
+    dplyr::select(!c("estimate_name", "estimate_value", "estimate_type"))
+  vars <- c("group_level", "strata_name","strata_level", "variable_name")
+  denominator <- result |>
+    dplyr::group_by(dplyr::across(dplyr::all_of(vars))) |>
+    dplyr::summarise(den = as.numeric(sum(.data$count)), .groups = "drop")
+  result |>
+    dplyr::inner_join(denominator, by = vars) |>
+    dplyr::mutate(
+      percentage = sprintf("%.5f", 100 * as.numeric(.data$count) / .data$den),
+      count = sprintf("%i", .data$count)
+    ) |>
+    dplyr::select(!"den") |>
+    tidyr::pivot_longer(
+      cols = c("count", "percentage"),
+      names_to = "estimate_name",
+      values_to = "estimate_value"
+    ) |>
+    dplyr::mutate(estimate_type = dplyr::if_else(
+      .data$estimate_name == "count", "integer", "percentage"
+    ))
+}
 temporalWord <- function(x) {
   if (x < 0) {
     return("before")
@@ -323,7 +369,7 @@ windowName <- function(win) {
   }
   return(nm)
 }
-formatOutput <- function(result, mutuallyExclusive, labels, extraLabs, vars, set) {
+formatOutput <- function(result, mutuallyExclusive, labels, extraLabs, vars, set, cdmName) {
   # remove additional (we will add window_name)
   result <- result |>
     dplyr::select(!c("additional_name", "additional_level"))
@@ -343,6 +389,9 @@ formatOutput <- function(result, mutuallyExclusive, labels, extraLabs, vars, set
   # get original order
   strata <- result |>
     dplyr::distinct(.data$strata_name, .data$strata_level)
+  if (nrow(strata) == 0) {
+    strata <- dplyr::tibble(strata_name = "overall", strata_level = "overall")
+  }
 
   # get labels
   if (mutuallyExclusive) {
@@ -392,7 +441,7 @@ formatOutput <- function(result, mutuallyExclusive, labels, extraLabs, vars, set
     dplyr::select(!"strata_id") |>
     dplyr::mutate(
       result_id = 1L,
-      cdm_name = unique(result$cdm_name),
+      cdm_name = .env$cdmName,
       group_name = "cohort_name"
     ) |>
     dplyr::mutate("order_id" = dplyr::row_number())

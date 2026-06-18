@@ -108,3 +108,79 @@ test_that("summariseDrugUtilisation works", {
 
   dropCreatedTables(cdm = cdm)
 })
+
+test_that("summariseDrugUtilisation reports empty selected cohorts", {
+  cohort <- dplyr::tibble(
+    cohort_definition_id = c(1L, 1L),
+    subject_id = c(1L, 2L),
+    cohort_start_date = as.Date("2020-01-01"),
+    cohort_end_date = as.Date("2020-01-10")
+  )
+  attr(cohort, "cohort_set") <- dplyr::tibble(
+    cohort_definition_id = 1:2,
+    cohort_name = c("cohort1", "cohort2")
+  )
+  observation_period <- dplyr::tibble(
+    observation_period_id = 1:2,
+    person_id = 1:2,
+    observation_period_start_date = as.Date("2019-01-01"),
+    observation_period_end_date = as.Date("2021-01-01"),
+    period_type_concept_id = 0L
+  )
+  cdm <- mockDrugUtilisation(
+    dus_cohort = cohort,
+    observation_period = observation_period
+  ) |>
+    copyCdm()
+
+  result <- cdm$dus_cohort |>
+    summariseDrugUtilisation(ingredientConceptId = 1125315)
+
+  counts <- result |>
+    dplyr::filter(
+      .data$variable_name %in% c("number records", "number subjects"),
+      .data$estimate_name == "count"
+    ) |>
+    dplyr::arrange(.data$variable_name, .data$group_level) |>
+    dplyr::select(
+      "group_name", "group_level", "strata_name", "strata_level",
+      "variable_name", "estimate_value"
+    )
+
+  expect_identical(counts$group_name, rep("cohort_name", 4))
+  expect_identical(counts$group_level, rep(c("cohort1", "cohort2"), 2))
+  expect_identical(counts$strata_name, rep("overall", 4))
+  expect_identical(counts$strata_level, rep("overall", 4))
+  expect_identical(counts$estimate_value, c("2", "0", "2", "0"))
+
+  dropCreatedTables(cdm = cdm)
+
+  cohort <- cohort |>
+    dplyr::slice(0)
+  attr(cohort, "cohort_set") <- dplyr::tibble(
+    cohort_definition_id = 1:2,
+    cohort_name = c("cohort1", "cohort2")
+  )
+  cdm <- mockDrugUtilisation(
+    dus_cohort = cohort,
+    observation_period = observation_period |>
+      dplyr::slice(0)
+  ) |>
+    copyCdm()
+
+  result <- cdm$dus_cohort |>
+    summariseDrugUtilisation(ingredientConceptId = 1125315)
+
+  counts <- result |>
+    dplyr::filter(
+      .data$variable_name %in% c("number records", "number subjects"),
+      .data$estimate_name == "count"
+    ) |>
+    dplyr::arrange(.data$variable_name, .data$group_level)
+
+  expect_identical(counts$group_name, rep("cohort_name", 4))
+  expect_identical(counts$group_level, rep(c("cohort1", "cohort2"), 2))
+  expect_identical(counts$estimate_value, rep("0", 4))
+
+  dropCreatedTables(cdm = cdm)
+})

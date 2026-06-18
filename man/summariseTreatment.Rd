@@ -13,7 +13,8 @@ summariseTreatment(
   strata = list(),
   indexDate = "cohort_start_date",
   censorDate = NULL,
-  mutuallyExclusive = FALSE
+  mutuallyExclusive = FALSE,
+  notInObservation = "include"
 )
 }
 \arguments{
@@ -41,6 +42,9 @@ analysis, if NULL end of individuals observation is used.}
 
 \item{mutuallyExclusive}{Whether to include mutually exclusive treatments or
 not.}
+
+\item{notInObservation}{Whether to include the individuals not in observation
+as a separate category ("include") or to exclude them ("exclude").}
 }
 \value{
 A summary of treatments stratified by cohort_name and strata_name

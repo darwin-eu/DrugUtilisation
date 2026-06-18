@@ -14,7 +14,8 @@ summariseIndication(
   unknownIndicationTable = NULL,
   indexDate = "cohort_start_date",
   mutuallyExclusive = TRUE,
-  censorDate = NULL
+  censorDate = NULL,
+  notInObservation = "include"
 )
 }
 \arguments{
@@ -45,6 +46,9 @@ or report them as independent results.}
 
 \item{censorDate}{Name of a column that indicates the date to stop the
 analysis, if NULL end of individuals observation is used.}
+
+\item{notInObservation}{Whether to include the individuals not in observation
+as a separate category ("include") or to exclude them ("exclude").}
 }
 \value{
 A summarised result

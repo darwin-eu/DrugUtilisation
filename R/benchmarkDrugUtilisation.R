@@ -184,7 +184,7 @@ benchmarkDrugUtilisation <- function(cdm,
   t0 <- Sys.time()
   suppressMessages(
     cdm[[mainCohort]] |>
-      summariseProportionOfPatientsCovered()
+      summariseProportionOfPatientsCovered(followUpDays = 365)
   )
   time <- as.numeric(difftime(time1 = Sys.time(), time2 = t0, units = "secs"))
   result <- result |>
