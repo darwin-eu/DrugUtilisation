@@ -53,8 +53,8 @@ summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315)
 #> • daily_dose: count_missing, percentage_missing, mean, sd, q25, median, q75
 #> ! Table is collected to memory as not all requested estimates are supported on
 #>   the database side
-#> → Start summary of data, at 2026-06-18 08:39:45.250533
-#> ✔ Summary finished, at 2026-06-18 08:39:45.630817
+#> → Start summary of data, at 2026-06-18 08:50:00.726909
+#> ✔ Summary finished, at 2026-06-18 08:50:01.119848
 #> # A tibble: 56 × 13
 #>    result_id cdm_name group_name      group_level   strata_name strata_level
 #>        <int> <chr>    <chr>           <chr>         <chr>       <chr>       

@@ -42,7 +42,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Run benchmark of drug utilisation cohort generation</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/benchmarkDrugUtilisation.R" class="external-link"><code>R/benchmarkDrugUtilisation.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.2.0/R/benchmarkDrugUtilisation.R" class="external-link"><code>R/benchmarkDrugUtilisation.R</code></a></small>
       <div class="d-none name"><code>benchmarkDrugUtilisation.Rd</code></div>
     </div>
 
@@ -100,17 +100,17 @@ as indicatiomn.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Inserting <span style="color: #0000BB;">&lt;cdm_reference&gt;</span> into <span style="color: #0000BB;">duckdb</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">timings</span> <span class="op">&lt;-</span> <span class="fu">benchmarkDrugUtilisation</span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:28</span> Benchmark get necessary concepts</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:28</span> Benchmark generateDrugUtilisation</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:31</span> Benchmark generateDrugUtilisation with numberExposures and</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:40</span> Benchmark get necessary concepts</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:40</span> Benchmark generateDrugUtilisation</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:43</span> Benchmark generateDrugUtilisation with numberExposures and</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> daysPrescribed</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:35</span> Benchmark require</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:37</span> Benchmark generateIngredientCohortSet</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:41</span> Benchmark summariseDrugUtilisation</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:47</span> Benchmark summariseDrugRestart</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:49</span> Benchmark summariseProportionOfPatientsCovered</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:53</span> Benchmark summariseTreatment</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:38:57</span> Benchmark drop created tables</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:47</span> Benchmark require</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:49</span> Benchmark generateIngredientCohortSet</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:48:53</span> Benchmark summariseDrugUtilisation</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:49:00</span> Benchmark summariseDrugRestart</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:49:02</span> Benchmark summariseProportionOfPatientsCovered</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:49:06</span> Benchmark summariseTreatment</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">18-06-2026 08:49:10</span> Benchmark drop created tables</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">timings</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 13</span></span>

@@ -83,12 +83,12 @@ cdm[["acetaminophen_users"]] |>
   glimpse()
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ subject_id           <int> 86, 160, 165, 182, 245, 285, 285, 285, 337, 366, …
-#> $ cohort_start_date    <date> 1977-12-14, 1990-01-13, 1972-08-20, 2007-10-17, …
-#> $ cohort_end_date      <date> 1977-12-28, 1990-01-27, 1972-09-03, 2007-10-31, …
-#> $ indication_m30_to_0  <chr> "none", "none", "none", "none", "none", "none", "…
+#> $ subject_id           <int> 99, 244, 279, 279, 806, 806, 864, 864, 1091, 1340…
+#> $ cohort_start_date    <date> 2015-09-20, 1974-10-16, 1958-10-25, 1965-12-05, …
+#> $ cohort_end_date      <date> 2015-12-19, 1974-10-30, 1958-11-01, 1965-12-12, …
+#> $ indication_m30_to_0  <chr> "none", "none", "bronchitis", "none", "none", "no…
 ```
 
 We can see that individuals are classified as having sinusistis (without
@@ -101,7 +101,7 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2527
@@ -130,14 +130,14 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 unknown                  11344
-#> 2 bronchitis                2527
-#> 3 sinusitis                   18
-#> 4 bronchitis and sinusitis     3
-#> 5 none                         7
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 bronchitis and sinusitis     3
+#> 4 none                         7
+#> 5 unknown                  11344
 ```
 
 We can add indications for multiple time windows. Unsurprisingly we find
@@ -157,30 +157,30 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_0_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #>   indication_0_to_0     n
 #>   <chr>             <dbl>
-#> 1 bronchitis         2524
-#> 2 unknown           11211
-#> 3 none                163
-#> 4 sinusitis             1
+#> 1 unknown           11211
+#> 2 none                163
+#> 3 sinusitis             1
+#> 4 bronchitis         2524
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2527
 #> 2 sinusitis                   18
-#> 3 bronchitis and sinusitis     3
-#> 4 none                         7
+#> 3 none                         7
+#> 4 bronchitis and sinusitis     3
 #> 5 unknown                  11344
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m365_to_0) |>
   tally()
 #> # Source:   SQL [?? x 2]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpPMbM0Q/file236e514e03d8.duckdb]
+#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//tmp/RtmpBchkUs/file214f519e87c3.duckdb]
 #>   indication_m365_to_0         n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2615

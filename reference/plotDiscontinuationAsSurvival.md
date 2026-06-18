@@ -68,7 +68,7 @@ result <- cdm$cohort1 |>
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` casted to character.
-#> ✔ Discontinuation analysis for cohort_1 completed in 1s.
+#> ✔ Discontinuation analysis for cohort_1 completed in 2s.
 #> ℹ Calculating discontinuation for cohort_2.
 #> ℹ Subsetting table to cohort of interest.
 #> ℹ Preparing discontinuation (outcome) cohort.
@@ -90,7 +90,7 @@ result <- cdm$cohort1 |>
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` casted to character.
-#> ✔ Discontinuation analysis for cohort_3 completed in 0s.
+#> ✔ Discontinuation analysis for cohort_3 completed in 1s.
 
 plotDiscontinuationAsSurvival(result)
 
