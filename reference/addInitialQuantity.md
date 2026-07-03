@@ -78,12 +78,12 @@ cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
 cdm$dus_cohort |>
   addInitialQuantity(conceptSet = codelist) |>
   glimpse()
-#> Rows: 9
+#> Rows: 7
 #> Columns: 5
-#> $ cohort_definition_id               <int> 1, 1, 1, 1, 1, 1, 1, 1, 1
-#> $ subject_id                         <int> 1, 2, 5, 5, 6, 7, 8, 8, 10
-#> $ cohort_start_date                  <date> 2007-06-17, 2006-03-04, 2018-11-25,…
-#> $ cohort_end_date                    <date> 2007-07-07, 2012-04-06, 2018-12-04,…
-#> $ initial_quantity_161_acetaminophen <dbl> 1, 20, 25, 15, 35, 15, 50, 25, 15
+#> $ cohort_definition_id               <int> 1, 1, 1, 1, 1, 1, 1
+#> $ subject_id                         <int> 1, 3, 4, 4, 5, 6, 7
+#> $ cohort_start_date                  <date> 2021-08-15, 2012-01-22, 2008-10-04,…
+#> $ cohort_end_date                    <date> 2022-05-30, 2014-06-10, 2008-12-19,…
+#> $ initial_quantity_161_acetaminophen <dbl> 30, 25, 40, 35, 10, 30, 25
 # }
 ```

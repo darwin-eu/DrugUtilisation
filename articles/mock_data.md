@@ -193,7 +193,6 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -223,18 +222,17 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-#> $ gender_concept_id           <int> 8507, 8532, 8532, 8532, 8532, 8507, 8532, …
-#> $ year_of_birth               <int> 1985, 1979, 1962, 1997, 1956, 2010, 1950, …
-#> $ day_of_birth                <int> 20, 5, 20, 9, 12, 19, 2, 23, 27, 25
-#> $ birth_datetime              <date> 1985-04-20, 1979-02-05, 1962-12-20, 1997-1…
+#> $ gender_concept_id           <int> 8532, 8532, 8532, 8532, 8507, 8532, 8507, …
+#> $ year_of_birth               <int> 1951, 2019, 1964, 2004, 2003, 1990, 2010, …
+#> $ day_of_birth                <int> 17, 21, 6, 27, 7, 11, 14, 2, 25, 30
+#> $ birth_datetime              <date> 1951-05-17, 2019-11-21, 1964-08-06, 2004-1…
 #> $ race_concept_id             <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ ethnicity_concept_id        <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ location_id                 <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ provider_id                 <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ care_site_id                <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
-#> $ month_of_birth              <int> 4, 2, 12, 10, 8, 1, 11, 11, 3, 11
+#> $ month_of_birth              <int> 5, 11, 8, 12, 3, 4, 10, 9, 7, 3
 #> $ person_source_value         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ gender_source_value         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ gender_source_concept_id    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
@@ -255,7 +253,6 @@ cdm$person |>
   glimpse()
 #> Rows: ??
 #> Columns: 18
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ person_id                   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 #> $ gender_concept_id           <int> 8507, 8532, 8507, 8507, 8532, 8507, 8507, …
 #> $ year_of_birth               <int> 2008, 2000, 1970, 2003, 1956, 1986, 1986, …
@@ -338,8 +335,8 @@ individuals:
 
 cdm$person |>
   tally()
-#> # Source:   SQL [?? x 1]
-#> # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
+#> # A query:  ?? x 1
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
 #>       n
 #>   <dbl>
 #> 1   100
@@ -358,16 +355,16 @@ lapply(cdm, \(x) x |> tally() |> pull())
 #> [1] 100
 #> 
 #> $visit_occurrence
-#> [1] 515
+#> [1] 519
 #> 
 #> $condition_occurrence
-#> [1] 201
+#> [1] 209
 #> 
 #> $drug_exposure
-#> [1] 314
+#> [1] 310
 #> 
 #> $observation
-#> [1] 192
+#> [1] 206
 #> 
 #> $concept
 #> [1] 38
@@ -423,7 +420,6 @@ cdm$drug_exposure |>
   glimpse()
 #> Rows: ??
 #> Columns: 23
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ drug_exposure_id             <int> 1, 2, 3
 #> $ person_id                    <int> 1, 1, 1
 #> $ drug_concept_id              <int> 2, 3, 4
@@ -490,7 +486,6 @@ cdm$cohort1 |>
   glimpse()
 #> Rows: ??
 #> Columns: 4
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 1, 1, 1
 #> $ subject_id           <int> 1, 1, 2
 #> $ cohort_start_date    <date> 2000-01-01, 2001-01-01, 2000-01-01

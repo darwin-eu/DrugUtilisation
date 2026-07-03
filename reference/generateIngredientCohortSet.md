@@ -96,11 +96,11 @@ cdm <- generateIngredientCohortSet(cdm = cdm,
 
 cdm$acetaminophen |>
   glimpse()
-#> Rows: 9
+#> Rows: 3
 #> Columns: 4
-#> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1
-#> $ subject_id           <int> 1, 2, 3, 4, 5, 6, 7, 9, 10
-#> $ cohort_start_date    <date> 2020-08-27, 2020-06-13, 2022-11-17, 2008-10-15, 2…
-#> $ cohort_end_date      <date> 2021-10-03, 2020-06-28, 2022-12-19, 2012-11-12, 2…
+#> $ cohort_definition_id <int> 1, 1, 1
+#> $ subject_id           <int> 2, 8, 8
+#> $ cohort_start_date    <date> 2010-12-02, 2006-05-06, 1994-10-03
+#> $ cohort_end_date      <date> 2012-08-07, 2009-02-08, 2005-03-18
 # }
 ```

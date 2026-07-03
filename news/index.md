@@ -1,5 +1,19 @@
 # Changelog
 
+## DrugUtilisation 1.2.1
+
+CRAN release: 2026-07-03
+
+- Fix erafyCohort for Sql Server by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#760](https://github.com/darwin-eu/DrugUtilisation/issues/760)
+- Fix casting issue in Sql Server by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#769](https://github.com/darwin-eu/DrugUtilisation/issues/769)
+- Fix cumulative incidence table and plots by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#770](https://github.com/darwin-eu/DrugUtilisation/issues/770)
+
 ## DrugUtilisation 1.2.0
 
 CRAN release: 2026-06-18

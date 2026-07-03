@@ -86,6 +86,9 @@ library(dplyr, warn.conflicts = FALSE)
 library(CDMConnector)
 
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb: caching downloaded extensions in the package library:
+#> ℹ /home/runner/work/_temp/Library/duckdb/extensions
+#> ℹ This is removed when the package is re-installed; see `?duckdb_storage` to choose a different location.
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,
@@ -112,7 +115,6 @@ cdm$drug_cohort |>
 #> ℹ Collapse indications to mutually exclusive categories
 #> Rows: ??
 #> Columns: 5
-#> Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0/:memory:]
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1
 #> $ subject_id           <int> 2, 3, 4, 5, 7, 9, 10, 4, 9
 #> $ cohort_start_date    <date> 2021-09-19, 2001-07-03, 2021-07-19, 1986-02-13, 2…

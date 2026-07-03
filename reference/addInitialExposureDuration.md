@@ -78,12 +78,12 @@ cdm <- generateDrugUtilisationCohortSet(cdm = cdm,
 cdm$dus_cohort |>
   addInitialExposureDuration(conceptSet = codelist) |>
   glimpse()
-#> Rows: 5
+#> Rows: 9
 #> Columns: 5
-#> $ cohort_definition_id                        <int> 1, 1, 1, 1, 1
-#> $ subject_id                                  <int> 2, 3, 3, 5, 8
-#> $ cohort_start_date                           <date> 2005-12-06, 2010-04-17, 20…
-#> $ cohort_end_date                             <date> 2014-04-12, 2010-06-20, 20…
-#> $ initial_exposure_duration_161_acetaminophen <int> 3050, 65, 943, 25, 180
+#> $ cohort_definition_id                        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1
+#> $ subject_id                                  <int> 1, 2, 3, 4, 5, 5, 6, 7, 8
+#> $ cohort_start_date                           <date> 1996-06-27, 2018-06-20, 20…
+#> $ cohort_end_date                             <date> 2013-05-29, 2019-06-16, 20…
+#> $ initial_exposure_duration_161_acetaminophen <int> 6181, 362, 4, 778, 28, 47…
 # }
 ```
