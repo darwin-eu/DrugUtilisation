@@ -86,9 +86,6 @@ library(dplyr, warn.conflicts = FALSE)
 library(CDMConnector)
 
 cdm <- mockDrugUtilisation(source = "duckdb")
-#> duckdb: caching downloaded extensions in the package library:
-#> ℹ /home/runner/work/_temp/Library/duckdb/extensions
-#> ℹ This is removed when the package is re-installed; see `?duckdb_storage` to choose a different location.
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,
