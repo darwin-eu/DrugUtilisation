@@ -102,6 +102,10 @@ result <- cdm$cohort1 |>
 #>   TRUE)`.
 #> Caused by warning in `min.default()`:
 #> ! no non-missing arguments to min; returning Inf
+#> Warning: There was 1 warning in `dplyr::summarise()`.
+#> ℹ In argument: `switch_start = min(.data$switch_start, na.rm = TRUE)`.
+#> Caused by warning in `min.default()`:
+#> ! no non-missing arguments to min; returning Inf
 
 tableDrugRestart(result)
 #> cdm_name, cohort_name, variable_name, follow_up_days, censor_date,

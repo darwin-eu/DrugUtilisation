@@ -27,15 +27,16 @@ addTreatment(
 
 - treatmentCohortName:
 
-  Name of treatment cohort table
+  Name of the cohort table containing the treatments of interest.
 
 - treatmentCohortId:
 
-  target cohort Id to add treatment
+  Cohort definition IDs of the treatments of interest. If `NULL`, all
+  cohorts in `treatmentCohortName` are included.
 
 - window:
 
-  time window of interests.
+  Time windows over which to identify treatments.
 
 - indexDate:
 
@@ -48,8 +49,9 @@ addTreatment(
 
 - mutuallyExclusive:
 
-  Whether to consider mutually exclusive categories (one column per
-  window) or not (one column per window and treatment).
+  Whether intersections should be mutually exclusive. If `TRUE`, cohort
+  combinations are reported as mutually exclusive categories; if
+  `FALSE`, each cohort is reported independently.
 
 - nameStyle:
 

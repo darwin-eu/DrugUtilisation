@@ -10,7 +10,8 @@ tableIndication(
   header = c("cdm_name", "cohort_name", strataColumns(result)),
   groupColumn = "variable_name",
   hide = c("window_name", "mutually_exclusive", "unknown_indication_table",
-    "censor_date", "cohort_table_name", "index_date", "indication_cohort_name"),
+    "censor_date", "cohort_table_name", "index_date", "indication_cohort_name",
+    "in_observation"),
   type = NULL,
   style = NULL,
   .options = list()
@@ -97,8 +98,9 @@ result <- cdm$cohort1 |>
 
 tableIndication(result)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
-#> cohort_table_name, index_date, indication_cohort_name, mutually_exclusive, and
-#> unknown_indication_table are missing in `columnOrder`, will be added last.
+#> cohort_table_name, in_observation, index_date, indication_cohort_name,
+#> mutually_exclusive, and unknown_indication_table are missing in `columnOrder`,
+#> will be added last.
 
 
   

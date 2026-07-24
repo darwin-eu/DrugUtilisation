@@ -40,8 +40,7 @@ generateAtcCohortSet(
 - gapEra:
 
   Number of days between two continuous exposures to be considered in
-  the same era. Records that have fewer days between them than this gap
-  will be concatenated into the same cohort record.
+  the same era.
 
 - subsetCohort:
 
@@ -49,7 +48,7 @@ generateAtcCohortSet(
 
 - subsetCohortId:
 
-  Cohort id to subset.
+  Cohort definition IDs to use from `subsetCohort`.
 
 - numberExposures:
 
@@ -93,12 +92,10 @@ cdm <- generateAtcCohortSet(cdm = cdm,
 cdm$drugs |>
   glimpse()
 #> Rows: 0
-#> Columns: 6
+#> Columns: 4
 #> $ cohort_definition_id <int> 
 #> $ subject_id           <int> 
 #> $ cohort_start_date    <date> 
 #> $ cohort_end_date      <date> 
-#> $ number_exposures     <int> 
-#> $ days_prescribed      <int> 
 # }
 ```

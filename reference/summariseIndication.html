@@ -19,7 +19,7 @@ indication."><meta property="og:image" content="https://darwin-eu.github.io/Drug
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@ indication."><meta property="og:image" content="https://darwin-eu.github.io/Drug
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Summarise the indications of individuals in a drug cohort</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.2.1/R/summariseIntersect.R" class="external-link"><code>R/summariseIntersect.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/summariseIntersect.R" class="external-link"><code>R/summariseIntersect.R</code></a></small>
       <div class="d-none name"><code>summariseIndication.Rd</code></div>
     </div>
 
@@ -81,7 +81,7 @@ indication.</p>
 <span>  indexDate <span class="op">=</span> <span class="st">"cohort_start_date"</span>,</span>
 <span>  mutuallyExclusive <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  censorDate <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  notInObservation <span class="op">=</span> <span class="st">"include"</span></span>
+<span>  inObservation <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -99,7 +99,7 @@ must have been added as additional columns in the cohort table.</p></dd>
 
 
 <dt id="arg-indicationcohortname">indicationCohortName<a class="anchor" aria-label="anchor" href="#arg-indicationcohortname"></a></dt>
-<dd><p>Name of the cohort table with potential
+<dd><p>Name of the cohort table containing potential
 indications.</p></dd>
 
 
@@ -109,12 +109,12 @@ will be included.</p></dd>
 
 
 <dt id="arg-indicationcohortid">indicationCohortId<a class="anchor" aria-label="anchor" href="#arg-indicationcohortid"></a></dt>
-<dd><p>The target cohort ID to add indication. If NULL all
-cohorts will be considered.</p></dd>
+<dd><p>Cohort definition IDs of the indications of
+interest. If <code>NULL</code>, all cohorts in <code>indicationCohortName</code> are included.</p></dd>
 
 
 <dt id="arg-indicationwindow">indicationWindow<a class="anchor" aria-label="anchor" href="#arg-indicationwindow"></a></dt>
-<dd><p>The time window over which to identify indications.</p></dd>
+<dd><p>Time windows over which to identify indications.</p></dd>
 
 
 <dt id="arg-unknownindicationtable">unknownIndicationTable<a class="anchor" aria-label="anchor" href="#arg-unknownindicationtable"></a></dt>
@@ -128,8 +128,9 @@ analysis.</p></dd>
 
 
 <dt id="arg-mutuallyexclusive">mutuallyExclusive<a class="anchor" aria-label="anchor" href="#arg-mutuallyexclusive"></a></dt>
-<dd><p>Whether to report indications as mutually exclusive
-or report them as independent results.</p></dd>
+<dd><p>Whether intersections should be mutually exclusive.
+If <code>TRUE</code>, cohort combinations are reported as mutually exclusive categories;
+if <code>FALSE</code>, each cohort is reported independently.</p></dd>
 
 
 <dt id="arg-censordate">censorDate<a class="anchor" aria-label="anchor" href="#arg-censordate"></a></dt>
@@ -137,9 +138,10 @@ or report them as independent results.</p></dd>
 analysis, if NULL end of individuals observation is used.</p></dd>
 
 
-<dt id="arg-notinobservation">notInObservation<a class="anchor" aria-label="anchor" href="#arg-notinobservation"></a></dt>
-<dd><p>Whether to include the individuals not in observation
-as a separate category ("include") or to exclude them ("exclude").</p></dd>
+<dt id="arg-inobservation">inObservation<a class="anchor" aria-label="anchor" href="#arg-inobservation"></a></dt>
+<dd><p>Whether to restrict the analysis to individuals in
+observation. If <code>TRUE</code>, individuals not in observation are excluded. If
+<code>FALSE</code>, they are included as a separate category.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -178,9 +180,9 @@ as a separate category ("include") or to exclude them ("exclude").</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Intersect with indications table (<span style="color: #0000BB;">indication_cohorts</span>)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Summarising indications.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ result_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ cdm_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS MOCK"<span style="color: #949494;">, </span>"DUS …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ group_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "cohort_name"<span style="color: #949494;">, </span>"cohort_name"<span style="color: #949494;">, </span>"cohort_name"<span style="color: #949494;">, </span>"cohort_…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ group_level      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "acetaminophen"<span style="color: #949494;">, </span>"acetaminophen"<span style="color: #949494;">, </span>"acetaminophen"<span style="color: #949494;">, </span>"a…</span>
@@ -190,7 +192,7 @@ as a separate category ("include") or to exclude them ("exclude").</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ variable_level   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "asthma"<span style="color: #949494;">, </span>"asthma"<span style="color: #949494;">, </span>"headache"<span style="color: #949494;">, </span>"headache"<span style="color: #949494;">, </span>"asthma a…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ estimate_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "count"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"count"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"count"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ estimate_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "integer"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"integer"<span style="color: #949494;">, </span>"percentage"<span style="color: #949494;">, </span>"in…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"20.00000"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"4"<span style="color: #949494;">, </span>"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ estimate_value   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1"<span style="color: #949494;">, </span>"16.66667"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"16.66667"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">, </span>"0"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ additional_name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "window_name"<span style="color: #949494;">, </span>"window_name"<span style="color: #949494;">, </span>"window_name"<span style="color: #949494;">, </span>"window_…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ additional_level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-inf to 0"<span style="color: #949494;">, </span>"-inf to 0"<span style="color: #949494;">, </span>"-inf to 0"<span style="color: #949494;">, </span>"-inf to 0"<span style="color: #949494;">, </span>"…</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
@@ -206,7 +208,7 @@ as a separate category ("include") or to exclude them ("exclude").</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

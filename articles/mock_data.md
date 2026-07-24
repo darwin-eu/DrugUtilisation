@@ -169,6 +169,10 @@ Alternatively you can use the `source` argument to insert the cdm to a
 ``` r
 
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb is keeping downloaded extensions in a temporary directory:
+#> ℹ /tmp/RtmpcwNbqH/duckdb/extensions
+#> This is removed when the R session ends, so extensions are re-downloaded each session.
+#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
 cdm
 #> 
 #> ── # OMOP CDM reference (duckdb) of DUS MOCK ───────────────────────────────────
@@ -336,7 +340,7 @@ individuals:
 cdm$person |>
   tally()
 #> # A query:  ?? x 1
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>       n
 #>   <dbl>
 #> 1   100

@@ -55,7 +55,7 @@ generateIngredientCohortSet(
 
 - subsetCohortId:
 
-  Cohort id to subset.
+  Cohort definition IDs to use from `subsetCohort`.
 
 - numberExposures:
 

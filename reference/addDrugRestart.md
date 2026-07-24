@@ -25,17 +25,16 @@ addDrugRestart(
 
 - switchCohortTable:
 
-  A cohort table in the cdm that contains possible alternative
-  treatments.
+  A cohort table in the CDM containing possible alternative treatments.
 
 - switchCohortId:
 
-  The cohort ids to be used from switchCohortTable. If NULL all cohort
-  definition ids are used.
+  Cohort definition IDs to use from `switchCohortTable`. If `NULL`, all
+  cohort definition IDs are included.
 
 - followUpDays:
 
-  A vector of number of days to follow up. It can be multiple values.
+  Number of days to follow up. Multiple values are allowed.
 
 - censorDate:
 
@@ -44,9 +43,9 @@ addDrugRestart(
 
 - incident:
 
-  Whether the switch treatment has to be incident (start after
-  discontinuation) or not (it can start before the discontinuation and
-  last till after).
+  Whether switch treatment must be incident, starting after
+  discontinuation. If `FALSE`, it may start before discontinuation and
+  continue beyond it.
 
 - nameStyle:
 

@@ -43,6 +43,10 @@ library(omopgenerics, warn.conflicts = FALSE)
 library(dplyr, warn.conflicts = FALSE)
 
 cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
+#> duckdb is keeping downloaded extensions in a temporary directory:
+#> ℹ /tmp/RtmpjART0s/duckdb/extensions
+#> This is removed when the R session ends, so extensions are re-downloaded each session.
+#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
 
 cdm
 #> 
@@ -251,7 +255,7 @@ a single exposure as the records overlap each other:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #> # ℹ 23 variables: drug_exposure_id <int>, person_id <int>,
 #> #   drug_concept_id <int>, drug_exposure_start_date <date>,
 #> #   drug_exposure_end_date <date>, drug_type_concept_id <int>, quantity <dbl>,
@@ -266,7 +270,7 @@ cdm$drug_exposure |>
 cdm$acetaminophen_cohort |>
   filter(subject_id == 69)
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #> # ℹ 4 variables: cohort_definition_id <int>, subject_id <int>,
 #> #   cohort_start_date <date>, cohort_end_date <date>
 ```
@@ -292,7 +296,7 @@ We can see this particular case of this individual:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1              153        50         2905077 2009-02-05              
@@ -317,7 +321,7 @@ episodes.
 cdm$acetaminophen_cohort |>
   filter(subject_id == 50)
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1         50 2009-02-05        2009-07-16     
@@ -449,7 +453,7 @@ cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
 ), source = "duckdb")
 cdm2$drug_exposure
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1                1         1         1125360 2020-01-01              
@@ -532,7 +536,7 @@ January to 26th of February:
 
 cdm2$dus_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1          1 2020-01-01        2020-02-15
@@ -594,19 +598,19 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         84 2022-12-13        2022-12-14     
-#>  2                    1         22 2004-12-23        2005-06-17     
-#>  3                    1         65 1995-04-25        2004-07-01     
-#>  4                    1         50 2009-02-05        2009-07-16     
-#>  5                    1         50 2010-10-24        2015-07-12     
-#>  6                    1         73 2015-03-11        2015-06-17     
-#>  7                    1         73 2017-11-18        2018-12-11     
-#>  8                    1         33 2017-01-04        2019-09-13     
-#>  9                    1         33 2021-10-02        2021-11-13     
-#> 10                    1         14 2021-02-06        2021-03-15     
+#>  1                    1          3 2014-03-17        2015-03-01     
+#>  2                    1         43 2008-12-22        2009-07-31     
+#>  3                    1         58 2017-09-07        2018-09-13     
+#>  4                    1         12 2005-11-10        2012-03-21     
+#>  5                    1         55 1999-11-01        2004-05-03     
+#>  6                    1         60 1994-10-13        2000-11-25     
+#>  7                    1         66 2017-09-11        2017-09-23     
+#>  8                    1         25 2020-03-05        2020-05-07     
+#>  9                    1          7 1976-04-02        1986-10-18     
+#> 10                    1         62 2006-06-21        2014-05-13     
 #> # ℹ more rows
 ```
 
@@ -725,19 +729,19 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         84 2022-12-13        2022-12-14     
-#>  2                    1         22 2004-12-23        2005-06-17     
-#>  3                    1         65 1995-04-25        2004-07-01     
-#>  4                    1         50 2009-02-05        2009-07-16     
-#>  5                    1         73 2015-03-11        2015-06-17     
-#>  6                    1         33 2017-01-04        2019-09-13     
-#>  7                    1         14 2021-02-06        2021-03-15     
-#>  8                    1         27 1970-05-28        1972-10-28     
-#>  9                    1         44 2014-09-30        2018-07-26     
-#> 10                    1          8 2006-04-08        2011-01-02     
+#>  1                    1          3 2014-03-17        2015-03-01     
+#>  2                    1         43 2008-12-22        2009-07-31     
+#>  3                    1         58 2017-09-07        2018-09-13     
+#>  4                    1         12 2005-11-10        2012-03-21     
+#>  5                    1         55 1999-11-01        2004-05-03     
+#>  6                    1         60 1994-10-13        2000-11-25     
+#>  7                    1         66 2017-09-11        2017-09-23     
+#>  8                    1         25 2020-03-05        2020-05-07     
+#>  9                    1          7 1976-04-02        1986-10-18     
+#> 10                    1         62 2006-06-21        2014-05-13     
 #> # ℹ more rows
 ```
 
@@ -801,7 +805,7 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          2 1998-05-20        2012-04-20     
@@ -884,7 +888,7 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          3 2014-03-17        2015-03-01     

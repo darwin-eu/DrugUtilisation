@@ -22,7 +22,7 @@ summariseIndication(
   indexDate = "cohort_start_date",
   mutuallyExclusive = TRUE,
   censorDate = NULL,
-  notInObservation = "include"
+  inObservation = TRUE
 )
 ```
 
@@ -39,7 +39,7 @@ summariseIndication(
 
 - indicationCohortName:
 
-  Name of the cohort table with potential indications.
+  Name of the cohort table containing potential indications.
 
 - cohortId:
 
@@ -48,12 +48,12 @@ summariseIndication(
 
 - indicationCohortId:
 
-  The target cohort ID to add indication. If NULL all cohorts will be
-  considered.
+  Cohort definition IDs of the indications of interest. If `NULL`, all
+  cohorts in `indicationCohortName` are included.
 
 - indicationWindow:
 
-  The time window over which to identify indications.
+  Time windows over which to identify indications.
 
 - unknownIndicationTable:
 
@@ -65,18 +65,20 @@ summariseIndication(
 
 - mutuallyExclusive:
 
-  Whether to report indications as mutually exclusive or report them as
-  independent results.
+  Whether intersections should be mutually exclusive. If `TRUE`, cohort
+  combinations are reported as mutually exclusive categories; if
+  `FALSE`, each cohort is reported independently.
 
 - censorDate:
 
   Name of a column that indicates the date to stop the analysis, if NULL
   end of individuals observation is used.
 
-- notInObservation:
+- inObservation:
 
-  Whether to include the individuals not in observation as a separate
-  category ("include") or to exclude them ("exclude").
+  Whether to restrict the analysis to individuals in observation. If
+  `TRUE`, individuals not in observation are excluded. If `FALSE`, they
+  are included as a separate category.
 
 ## Value
 
@@ -114,9 +116,9 @@ cdm$drug_cohort |>
   glimpse()
 #> ℹ Intersect with indications table (indication_cohorts)
 #> ℹ Summarising indications.
-#> Rows: 12
+#> Rows: 10
 #> Columns: 13
-#> $ result_id        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+#> $ result_id        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 #> $ cdm_name         <chr> "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS MOCK", "DUS …
 #> $ group_name       <chr> "cohort_name", "cohort_name", "cohort_name", "cohort_…
 #> $ group_level      <chr> "acetaminophen", "acetaminophen", "acetaminophen", "a…
@@ -126,7 +128,7 @@ cdm$drug_cohort |>
 #> $ variable_level   <chr> "asthma", "asthma", "headache", "headache", "asthma a…
 #> $ estimate_name    <chr> "count", "percentage", "count", "percentage", "count"…
 #> $ estimate_type    <chr> "integer", "percentage", "integer", "percentage", "in…
-#> $ estimate_value   <chr> "0", "0", "1", "20.00000", "0", "0", "0", "0", "4", "…
+#> $ estimate_value   <chr> "1", "16.66667", "1", "16.66667", "0", "0", "0", "0",…
 #> $ additional_name  <chr> "window_name", "window_name", "window_name", "window_…
 #> $ additional_level <chr> "-inf to 0", "-inf to 0", "-inf to 0", "-inf to 0", "…
 # }

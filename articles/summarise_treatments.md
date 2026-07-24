@@ -161,8 +161,8 @@ result_mutually_exc <- summariseTreatment(
 
 tableTreatment(result = result_not_mutually_exc)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
-#> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
-#> are missing in `columnOrder`, will be added last.
+#> cohort_table_name, in_observation, index_date, mutually_exclusive, and
+#> treatment_cohort_name are missing in `columnOrder`, will be added last.
 ```
 
 [TABLE]
@@ -171,8 +171,8 @@ tableTreatment(result = result_not_mutually_exc)
 
 tableTreatment(result = result_mutually_exc)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
-#> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
-#> are missing in `columnOrder`, will be added last.
+#> cohort_table_name, in_observation, index_date, mutually_exclusive, and
+#> treatment_cohort_name are missing in `columnOrder`, will be added last.
 ```
 
 [TABLE]
@@ -202,8 +202,8 @@ user preferences.
 
 tableTreatment(result = results)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
-#> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
-#> are missing in `columnOrder`, will be added last.
+#> cohort_table_name, in_observation, index_date, mutually_exclusive, and
+#> treatment_cohort_name are missing in `columnOrder`, will be added last.
 ```
 
 [TABLE]

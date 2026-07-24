@@ -15,7 +15,7 @@ summariseTreatment(
   indexDate = "cohort_start_date",
   censorDate = NULL,
   mutuallyExclusive = FALSE,
-  notInObservation = "include"
+  inObservation = TRUE
 )
 ```
 
@@ -27,11 +27,11 @@ summariseTreatment(
 
 - window:
 
-  Time window over which to summarise the treatments.
+  Time windows over which to identify treatments.
 
 - treatmentCohortName:
 
-  Name of a cohort in the cdm that contains the treatments of interest.
+  Name of the cohort table containing the treatments of interest.
 
 - cohortId:
 
@@ -40,7 +40,8 @@ summariseTreatment(
 
 - treatmentCohortId:
 
-  Cohort definition id of interest from treatmentCohortName.
+  Cohort definition IDs of the treatments of interest. If `NULL`, all
+  cohorts in `treatmentCohortName` are included.
 
 - strata:
 
@@ -58,12 +59,15 @@ summariseTreatment(
 
 - mutuallyExclusive:
 
-  Whether to include mutually exclusive treatments or not.
+  Whether intersections should be mutually exclusive. If `TRUE`, cohort
+  combinations are reported as mutually exclusive categories; if
+  `FALSE`, each cohort is reported independently.
 
-- notInObservation:
+- inObservation:
 
-  Whether to include the individuals not in observation as a separate
-  category ("include") or to exclude them ("exclude").
+  Whether to restrict the analysis to individuals in observation. If
+  `TRUE`, individuals not in observation are excluded. If `FALSE`, they
+  are included as a separate category.
 
 ## Value
 

@@ -49,17 +49,17 @@ cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
 #> ℹ Inserting <cdm_reference> into duckdb.
 
 timings <- benchmarkDrugUtilisation(cdm)
-#> 03-07-2026 10:06:24 Benchmark get necessary concepts
-#> 03-07-2026 10:06:25 Benchmark generateDrugUtilisation
-#> 03-07-2026 10:06:27 Benchmark generateDrugUtilisation with numberExposures and
+#> 24-07-2026 20:22:13 Benchmark get necessary concepts
+#> 24-07-2026 20:22:13 Benchmark generateDrugUtilisation
+#> 24-07-2026 20:22:16 Benchmark generateDrugUtilisation with numberExposures and
 #> daysPrescribed
-#> 03-07-2026 10:06:30 Benchmark require
-#> 03-07-2026 10:06:32 Benchmark generateIngredientCohortSet
-#> 03-07-2026 10:06:35 Benchmark summariseDrugUtilisation
-#> 03-07-2026 10:06:40 Benchmark summariseDrugRestart
-#> 03-07-2026 10:06:42 Benchmark summariseProportionOfPatientsCovered
-#> 03-07-2026 10:06:47 Benchmark summariseTreatment
-#> 03-07-2026 10:06:50 Benchmark drop created tables
+#> 24-07-2026 20:22:18 Benchmark require
+#> 24-07-2026 20:22:20 Benchmark generateIngredientCohortSet
+#> 24-07-2026 20:22:24 Benchmark summariseDrugUtilisation
+#> 24-07-2026 20:22:29 Benchmark summariseDrugRestart
+#> 24-07-2026 20:22:31 Benchmark summariseProportionOfPatientsCovered
+#> 24-07-2026 20:22:32 Benchmark summariseTreatment
+#> 24-07-2026 20:22:35 Benchmark drop created tables
 
 timings
 #> # A tibble: 10 × 13

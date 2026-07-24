@@ -1,5 +1,35 @@
 # Changelog
 
+## DrugUtilisation 1.3.0
+
+CRAN release: 2026-07-24
+
+- Speed up proportion of patients covered by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#775](https://github.com/darwin-eu/DrugUtilisation/issues/775)
+- Discontinuation day is the first unexposed day by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#776](https://github.com/darwin-eu/DrugUtilisation/issues/776)
+- Default of not in observation by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#777](https://github.com/darwin-eu/DrugUtilisation/issues/777)
+- fix tests by [@catalamarti](https://github.com/catalamarti) in
+  [\#778](https://github.com/darwin-eu/DrugUtilisation/issues/778)
+- restrict to first discontinuation in
+  summariseDiscontinuationAsSurvival by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#779](https://github.com/darwin-eu/DrugUtilisation/issues/779)
+- Breaking change: replace the `notInObservation` argument in
+  [`summariseTreatment()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseTreatment.md)
+  and
+  [`summariseIndication()`](https://darwin-eu.github.io/DrugUtilisation/reference/summariseIndication.md)
+  with the logical `inObservation` argument, which defaults to `TRUE`.
+  by [@catalamarti](https://github.com/catalamarti) in
+  [\#780](https://github.com/darwin-eu/DrugUtilisation/issues/780)
+- Consistent documentation by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#781](https://github.com/darwin-eu/DrugUtilisation/issues/781)
+
 ## DrugUtilisation 1.2.1
 
 CRAN release: 2026-07-03

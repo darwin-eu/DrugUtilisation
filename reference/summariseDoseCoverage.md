@@ -53,9 +53,9 @@ summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315)
 #> • daily_dose: count_missing, percentage_missing, mean, sd, q25, median, q75
 #> ! Table is collected to memory as not all requested estimates are supported on
 #>   the database side
-#> → Start summary of data, at 2026-07-03 10:07:45.996787
-#> ✔ Summary finished, at 2026-07-03 10:07:46.387623
-#> # A tibble: 40 × 13
+#> → Start summary of data, at 2026-07-24 20:23:35.353389
+#> ✔ Summary finished, at 2026-07-24 20:23:35.746545
+#> # A tibble: 56 × 13
 #>    result_id cdm_name group_name      group_level   strata_name strata_level
 #>        <int> <chr>    <chr>           <chr>         <chr>       <chr>       
 #>  1         1 DUS MOCK ingredient_name acetaminophen overall     overall     
@@ -68,7 +68,7 @@ summariseDoseCoverage(cdm = cdm, ingredientConceptId = 1125315)
 #>  8         1 DUS MOCK ingredient_name acetaminophen overall     overall     
 #>  9         1 DUS MOCK ingredient_name acetaminophen unit        milligram   
 #> 10         1 DUS MOCK ingredient_name acetaminophen unit        milligram   
-#> # ℹ 30 more rows
+#> # ℹ 46 more rows
 #> # ℹ 7 more variables: variable_name <chr>, variable_level <chr>,
 #> #   estimate_name <chr>, estimate_type <chr>, estimate_value <chr>,
 #> #   additional_name <chr>, additional_level <chr>

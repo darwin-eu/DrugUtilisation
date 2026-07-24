@@ -6,10 +6,11 @@ survival analysis using the
 The function assumes that each cohort entry is a continuous treatment
 era. Discontinuation will be assessed as a survival analysis with index
 date: *start of the drug treatment era* (`cohort_start_date`) and event
-of interest: *end of the drug treatment era* (`cohort_end_date`). The
-analysis will use `estimateSingleEventSurvival()` or
-`estimateCompetingRiskSurvival()` depending if
-`competingOutcomeCohortTable` is provided or not.
+of interest: *first day without exposure* (the day after
+`cohort_end_date`). An event is only recorded if the individual remains
+under observation on that day. The analysis will use
+`estimateSingleEventSurvival()` or `estimateCompetingRiskSurvival()`
+depending if `competingOutcomeCohortTable` is provided or not.
 
 ## Usage
 
@@ -19,6 +20,7 @@ summariseDiscontinuationAsSurvival(
   cohortId = NULL,
   followUpDays = Inf,
   censorDate = NULL,
+  restrictToFirstDiscontinuation = TRUE,
   strata = list(),
   competingOutcomeCohortTable = NULL,
   competingOutcomeCohortId = NULL,
@@ -47,6 +49,11 @@ summariseDiscontinuationAsSurvival(
 
   if not NULL, an individual's follow up will be censored at the given
   date.
+
+- restrictToFirstDiscontinuation:
+
+  Whether to consider only the first discontinuation episode or all of
+  them.
 
 - strata:
 
@@ -96,30 +103,30 @@ result <- summariseDiscontinuationAsSurvival(cdm$cohort1)
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_1 and outcome:
 #>   discontinuation_of_cohort_1.
-#> - Getting survival for target cohort 'cohort_1' and outcome cohort
-#> 'discontinuation_of_cohort_1'
+#> ℹ Getting survival for target cohort 'cohort_1' and outcome cohort
+#>   'discontinuation_of_cohort_1'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.
-#> ✔ Discontinuation analysis for cohort_1 completed in 1s.
+#> ✔ Discontinuation analysis for cohort_1 completed in 3s.
 #> ℹ Calculating discontinuation for cohort_2.
 #> ℹ Subsetting table to cohort of interest.
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_2 and outcome:
 #>   discontinuation_of_cohort_2.
-#> - Getting survival for target cohort 'cohort_2' and outcome cohort
-#> 'discontinuation_of_cohort_2'
+#> ℹ Getting survival for target cohort 'cohort_2' and outcome cohort
+#>   'discontinuation_of_cohort_2'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.
-#> ✔ Discontinuation analysis for cohort_2 completed in 1s.
+#> ✔ Discontinuation analysis for cohort_2 completed in 2s.
 #> ℹ Calculating discontinuation for cohort_3.
 #> ℹ Subsetting table to cohort of interest.
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_3 and outcome:
 #>   discontinuation_of_cohort_3.
-#> - Getting survival for target cohort 'cohort_3' and outcome cohort
-#> 'discontinuation_of_cohort_3'
+#> ℹ Getting survival for target cohort 'cohort_3' and outcome cohort
+#>   'discontinuation_of_cohort_3'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.

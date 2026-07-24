@@ -11,7 +11,7 @@ tableTreatment(
   groupColumn = "variable_name",
   type = NULL,
   hide = c("window_name", "mutually_exclusive", "censor_date", "cohort_table_name",
-    "index_date", "treatment_cohort_name"),
+    "index_date", "treatment_cohort_name", "in_observation"),
   style = NULL,
   .options = list()
 )
@@ -96,8 +96,8 @@ result <- cdm$cohort1 |>
 
 tableTreatment(result)
 #> cdm_name, cohort_name, variable_name, window_name, censor_date,
-#> cohort_table_name, index_date, mutually_exclusive, and treatment_cohort_name
-#> are missing in `columnOrder`, will be added last.
+#> cohort_table_name, in_observation, index_date, mutually_exclusive, and
+#> treatment_cohort_name are missing in `columnOrder`, will be added last.
 
 
   

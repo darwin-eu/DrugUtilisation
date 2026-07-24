@@ -59,8 +59,8 @@ attrition(cdm$cohort1) |>
 #> Rows: 6
 #> Columns: 7
 #> $ cohort_definition_id <int> 1, 1, 2, 2, 3, 3
-#> $ number_records       <int> 4, 4, 5, 5, 1, 1
-#> $ number_subjects      <int> 4, 4, 5, 5, 1, 1
+#> $ number_records       <int> 3, 3, 2, 2, 5, 5
+#> $ number_subjects      <int> 3, 3, 2, 2, 5, 5
 #> $ reason_id            <int> 1, 2, 1, 2, 1, 2
 #> $ reason               <chr> "Initial qualifying events", "require prior use d…
 #> $ excluded_records     <int> 0, 0, 0, 0, 0, 0

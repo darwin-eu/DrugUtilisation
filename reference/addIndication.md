@@ -32,19 +32,20 @@ addIndication(
 
 - indicationCohortName:
 
-  Name of indication cohort table
+  Name of the cohort table containing potential indications.
 
 - indicationCohortId:
 
-  target cohort Id to add indication
+  Cohort definition IDs of the indications of interest. If `NULL`, all
+  cohorts in `indicationCohortName` are included.
 
 - indicationWindow:
 
-  time window of interests
+  Time windows over which to identify indications.
 
 - unknownIndicationTable:
 
-  Tables to search unknown indications
+  Tables in the OMOP CDM to search for unknown indications.
 
 - indexDate:
 
@@ -57,8 +58,9 @@ addIndication(
 
 - mutuallyExclusive:
 
-  Whether to consider mutually exclusive categories (one column per
-  window) or not (one column per window and indication).
+  Whether intersections should be mutually exclusive. If `TRUE`, cohort
+  combinations are reported as mutually exclusive categories; if
+  `FALSE`, each cohort is reported independently.
 
 - nameStyle:
 
@@ -86,6 +88,10 @@ library(dplyr, warn.conflicts = FALSE)
 library(CDMConnector)
 
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb is keeping downloaded extensions in a temporary directory:
+#> ℹ /tmp/Rtmp33SA3b/duckdb/extensions
+#> This is removed when the R session ends, so extensions are re-downloaded each session.
+#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,

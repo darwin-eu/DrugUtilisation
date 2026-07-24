@@ -99,19 +99,19 @@ result <- summariseDiscontinuationAsSurvival(cdm$cohort1)
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_1 and outcome:
 #>   discontinuation_of_cohort_1.
-#> - Getting survival for target cohort 'cohort_1' and outcome cohort
-#> 'discontinuation_of_cohort_1'
+#> ℹ Getting survival for target cohort 'cohort_1' and outcome cohort
+#>   'discontinuation_of_cohort_1'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.
-#> ✔ Discontinuation analysis for cohort_1 completed in 1s.
+#> ✔ Discontinuation analysis for cohort_1 completed in 2s.
 #> ℹ Calculating discontinuation for cohort_2.
 #> ℹ Subsetting table to cohort of interest.
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_2 and outcome:
 #>   discontinuation_of_cohort_2.
-#> - Getting survival for target cohort 'cohort_2' and outcome cohort
-#> 'discontinuation_of_cohort_2'
+#> ℹ Getting survival for target cohort 'cohort_2' and outcome cohort
+#>   'discontinuation_of_cohort_2'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.
@@ -121,12 +121,12 @@ result <- summariseDiscontinuationAsSurvival(cdm$cohort1)
 #> ℹ Preparing discontinuation (outcome) cohort.
 #> ℹ Estimate single event survival for cohort: cohort_3 and outcome:
 #>   discontinuation_of_cohort_3.
-#> - Getting survival for target cohort 'cohort_3' and outcome cohort
-#> 'discontinuation_of_cohort_3'
+#> ℹ Getting survival for target cohort 'cohort_3' and outcome cohort
+#>   'discontinuation_of_cohort_3'
 #> Getting overall estimates
 #> `eventgap`, `outcome_washout`, `censor_on_cohort_exit`, `follow_up_days`, and
 #> `minimum_survival_days` cast to character.
-#> ✔ Discontinuation analysis for cohort_3 completed in 1s.
+#> ✔ Discontinuation analysis for cohort_3 completed in 2s.
 
 tableDiscontinuationAsSurvival(result)
 #> cdm_name, cohort_name, cohort_survival_version, competing_outcome,

@@ -9,7 +9,7 @@ cohort in a specified time window."><meta property="og:image" content="https://d
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ cohort in a specified time window."><meta property="og:image" content="https://d
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Add a variable indicating individuals medications</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.2.1/R/addIntersect.R" class="external-link"><code>R/addIntersect.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/addIntersect.R" class="external-link"><code>R/addIntersect.R</code></a></small>
       <div class="d-none name"><code>addTreatment.Rd</code></div>
     </div>
 
@@ -77,15 +77,17 @@ cohort in a specified time window.</p>
 
 
 <dt id="arg-treatmentcohortname">treatmentCohortName<a class="anchor" aria-label="anchor" href="#arg-treatmentcohortname"></a></dt>
-<dd><p>Name of treatment cohort table</p></dd>
+<dd><p>Name of the cohort table containing the treatments
+of interest.</p></dd>
 
 
 <dt id="arg-treatmentcohortid">treatmentCohortId<a class="anchor" aria-label="anchor" href="#arg-treatmentcohortid"></a></dt>
-<dd><p>target cohort Id to add treatment</p></dd>
+<dd><p>Cohort definition IDs of the treatments of interest.
+If <code>NULL</code>, all cohorts in <code>treatmentCohortName</code> are included.</p></dd>
 
 
 <dt id="arg-window">window<a class="anchor" aria-label="anchor" href="#arg-window"></a></dt>
-<dd><p>time window of interests.</p></dd>
+<dd><p>Time windows over which to identify treatments.</p></dd>
 
 
 <dt id="arg-indexdate">indexDate<a class="anchor" aria-label="anchor" href="#arg-indexdate"></a></dt>
@@ -99,8 +101,9 @@ analysis, if NULL end of individuals observation is used.</p></dd>
 
 
 <dt id="arg-mutuallyexclusive">mutuallyExclusive<a class="anchor" aria-label="anchor" href="#arg-mutuallyexclusive"></a></dt>
-<dd><p>Whether to consider mutually exclusive categories
-(one column per window) or not (one column per window and treatment).</p></dd>
+<dd><p>Whether intersections should be mutually exclusive.
+If <code>TRUE</code>, cohort combinations are reported as mutually exclusive categories;
+if <code>FALSE</code>, each cohort is reported independently.</p></dd>
 
 
 <dt id="arg-namestyle">nameStyle<a class="anchor" aria-label="anchor" href="#arg-namestyle"></a></dt>
@@ -171,7 +174,7 @@ individual´s indications.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
