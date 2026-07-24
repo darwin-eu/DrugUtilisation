@@ -44,7 +44,7 @@ library(dplyr, warn.conflicts = FALSE)
 
 cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
 #> duckdb is keeping downloaded extensions in a temporary directory:
-#> ℹ /tmp/RtmpjART0s/duckdb/extensions
+#> ℹ /tmp/RtmpK07dRk/duckdb/extensions
 #> This is removed when the R session ends, so extensions are re-downloaded each session.
 #> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
 
@@ -601,16 +601,16 @@ cdm$acetaminophen_cohort
 #> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1          3 2014-03-17        2015-03-01     
-#>  2                    1         43 2008-12-22        2009-07-31     
-#>  3                    1         58 2017-09-07        2018-09-13     
-#>  4                    1         12 2005-11-10        2012-03-21     
-#>  5                    1         55 1999-11-01        2004-05-03     
-#>  6                    1         60 1994-10-13        2000-11-25     
-#>  7                    1         66 2017-09-11        2017-09-23     
+#>  1                    1         43 2008-12-22        2009-07-31     
+#>  2                    1         58 2017-09-07        2018-09-13     
+#>  3                    1         85 2014-03-12        2014-04-11     
+#>  4                    1         49 2015-11-03        2017-05-04     
+#>  5                    1         98 1972-02-29        1972-11-04     
+#>  6                    1          3 2014-03-17        2015-03-01     
+#>  7                    1         62 2006-06-21        2014-05-13     
 #>  8                    1         25 2020-03-05        2020-05-07     
-#>  9                    1          7 1976-04-02        1986-10-18     
-#> 10                    1         62 2006-06-21        2014-05-13     
+#>  9                    1          6 2019-12-21        2020-04-08     
+#> 10                    1         93 2006-09-22        2008-01-06     
 #> # ℹ more rows
 ```
 
@@ -732,16 +732,16 @@ cdm$acetaminophen_cohort
 #> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1          3 2014-03-17        2015-03-01     
-#>  2                    1         43 2008-12-22        2009-07-31     
-#>  3                    1         58 2017-09-07        2018-09-13     
-#>  4                    1         12 2005-11-10        2012-03-21     
-#>  5                    1         55 1999-11-01        2004-05-03     
-#>  6                    1         60 1994-10-13        2000-11-25     
-#>  7                    1         66 2017-09-11        2017-09-23     
+#>  1                    1         43 2008-12-22        2009-07-31     
+#>  2                    1         58 2017-09-07        2018-09-13     
+#>  3                    1         85 2014-03-12        2014-04-11     
+#>  4                    1         49 2015-11-03        2017-05-04     
+#>  5                    1         98 1972-02-29        1972-11-04     
+#>  6                    1          3 2014-03-17        2015-03-01     
+#>  7                    1         62 2006-06-21        2014-05-13     
 #>  8                    1         25 2020-03-05        2020-05-07     
-#>  9                    1          7 1976-04-02        1986-10-18     
-#> 10                    1         62 2006-06-21        2014-05-13     
+#>  9                    1          6 2019-12-21        2020-04-08     
+#> 10                    1         93 2006-09-22        2008-01-06     
 #> # ℹ more rows
 ```
 
