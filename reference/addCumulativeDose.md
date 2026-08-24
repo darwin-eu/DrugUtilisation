@@ -68,6 +68,9 @@ The same cohort with the added column.
 # \donttest{
 library(DrugUtilisation)
 library(CodelistGenerator)
+#> Registered S3 method overwritten by 'CodelistGenerator':
+#>   method            from        
+#>   print.code_search omopgenerics
 library(dplyr, warn.conflicts = FALSE)
 
 cdm <- mockDrugUtilisation()

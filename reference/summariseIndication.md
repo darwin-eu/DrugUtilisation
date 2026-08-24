@@ -22,7 +22,8 @@ summariseIndication(
   indexDate = "cohort_start_date",
   mutuallyExclusive = TRUE,
   censorDate = NULL,
-  inObservation = TRUE
+  inObservation = TRUE,
+  restrictIncident = FALSE
 )
 ```
 
@@ -80,6 +81,12 @@ summariseIndication(
   `TRUE`, individuals not in observation are excluded. If `FALSE`, they
   are included as a separate category.
 
+- restrictIncident:
+
+  Whether to include only target cohort records that start during the
+  analysis period. If `FALSE`, all target cohort records that overlap
+  with the study period will be included.
+
 ## Value
 
 A summarised result
@@ -93,6 +100,14 @@ library(dplyr, warn.conflicts = FALSE)
 library(CDMConnector)
 
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpYAPvel/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,

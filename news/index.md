@@ -1,5 +1,16 @@
 # Changelog
 
+## DrugUtilisation 1.3.1
+
+CRAN release: 2026-08-21
+
+- Add restrictIncident parameter for intersect functions by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#785](https://github.com/darwin-eu/DrugUtilisation/issues/785)
+- Run benchmark in a 100000 sample by default by
+  [@catalamarti](https://github.com/catalamarti) in
+  [\#786](https://github.com/darwin-eu/DrugUtilisation/issues/786)
+
 ## DrugUtilisation 1.3.0
 
 CRAN release: 2026-07-24

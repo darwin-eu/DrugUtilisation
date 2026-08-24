@@ -169,10 +169,14 @@ Alternatively you can use the `source` argument to insert the cdm to a
 ``` r
 
 cdm <- mockDrugUtilisation(source = "duckdb")
-#> duckdb is keeping downloaded extensions in a temporary directory:
-#> ℹ /tmp/RtmpDBhMYg/duckdb/extensions
-#> This is removed when the R session ends, so extensions are re-downloaded each session.
-#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 cdm
 #> 
 #> ── # OMOP CDM reference (duckdb) of DUS MOCK ───────────────────────────────────
@@ -222,6 +226,14 @@ If we would run it again the result will be different:
 ``` r
 
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 cdm$person |>
   glimpse()
 #> Rows: ??
@@ -253,6 +265,14 @@ initially:
 
 set.seed(seed = 1)
 cdm <- mockDrugUtilisation(source = "duckdb")
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 cdm$person |>
   glimpse()
 #> Rows: ??
@@ -340,7 +360,7 @@ individuals:
 cdm$person |>
   tally()
 #> # A query:  ?? x 1
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>       n
 #>   <dbl>
 #> 1   100

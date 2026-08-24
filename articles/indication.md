@@ -84,10 +84,10 @@ cdm[["acetaminophen_users"]] |>
 #> Rows: ??
 #> Columns: 5
 #> $ cohort_definition_id <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ subject_id           <int> 40, 95, 101, 545, 613, 613, 821, 821, 1070, 1079,…
-#> $ cohort_start_date    <date> 1985-05-29, 2002-08-01, 1945-06-01, 1974-10-23, …
-#> $ cohort_end_date      <date> 1985-06-12, 2002-08-29, 1945-06-08, 1974-11-20, …
-#> $ indication_m30_to_0  <chr> "none", "none", "none", "none", "bronchitis", "no…
+#> $ subject_id           <int> 162, 190, 263, 439, 726, 728, 871, 871, 884, 1072…
+#> $ cohort_start_date    <date> 1984-06-15, 1949-12-26, 1988-09-04, 1983-05-31, …
+#> $ cohort_end_date      <date> 1984-06-22, 1950-01-09, 1988-09-11, 1983-06-30, …
+#> $ indication_m30_to_0  <chr> "none", "bronchitis", "none", "none", "none", "no…
 ```
 
 We can see that individuals are classified as having sinusistis (without
@@ -100,13 +100,13 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # A query:  ?? x 2
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1//tmp/RtmpInrreL/file21a55166fe28.duckdb]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1//tmp/RtmpactyJw/file25e1885ff5b.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 bronchitis                2527
-#> 2 sinusitis                   18
-#> 3 none                     11351
-#> 4 bronchitis and sinusitis     3
+#> 1 none                     11351
+#> 2 bronchitis and sinusitis     3
+#> 3 bronchitis                2527
+#> 4 sinusitis                   18
 ```
 
 As well as the indication cohort table, we can also use the clinical
@@ -129,14 +129,14 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # A query:  ?? x 2
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1//tmp/RtmpInrreL/file21a55166fe28.duckdb]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1//tmp/RtmpactyJw/file25e1885ff5b.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
-#> 1 unknown                  11344
-#> 2 bronchitis                2527
-#> 3 sinusitis                   18
-#> 4 none                         7
-#> 5 bronchitis and sinusitis     3
+#> 1 bronchitis                2527
+#> 2 sinusitis                   18
+#> 3 none                         7
+#> 4 bronchitis and sinusitis     3
+#> 5 unknown                  11344
 ```
 
 We can add indications for multiple time windows. Unsurprisingly we find
@@ -156,30 +156,30 @@ cdm[["acetaminophen_users"]] |>
   group_by(indication_0_to_0) |>
   tally()
 #> # A query:  ?? x 2
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1//tmp/RtmpInrreL/file21a55166fe28.duckdb]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1//tmp/RtmpactyJw/file25e1885ff5b.duckdb]
 #>   indication_0_to_0     n
 #>   <chr>             <dbl>
-#> 1 unknown           11211
-#> 2 none                163
-#> 3 sinusitis             1
-#> 4 bronchitis         2524
+#> 1 bronchitis         2524
+#> 2 unknown           11211
+#> 3 none                163
+#> 4 sinusitis             1
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m30_to_0) |>
   tally()
 #> # A query:  ?? x 2
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1//tmp/RtmpInrreL/file21a55166fe28.duckdb]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1//tmp/RtmpactyJw/file25e1885ff5b.duckdb]
 #>   indication_m30_to_0          n
 #>   <chr>                    <dbl>
 #> 1 bronchitis                2527
 #> 2 sinusitis                   18
-#> 3 none                         7
-#> 4 bronchitis and sinusitis     3
+#> 3 bronchitis and sinusitis     3
+#> 4 none                         7
 #> 5 unknown                  11344
 cdm[["acetaminophen_users"]] |>
   group_by(indication_m365_to_0) |>
   tally()
 #> # A query:  ?? x 2
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1//tmp/RtmpInrreL/file21a55166fe28.duckdb]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1//tmp/RtmpactyJw/file25e1885ff5b.duckdb]
 #>   indication_m365_to_0         n
 #>   <chr>                    <dbl>
 #> 1 unknown                  10968

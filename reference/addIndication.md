@@ -20,7 +20,8 @@ addIndication(
   censorDate = NULL,
   mutuallyExclusive = TRUE,
   nameStyle = NULL,
-  name = NULL
+  name = NULL,
+  restrictIncident = FALSE
 )
 ```
 
@@ -74,6 +75,12 @@ addIndication(
   Name of the new computed cohort table, if NULL a temporary table will
   be created.
 
+- restrictIncident:
+
+  Whether to include only target cohort records that start during the
+  analysis period. If `FALSE`, all target cohort records that overlap
+  with the study period will be included.
+
 ## Value
 
 The original table with a variable added that summarises the
@@ -88,10 +95,14 @@ library(dplyr, warn.conflicts = FALSE)
 library(CDMConnector)
 
 cdm <- mockDrugUtilisation(source = "duckdb")
-#> duckdb is keeping downloaded extensions in a temporary directory:
-#> ℹ /tmp/RtmpYtDjjc/duckdb/extensions
-#> This is removed when the R session ends, so extensions are re-downloaded each session.
-#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpYAPvel/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 
 indications <- list(headache = 378253, asthma = 317009)
 cdm <- generateConceptCohortSet(cdm = cdm,

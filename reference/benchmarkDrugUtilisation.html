@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DrugUtilisation</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Run benchmark of drug utilisation cohort generation</h1>
-      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/v1.3.0/R/benchmarkDrugUtilisation.R" class="external-link"><code>R/benchmarkDrugUtilisation.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/darwin-eu/DrugUtilisation/blob/main/R/benchmarkDrugUtilisation.R" class="external-link"><code>R/benchmarkDrugUtilisation.R</code></a></small>
       <div class="d-none name"><code>benchmarkDrugUtilisation.Rd</code></div>
     </div>
 
@@ -56,7 +56,8 @@
 <span>  <span class="va">cdm</span>,</span>
 <span>  ingredient <span class="op">=</span> <span class="st">"acetaminophen"</span>,</span>
 <span>  alternativeIngredient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ibuprofen"</span>, <span class="st">"aspirin"</span>, <span class="st">"diclofenac"</span><span class="op">)</span>,</span>
-<span>  indicationCohort <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  indicationCohort <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  personSample <span class="op">=</span> <span class="fl">1e+05</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -81,6 +82,11 @@ treatments.</p></dd>
 <dd><p>Name of a cohort in the cdm_reference object to use
 as indicatiomn.</p></dd>
 
+
+<dt id="arg-personsample">personSample<a class="anchor" aria-label="anchor" href="#arg-personsample"></a></dt>
+<dd><p>Number of individuals to subset the cdm for the
+benchmark. If NULL no sample is applied.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -98,19 +104,27 @@ as indicatiomn.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Adding <span style="color: #0000BB;">drug_strength</span> table.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Creating local <span style="color: #0000BB;">&lt;cdm_reference&gt;</span> object.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Inserting <span style="color: #0000BB;">&lt;cdm_reference&gt;</span> into <span style="color: #0000BB;">duckdb</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> duckdb keeps downloaded extensions and secrets in a temporary directory:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> /tmp/RtmpYAPvel/duckdb</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This is removed when the R session ends.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Extensions are re-downloaded each session.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Secrets are lost.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> See ?duckdb_storage for details and alternatives.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">timings</span> <span class="op">&lt;-</span> <span class="fu">benchmarkDrugUtilisation</span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:41</span> Benchmark get necessary concepts</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:42</span> Benchmark generateDrugUtilisation</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:44</span> Benchmark generateDrugUtilisation with numberExposures and</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:38</span> Benchmark get necessary concepts</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:38</span> Benchmark generateDrugUtilisation</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:41</span> Benchmark generateDrugUtilisation with numberExposures and</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> daysPrescribed</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:47</span> Benchmark require</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:49</span> Benchmark generateIngredientCohortSet</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:54</span> Benchmark summariseDrugUtilisation</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:32:59</span> Benchmark summariseDrugRestart</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:33:01</span> Benchmark summariseProportionOfPatientsCovered</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:33:02</span> Benchmark summariseTreatment</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-07-2026 20:33:06</span> Benchmark drop created tables</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:44</span> Benchmark require</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:46</span> Benchmark generateIngredientCohortSet</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:50</span> Benchmark summariseDrugUtilisation</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:55</span> Benchmark summariseDrugRestart</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:58</span> Benchmark summariseProportionOfPatientsCovered</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:30:58</span> Benchmark summariseTreatment</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">24-08-2026 09:31:02</span> Benchmark drop created tables</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">timings</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 13</span></span>

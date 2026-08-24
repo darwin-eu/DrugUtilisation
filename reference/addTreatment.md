@@ -15,7 +15,8 @@ addTreatment(
   censorDate = NULL,
   mutuallyExclusive = TRUE,
   nameStyle = NULL,
-  name = NULL
+  name = NULL,
+  restrictIncident = FALSE
 )
 ```
 
@@ -63,6 +64,12 @@ addTreatment(
 
   Name of the new computed cohort table, if NULL a temporary table will
   be created.
+
+- restrictIncident:
+
+  Whether to include only target cohort records that start during the
+  analysis period. If `FALSE`, all target cohort records that overlap
+  with the study period will be included.
 
 ## Value
 

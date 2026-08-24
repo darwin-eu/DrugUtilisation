@@ -15,7 +15,8 @@ summariseTreatment(
   indexDate = "cohort_start_date",
   censorDate = NULL,
   mutuallyExclusive = FALSE,
-  inObservation = TRUE
+  inObservation = TRUE,
+  restrictIncident = FALSE
 )
 ```
 
@@ -68,6 +69,12 @@ summariseTreatment(
   Whether to restrict the analysis to individuals in observation. If
   `TRUE`, individuals not in observation are excluded. If `FALSE`, they
   are included as a separate category.
+
+- restrictIncident:
+
+  Whether to include only target cohort records that start during the
+  analysis period. If `FALSE`, all target cohort records that overlap
+  with the study period will be included.
 
 ## Value
 

@@ -43,10 +43,14 @@ library(omopgenerics, warn.conflicts = FALSE)
 library(dplyr, warn.conflicts = FALSE)
 
 cdm <- mockDrugUtilisation(numberIndividuals = 100, source = "duckdb")
-#> duckdb is keeping downloaded extensions in a temporary directory:
-#> ℹ /tmp/RtmpK07dRk/duckdb/extensions
-#> This is removed when the R session ends, so extensions are re-downloaded each session.
-#> ℹ To keep them, point `options(duckdb.extension_directory =)` or the `DUCKDB_EXTENSION_DIRECTORY` environment variable at a permanent path.
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpcxOhsG/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 
 cdm
 #> 
@@ -128,11 +132,14 @@ can be very useful to create conceptSet.
 ``` r
 
 library(CodelistGenerator)
+#> Registered S3 method overwritten by 'CodelistGenerator':
+#>   method            from        
+#>   print.code_search omopgenerics
 #> 
 #> Attaching package: 'CodelistGenerator'
-#> The following object is masked from 'package:omopgenerics':
+#> The following objects are masked from 'package:omopgenerics':
 #> 
-#>     searchStrategy
+#>     emptyCodeSearch, exportCodeSearch, importCodeSearch, searchStrategy
 ```
 
 For example we can create a conceptSet based in an ingredient with
@@ -255,7 +262,7 @@ a single exposure as the records overlap each other:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 69)
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #> # ℹ 23 variables: drug_exposure_id <int>, person_id <int>,
 #> #   drug_concept_id <int>, drug_exposure_start_date <date>,
 #> #   drug_exposure_end_date <date>, drug_type_concept_id <int>, quantity <dbl>,
@@ -270,7 +277,7 @@ cdm$drug_exposure |>
 cdm$acetaminophen_cohort |>
   filter(subject_id == 69)
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #> # ℹ 4 variables: cohort_definition_id <int>, subject_id <int>,
 #> #   cohort_start_date <date>, cohort_end_date <date>
 ```
@@ -296,7 +303,7 @@ We can see this particular case of this individual:
 cdm$drug_exposure |>
   filter(drug_concept_id %in% !!codes$acetaminophen & person_id == 50)
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1              153        50         2905077 2009-02-05              
@@ -321,7 +328,7 @@ episodes.
 cdm$acetaminophen_cohort |>
   filter(subject_id == 50)
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
 #> 1                    1         50 2009-02-05        2009-07-16     
@@ -451,9 +458,17 @@ cdm2 <- mockDrugUtilisation(drug_exposure = tibble(
   drug_exposure_start_date = as.Date(c("2020-01-01", "2020-01-20")),
   drug_exposure_end_date = as.Date(c("2020-01-30", "2020-02-15"))
 ), source = "duckdb")
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmpcxOhsG/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 cdm2$drug_exposure
 #> # A query:  ?? x 23
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>   drug_exposure_id person_id drug_concept_id drug_exposure_start_date
 #>              <int>     <int>           <int> <date>                  
 #> 1                1         1         1125360 2020-01-01              
@@ -536,10 +551,10 @@ January to 26th of February:
 
 cdm2$dus_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>   cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                  <int>      <int> <date>            <date>         
-#> 1                    1          1 2020-01-01        2020-02-15
+#> 1                    1          1 2020-01-01        2020-02-26
 ```
 
 Please note that this does not change the data in drug_exposure, so if
@@ -558,7 +573,7 @@ cdm2$dus_cohort |>
 #> $ cohort_definition_id       <int> 1
 #> $ subject_id                 <int> 1
 #> $ cohort_start_date          <date> 2020-01-01
-#> $ cohort_end_date            <date> 2020-02-15
+#> $ cohort_end_date            <date> 2020-02-26
 #> $ days_exposed_acetaminophen <int> 46
 ```
 
@@ -598,19 +613,19 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         43 2008-12-22        2009-07-31     
-#>  2                    1         58 2017-09-07        2018-09-13     
-#>  3                    1         85 2014-03-12        2014-04-11     
-#>  4                    1         49 2015-11-03        2017-05-04     
-#>  5                    1         98 1972-02-29        1972-11-04     
-#>  6                    1          3 2014-03-17        2015-03-01     
-#>  7                    1         62 2006-06-21        2014-05-13     
-#>  8                    1         25 2020-03-05        2020-05-07     
-#>  9                    1          6 2019-12-21        2020-04-08     
-#> 10                    1         93 2006-09-22        2008-01-06     
+#>  1                    1         34 2009-06-19        2009-06-28     
+#>  2                    1         29 2016-04-02        2019-11-13     
+#>  3                    1         24 2014-03-28        2014-08-09     
+#>  4                    1         13 1986-11-20        1987-02-12     
+#>  5                    1         72 2013-08-02        2013-12-04     
+#>  6                    1         15 1972-01-05        1983-04-19     
+#>  7                    1         35 1998-04-20        1998-10-22     
+#>  8                    1         87 2017-10-01        2018-03-12     
+#>  9                    1         18 2011-04-22        2013-11-13     
+#> 10                    1         18 2016-02-01        2016-10-22     
 #> # ℹ more rows
 ```
 
@@ -729,19 +744,19 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
-#>  1                    1         43 2008-12-22        2009-07-31     
-#>  2                    1         58 2017-09-07        2018-09-13     
-#>  3                    1         85 2014-03-12        2014-04-11     
-#>  4                    1         49 2015-11-03        2017-05-04     
-#>  5                    1         98 1972-02-29        1972-11-04     
-#>  6                    1          3 2014-03-17        2015-03-01     
-#>  7                    1         62 2006-06-21        2014-05-13     
-#>  8                    1         25 2020-03-05        2020-05-07     
-#>  9                    1          6 2019-12-21        2020-04-08     
-#> 10                    1         93 2006-09-22        2008-01-06     
+#>  1                    1         34 2009-06-19        2009-06-28     
+#>  2                    1         29 2016-04-02        2019-11-13     
+#>  3                    1         24 2014-03-28        2014-08-09     
+#>  4                    1         13 1986-11-20        1987-02-12     
+#>  5                    1         72 2013-08-02        2013-12-04     
+#>  6                    1         15 1972-01-05        1983-04-19     
+#>  7                    1         35 1998-04-20        1998-10-22     
+#>  8                    1         87 2017-10-01        2018-03-12     
+#>  9                    1         18 2011-04-22        2013-11-13     
+#> 10                    1         45 2008-04-06        2008-04-13     
 #> # ℹ more rows
 ```
 
@@ -805,7 +820,7 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          2 1998-05-20        2012-04-20     
@@ -888,7 +903,7 @@ criteria:
 
 cdm$acetaminophen_cohort
 #> # A query:  ?? x 4
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>    cohort_definition_id subject_id cohort_start_date cohort_end_date
 #>                   <int>      <int> <date>            <date>         
 #>  1                    1          3 2014-03-17        2015-03-01     
