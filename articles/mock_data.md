@@ -170,7 +170,7 @@ Alternatively you can use the `source` argument to insert the cdm to a
 
 cdm <- mockDrugUtilisation(source = "duckdb")
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> ℹ /tmp/RtmpgKrlgj/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
@@ -227,7 +227,7 @@ If we would run it again the result will be different:
 
 cdm <- mockDrugUtilisation(source = "duckdb")
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> ℹ /tmp/RtmpgKrlgj/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
@@ -266,7 +266,7 @@ initially:
 set.seed(seed = 1)
 cdm <- mockDrugUtilisation(source = "duckdb")
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpgWiqCX/duckdb
+#> ℹ /tmp/RtmpgKrlgj/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
